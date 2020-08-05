@@ -1,0 +1,193 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Student.master.cs" Inherits="SIS_Student.Student" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SIS</title>
+    <link rel="shortcut icon" href="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- Bootstrap -->
+    <link href="gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="gentelella-master/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="gentelella-master/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <%--    <link href="gentelella-master/production/css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet" />--%>
+    <!-- Custom Theme Style -->
+    <link href="gentelella-master/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <form id="form1" runat="server">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="Dashboard" class="site_title"><i class="fa fa-paw"></i><span> ECT SIS</span></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="gentelella-master/production/images/graduate.png" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>Welcome,</span>
+                                <h2><asp:Label ID="lblUser" runat="server" CssClass="userh2"></asp:Label></h2>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- /menu profile quick info -->
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <h3>General</h3>
+                                <ul class="nav side-menu">
+                                    <li><a href="Dashboard"><i class="fa fa-home"></i>Home</a></li>
+                                    <asp:Repeater ID="rptCategories" runat="server" OnItemDataBound="rptCategories_ItemDataBound">
+                                        <ItemTemplate>
+                                            <li><a>
+                                                <%#Eval("DisplayObjectName") %> <span class="fa fa-chevron-down"></span></a> 
+                                            <asp:Literal ID="ltrlSubMenu" runat="server"></asp:Literal>
+                                                </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                        <!-- /sidebar menu -->
+
+                        <!-- /menu footer buttons -->
+
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <nav class="nav navbar-nav">
+                            <ul class=" navbar-right">
+                                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="gentelella-master/production/images/graduate.png" alt=""><asp:Label ID="lblUser1" runat="server"></asp:Label>
+                    </a>
+                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="javascript:;">Profile</a>
+                                        <%--<a class="dropdown-item" href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">Help</a>--%>
+                                        <asp:LinkButton ID="lnk_Logout" runat="server" CssClass="dropdown-item" OnClick="lnk_Logout_Click"><i class="fa fa-sign-out pull-right"></i> Log Out</asp:LinkButton>                                        
+                                    </div>
+                                </li>
+
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+
+                <!-- page content -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                <!-- /page content -->
+                <button onclick="topFunction()" id="myBtn" title="Go to top">▲ Top</button>
+                <script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 25 || document.documentElement.scrollTop > 25) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+                </script>
+                <style>
+                    #myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+               
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-left">
+                        Copyright © <%=DateTime.Now.Year%> <a href="https://ect.ac.ae" target="_blank">Emirates College of Technology</a>                        
+                    </div>
+                    <div class="pull-right">
+                        Developed by <a href="https://ect.ac.ae" target="_blank">ETS Team</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+        <style>
+            #lblUser {
+    font-size: 14px;
+    color: #ECF0F1;
+    margin: 0;
+    font-weight: 300;
+}
+        </style>
+        <!-- jQuery -->
+        <script src="gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="gentelella-master/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- FastClick -->
+        <script src="gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="gentelella-master/vendors/nprogress/nprogress.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="gentelella-master/build/js/custom.min.js"></script>
+    </form>
+</body>
+</html>
