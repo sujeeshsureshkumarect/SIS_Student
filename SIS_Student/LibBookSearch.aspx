@@ -8,7 +8,7 @@
                                     <h3>Library</h3>
                                 </div>
                                 <style>
-                                    .page-title .title_left {
+                                    .page-title .title_left { 
                                         width: 100%;
                                         float: left;
                                         display: block;
