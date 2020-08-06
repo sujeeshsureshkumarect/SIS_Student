@@ -47,6 +47,7 @@
                         <asp:LinkButton ID="lnkSearch" runat="server" CssClass="btn btn-success btn-sm"><i class="fa fa-search"></i> Search</asp:LinkButton>
                     </td>
                 </tr>
+                
                 <tr>
                     <td align="center" width="40%" colspan="2" style="width: 100%">
                         <%--<asp:ImageButton ID="imgCart" runat="server" Height="30px" ImageUrl="~/images/Icons/Cart.png" 
@@ -73,7 +74,7 @@
                 </tr>--%>
             </table>
         </div>
-                                                
+                            <hr />                    
                                                 <div id="divResult" runat="server" class="table-responsive"> 
                         </div>
                                                     </div>

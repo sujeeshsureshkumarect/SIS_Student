@@ -98,7 +98,7 @@
 }
 
 .navbar a:hover {
-  background: #bd59d4;
+  background: #ffc107;
   color: black;
 }
 
