@@ -229,7 +229,7 @@ namespace SIS_Student
                 string sLink = "";
                 string myTable = "<table id='datatable' class='table table-striped table-bordered' style='width: 100%'>";
                 int iStatus = 0;
-                myTable += "<thead><tr class='headings'><th class='column-title'>#</th><th class='column-title'>Add?</th><th class='column-title'>Accesstion No</th><th class='column-title'>Title</th><th>Author</th><th class='column-title'>Publisher</th><th class='column-title'>Subject</th><th class='column-title'>Edition</th><th class='column-title'>Published</th><th>Library</th class='column-title'><th>Status</th></tr></thead>";
+                myTable += "<thead><tr class='headings'><th>#</th><th>Add?</th><th >Accesstion No</th><th>Title</th><th>Author</th><th >Publisher</th><th >Subject</th><th>Edition</th><th >Published</th><th>Library</th ><th>Status</th></tr></thead>";
                 if (!HeaderOnly)
                 {
                     string cssClass = "even pointer";
@@ -251,7 +251,7 @@ namespace SIS_Student
                         {
                             iStatus = 1;
                         }
-                        myTable += "<td ><input id='btn" + (i + 1).ToString() + "' type='button' value='Add to basket' onclick='addtobasket(" + myBooks[i].AccNo + "," + iStatus + ");'/></td>";
+                        myTable += "<td ><input id='btn" + (i + 1).ToString() + "' type='button' value='Add to basket' onclick='addtobasket(" + myBooks[i].AccNo + "," + iStatus + ");'></input></td>";
                         myTable += "<td style='font-size: small'>" + myBooks[i].AccNo + "</td>";
                         myTable += "<td style='font-size: small'>" + myBooks[i].Title + "</td>";
                         myTable += "<td style='font-size: small'>" + myBooks[i].Author + "</td>";
