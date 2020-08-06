@@ -267,13 +267,23 @@ namespace SIS_Student
 
                         myTable += "</tr>";
                     }
+                    myTable += "</table>";
 
+                    //Literal1.Text = myTable;
+                    divResult.InnerHtml = myTable;
+                }
+                else
+                {
+                    myTable = "No Results found...";
+
+                    //Literal1.Text = myTable;
+                    divResult.InnerHtml = myTable;
                 }
 
-                myTable += "</table>";
+                //myTable += "</table>";
 
-                //Literal1.Text = myTable;
-                divResult.InnerHtml = myTable;
+                ////Literal1.Text = myTable;
+                //divResult.InnerHtml = myTable;
 
             }
             catch (Exception ex)

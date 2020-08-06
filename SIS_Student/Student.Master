@@ -39,7 +39,13 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="Dashboard" class="site_title"><i class="fa fa-globe"></i><span> ECT SIS</span></a>
+                            <%--<a href="Dashboard" class="site_title"><i class="fa fa-globe"></i><span> ECT SIS</span></a>--%>
+                            <a href="Dashboard" class="site_title">
+                                <i>
+                                <img src="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" /></i>
+                                <span> ECT SIS</span>
+
+                            </a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -166,6 +172,12 @@ function topFunction() {
 
 #myBtn:hover {
   background-color: #ffc107;
+}
+.site_title i {
+    border: 1px solid #EAEAEA;
+    padding: 7px 7px;
+    border-radius: 50%;
+    background: white;
 }
 </style>
                
