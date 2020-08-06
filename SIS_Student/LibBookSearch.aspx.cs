@@ -221,19 +221,19 @@ namespace SIS_Student
             return myBooks;
 
         }
-
         private void showBooks(List<Book> myBooks, bool HeaderOnly)
         {
 
             try
             {
-                //string sLink = "";
-                string myTable = "<table width='100%'>";
+                string sLink = "";
+                string myTable = "<table id='datatable' class='table table-striped table-bordered' style='width: 100%'>";
                 int iStatus = 0;
-                myTable += "<tr><th>#</th><th>Add?</th><th>Accesstion No</th><th>Title</th><th>Author</th><th>Publisher</th><th>Subject</th><th>Edition</th><th>Published</th><th>Library</th><th>Status</th></tr>";
+                myTable += "<thead><tr class='headings'><th class='column-title'>#</th><th class='column-title'>Add?</th><th class='column-title'>Accesstion No</th><th class='column-title'>Title</th><th>Author</th><th class='column-title'>Publisher</th><th class='column-title'>Subject</th><th class='column-title'>Edition</th><th class='column-title'>Published</th><th>Library</th class='column-title'><th>Status</th></tr></thead>";
                 if (!HeaderOnly)
                 {
-                    string cssClass = "R_NormalWhite";
+                    string cssClass = "even pointer";
+
                     for (int i = 0; i < myBooks.Count; i++)
                     {
                         if (i % 2 == 0)
@@ -245,25 +245,26 @@ namespace SIS_Student
                             cssClass = "R_NormalGray";
                         }
                         myTable += "<tr class='" + cssClass + "'>";
-                        myTable += "<td align='center'>" + (i + 1).ToString() + "</td>";
+                        myTable += "<td>" + (i + 1).ToString() + "</td>";
                         iStatus = 0;
                         if (myBooks[i].Status == "Available")
                         {
                             iStatus = 1;
                         }
-                        myTable += "<td align='center'><input id='btn" + (i + 1).ToString() + "' type='button' value='Add to basket' onclick='addtobasket(" + myBooks[i].AccNo + "," + iStatus + ");'/></td>";
-                        myTable += "<td align='center'>" + myBooks[i].AccNo + "</td>";
-                        myTable += "<td>" + myBooks[i].Title + "</td>";
-                        myTable += "<td>" + myBooks[i].Author + "</td>";
-                        myTable += "<td>" + myBooks[i].Publisher + "</td>";
-                        myTable += "<td>" + myBooks[i].Subject + "</td>";
-                        myTable += "<td>" + myBooks[i].Edition + "</td>";
-                        myTable += "<td align='center'>" + myBooks[i].Published + "</td>";
-                        myTable += "<td>" + myBooks[i].Library + "</td>";
-                        myTable += "<td>" + myBooks[i].Status + "</td>";
+                        myTable += "<td ><input id='btn" + (i + 1).ToString() + "' type='button' value='Add to basket' onclick='addtobasket(" + myBooks[i].AccNo + "," + iStatus + ");'/></td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].AccNo + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Title + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Author + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Publisher + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Subject + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Edition + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Published + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Library + "</td>";
+                        myTable += "<td style='font-size: small'>" + myBooks[i].Status + "</td>";
 
                         myTable += "</tr>";
                     }
+
                 }
 
                 myTable += "</table>";
@@ -282,6 +283,68 @@ namespace SIS_Student
             }
 
         }
+        //private void showBooks(List<Book> myBooks, bool HeaderOnly)
+        //{
+
+        //    try
+        //    {
+        //        string sLink = "";
+        //        string myTable = "<table class='table table-striped jambo_table bulk_action' width='100%'>";
+        //        int iStatus = 0;
+        //        myTable += "<thead><tr class='headings'><th class='column-title'>#</th><th class='column-title'>Add?</th><th class='column-title'>Accesstion No</th><th class='column-title'>Title</th><th>Author</th><th class='column-title'>Publisher</th><th class='column-title'>Subject</th><th class='column-title'>Edition</th><th class='column-title'>Published</th><th>Library</th class='column-title'><th>Status</th></tr></thead>";
+        //        if (!HeaderOnly)
+        //        {
+        //            string cssClass = "even pointer";
+
+        //            for (int i = 0; i < myBooks.Count; i++)
+        //            {
+        //                if (i % 2 == 0)
+        //                {
+        //                    cssClass = "even pointer";
+        //                }
+        //                else
+        //                {
+        //                    cssClass = "odd pointer";
+        //                }
+        //                myTable += "<tr class='" + cssClass + "'>";
+        //                myTable += "<td>" + (i + 1).ToString() + "</td>";
+        //                iStatus = 0;
+        //                if (myBooks[i].Status == "Available")
+        //                {
+        //                    iStatus = 1;
+        //                }
+        //                myTable += "<td class='a-center '><input id='btn" + (i + 1).ToString() + "' type='button' value='Add to basket' onclick='addtobasket(" + myBooks[i].AccNo + "," + iStatus + ");'/></td>";
+        //                myTable += "<td >" + myBooks[i].AccNo + "</td>";
+        //                myTable += "<td>" + myBooks[i].Title + "</td>";
+        //                myTable += "<td>" + myBooks[i].Author + "</td>";
+        //                myTable += "<td>" + myBooks[i].Publisher + "</td>";
+        //                myTable += "<td>" + myBooks[i].Subject + "</td>";
+        //                myTable += "<td>" + myBooks[i].Edition + "</td>";
+        //                myTable += "<td >" + myBooks[i].Published + "</td>";
+        //                myTable += "<td>" + myBooks[i].Library + "</td>";
+        //                myTable += "<td>" + myBooks[i].Status + "</td>";
+
+        //                myTable += "</tr>";
+        //            }
+
+        //        }
+
+        //        myTable += "</table>";
+
+        //        //Literal1.Text = myTable;
+        //        divResult.InnerHtml = myTable;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("{0} Exception caught.", ex.Message);
+        //    }
+        //    finally
+        //    {
+
+        //    }
+
+        //}
 
         private DataSet getBasket(List<Book> myBasket)
         {

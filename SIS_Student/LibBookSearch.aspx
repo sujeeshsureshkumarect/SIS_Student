@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LibBookSearch.aspx.cs" Inherits="SIS_Student.LibBookSearch" MasterPageFile="~/Student.Master"%>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">   
     <div class="right_col" role="main">
                         <div class="">
                             <div class="page-title">
@@ -65,15 +65,18 @@
                         <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                     </td>
                 </tr>
-                <tr>
+            <%--  <tr>
                     <td align="center" colspan="2">
-                        <div id="divResult" runat="server" align="center">
-                        </div>
+                        
                     </td>
-                </tr>
+                </tr>--%>
             </table>
         </div>
-    </div>
+                                                
+                                                <div id="divResult" runat="server" class="table-responsive"> 
+                        </div>
+                                                    </div>
+    
                                         </div>
                                     </div>
                                 </div>
@@ -82,19 +85,20 @@
                     </div>
     <style>
         TABLE TH {
-    border-right: white thin solid;
-    border-top: white thin solid;
+/*    border-right: white thin solid;*/
+/*    border-top: white thin solid;*/
     font-weight: bold;
     vertical-align: middle;
     text-transform: capitalize;
-    border-left: white thin solid;
+/*    border-left: white thin solid;*/
     color: #ffffff;
-    border-bottom: white thin solid;
+/*    border-bottom: white thin solid;*/
     font-family: Arial, Helvetica, sans-serif;
     background-color: #2A3F54;
     text-align: center;
     line-height: 2;
     font-size: small;
+    padding-right:10px;
 }
         .R_NormalWhite {
     border-right: #073772 thin solid;
@@ -120,7 +124,12 @@
     text-align: left;
     font-size: small;
 }
+
+        table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting {
+    padding-right: 10px;
+}
     </style>
+   
     <script type="text/javascript">
 
         function addtobasket(accno,status) {
@@ -135,4 +144,5 @@
             }            
         }
     </script>
+    
     </asp:Content>
