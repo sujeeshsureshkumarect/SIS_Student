@@ -484,7 +484,7 @@ namespace SIS_Student
 
             return iAdded;
         }
-        protected void imgCart_Click(object sender, ImageClickEventArgs e)
+        protected void imgCart_Click(object sender, EventArgs e)
         {
             List<Book> myBasket;
             if (Session["BooksBasket"] != null)

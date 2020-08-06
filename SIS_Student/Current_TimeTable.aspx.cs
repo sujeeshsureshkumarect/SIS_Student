@@ -42,7 +42,7 @@ namespace SIS_Student
                     if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Current_TimeTable,
                     InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
                     {
-                        //showErr("Sorry, you don't have the permission to view this page...");
+                        showErr("Sorry, you don't have the permission to view this page...");
                     }
 
                     lblTerm.Text = getRegTerm();
@@ -69,6 +69,11 @@ namespace SIS_Student
             {
 
             }
+        }
+        private void showErr(string sMsg)
+        {
+            Session["errMsg"] = sMsg;
+            Response.Redirect("ErrPage");
         }
         public void ClearSession()
         {
