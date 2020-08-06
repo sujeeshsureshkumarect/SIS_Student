@@ -157,7 +157,7 @@ function topFunction() {
   font-size: 18px;
   border: none;
   outline: none;
-  background-color: red;
+  background-color: #2a3f54;
   color: white;
   cursor: pointer;
   padding: 10px;
@@ -165,7 +165,7 @@ function topFunction() {
 }
 
 #myBtn:hover {
-  background-color: #555;
+  background-color: #ffc107;
 }
 </style>
                

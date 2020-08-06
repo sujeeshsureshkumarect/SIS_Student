@@ -66,7 +66,7 @@
                                         <h3>Females Morning</h3> 
                                     </div>
                                     <div class="pull-right">                                  
-                                        <asp:LinkButton ID="PrintFM_CMD" runat="server" CssClass="btn btn-warning btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
+                                        <asp:LinkButton ID="PrintFM_CMD" runat="server" CssClass="btn btn-success btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
                                     </div>
                                    
                                     <div id="divfm" class="viewdiv" align="center">                                         
@@ -231,7 +231,7 @@
                                         <h3>Females Evening</h3> 
                                     </div>
                                     <div class="pull-right">                                  
-                                        <asp:LinkButton ID="PrintFE_CMD" runat="server" CssClass="btn btn-warning btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
+                                        <asp:LinkButton ID="PrintFE_CMD" runat="server" CssClass="btn btn-success btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
                                     </div>
                                     <div id="divfe" class="viewdiv" align="center">
 
@@ -397,7 +397,7 @@
                                         <h3>Females Weekend</h3> 
                                     </div>
                                     <div class="pull-right">                                  
-                                        <asp:LinkButton ID="PrintWEF_CMD" runat="server" CssClass="btn btn-warning btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
+                                        <asp:LinkButton ID="PrintWEF_CMD" runat="server" CssClass="btn btn-success btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
                                     </div>
                                     <div id="divwef" class="viewdiv" align="center">
                                         <%--<asp:ImageButton ID="PrintWEF_CMD" runat="server" ImageUrl="~/Images/Icons/Print.gif"
@@ -560,7 +560,7 @@
                                         <h3>Males Evening</h3> 
                                     </div>
                                     <div class="pull-right">                                  
-                                        <asp:LinkButton ID="PrintME_CMD" runat="server" CssClass="btn btn-warning btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
+                                        <asp:LinkButton ID="PrintME_CMD" runat="server" CssClass="btn btn-success btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
                                     </div>
                                     <div id="divme" class="viewdiv" align="center">
                                         <%--<asp:ImageButton ID="PrintME_CMD" runat="server" ImageUrl="~/Images/Icons/Print.gif"                                         
@@ -722,7 +722,7 @@
                                         <h3>Males Weekend</h3> 
                                     </div>
                                     <div class="pull-right">                                  
-                                        <asp:LinkButton ID="PrintWEM_CMD" runat="server" CssClass="btn btn-warning btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
+                                        <asp:LinkButton ID="PrintWEM_CMD" runat="server" CssClass="btn btn-success btn-sm pull-right" style="margin-right: 5px;" OnClick="PrintCMD_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
                                     </div>
                                     <div id="divwem" class="viewdiv" align="center">
 

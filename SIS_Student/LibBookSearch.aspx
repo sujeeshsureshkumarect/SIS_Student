@@ -52,7 +52,7 @@
                         <%--<asp:ImageButton ID="imgCart" runat="server" Height="30px" ImageUrl="~/images/Icons/Cart.png" 
                             ToolTip="Show basket content" Width="30px" Visible="False" 
                             onclick="imgCart_Click" />--%>
-                         <asp:LinkButton ID="imgCart" runat="server" Visible="False" CssClass="btn btn-primary btn-sm"  OnClick="imgCart_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Show Basket Content"><i class="fa fa-trash"></i> Show Basket Content</asp:LinkButton>                                       
+                         <asp:LinkButton ID="imgCart" runat="server" Visible="False" CssClass="btn btn-success btn-sm"  OnClick="imgCart_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Show Basket Content"><i class="fa fa-trash"></i> Show Basket Content</asp:LinkButton>                                       
                     </td>
                 </tr>
                 <tr>

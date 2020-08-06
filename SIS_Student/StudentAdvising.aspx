@@ -127,7 +127,8 @@
                       <%--  <asp:ImageButton runat="server" ImageUrl="~/Images/Icons/Print.gif" 
                             ToolTip="Print" ID="Print_btn" OnClick="Print_btn_Click" CssClass="btCommand">
                         </asp:ImageButton>--%>
-                        <asp:LinkButton ID="Print_btn" runat="server" CssClass="btn btn-primary btn-sm"  OnClick="Print_btn_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
+                        <br />
+                        <asp:LinkButton ID="Print_btn" runat="server" CssClass="btn btn-success btn-sm"  OnClick="Print_btn_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       
                     </td>
                 </tr>
            </table>

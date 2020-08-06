@@ -49,6 +49,9 @@ namespace SIS_Student
             Session["CurrentStudent"] = null;
             Session["CurrentStudentName"] = null;
             Session["CurrentMajorCampus"] = null;
+            Session["myBookSearch"] = null;
+            Session["BooksBasket"] = null;
+            Session["LibarayBooks"] = null;
         }
         protected void Page_Load(object sender, EventArgs e)
         {

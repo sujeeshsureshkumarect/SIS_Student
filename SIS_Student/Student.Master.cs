@@ -193,6 +193,9 @@ namespace SIS_Student
             Session["CurrentStudent"] = null;
             Session["CurrentStudentName"] = null;
             Session["CurrentMajorCampus"] = null;
+            Session["myBookSearch"] = null;
+            Session["BooksBasket"] = null;
+            Session["LibarayBooks"] = null;
         }
 
         protected void lnk_Logout_Click(object sender, EventArgs e)
