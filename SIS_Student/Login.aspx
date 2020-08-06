@@ -67,8 +67,8 @@
         <div class="navbar">
             <a href="https://lms.ectmoodle.ae/login/index.php" target="_blank">E-Learning</a>
             <a href="https://ect.ac.ae/" target="_blank">ECT Website</a>
-            <a href="AboutUs.aspx" target="_blank">About Us</a>
-            <a href="ContactUs.aspx" target="_blank">Contact Us</a>
+            <a href="https://ect.ac.ae/en/about-ect/" target="_blank">About Us</a>
+            <a href="https://ect.ac.ae/en/contact-us/" target="_blank">Contact Us</a>
             <a href="Conditions.aspx" target="_blank">Terms & Conditions</a>
             <img src="images/SSL.png" style="height:32px"/>
             <img src="gentelella-master/production/images/visa.png" alt="Visa" title="Accepted Payment Methods">
