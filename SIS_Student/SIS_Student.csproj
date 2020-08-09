@@ -135,6 +135,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CurrentGrade.aspx" />
     <Content Include="Current_TimeTable.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
@@ -6068,6 +6069,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentGrade.aspx.cs">
+      <DependentUpon>CurrentGrade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CurrentGrade.aspx.designer.cs">
+      <DependentUpon>CurrentGrade.aspx</DependentUpon>
     </Compile>
     <Compile Include="Current_TimeTable.aspx.cs">
       <DependentUpon>Current_TimeTable.aspx</DependentUpon>
