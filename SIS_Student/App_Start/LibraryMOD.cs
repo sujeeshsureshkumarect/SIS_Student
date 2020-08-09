@@ -4562,7 +4562,8 @@ public class LibraryMOD
             sSQL += " WHERE (Student = '" + sSID + "')";
 
             SqlCommand Cmd = new SqlCommand(sSQL, Conn);
-            iLTR = Convert.ToInt32('0' + Cmd.ExecuteScalar().ToString());
+            //iLTR = Convert.ToInt32('0' + Cmd.ExecuteScalar().ToString());
+            iLTR = Convert.ToInt32('0' + (string)Cmd.ExecuteScalar());
 
 
         }

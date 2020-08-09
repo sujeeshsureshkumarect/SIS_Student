@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Balance.aspx" />
     <Content Include="ChangePwd.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -3912,6 +3913,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="HostedPayment.aspx" />
     <Content Include="images\Icons\Cart.png" />
     <Content Include="images\Icons\Correct.gif" />
     <Content Include="images\Icons\correct1.png" />
@@ -6056,6 +6058,13 @@
     <Compile Include="App_Start\Student_Search.cs" />
     <Compile Include="App_Start\TimeTable.cs" />
     <Compile Include="App_Start\UserCls.cs" />
+    <Compile Include="Balance.aspx.cs">
+      <DependentUpon>Balance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Balance.aspx.designer.cs">
+      <DependentUpon>Balance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePwd.aspx.cs">
       <DependentUpon>ChangePwd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6108,6 +6117,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HostedPayment.aspx.cs">
+      <DependentUpon>HostedPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HostedPayment.aspx.designer.cs">
+      <DependentUpon>HostedPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="LibBookSearch.aspx.cs">
       <DependentUpon>LibBookSearch.aspx</DependentUpon>
