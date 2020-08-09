@@ -20,7 +20,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2><i class="fa fa-dashboard"></i> </h2>
+                                            <h2></h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>                                              
@@ -121,7 +121,7 @@
                 resultIndicator = "CANCELED";
                 // Reload the page to generate a new session ID - the old one is out of date as soon as the lightbox is invoked
                 //window.location.reload(true);
-                window.location.href = "/STDSIS/Balance.aspx";
+                window.location.href = "/Balance.aspx";
             }
 
             // This handles the response from Hosted Checkout and redirects to the appropriate endpoint
@@ -132,7 +132,7 @@
                 var result = (resultIndicator === successIndicator) ? "SUCCESS" : "ERROR";
                 SetPayment(orderId, sessionId, desc, amount, resultIndicator, result);
                 //window.location.href = "/HostedResult.aspx/" + orderId + "/" + sessionId + "/" + desc + "/" + amount + "/" + resultIndicator + "/" + result;
-                window.location.href = "/STDSIS/HostedResult.aspx";
+                window.location.href = "/HostedResult.aspx";
             }
 
             // This method is specifically for the full payment page option. Because we leave this page and return to it, we need to preserve the

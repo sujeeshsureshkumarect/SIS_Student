@@ -28,7 +28,7 @@ namespace SIS_Student
 
             if (!IsPostBack)
             {
-                if (Session["PmtResultIndicator"] != null && Session["CurrentAccount"] != null && Session["CurrentAccount"] != null)
+                if (Session["PmtResultIndicator"] != null && Session["CurrentAccount"] != null)
                 {
                     //string q = Request.Url.PathAndQuery;
                     //string[] sessionresult = q.Split('/');

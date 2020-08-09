@@ -122,6 +122,11 @@ namespace SIS_Student
                     Session["PmtSession"] = sessionid;
                     Session["PmtOrder"] = orderid;
 
+                    Session["PmtResultIndicator"] = sessionsuccessIndicator;
+                    Session["PmtResult"] = sessionresults;
+                    Session["PmtDesc"] = desc;
+                    Session["PmtAmount"] = amount;
+
                     Response.Redirect("HostedCheckOut.aspx?sessionid=" + sessionid + "&sessionresults=" + sessionresults + "&successindicator=" + sessionsuccessIndicator + "&sessionversion=" + sessionsessionVersion + "&sessionupdate=" + sessionupdatestatus + "&orderid=" + orderid + "&desc=" + desc + "&amount=" + amount + "");
                 }
             }
