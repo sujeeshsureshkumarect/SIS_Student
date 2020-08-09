@@ -212,7 +212,7 @@ namespace SIS_Student
                 TableCell Hd = new TableCell();
 
                 Hc.ColumnSpan = 4;
-                Hc.Text = "Student Info";
+                Hc.Text = "Student Information";
                 Hc.HorizontalAlign = HorizontalAlign.Center;
                 Hr.Cells.Add(Hc);
                 MyTable.Rows.Add(Hr);

@@ -372,7 +372,7 @@ namespace SIS_Student
                 TableHeaderCell Hc = new TableHeaderCell();
                 TableCell Hd = new TableCell();
                 Hc.ColumnSpan = 4;
-                Hc.Text = "Student Info";
+                Hc.Text = "Student Information";
                 Hr.Cells.Add(Hc);
                 MyTable.Rows.Add(Hr);
 

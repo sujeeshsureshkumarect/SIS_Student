@@ -33,21 +33,6 @@
         {
             height: 20px;
         }
-        TABLE TH {
-    border-right: white thin solid;
-    border-top: white thin solid;
-    font-weight: bold;
-    vertical-align: middle;
-    text-transform: capitalize;
-    border-left: white thin solid;
-    color: #ffffff;
-    border-bottom: white thin solid;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #2a3f54;
-    text-align: center;
-    line-height: 2;
-    font-size: small;
-}
     </style>
                             </div>
                             <div class="clearfix"></div>
@@ -80,24 +65,30 @@
                     <br />
                     <table width="100%" align="center" style="border: 1px solid #e5e5e5">
                         <tr>
-                            <th colspan="2" align="center">Balance</th>
+                            <th colspan="2" align="center" style="font-size:16px">Balance</th>
                         </tr>
                         <tr>
                             <td align="center" colspan="2" 
                                 
-                                style="background-color: #FFFFCC; font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: bold; text-transform: capitalize; vertical-align: middle; text-align: center; border-bottom-width: thin; border-bottom-color: #C0C0C0; border-bottom-style: solid;">
+                                style="background-color: #f7f7f7; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; text-transform: capitalize; vertical-align: middle; text-align: center; border-bottom-width: thin; border-bottom-color: #C0C0C0; border-bottom-style: solid;">
                                 The presented balance is subject to change during registration until one week after the end of the add/drop period for the semester</td>
                         </tr>
                         <tr>
                             <td align="center" colspan="2" 
                                 
-                                style="background-color: #FFFFCC; font-family: Arial, Helvetica, sans-serif; font-size: large; font-weight: bold; text-transform: capitalize; vertical-align: middle; text-align: center; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #C0C0C0;">
+                                style="background-color: #f7f7f7; font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; text-transform: capitalize; vertical-align: middle; text-align: center; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #C0C0C0;">
                                 الرصيد الموضح قابل للتعديل خلال التسجيل وحتى اسبوع بعد انتهاء فترة السحب والإضافة للفصل الدراسي</td>
                         </tr>
                         <tr align="center">
-                            <td colspan="2">
-                                <asp:Label ID="lblOBalanceVATBTS" runat="server" Text="0.00" Width="100%" 
-                                    Font-Bold="True" Font-Size="Large" ForeColor="Red" 
+                            <td align="center">
+                                <asp:Label ID="Label3" runat="server" Text="Balance Amount (AED)" Width="100%" 
+                                    Font-Bold="True" Font-Size="Medium" ForeColor="Red" 
+                                    ToolTip="مبلغ الرصيد (درهم)" CssClass="title"></asp:Label>
+                               
+                            </td>
+                            <td align="center">
+                                 <asp:Label ID="lblOBalanceVATBTS" runat="server" Text="0.00" Width="100%" 
+                                    Font-Bold="True" Font-Size="Medium" ForeColor="Red" 
                                     ToolTip="المبلغ الاجمالي المستحق" CssClass="title"></asp:Label>
                             </td>
                         </tr>
@@ -106,6 +97,7 @@
                         </tr>
                         <tr align="center">
                             <td align="center">
+
                                 <asp:Label ID="Label1" runat="server" Text="Payment Amount (AED)" 
                                 Font-Bold="true"    Font-Size="Medium" ToolTip="قيمة الدفعة"></asp:Label>
                             </td>
@@ -134,6 +126,14 @@
                                 <br />
                             </td>
                         </tr>
+                        <tr align="center">
+                             <td colspan="2" class="style1">
+                            <p><b>Accepted Card Types:</b></p>
+                          <img src="gentelella-master/production/images/visa.png" alt="Visa">
+                          <img src="gentelella-master/production/images/mastercard.png" />
+                                 </td>
+                        </tr>
+                         
                     </table>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
