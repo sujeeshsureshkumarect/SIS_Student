@@ -56,7 +56,7 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
-                                           
+                      <div class="col-md-12">                    
     <div id="divPayment" runat="server">
         <div id="Div1" runat="server" align="center">
             <div id="divMsg" runat="server" style="font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: bold; color: #FF0000"></div>  
@@ -64,7 +64,7 @@
                 ForeColor="Red" Text="For Testing Only (It will be available soon...)" 
                 Visible="False"></asp:Label>
           
-            <table width="90%" align="center">
+            <table width="100%" align="center">
                 <%--<tr>
                     <td align="center">
                         &nbsp;</td>
@@ -217,6 +217,7 @@
         </div>
         
     </div>
+                                            </div>
                                             
 
                                         </div>

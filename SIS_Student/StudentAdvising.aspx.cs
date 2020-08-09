@@ -202,7 +202,7 @@ namespace SIS_Student
                 myList.Add(myMirror);
                 //First Row
                 //MyTable.Width = 70%;
-                MyTable.Width = Unit.Percentage(70);
+                MyTable.Width = Unit.Percentage(100);
                 MyTable.BorderWidth = 1;
                 MyTable.GridLines = GridLines.Horizontal;
                 MyTable.ID = "tblDetail";

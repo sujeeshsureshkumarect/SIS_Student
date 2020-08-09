@@ -65,7 +65,7 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
-                                            
+                                            <div class="col-md-6">
                                              <div id="divBalance" runat="server">
         <div runat="server" align="center">               
             <asp:MultiView ID="mtvBalance" runat="server" ActiveViewIndex="0">
@@ -78,7 +78,7 @@
                         ForeColor="Red" Text="For Testing Only (It will be available soon...)" 
                         Visible="False"></asp:Label>
                     <br />
-                    <table width="70%" align="center" style="border: 1px solid #e5e5e5">
+                    <table width="100%" align="center" style="border: 1px solid #e5e5e5">
                         <tr>
                             <th colspan="2" align="center">Balance</th>
                         </tr>
@@ -145,6 +145,7 @@
            
         </div>
     </div>
+                                            </div>
 
                                         </div>
                                     </div>

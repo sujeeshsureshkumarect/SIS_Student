@@ -51,14 +51,14 @@
         	border: 2px solid red;
         	color: red;
         }
-          TABLE TH {
+/*          TABLE TH {
     border-right: white thin solid;
     border-top: white thin solid;
     font-weight: bold;
     vertical-align: middle;
     text-transform: capitalize;
     border-left: white thin solid;
-    color: #ffffff;
+    color: #ECF0F1;
     border-bottom: white thin solid;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #2a3f54;
@@ -108,13 +108,13 @@
     font-weight: bold;
     vertical-align: middle;
     text-transform: capitalize;
-    color: #ffffff;
+    color: #ECF0F1;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #2a3f54;
     text-align: center;
     line-height: 2;
     font-size: small;
-}
+}*/
   .WSideBar {
     padding: 10px;
     width: 20%;
@@ -125,13 +125,13 @@
     vertical-align: top;
     text-transform: capitalize;
     border-left: white thin solid;
-    color: #ffffff;
+    color: #ECF0F1;
     border-bottom: white thin solid;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #2a3f54;
     text-align: left;
     line-height: 2;
-    font-size: medium;
+    font-size: 13px;
     border-color: #C0C0C0;
 } 
         </style>
@@ -539,7 +539,7 @@
                                                     <td>
                                                         <asp:DropDownList ID="Period_ddl" runat="server" DataSourceID="PeriodDS" 
                                                             DataTextField="strShiftEn" DataValueField="byteShift" AutoPostBack="True" 
-                                                            Width="150px" >
+                                                            Width="150px" Height="25px">
                                                         </asp:DropDownList>
                                                         <asp:SqlDataSource ID="PeriodDS" runat="server" 
                                                             ConnectionString="<%$ ConnectionStrings:ECTDataFemales %>" 
@@ -557,7 +557,7 @@
                                                     </td>
                                                     <td>
                                                         <asp:DropDownList ID="Course_ddl" runat="server" AutoPostBack="True" 
-                                                            Width="150px" OnSelectedIndexChanged="Course_ddl_SelectedIndexChanged">
+                                                            Width="150px" OnSelectedIndexChanged="Course_ddl_SelectedIndexChanged" Height="25px">
                                                         </asp:DropDownList>
                                                         <asp:SqlDataSource ID="CoursesDS" runat="server" 
                                                             ConnectionString="<%$ ConnectionStrings:ECTDataFemales %>" 
@@ -831,13 +831,13 @@
                 <NavigationStyle Font-Bold="False" Font-Names="Arial" Font-Size="Medium" 
                     HorizontalAlign="Center" />
                 <StartNextButtonStyle CssClass="bt" />
-                <SideBarButtonStyle Font-Names="Verdana" 
-                    ForeColor="White" />
+                <SideBarButtonStyle  
+                    ForeColor="#ECF0F1" />
                 <NavigationButtonStyle 
                     BorderStyle="Solid" BorderWidth="1px" Font-Names="Arial" Font-Size="Medium" 
                     CssClass="bt" Font-Bold="False" />
-                <SideBarStyle Font-Size="Medium" VerticalAlign="Top" 
-                    HorizontalAlign="Left" CssClass="WSideBar" Font-Bold="False" 
+                <SideBarStyle Font-Size="14px" VerticalAlign="Top" 
+                    HorizontalAlign="Left" CssClass="WSideBar" Font-Bold="false" 
                     Wrap="False" />
                 <HeaderStyle BackColor="#284E98" BorderColor="#EFF3FB" BorderStyle="Solid" 
                     BorderWidth="2px" Font-Bold="True" Font-Size="0.9em" ForeColor="White" 
@@ -858,6 +858,12 @@
     .bt:hover {
   background-color: #ffc107; /* Green */
   color: white;
+}
+    select{
+    margin: 0;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: inherit;
 }
 </style>
                                         </div>

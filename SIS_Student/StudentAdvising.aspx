@@ -13,32 +13,32 @@
                                         float: left;
                                         display: block;
                                     }
-                                    TABLE TH {
+/*                                    TABLE TH {
     border-right: white thin solid;
     border-top: white thin solid;
     font-weight: bold;
     vertical-align: middle;
     text-transform: capitalize;
     border-left: white thin solid;
-    color: #ffffff;
+    color: #ECF0F1;
     border-bottom: white thin solid;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #2a3f54;
     text-align: center;
     line-height: 2;
-    font-size: small;
+     font-size: 13px;
 }
                                     .th {
     border: 0;
     font-weight: bold;
     vertical-align: middle;
     text-transform: capitalize;
-    color: #ffffff;
+    color: #ECF0F1;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #2a3f54;
     text-align: center;
     line-height: 2;
-    font-size: small;
+    font-size: 13px;
 }
                                      .R_NormalWhite {
     border-right: #073772 thin solid;
@@ -50,7 +50,7 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F7F6F3;
     text-align: left;
-    font-size: small;
+    font-size: 13px;
 }
         .R_NormalGray {
     border-right: #073772 thin solid;
@@ -62,7 +62,7 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color: White;
     text-align: left;
-    font-size: small;
+    font-size: 13px;
 }
         .R_Critical {
     border-right: #073772 thin solid;
@@ -75,10 +75,10 @@
     background-color: #F2B702;
     text-align: left;
     font-weight: bold;
-    font-size: small;
-}
+     font-size: 13px;
+}*/
         #ContentPlaceHolder1_tblDetail {
-  width: 70%;
+  width: 100%;
 }
                                 </style>
                                 <style type="text/css">

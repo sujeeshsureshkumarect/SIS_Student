@@ -101,8 +101,6 @@ namespace SIS_Student
                         lblResult.Text = "Error: Payment not received.";
                         divMsg.InnerHtml = sAccMsg;
                     }
-
-
                 }
             }
 
