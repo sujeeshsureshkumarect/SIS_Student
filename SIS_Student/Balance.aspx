@@ -71,7 +71,8 @@
                             <td align="center" colspan="2" 
                                 
                                 style="background-color: #f7f7f7; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; text-transform: capitalize; vertical-align: middle; text-align: center; border-bottom-width: thin; border-bottom-color: #C0C0C0; border-bottom-style: solid;">
-                                The presented balance is subject to change during registration until one week after the end of the add/drop period for the semester</td>
+                                The presented balance is subject to change during registration until one week after the end of the add/drop period for the semester
+                            </td>
                         </tr>
                         <tr>
                             <td align="center" colspan="2" 
