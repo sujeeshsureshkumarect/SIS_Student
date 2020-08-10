@@ -12,7 +12,7 @@
                                         width: 100%;
                                         float: left;
                                         display: block;
-                                    }
+                                    }                                    
                                 </style>
                                 <%--  <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -41,10 +41,10 @@
                                         </div>
                                         <div class="x_content">
                                             <div class="col-md-4 col-sm-12">
-                                                <a class="weatherwidget-io" href="https://forecast7.com/en/24d4554d38/abu-dhabi/" data-label_1="ABU DHABI" data-label_2="WEATHER" data-theme="original">ABU DHABI WEATHER</a>
+                                                <a class="weatherwidget-io" href="https://forecast7.com/en/24d4554d38/abu-dhabi/" data-label_1="ABU DHABI" data-label_2="WEATHER" data-theme="original" data-basecolor="#2a3f54" data-textcolor="#e7e7e7">ABU DHABI WEATHER</a>
                                                 <script>
                                                     !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
-                                                </script>
+                                                </script>                                                
                                             </div> 
                                             <div class="col-md-8 col-sm-12">
 
