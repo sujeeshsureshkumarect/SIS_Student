@@ -131,6 +131,8 @@
     <Content Include="About.aspx" />
     <Content Include="Balance.aspx" />
     <Content Include="ChangePwd.aspx" />
+    <Content Include="Conditions.aspx" />
+    <Content Include="Conditionss.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -6075,6 +6077,20 @@
     </Compile>
     <Compile Include="ChangePwd.aspx.designer.cs">
       <DependentUpon>ChangePwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Conditions.aspx.cs">
+      <DependentUpon>Conditions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Conditions.aspx.designer.cs">
+      <DependentUpon>Conditions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Conditionss.aspx.cs">
+      <DependentUpon>Conditionss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Conditionss.aspx.designer.cs">
+      <DependentUpon>Conditionss.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

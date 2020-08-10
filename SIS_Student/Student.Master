@@ -81,8 +81,8 @@
                                     </asp:Repeater>
                                     <li><a href="https://lms.ectmoodle.ae/login/index.php" target="_blank"><i class="fa fa-desktop"></i>E-Learning</a></li>
                                     <li><a href="https://ect.ac.ae/" target="_blank"><i class="fa fa-globe"></i>ECT Website</a></li>
-                                    <li><a href="https://ect.ac.ae/en/about-ect/"><i class="fa fa-info-circle"></i>About Us</a></li>
-                                    <li><a href="https://ect.ac.ae/en/contact-us/"><i class="fa fa-phone"></i>Contact Us</a></li>
+                                    <li><a href="https://ect.ac.ae/en/about-ect/" target="_blank"><i class="fa fa-info-circle"></i>About Us</a></li>
+                                    <li><a href="https://ect.ac.ae/en/contact-us/" target="_blank"><i class="fa fa-phone"></i>Contact Us</a></li>
                                     <li><a href="Conditions"><i class="fa fa-file-text-o"></i>Terms & Conditions</a></li>
                                 </ul>
                             </div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HostedPayment.aspx.cs" Inherits="SIS_Student.HostedPayment" MasterPageFile="~/Student.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Conditions.aspx.cs" Inherits="SIS_Student.Conditions" MasterPageFile="~/Student.Master"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
@@ -13,18 +13,14 @@
                                         float: left;
                                         display: block;
                                     }
-        td, th {
- /* border: 1px solid #dddddd;*/
-  /*text-align: left;*/
-  padding: 9px;
-}                           </style>                              
+                                </style>                              
                             </div>
                             <div class="clearfix"></div>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2><i class="fa fa-money"></i></h2>
+                                            <h2><i class="fa fa-credit-card"></i> Payment Terms &amp; Conditions</h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>                                              
@@ -34,57 +30,20 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
-                      <div class="col-md-12">                    
-    <div id="divPayment" runat="server">
-        <div id="Div1" runat="server" align="center">
-            <div id="divMsg" runat="server" style="font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: bold; color: #FF0000"></div>  
-            <asp:Label ID="lblMsg" runat="server" Font-Bold="True" Font-Size="Larger" 
-                ForeColor="Red" Text="For Testing Only (It will be available soon...)" 
-                Visible="False"></asp:Label>
-          
-            <table width="100%" align="center">
-                <%--<tr>
-                    <td align="center">
-                        &nbsp;</td>
-                </tr>--%>
-                <tr>
-                    <th align="center" style="font-size:16px">Payment</th>
-                </tr>
-               <%-- <tr align="center">
-                    <td>
-                        &nbsp;</td>
-                </tr>--%>
-                <tr  align="center">
-
-                    <td>
-                        <asp:Label ID="lblPayment" runat="server" Text="0.00" Width="20%" 
-                            Font-Bold="True" Font-Size="Large" ToolTip="المبلغ الاجمالي المستحق" 
-                            ForeColor="Red" align="center"></asp:Label>
-                        
-                    </td>
-                    
-                </tr>
-                <%--<tr>
-                    <td><hr /></td>
-                </tr>--%>
-                <tr align="center">
-                    <td>
-                        <asp:Label ID="Label1" runat="server" CssClass="th" Text="Scroll down to accept the Terms &amp; Conditions to Proceed" ToolTip="إنزل للاسفل وأقبل الشروط و الأحكام"></asp:Label>
-                    </td>
-                </tr>
-            </table>
-    <div id="divTerms" runat="server">
+                                           
+                                            <div class="col-md-12 col-sm-12">
+                                                 <div id="divTerms" runat="server">
         <div id="Div2" runat="server" align="center">
             
-            
+            <br />
             <table width="100%" align="center">
-               <%-- <tr>
-                    <th colspan="2" align="center">Terms &amp; Conditions</th>
+              <%--  <tr>
+                    <th colspan="2" align="center">Payment Terms &amp; Conditions</th>
                 </tr>--%>
                 <tr>
                     <td align="left" colspan="2">
                         <div width="100%"
-                            style="padding: 10px 0px 0px 10px; margin: 0px; border-style: solid; border-color: #C0C0C0; font-family: Arial, Helvetica, sans-serif;  font-weight: normal; font-style: normal; text-transform: capitalize; color: #73879C; vertical-align: top; text-align: left; width: 100%; height: 250px; overflow: scroll; " 
+                            style="padding: 10px 10px 10px 10px; margin: 0px; font-family: Arial, Helvetica, sans-serif;  font-weight: normal; font-style: normal; text-transform: capitalize; color: #73879C; vertical-align: top;  text-align: justify; width: 100%; border:1px solid #e6e9ed " 
                             id="divEn" align="left" lang="en" dir="ltr">
                             <%--font-size: medium;--%>
                             <br />
@@ -117,7 +76,7 @@
                             <br />
                             <p style="font-family: Arial, Helvetica, sans-serif;  font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">Method of Payments/Card types accepted and currency</p>
                             <br />
-                            <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">ECT accept payments online using Visa and MasterCard credit/debit card in AED.<img alt="Visa/MasterCard" src="images/Cards.png" /></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">ECT accept payments online using Visa and MasterCard credit/debit card in AED.<br /><img alt="Visa/MasterCard" src="images/Cards.png" style="width:30%;height:auto;"/></p>
                             <br />
                             <p style="font-family: Arial, Helvetica, sans-serif; font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">Shipping Policy</p>
                             <br />
@@ -180,24 +139,8 @@
             
             <br />
         </div>
-        <div runat="server">
-            <asp:CheckBox ID="chkAgree" runat="server" Font-Bold="True" Font-Size="Large" 
-                            Text="I read and I agree about all the above" 
-    
-                            ToolTip="قرأت وموافق على الشروط والأحكام" AutoPostBack="True" OnCheckedChanged="chkAgree_CheckedChanged" />
-        </div>
-    </div>
-            &nbsp;&nbsp;<asp:HiddenField ID="hdnSession" runat="server" />
-            <asp:HiddenField ID="hdnSID" runat="server" />
-            <asp:HiddenField ID="hdnName" runat="server" />
-            <asp:HiddenField ID="hdnACC" runat="server" />
-            <asp:HiddenField ID="hdnAmount" runat="server" />
-            <asp:HiddenField ID="hdnFees" runat="server" />
-        </div>
-        
     </div>
                                             </div>
-                                            
 
                                         </div>
                                     </div>

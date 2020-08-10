@@ -1,90 +1,54 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HostedPayment.aspx.cs" Inherits="SIS_Student.HostedPayment" MasterPageFile="~/Student.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Conditionss.aspx.cs" Inherits="SIS_Student.Conditionss" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="right_col" role="main">
-                        <div class="">
-                            <div class="page-title">
-                                <div class="title_left">
-                                    <h3></h3>
-                                </div>
-                                <style>
-                                    .page-title .title_left {
-                                        width: 100%;
-                                        float: left;
-                                        display: block;
-                                    }
-        td, th {
- /* border: 1px solid #dddddd;*/
-  /*text-align: left;*/
-  padding: 9px;
-}                           </style>                              
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="x_panel">
-                                        <div class="x_title">
-                                            <h2><i class="fa fa-money"></i></h2>
-                                            <ul class="nav navbar-right panel_toolbox">
-                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                                </li>                                              
-                                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                                </li>
-                                            </ul>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="x_content">
-                      <div class="col-md-12">                    
-    <div id="divPayment" runat="server">
-        <div id="Div1" runat="server" align="center">
-            <div id="divMsg" runat="server" style="font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: bold; color: #FF0000"></div>  
-            <asp:Label ID="lblMsg" runat="server" Font-Bold="True" Font-Size="Larger" 
-                ForeColor="Red" Text="For Testing Only (It will be available soon...)" 
-                Visible="False"></asp:Label>
-          
-            <table width="100%" align="center">
-                <%--<tr>
-                    <td align="center">
-                        &nbsp;</td>
-                </tr>--%>
-                <tr>
-                    <th align="center" style="font-size:16px">Payment</th>
-                </tr>
-               <%-- <tr align="center">
-                    <td>
-                        &nbsp;</td>
-                </tr>--%>
-                <tr  align="center">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Emirates College of Technology: Log in to the site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="shortcut icon" href="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="Login_v9/css/util.css">
+    <link rel="stylesheet" type="text/css" href="Login_v9/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
 
-                    <td>
-                        <asp:Label ID="lblPayment" runat="server" Text="0.00" Width="20%" 
-                            Font-Bold="True" Font-Size="Large" ToolTip="المبلغ الاجمالي المستحق" 
-                            ForeColor="Red" align="center"></asp:Label>
-                        
-                    </td>
-                    
-                </tr>
-                <%--<tr>
-                    <td><hr /></td>
-                </tr>--%>
-                <tr align="center">
-                    <td>
-                        <asp:Label ID="Label1" runat="server" CssClass="th" Text="Scroll down to accept the Terms &amp; Conditions to Proceed" ToolTip="إنزل للاسفل وأقبل الشروط و الأحكام"></asp:Label>
-                    </td>
-                </tr>
-            </table>
-    <div id="divTerms" runat="server">
+
+    <div class="container-login100" style="background-image: url('Login_v9/images/bg_02.jpg');">
+        <div class="" style="background: #fff;border-radius: 10px;padding:10px;width: 70%;height:auto">
+           <div id="divTerms" runat="server">
         <div id="Div2" runat="server" align="center">
-            
+            <h2 style="color:#73879C;"><b>Payment Terms & Conditions</b></h2>
+            <hr />
             
             <table width="100%" align="center">
-               <%-- <tr>
-                    <th colspan="2" align="center">Terms &amp; Conditions</th>
-                </tr>--%>
+              <tr>
+                    <td align="center" 
+                        style="font-family: Arial, Helvetica, sans-serif; font-size: medium; color: #FF0000">Read the following, then login to pay 
+                        from (Balance & Payment) link</td>
+                </tr>
                 <tr>
                     <td align="left" colspan="2">
                         <div width="100%"
-                            style="padding: 10px 0px 0px 10px; margin: 0px; border-style: solid; border-color: #C0C0C0; font-family: Arial, Helvetica, sans-serif;  font-weight: normal; font-style: normal; text-transform: capitalize; color: #73879C; vertical-align: top; text-align: left; width: 100%; height: 250px; overflow: scroll; " 
+                            style="padding: 10px 10px 10px 10px; margin: 0px; font-family: Arial, Helvetica, sans-serif;  font-weight: normal; font-style: normal; text-transform: capitalize; color: #73879C; vertical-align: top;  text-align: justify; width: 100%; border:1px solid #e6e9ed " 
                             id="divEn" align="left" lang="en" dir="ltr">
                             <%--font-size: medium;--%>
                             <br />
@@ -117,7 +81,7 @@
                             <br />
                             <p style="font-family: Arial, Helvetica, sans-serif;  font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">Method of Payments/Card types accepted and currency</p>
                             <br />
-                            <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">ECT accept payments online using Visa and MasterCard credit/debit card in AED.<img alt="Visa/MasterCard" src="images/Cards.png" /></p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">ECT accept payments online using Visa and MasterCard credit/debit card in AED.<br /><img alt="Visa/MasterCard" src="images/Cards.png" style="width:30%;height:auto;"/></p>
                             <br />
                             <p style="font-family: Arial, Helvetica, sans-serif; font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">Shipping Policy</p>
                             <br />
@@ -180,29 +144,73 @@
             
             <br />
         </div>
-        <div runat="server">
-            <asp:CheckBox ID="chkAgree" runat="server" Font-Bold="True" Font-Size="Large" 
-                            Text="I read and I agree about all the above" 
+    </div>
+             
+                                    
+        </div>
+        <div class="navbar">
+            <a href="https://lms.ectmoodle.ae/login/index.php" target="_blank">E-Learning</a>
+            <a href="https://ect.ac.ae/" target="_blank">ECT Website</a>
+            <a href="https://ect.ac.ae/en/about-ect/" target="_blank">About Us</a>
+            <a href="https://ect.ac.ae/en/contact-us/" target="_blank">Contact Us</a>
+            <a href="Login.aspx" target="_blank">Login to SIS</a>
+            <img src="images/SSL.png" style="height:32px"/>
+            <img src="gentelella-master/production/images/visa.png" alt="Visa" title="Accepted Payment Methods">
+            <img src="gentelella-master/production/images/mastercard.png" alt="Mastercard" title="Accepted Payment Methods">
+        </div>
+    </div>    
     
-                            ToolTip="قرأت وموافق على الشروط والأحكام" AutoPostBack="True" OnCheckedChanged="chkAgree_CheckedChanged" />
-        </div>
-    </div>
-            &nbsp;&nbsp;<asp:HiddenField ID="hdnSession" runat="server" />
-            <asp:HiddenField ID="hdnSID" runat="server" />
-            <asp:HiddenField ID="hdnName" runat="server" />
-            <asp:HiddenField ID="hdnACC" runat="server" />
-            <asp:HiddenField ID="hdnAmount" runat="server" />
-            <asp:HiddenField ID="hdnFees" runat="server" />
-        </div>
-        
-    </div>
-                                            </div>
-                                            
+    <style>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    </asp:Content>
+
+.navbar {
+  overflow: hidden;
+  background-color: #1c518f;
+  position: fixed;
+  bottom: 0;
+  width: 70%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px 0px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.navbar a:hover {
+  background: #ffc107;
+  color: black;
+}
+
+/*.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}*/
+
+
+</style>
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="Login_v9/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="Login_v9/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="Login_v9/vendor/bootstrap/js/popper.js"></script>
+    <script src="Login_v9/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="Login_v9/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="Login_v9/vendor/daterangepicker/moment.min.js"></script>
+    <script src="Login_v9/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="Login_v9/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="Login_v9/js/main.js"></script>
+
+</body>
+</html>

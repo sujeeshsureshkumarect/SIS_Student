@@ -30,7 +30,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2><i class="fa fa-dashboard"></i> Dashboard</h2>
+                                            <h2><i class="fa fa-home"></i> Home</h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>                                              
@@ -45,7 +45,12 @@
                                                 <script>
                                                     !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
                                                 </script>
-                                            </div>                 
+                                            </div> 
+                                            <div class="col-md-8 col-sm-12">
+
+
+
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

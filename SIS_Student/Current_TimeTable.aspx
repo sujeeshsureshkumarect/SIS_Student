@@ -5,7 +5,7 @@
                         <div class="">
                             <div class="page-title">
                                 <div class="title_left">
-                                    <h3>Courses Time Table</h3>
+                                    <h3><i class="fa fa-clock-o"></i> Courses Time Table</h3>
                                 </div>
                                 <style>
                                     .page-title .title_left {
@@ -51,11 +51,11 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
-                                            <asp:LinkButton ID="FM_lnk" runat="server" OnClick="FM_lnk_Click" CssClass="btn btn-success">Females Morning</asp:LinkButton>
-                                            <asp:LinkButton ID="FE_lnk" runat="server" OnClick="FE_lnk_Click" CssClass="btn btn-success">Females Evening</asp:LinkButton>
-                                            <asp:LinkButton ID="WEF_lnk" runat="server" OnClick="WEF_lnk_Click" CssClass="btn btn-success">Females Weekend</asp:LinkButton>
-                                            <asp:LinkButton ID="ME_lnk" runat="server" OnClick="ME_lnk_Click" CssClass="btn btn-success">Males Evening</asp:LinkButton>
-                                            <asp:LinkButton ID="WEM_lnk" runat="server" OnClick="WEM_lnk_Click" CssClass="btn btn-success">Males Weekend</asp:LinkButton>
+                                            <asp:LinkButton ID="FM_lnk" runat="server" OnClick="FM_lnk_Click" CssClass="btn btn-success"><i class="fa fa-female"></i> Females Morning</asp:LinkButton>
+                                            <asp:LinkButton ID="FE_lnk" runat="server" OnClick="FE_lnk_Click" CssClass="btn btn-success"><i class="fa fa-female"></i> Females Evening</asp:LinkButton>
+                                            <asp:LinkButton ID="WEF_lnk" runat="server" OnClick="WEF_lnk_Click" CssClass="btn btn-success"><i class="fa fa-female"></i> Females Weekend</asp:LinkButton>
+                                            <asp:LinkButton ID="ME_lnk" runat="server" OnClick="ME_lnk_Click" CssClass="btn btn-success"><i class="fa fa-male"></i> Males Evening</asp:LinkButton>
+                                            <asp:LinkButton ID="WEM_lnk" runat="server" OnClick="WEM_lnk_Click" CssClass="btn btn-success"><i class="fa fa-male"></i> Males Weekend</asp:LinkButton>
                                             <hr />
                                             <style>
                                                 .alert-info {

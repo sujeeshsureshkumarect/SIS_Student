@@ -70,7 +70,7 @@
                     <br />
                     <table width="100%" align="center" style="border: 1px solid #e5e5e5">
                         <tr>
-                            <th colspan="2" align="center" style="font-size:16px">Balance</th>
+                            <th colspan="2" align="center" style="font-size:16px"><i class="fa fa-credit-card"></i> Balance</th>
                         </tr>
                         <tr>
                             <td align="center" colspan="2" 
