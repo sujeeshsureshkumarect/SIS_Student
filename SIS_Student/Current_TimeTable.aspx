@@ -13,7 +13,7 @@
                                         float: left;
                                         display: block;
                                     }
-                                    TABLE TH {
+                                    /*TABLE TH {
     border-right: white thin solid;
     border-top: white thin solid;
     font-weight: bold;
@@ -27,6 +27,11 @@
     text-align: center;
     line-height: 2;
     font-size: small;
+}*/
+                                      td, th {
+  border: 1px solid #dddddd;
+  /*text-align: left;*/
+  padding: 9px;
 }
                                 </style>  
                                 

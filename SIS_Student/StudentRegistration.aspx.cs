@@ -367,6 +367,7 @@ namespace SIS_Student
                 MyTable.Width = Unit.Percentage(100);
                 MyTable.BorderWidth = 1;
                 MyTable.GridLines = GridLines.Horizontal;
+                MyTable.ID = "Student_Info";
 
                 TableHeaderRow Hr = new TableHeaderRow();
                 TableHeaderCell Hc = new TableHeaderCell();

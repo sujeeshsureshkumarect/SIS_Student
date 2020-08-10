@@ -148,6 +148,11 @@
                                         float: left;
                                         display: block;
                                     }
+                                      #ContentPlaceHolder1_Student_Info td, th {
+  border: 1px solid #dddddd;
+  /*text-align: left;*/
+  padding: 9px;
+}
                                 </style>                              
                             </div>
                             <div class="clearfix"></div>

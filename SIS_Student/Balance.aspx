@@ -33,6 +33,11 @@
         {
             height: 20px;
         }
+         td, th {
+  border: 1px solid #dddddd;
+  /*text-align: left;*/
+  padding: 9px;
+}
     </style>
                             </div>
                             <div class="clearfix"></div>
@@ -50,7 +55,7 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
-                                            <div class="col-md-6">
+                                            <%--<div class="col-md-6">--%>
                                              <div id="divBalance" runat="server">
         <div runat="server" align="center">               
             <asp:MultiView ID="mtvBalance" runat="server" ActiveViewIndex="0">
@@ -90,12 +95,12 @@
                             <td align="center">
                                  <asp:Label ID="lblOBalanceVATBTS" runat="server" Text="0.00" Width="100%" 
                                     Font-Bold="True" Font-Size="Medium" ForeColor="Red" 
-                                    ToolTip="المبلغ الاجمالي المستحق" CssClass="title"></asp:Label>
+                                    ToolTip="المبلغ الاجمالي المستحق" CssClass="title" ></asp:Label>
                             </td>
                         </tr>
-                        <tr>
+                       <%-- <tr>
                             <td colspan="2"><hr /></td>
-                        </tr>
+                        </tr>--%>
                         <tr align="center">
                             <td align="center">
 
@@ -104,7 +109,7 @@
                             </td>
                             <td align="center">
                                 <asp:TextBox ID="txtPayment" runat="server" Font-Size="Medium" 
-                                    ValidationGroup="Payment"></asp:TextBox>
+                                    ValidationGroup="Payment"  style="text-align: center"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                                     ControlToValidate="txtPayment" Display="Dynamic" 
                                     ErrorMessage="Payment Amount is required" SetFocusOnError="True" 
@@ -116,9 +121,9 @@
                                     ValidationGroup="Payment">*</asp:RangeValidator>
                             </td>
                         </tr>
-                        <tr>
+                       <%-- <tr>
                             <td colspan="2"><hr /></td>
-                        </tr>
+                        </tr>--%>
                         <tr align="center">
                             <td colspan="2" class="style1">
                                 <asp:LinkButton ID="lnkPayNow" runat="server" CssClass="btn btn-success btn-sm" 
@@ -153,5 +158,5 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   
     </asp:Content>

@@ -13,32 +13,10 @@
                                         float: left;
                                         display: block;
                                     }
-                                    TABLE TH {
-    border-right: white thin solid;
-    border-top: white thin solid;
-    font-weight: bold;
-    vertical-align: middle;
-    text-transform: capitalize;
-    border-left: white thin solid;
-    color: #ffffff;
-    border-bottom: white thin solid;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #2a3f54;
-    text-align: center;
-    line-height: 2;
-    font-size: small;
-}
-     .th {
-    border: 0;
-    font-weight: bold;
-    vertical-align: middle;
-    text-transform: capitalize;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #2a3f54;
-    text-align: center;
-    line-height: 2;
-    font-size: small;
+        td, th {
+ /* border: 1px solid #dddddd;*/
+  /*text-align: left;*/
+  padding: 9px;
 }                           </style>                              
                             </div>
                             <div class="clearfix"></div>
@@ -72,17 +50,17 @@
                 <tr>
                     <th align="center" style="font-size:16px">Payment</th>
                 </tr>
-                <tr align="center">
+               <%-- <tr align="center">
                     <td>
                         &nbsp;</td>
-                </tr>
+                </tr>--%>
                 <tr  align="center">
 
                     <td>
                         <asp:Label ID="lblPayment" runat="server" Text="0.00" Width="20%" 
                             Font-Bold="True" Font-Size="Large" ToolTip="المبلغ الاجمالي المستحق" 
                             ForeColor="Red" align="center"></asp:Label>
-                        <hr />
+                        
                     </td>
                     
                 </tr>
