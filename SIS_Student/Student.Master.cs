@@ -120,6 +120,7 @@ namespace SIS_Student
                             {
                                 string parentId = item["ObjectID"].ToString();
                                 string parentTitle = item["DisplayObjectName"].ToString();
+                                
 
                                 DataRow[] parentRow = Menus.Select("ParentID=" + parentId);
 
@@ -129,8 +130,10 @@ namespace SIS_Student
                                     //sb.Append("</li>");
                                 }
                                 else
-                                {
-                                    sb.Append("<li><a href='" + item["sURL"] + "'>" + item["DisplayObjectName"] + "</a>");
+                                {                                    
+                                    string strUrl = item["sURL"].ToString().Replace(".aspx", "");
+                                    //sb.Append("<li><a href='" + item["sURL"] + "'>" + item["DisplayObjectName"] + "</a>"); old with aspx
+                                    sb.Append("<li><a href='" + strUrl + "'>" + item["DisplayObjectName"] + "</a>");
                                     //sb.Append("</li>");
                                 }
                                 sb = CreateChild(sb, parentId, parentTitle, parentRow);
@@ -163,8 +166,10 @@ namespace SIS_Student
                     }
                     else
                     {
-                        sb.Append("<li  class='sub_menu'><a href='" + item["sURL"] + "'>" + item["DisplayObjectName"] + "</a>");
-                       // sb.Append("</li>");
+                        //sb.Append("<li  class='sub_menu'><a href='" + item["sURL"] + "'>" + item["DisplayObjectName"] + "</a>"); old with aspx
+                        string strUrl = item["sURL"].ToString().Replace(".aspx", "");
+                        sb.Append("<li  class='sub_menu'><a href='" + strUrl + "'>" + item["DisplayObjectName"] + "</a>");
+                        // sb.Append("</li>");
                     }
                     CreateChild(sb, childId, childTitle, childRow);
                 }
