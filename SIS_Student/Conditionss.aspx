@@ -42,8 +42,7 @@
             <table width="100%" align="center">
               <tr>
                     <td align="center" 
-                        style="font-family: Arial, Helvetica, sans-serif; font-size: medium; color: #FF0000">Read the following, then login to pay 
-                        from (Balance & Payment) link</td>
+                        style="font-family: Arial, Helvetica, sans-serif; font-size: medium; color: #FF0000">Read the following, then login to pay from (Balance & Payment) link</td>
                 </tr>
                 <tr>
                     <td align="left" colspan="2">

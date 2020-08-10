@@ -42,9 +42,8 @@
                             <%--<a href="Dashboard" class="site_title"><i class="fa fa-globe"></i><span> ECT SIS</span></a>--%>
                             <a href="Dashboard" class="site_title">
                                 <i>
-                                <img src="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" /></i>
+                                <img src="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon"/></i>
                                 <span> ECT SIS</span>
-
                             </a>
                         </div>
 
