@@ -42,19 +42,19 @@
                                                                <%#Eval("ServiceAr") %></h5>
                                                            <div class="card-body">
                                                                <h2 class="card-title hztitle"><%#Eval("HostDesc") %></h2>
+                                                               <h4 class="card-text"><b>Fees: AED <%#string.Format("{0:n2}",Eval("Sum")) %></b></h4>   
+                                                               <h4 class="card-text h4text1">(Inclusive of VAT)</h4>
                                                                <div class="accordion" id="accordion<%# Container.ItemIndex %>" role="tablist" aria-multiselectable="true">
                                                                    <div class="panel">
                                                                        <a class="panel-heading collapsed" role="tab" id="headingOne<%# Container.ItemIndex %>" data-toggle="collapse" data-parent="#accordion<%# Container.ItemIndex %>" href="#collapseOne<%# Container.ItemIndex %>" aria-expanded="false" aria-controls="collapseOne<%# Container.ItemIndex %>">
-                                                                           <p class="panel-title"><i class="fa fa-chevron-down"></i>Click to View More</p>
+                                                                           <p class="panel-title"><i class="fa fa-chevron-down"></i> Click to View More</p>
                                                                        </a>
                                                                        <div id="collapseOne<%# Container.ItemIndex %>" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingOne<%# Container.ItemIndex %>" style="">
                                                                            <div class="panel-body">
                                                                                <h4 class="card-text h4text"><b><u>Descritpion</u></b></h4>
                                                                                <h4 class="card-text h4text"><%#Eval("ServiceDescEn") %></h4>
                                                                                <h4 class="card-text h4text"><%#Eval("ServiceDescAr") %></h4>
-                                                                               <hr />
-                                                                               <h4 class="card-text h4text"><b>Fees:</b> AED <%#Eval("FeesType") %></h4>
-                                                                               <hr />                                                                               
+                                                                               <hr />                                                                                       
                                                                                <h4 class="card-text h4text"><b><u>Example:</u></b></h4>
                                                                                <a href="<%#Eval("ExampleLink") %>" target="_blank" title="Click to Open">
                                                                                    <img src="<%#Eval("ExampleLink") %>" style="height: auto; width: 50%" onerror="this.src='images/noimage.jpg'"/></a>
@@ -62,7 +62,7 @@
                                                                        </div>
                                                                    </div>
                                                                </div>
-                                                               <a href="<%#Eval("RequestLink") %>" class="btn btn-success btn-sm"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                                               <a href="<%#Eval("RequestLink") %>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Create Request</a>
                                                            </div>
                                                        </div>
                                                   
@@ -113,7 +113,7 @@
 }
     .hztitle {
     font-size: 14px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
     .h5, h5 {
     font-size: 14px;
@@ -121,6 +121,13 @@
     .h4text {
     font-size: 13px !important;
     font-weight: 500;
+}
+      .h4text1 {
+    font-size: 11px !important;
+    font-weight: 500;
+}
+    .card-body {   
+    padding: 0rem !important;
 }
     </style>
     </asp:Content>
