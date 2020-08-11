@@ -5,7 +5,7 @@
                         <div class="">
                             <div class="page-title">
                                 <div class="title_left">
-                                    <h3><i class="fa fa-wrench"></i> Services</h3>
+                                    <h3><i class="fa fa-cubes"></i> Services</h3>
                                 </div>
                                 <style>
                                     .page-title .title_left {
@@ -53,11 +53,11 @@
                                                                                <h4 class="card-text h4text"><%#Eval("ServiceDescEn") %></h4>
                                                                                <h4 class="card-text h4text"><%#Eval("ServiceDescAr") %></h4>
                                                                                <hr />
-                                                                               <h4 class="card-text"><b>Fees:</b> AED <%#Eval("FeesType") %></h4>
-                                                                               <hr />
+                                                                               <h4 class="card-text h4text"><b>Fees:</b> AED <%#Eval("FeesType") %></h4>
+                                                                               <hr />                                                                               
                                                                                <h4 class="card-text h4text"><b><u>Example:</u></b></h4>
-                                                                               <a href="https://cdn.jotfor.ms/form-templates/screenshots/legacy/325x400_30625751679159/resume-submission-form.png?v=1596805474" target="_blank">
-                                                                                   <img src="https://cdn.jotfor.ms/form-templates/screenshots/legacy/325x400_30625751679159/resume-submission-form.png?v=1596805474" style="height: auto; width: 50%" /></a>
+                                                                               <a href="<%#Eval("ExampleLink") %>" target="_blank" title="Click to Open">
+                                                                                   <img src="<%#Eval("ExampleLink") %>" style="height: auto; width: 50%" onerror="this.src='images/noimage.jpg'"/></a>
                                                                            </div>
                                                                        </div>
                                                                    </div>

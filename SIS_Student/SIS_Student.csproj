@@ -4689,6 +4689,7 @@
     <Content Include="images\Majors\STA201.gif" />
     <Content Include="images\Majors\Untitled.png" />
     <Content Include="images\New_Logo.png" />
+    <Content Include="images\noimage.jpg" />
     <Content Include="images\SSL.png" />
     <Content Include="LibBookSearch.aspx" />
     <Content Include="Login.aspx" />
