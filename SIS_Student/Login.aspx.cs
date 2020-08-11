@@ -33,10 +33,10 @@ namespace SIS_Student
                 //if (lnkLogin.Text == "Login")
                 //{
                     bool itIs = isAuthorized();
-                    if (itIs)
-                    {
+                if (itIs)
+                {
 
-                        int iAdded = add_log(Session["CurrentUserName"].ToString(), "ECTSIS", Session["CurrentNetUserName"].ToString(), Convert.ToInt32(Session["CurrentUserNo"]), Session["CurrentURL"].ToString());
+                    int iAdded = add_log(Session["CurrentUserName"].ToString(), "ECTSIS", Session["CurrentNetUserName"].ToString(), Convert.ToInt32(Session["CurrentUserNo"]), Session["CurrentURL"].ToString());
 
                     if (myUser.IsActive == 1)
                     {
@@ -55,11 +55,11 @@ namespace SIS_Student
                         }
                     }
                     else
-                        {
-                            //showmsg("This User Name is inactive...");
+                    {
+                        //showmsg("This User Name is inactive...");
                         lblMsg.Text = "This User Name is inactive...";
-                        }
                     }
+                }
                 //}
                 //else
                 //{
