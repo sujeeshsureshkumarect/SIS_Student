@@ -3920,6 +3920,7 @@
     <Content Include="HostedPayment.aspx" />
     <Content Include="HostedResult.aspx" />
     <Content Include="images\Cards.png" />
+    <Content Include="images\ECT Logo.png" />
     <Content Include="images\Icons\Cart.png" />
     <Content Include="images\Icons\Correct.gif" />
     <Content Include="images\Icons\correct1.png" />
@@ -5995,8 +5996,10 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SServices.aspx" />
     <Content Include="StudentAdvising.aspx" />
     <Content Include="StudentRegistration.aspx" />
+    <Content Include="Student_Services.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -6231,6 +6234,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="SServices.aspx.cs">
+      <DependentUpon>SServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SServices.aspx.designer.cs">
+      <DependentUpon>SServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student.Master.cs">
       <DependentUpon>Student.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6251,6 +6261,13 @@
     </Compile>
     <Compile Include="StudentRegistration.aspx.designer.cs">
       <DependentUpon>StudentRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student_Services.aspx.cs">
+      <DependentUpon>Student_Services.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student_Services.aspx.designer.cs">
+      <DependentUpon>Student_Services.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

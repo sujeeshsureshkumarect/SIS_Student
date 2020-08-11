@@ -77,59 +77,25 @@
                             <hr />                    
                                                 <div id="divResult" runat="server" class="table-responsive"> 
                         </div>
-                                                    </div>
     
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                                                    </div>
                     </div>
     <style>
-        TABLE TH {
-/*    border-right: white thin solid;*/
-/*    border-top: white thin solid;*/
-    font-weight: bold;
-    vertical-align: middle;
-    text-transform: capitalize;
-/*    border-left: white thin solid;*/
-    color: #ffffff;
-/*    border-bottom: white thin solid;*/
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #2A3F54;
-    text-align: center;
-    line-height: 2;
-    font-size: small;
-    padding-right:10px;
-}
-        .R_NormalWhite {
-    border-right: #073772 thin solid;
-    border-top: #073772 thin solid;
-    vertical-align: middle;
-    border-left: #073772 thin solid;
-    color: #000000;
-    border-bottom: #073772 thin solid;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #F7F6F3;
-    text-align: left;
-    font-size: small;
-}
-        .R_NormalGray {
-    border-right: #073772 thin solid;
-    border-top: #073772 thin solid;
-    vertical-align: middle;
-    border-left: #073772 thin solid;
-    color: #284775;
-    border-bottom: #073772 thin solid;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: White;
-    text-align: left;
-    font-size: small;
-}
+
 
         table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting {
     padding-right: 10px;
 }
+        .table td, .table th {
+     padding: .25rem; 
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}     
     </style>
    
     <script type="text/javascript">
