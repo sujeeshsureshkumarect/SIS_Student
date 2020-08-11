@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Configuration;
+using SIS_Student.DAL;
 using System.Data;
 //using System.Linq;
 using System.Web;
@@ -11,7 +12,6 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 //using System.Xml.Linq;
 using System.Collections.Generic;
-using CrystalDecisions.CrystalReports.Engine;
 using System.Data.SqlClient;
 using System.Drawing;
 
@@ -48,7 +48,7 @@ namespace SIS_Student
                         {
                             showErr("Sorry, you don't have the permission to view this page...");
                         }
-
+                        getstudentservices();
                     }
                 }
                 else
@@ -78,16 +78,10 @@ namespace SIS_Student
                     }
 
                 }
-
                 if (Session["CurrentStudent"] != null)
                 {
                     sNo = Session["CurrentStudent"].ToString();
                     sName = Session["CurrentStudentName"].ToString();
-                }
-
-                if (!IsPostBack)
-                {
-                  
                 }
             }
             catch (Exception exp)
@@ -99,6 +93,13 @@ namespace SIS_Student
 
             }
 
+        }
+        public void getstudentservices()
+        {
+            var services = new DAL.DAL();
+            DataTable dtStudentServices = services.GetStudentServices();
+            RepterDetails.DataSource = dtStudentServices;
+            RepterDetails.DataBind();
         }
         public void ClearSession()
         {
