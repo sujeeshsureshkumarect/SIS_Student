@@ -73,7 +73,9 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Official Letter/Document Request Form</p>
+                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Official Letter/Document Request Form<br />
+                                               خطاب رسمي / نموذج طلب الوثيقة
+                                            </p>
                                         </td>
                                     </tr>
                                 </table>
