@@ -96,6 +96,15 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.Label lbl_Fess;
 
         /// <summary>
+        /// txt_Remarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Remarks;
+
+        /// <summary>
         /// flp_Upload control.
         /// </summary>
         /// <remarks>

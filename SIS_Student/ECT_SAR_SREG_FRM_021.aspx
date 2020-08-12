@@ -162,6 +162,17 @@
                                             <b>الرسوم</b>
                                         </td>
                                     </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Remarks</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Remarks / أدخل الملاحظات" Height="100px" CssClass="form-control"></asp:TextBox>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>ملاحظات</b>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Proof of Payment<span style="color: red">*</span></b>
