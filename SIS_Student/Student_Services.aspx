@@ -38,7 +38,7 @@
                                                <div class="col-md-4 col-sm-4" style="min-height:250px;">
                                                    
                                                        <div class="card text-center">
-                                                           <h5 class="card-header"><%#Eval("ServiceEn") %><br />
+                                                           <h5 class="card-header" style = "text-transform:capitalize;"><%#Eval("ServiceEn") %><br />
                                                                <%#Eval("ServiceAr") %></h5>
                                                            <div class="card-body">
                                                                <h2 class="card-title hztitle"><%#Eval("HostDesc") %></h2>
