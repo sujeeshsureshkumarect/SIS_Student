@@ -156,7 +156,7 @@
                                             <b>Fees</b>
                                         </td>
                                         <td align="center">
-                                            <asp:Label ID="lbl_Fess" runat="server" Text="AED 52.50"></asp:Label>
+                                            <asp:Label ID="lbl_Fess" runat="server" Text="AED 0.00"></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الرسوم</b>
