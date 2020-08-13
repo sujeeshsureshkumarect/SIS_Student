@@ -39,14 +39,14 @@ namespace SIS_Student
                     //TermCBO.SelectedValue = iRegYear.ToString() + iRegSem.ToString();
                     //sNamelbl.Text = "Welcome ...  " + Session["CurrentStudentName"].ToString();
 
-                    if (!IsPostBack)
-                    {
-                        if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Student_Advising,
-                        InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
-                        {
-                            showErr("Sorry, you don't have the permission to view this page...");
-                        }
-                    }
+                    //if (!IsPostBack)
+                    //{
+                    //    if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Student_Advising,
+                    //    InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
+                    //    {
+                    //        showErr("Sorry, you don't have the permission to view this page...");
+                    //    }
+                    //}
                 }
                 else
                 {

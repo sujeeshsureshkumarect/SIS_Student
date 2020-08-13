@@ -43,11 +43,11 @@ namespace SIS_Student
 
                     if (!IsPostBack)
                     {
-                        if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Student_Advising,
-                        InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
-                        {
-                            showErr("Sorry, you don't have the permission to view this page...");
-                        }
+                        //if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Student_Advising,
+                        //InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
+                        //{
+                        //    showErr("Sorry, you don't have the permission to view this page...");
+                        //}
                         getstudentservices();
                     }
                 }

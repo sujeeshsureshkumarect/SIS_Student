@@ -62,9 +62,9 @@
 
                                 <table style="width: 100%">
                                     <tr>
-                                        <th style="text-align: left; padding-left: 10px">Issue 18/08/2011</th>
-                                        <th style="text-align: right;">Revision Date 20/08/2019 </th>
-                                        <th style="text-align: right; padding-right: 10px">Ref No. ECT-SAR-SREG-FRM.021</th>
+                                        <th style="text-align: left; padding-left: 10px">Issue: 18/08/2011</th>
+                                        <th style="text-align: right;">Revision Date: 20/08/2019 </th>
+                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SREG-FRM.021</th>
                                     </tr>
                                     <tr>
                                         <td>
