@@ -42,7 +42,27 @@ namespace SIS_Student
                     ClearSession();
                     Response.Redirect("Login.aspx");
 
-                }              
+                }
+                if (Session["CurrentCampus"] != null)
+                {
+                    string sCampus = Session["CurrentCampus"].ToString();
+                    Campus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+                    //Campus_ddl.SelectedValue = ((int)Campus).ToString();
+                    string sConn = "";
+                    Connection_StringCLS ConnectionString;
+                    switch (Campus)
+                    {
+                        case InitializeModule.EnumCampus.Males:
+                            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Males);
+                            sConn = ConnectionString.Conn_string;
+                            break;
+                        case InitializeModule.EnumCampus.Females:
+                            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Females);
+                            sConn = ConnectionString.Conn_string;
+                            break;
+                    }
+
+                }
                 if (Session["CurrentStudent"] != null)
                 {
                     sNo = Session["CurrentStudent"].ToString();
