@@ -182,6 +182,8 @@
                                             <br />
                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Document Required" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no">
                                             </asp:RequiredFieldValidator>
+                                           <%-- <br />
+                                              <asp:RegularExpressionValidator id="RegularExpressionValidator1" runat="server" ErrorMessage="Only PDF,JPG,PNG files are allowed!" ValidationExpression="^([a-z]|[A-Z]|[0-9]|[ ]|[-]|[_]|[(0-9)+]+)+\.(jpg|JPG|JPEG|jpeg|png|PNG|pdf|PDF)$" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no"></asp:RegularExpressionValidator>--%>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>إثبات دفع</b>

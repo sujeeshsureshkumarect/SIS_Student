@@ -6000,6 +6000,7 @@
     <Content Include="Site.Master" />
     <Content Include="SServices.aspx" />
     <Content Include="StudentAdvising.aspx" />
+    <Content Include="StudentProfile.aspx" />
     <Content Include="StudentRegistration.aspx" />
     <Content Include="Student_Services.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -6263,6 +6264,13 @@
     </Compile>
     <Compile Include="StudentAdvising.aspx.designer.cs">
       <DependentUpon>StudentAdvising.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentProfile.aspx.cs">
+      <DependentUpon>StudentProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentProfile.aspx.designer.cs">
+      <DependentUpon>StudentProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="StudentRegistration.aspx.cs">
       <DependentUpon>StudentRegistration.aspx</DependentUpon>
