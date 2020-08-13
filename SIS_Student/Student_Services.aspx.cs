@@ -19,10 +19,10 @@ namespace SIS_Student
 {
     public partial class Student_Services : System.Web.UI.Page
     {
-        InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
+        //InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         int CurrentRole = 0;
-        List<MirrorCLS> myList = new List<MirrorCLS>();
-        Plans myPlan = new Plans();
+        //List<MirrorCLS> myList = new List<MirrorCLS>();
+        //Plans myPlan = new Plans();
         string sNo = "";
         string sName = "";
         int iRegYear = 0;
@@ -58,26 +58,26 @@ namespace SIS_Student
                     Response.Redirect("Login.aspx");
 
                 }
-                if (Session["CurrentCampus"] != null)
-                {
-                    string sCampus = Session["CurrentCampus"].ToString();
-                    Campus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
-                    //Campus_ddl.SelectedValue = ((int)Campus).ToString();
-                    string sConn = "";
-                    Connection_StringCLS ConnectionString;
-                    switch (Campus)
-                    {
-                        case InitializeModule.EnumCampus.Males:
-                            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Males);
-                            sConn = ConnectionString.Conn_string;
-                            break;
-                        case InitializeModule.EnumCampus.Females:
-                            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Females);
-                            sConn = ConnectionString.Conn_string;
-                            break;
-                    }
+                //if (Session["CurrentCampus"] != null)
+                //{
+                //    string sCampus = Session["CurrentCampus"].ToString();
+                //    Campus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+                //    //Campus_ddl.SelectedValue = ((int)Campus).ToString();
+                //    string sConn = "";
+                //    Connection_StringCLS ConnectionString;
+                //    switch (Campus)
+                //    {
+                //        case InitializeModule.EnumCampus.Males:
+                //            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Males);
+                //            sConn = ConnectionString.Conn_string;
+                //            break;
+                //        case InitializeModule.EnumCampus.Females:
+                //            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Females);
+                //            sConn = ConnectionString.Conn_string;
+                //            break;
+                //    }
 
-                }
+                //}
                 if (Session["CurrentStudent"] != null)
                 {
                     sNo = Session["CurrentStudent"].ToString();

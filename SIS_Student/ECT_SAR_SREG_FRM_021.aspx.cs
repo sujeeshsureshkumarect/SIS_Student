@@ -34,19 +34,7 @@ namespace SIS_Student
                     CurrentRole = (int)Session["CurrentRole"];
 
                     iRegYear = (int)Session["RegYear"];
-                    iRegSem = (int)Session["RegSemester"];
-
-                    //TermCBO.SelectedValue = iRegYear.ToString() + iRegSem.ToString();
-                    //sNamelbl.Text = "Welcome ...  " + Session["CurrentStudentName"].ToString();
-
-                    //if (!IsPostBack)
-                    //{
-                    //    if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Student_Advising,
-                    //    InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
-                    //    {
-                    //        showErr("Sorry, you don't have the permission to view this page...");
-                    //    }
-                    //}
+                    iRegSem = (int)Session["RegSemester"];                  
                 }
                 else
                 {
@@ -54,27 +42,7 @@ namespace SIS_Student
                     ClearSession();
                     Response.Redirect("Login.aspx");
 
-                }
-                if (Session["CurrentCampus"] != null)
-                {
-                    string sCampus = Session["CurrentCampus"].ToString();
-                    Campus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
-                    //Campus_ddl.SelectedValue = ((int)Campus).ToString();
-                    string sConn = "";
-                    Connection_StringCLS ConnectionString;
-                    switch (Campus)
-                    {
-                        case InitializeModule.EnumCampus.Males:
-                            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Males);
-                            sConn = ConnectionString.Conn_string;
-                            break;
-                        case InitializeModule.EnumCampus.Females:
-                            ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Females);
-                            sConn = ConnectionString.Conn_string;
-                            break;
-                    }
-
-                }
+                }              
                 if (Session["CurrentStudent"] != null)
                 {
                     sNo = Session["CurrentStudent"].ToString();
