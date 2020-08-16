@@ -114,6 +114,24 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.FileUpload flp_Upload;
 
         /// <summary>
+        /// hdf_Price control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdf_Price;
+
+        /// <summary>
+        /// hdf_StudentEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdf_StudentEmail;
+
+        /// <summary>
         /// lnk_Generate control.
         /// </summary>
         /// <remarks>
@@ -121,5 +139,14 @@ namespace SIS_Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnk_Generate;
+
+        /// <summary>
+        /// lbl_Msg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Msg;
     }
 }

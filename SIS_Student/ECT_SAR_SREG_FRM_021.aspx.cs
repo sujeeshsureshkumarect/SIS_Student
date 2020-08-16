@@ -14,6 +14,12 @@ using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
+using Microsoft.SharePoint.Client;
+using Microsoft.SharePoint;
+using System.Security;
+using System.IO;
+using Microsoft.Online.SharePoint.TenantAdministration;
+using System.Text;
 
 namespace SIS_Student
 {
@@ -102,6 +108,7 @@ namespace SIS_Student
                 lbl_StudentName.Text = dtStudentServices.Rows[0]["strLastDescEn"].ToString();
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
+                hdf_StudentEmail.Value= dtStudentServices.Rows[0]["sECTemail"].ToString();
             }
 
         }
@@ -116,6 +123,7 @@ namespace SIS_Student
                 lbl_ServiceNameEn.Text = dtStudentServices.Rows[0]["ServiceEn"].ToString();
                 lbl_ServiceNameAr.Text = dtStudentServices.Rows[0]["ServiceAr"].ToString();
                 lbl_Fess.Text = "AED " + Convert.ToDouble(dtStudentServices.Rows[0]["Sum"]).ToString("N");
+                hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
             }
         }
         public void ClearSession()
@@ -138,6 +146,98 @@ namespace SIS_Student
         {
             Session["errMsg"] = sMsg;
             Response.Redirect("ErrPage.aspx");
+        }
+
+        protected void lnk_Generate_Click(object sender, EventArgs e)
+        {
+            sentdatatoSPLIst();
+        }
+
+        public void sentdatatoSPLIst()
+        {
+            string login = "ets.services.admin@ect.ac.ae"; //give your username here  
+            string password = "Ser71ces@328"; //give your password  
+            var securePassword = new SecureString();
+            foreach (char c in password)
+            {
+                securePassword.AppendChar(c);
+            }
+            string siteUrl = "https://ectacae.sharepoint.com/sites/ECTPortal/eservices/studentservices";
+            ClientContext clientContext = new ClientContext(siteUrl);
+            Microsoft.SharePoint.Client.List myList = clientContext.Web.Lists.GetByTitle("Students_Requests");
+            ListItemCreationInformation itemInfo = new ListItemCreationInformation();
+            Microsoft.SharePoint.Client.ListItem myItem = myList.AddItem(itemInfo);
+            string refno = Create16DigitString();
+            //myItem["Reference"] = refno;
+            myItem["RequestID"] = refno;
+            myItem["Year"] = Convert.ToInt32(Session["RegYear"]);
+            myItem["Semester"] = Convert.ToInt32(Session["RegSemester"]);
+            myItem["Request"] = lbl_ServiceID.Text+"<br/>" + lbl_ServiceNameEn.Text+"<br/>"+ lbl_ServiceNameAr.Text;
+            myItem["RequestNote"] = txt_Remarks.Text.Trim();
+            myItem["ServiceID"] = lbl_ServiceID.Text;
+            myItem["Fees"] = hdf_Price.Value;
+            myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
+            myItem["StudentID"] = lbl_StudentID.Text;
+            myItem["StudentName"] = lbl_StudentName.Text;
+            myItem["Contact"] = lbl_StudentContact.Text;
+            myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["FinanceAction"] = "Initiate";
+            myItem["FinanceNote"] = "";
+            myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["HostAction"] = "Initiate";
+            myItem["HostNote"] = "";
+            myItem["Provider"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["ProviderAction"] = "Initiate";
+            myItem["ProviderNote"] = "";
+            myItem["Status"] = "Finance Approval Needed";
+            myItem["Modified"] = DateTime.Now;
+            myItem["Created"] = DateTime.Now;
+            //myItem["Created By"] = hdf_StudentEmail.Value;
+            //myItem["Modified By"] = hdf_StudentEmail.Value;
+            try
+            {
+                myItem.Update();
+
+                if (flp_Upload.HasFile)
+                {
+                    var attachment = new AttachmentCreationInformation();
+
+                    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
+                    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+
+                    string filePath = FileUrl;
+                    attachment.FileName = Path.GetFileName(filePath);
+                    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
+                    Attachment att = myItem.AttachmentFiles.Add(attachment);
+                }
+
+                var onlineCredentials = new SharePointOnlineCredentials(login, securePassword);
+                clientContext.Credentials = onlineCredentials;
+                clientContext.ExecuteQuery();
+
+                string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                System.IO.File.Delete(FileUrls);
+
+                lbl_Msg.Text = "Request (ID# "+refno+") Generated Successfully";
+                lbl_Msg.Visible = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            //Console.ReadLine();
+        }
+       
+        private static Random RNG = new Random();
+
+        public string Create16DigitString()
+        {
+            var builder = new StringBuilder();
+            while (builder.Length < 10)
+            {
+                builder.Append(RNG.Next(10).ToString());
+            }
+            return builder.ToString();
         }
     }
 }

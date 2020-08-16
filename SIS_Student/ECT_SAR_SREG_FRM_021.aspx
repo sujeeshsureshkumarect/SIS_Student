@@ -191,8 +191,12 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <asp:HiddenField ID="hdf_Price" runat="server" Visible="false"/>
+                                 <asp:HiddenField ID="hdf_StudentEmail" runat="server" Visible="false"/>
                                 <br />
-                                <asp:LinkButton ID="lnk_Generate" runat="server" CssClass="btn btn-success btn-sm" ValidationGroup="no"><i class="fa fa-send"> </i> Generate Request</asp:LinkButton>
+                                <asp:LinkButton ID="lnk_Generate" runat="server" CssClass="btn btn-success btn-sm" ValidationGroup="no" OnClick="lnk_Generate_Click"><i class="fa fa-send"> </i> Generate Request</asp:LinkButton>
+                                <br />
+                                <asp:Label ID="lbl_Msg" runat="server" ForeColor="Red" Text="Request Generated Successfully" Visible="false"></asp:Label>
                             </div>
                         </div>
                     </div>
