@@ -186,7 +186,7 @@ namespace SIS_Student
             myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
             myItem["HostAction"] = "Initiate";
             myItem["HostNote"] = "";
-            myItem["Provider"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["Provider"] = "";
             myItem["ProviderAction"] = "Initiate";
             myItem["ProviderNote"] = "";
             myItem["Status"] = "Finance Approval Needed";
