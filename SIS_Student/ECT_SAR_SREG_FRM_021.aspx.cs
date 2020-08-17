@@ -244,9 +244,7 @@ namespace SIS_Student
             }
             //Console.ReadLine();
         }
-       
-        private static Random RNG = new Random();
-
+      
         public string Create16DigitString()
         {
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
