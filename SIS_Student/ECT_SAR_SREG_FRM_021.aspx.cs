@@ -31,6 +31,7 @@ namespace SIS_Student
         string sNo = "";
         int iRegYear = 0;
         int iRegSem = 0;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -93,8 +94,12 @@ namespace SIS_Student
         public void getdetails()
         {
             Connection_StringCLS connstr = new Connection_StringCLS(Campus);
-            int iYear = Convert.ToInt32(Session["RegYear"]);
-            int iSem = Convert.ToInt32(Session["RegSemester"]);
+
+            int sem = 0;
+            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(),out sem);
+
+            int iYear = Year;
+            int iSem = sem;
             string sSemester = LibraryMOD.GetSemesterString(iSem);
 
             lbl_AcademicYear.Text = iYear.ToString();
@@ -155,6 +160,13 @@ namespace SIS_Student
 
         public void sentdatatoSPLIst()
         {
+            int sem = 0;
+            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
+
+            int iYear = Year;
+            int iSem = sem;
+            string sSemester = LibraryMOD.GetSemesterString(iSem);
+
             string login = "ets.services.admin@ect.ac.ae"; //give your username here  
             string password = "Ser71ces@328"; //give your password  
             var securePassword = new SecureString();
@@ -168,15 +180,16 @@ namespace SIS_Student
             ListItemCreationInformation itemInfo = new ListItemCreationInformation();
             Microsoft.SharePoint.Client.ListItem myItem = myList.AddItem(itemInfo);
             string refno = Create16DigitString();
-            //myItem["Reference"] = refno;
+            myItem["Title"] = refno;
             myItem["RequestID"] = refno;
-            myItem["Year"] = Convert.ToInt32(Session["RegYear"]);
-            myItem["Semester"] = Convert.ToInt32(Session["RegSemester"]);
+            myItem["Year"] = iYear;
+            myItem["Semester"] = iSem;
             myItem["Request"] = "<b>Service ID:</b> "+lbl_ServiceID.Text+"<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text+" ("+ lbl_ServiceNameAr.Text +" )";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
-            myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
+            //myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
+            myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
             myItem["StudentID"] = lbl_StudentID.Text;
             myItem["StudentName"] = lbl_StudentName.Text;
             myItem["Contact"] = lbl_StudentContact.Text;

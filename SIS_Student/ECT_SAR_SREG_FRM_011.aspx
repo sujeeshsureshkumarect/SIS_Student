@@ -199,7 +199,7 @@
                                             <b>Exam Date</b>
                                         </td>
                                         <td align="center">
-                                            <asp:Label ID="Label4" runat="server" Text="0501234567"></asp:Label>
+                                            <asp:TextBox ID="txt_ExamDate" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox> 
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الموافق لتاريخ  </b>
@@ -210,7 +210,7 @@
                                             <b>Time of Exam</b>
                                         </td>
                                         <td align="center">
-                                            <asp:Label ID="Label5" runat="server" Text="0501234567"></asp:Label>
+                                            <asp:TextBox ID="txt_ExamTime" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox> 
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الساعة  </b>

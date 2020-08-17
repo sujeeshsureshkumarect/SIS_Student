@@ -115,11 +115,12 @@
                                            
                                                 <div id="divAdvising">
         <div>
+            <asp:HiddenField runat="server" ID="hdnStudentNumber"></asp:HiddenField>
+                        <div runat="server" id="divDetail" width="100%" align="center" style="overflow-x:auto;"></div>
             <table width="100%">
                 <tr>
                     <td>
-                        <asp:HiddenField runat="server" ID="hdnStudentNumber"></asp:HiddenField>
-                        <div runat="server" id="divDetail" width="100%" align="center" style="overflow-x:auto;"></div></td>
+                        </td>
                 </tr>
                 <tr>
                     <td>
