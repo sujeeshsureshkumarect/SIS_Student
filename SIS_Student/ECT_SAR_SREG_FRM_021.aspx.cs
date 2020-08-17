@@ -172,7 +172,7 @@ namespace SIS_Student
             myItem["RequestID"] = refno;
             myItem["Year"] = Convert.ToInt32(Session["RegYear"]);
             myItem["Semester"] = Convert.ToInt32(Session["RegSemester"]);
-            myItem["Request"] = lbl_ServiceID.Text+"<br/>" + lbl_ServiceNameEn.Text+"<br/>"+ lbl_ServiceNameAr.Text;
+            myItem["Request"] = "<b>Service ID:</b> "+lbl_ServiceID.Text+"<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text+" ("+ lbl_ServiceNameAr.Text +" )";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
@@ -186,12 +186,12 @@ namespace SIS_Student
             myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
             myItem["HostAction"] = "Initiate";
             myItem["HostNote"] = "";
-            myItem["Provider"] = "";
+            //myItem["Provider"] = "";
             myItem["ProviderAction"] = "Initiate";
             myItem["ProviderNote"] = "";
             myItem["Status"] = "Finance Approval Needed";
-            myItem["Modified"] = DateTime.Now;
-            myItem["Created"] = DateTime.Now;
+            //myItem["Modified"] = DateTime.Now;
+            //myItem["Created"] = DateTime.Now;
             //myItem["Created By"] = hdf_StudentEmail.Value;
             //myItem["Modified By"] = hdf_StudentEmail.Value;
             try
