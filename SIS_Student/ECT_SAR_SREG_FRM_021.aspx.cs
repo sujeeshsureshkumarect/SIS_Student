@@ -249,14 +249,15 @@ namespace SIS_Student
 
         public string Create16DigitString()
         {
-            var builder = new StringBuilder();
-            while (builder.Length < 10)
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[8];
+            var random = new Random();
+            for (int i = 0; i < stringChars.Length; i++)
             {
-                builder.Append(RNG.Next(10).ToString());
+                stringChars[i] = chars[random.Next(chars.Length)];
             }
-            uniqueid(builder.ToString());
-
-            return builder.ToString();
+            var finalString = new String(stringChars);            
+            return finalString.ToString();
         }
 
         public string uniqueid(string id)
