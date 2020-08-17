@@ -208,7 +208,7 @@ namespace SIS_Student
             Microsoft.SharePoint.Client.ListItem myItem = myList.AddItem(itemInfo);
             string refno = Create16DigitString();
             myItem["Title"] = refno;
-            myItem["RequestID"] = refno;
+            //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
             myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Has an Exam in:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Course Code:</b> " + lbl_CourseCode.Text + "<br/><b>Exam Day:</b> " + day + "<br/><b>Exam Date:</b> " + txt_ExamDate.Text + "<br/><b>Time of Exam:</b> " + txt_ExamTime.Text + "<br/><b>Instructor’s Name:</b> " + lbl_Instructor.Text + "";

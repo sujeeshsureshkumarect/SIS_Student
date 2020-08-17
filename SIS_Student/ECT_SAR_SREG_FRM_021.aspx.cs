@@ -20,6 +20,8 @@ using System.Security;
 using System.IO;
 using Microsoft.Online.SharePoint.TenantAdministration;
 using System.Text;
+using System.Linq;
+using CrystalDecisions.ReportAppServer.ClientDoc;
 
 namespace SIS_Student
 {
@@ -154,7 +156,7 @@ namespace SIS_Student
         }
 
         protected void lnk_Generate_Click(object sender, EventArgs e)
-        {
+        {            
             sentdatatoSPLIst();
         }
 
@@ -181,7 +183,7 @@ namespace SIS_Student
             Microsoft.SharePoint.Client.ListItem myItem = myList.AddItem(itemInfo);
             string refno = Create16DigitString();
             myItem["Title"] = refno;
-            myItem["RequestID"] = refno;
+            //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
             myItem["Request"] = "<b>Service ID:</b> "+lbl_ServiceID.Text+"<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text+" ("+ lbl_ServiceNameAr.Text +" )";
@@ -252,7 +254,62 @@ namespace SIS_Student
             {
                 builder.Append(RNG.Next(10).ToString());
             }
+            uniqueid(builder.ToString());
+
             return builder.ToString();
+        }
+
+        public string uniqueid(string id)
+        {
+            string login = "ets.services.admin@ect.ac.ae"; //give your username here  
+            string password = "Ser71ces@328"; //give your password  
+            var securePassword = new SecureString();
+            foreach (char c in password)
+            {
+                securePassword.AppendChar(c);
+            }
+            string server = "https://ectacae.sharepoint.com/sites/ECTPortal/eservices/studentservices";
+            var ctx = new ClientContext(server);
+            var web = ctx.Web;
+            Microsoft.SharePoint.Client.List lists = web.Lists.GetByTitle("Students_Requests");
+            var listItemCollection = lists.GetItems(CamlQuery.CreateAllItemsQuery());
+
+            // always use QueryTrimming to minimize size of 
+            // data that has to be transfered
+
+            ctx.Load(listItemCollection,
+                       eachItem => eachItem.Include(
+                        item => item,
+                        item => item["Title"]));
+            // ExecuteQuery will pull all data from SharePoint
+            // which has been staged to Load()
+            var onlineCredentials = new SharePointOnlineCredentials(login, securePassword);
+            ctx.Credentials = onlineCredentials;
+            ctx.ExecuteQuery();
+
+            DataTable dtid = new DataTable();
+            dtid.Clear();
+            dtid.Columns.Add("ID");
+
+            foreach (Microsoft.SharePoint.Client.ListItem listItem in listItemCollection)
+            {
+                DataRow dr = dtid.NewRow();
+                dr["ID"] = listItem["Title"].ToString();
+                dtid.Rows.Add(dr);
+            }
+
+            DataRow[] foundRows = dtid.Select("ID='"+ id + "'");
+
+            if(foundRows.Count()>0)
+            {
+                Create16DigitString();
+                return "false";
+            }
+            else
+            {
+                return "true";
+            }
+
         }
     }
 }
