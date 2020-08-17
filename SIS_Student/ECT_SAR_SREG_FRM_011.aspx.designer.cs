@@ -105,31 +105,22 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.Label lbl_StudentContact;
 
         /// <summary>
-        /// Label1 control.
+        /// drp_Course control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.DropDownList drp_Course;
 
         /// <summary>
-        /// Label2 control.
+        /// lbl_CourseCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label lbl_CourseCode;
 
         /// <summary>
         /// txt_ExamDate control.
@@ -150,13 +141,13 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.TextBox txt_ExamTime;
 
         /// <summary>
-        /// Label6 control.
+        /// lbl_Instructor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label lbl_Instructor;
 
         /// <summary>
         /// lbl_Fess control.

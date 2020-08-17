@@ -163,13 +163,16 @@
                                            <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Has an Exam in</b>
+                                            <b>Has an Exam in<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                            <asp:Label ID="Label1" runat="server" Text="Student Name"></asp:Label>
+                                           <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control" OnSelectedIndexChanged="drp_Course_SelectedIndexChanged" AutoPostBack="true" required>                                                
+                                           </asp:DropDownList>
+                                           
+                                            <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>لديه\ لديها امتحان في مادة</b>
+                                            <b><span style="color: red">*</span>لديه\ لديها امتحان في مادة</b>
                                         </td>
                                     </tr>
                                     <tr>
@@ -177,43 +180,49 @@
                                             <b>Course Code</b>
                                         </td>
                                         <td align="center">
-                                            <asp:Label ID="Label2" runat="server" Text="Student ID"></asp:Label>
+                                            <asp:Label ID="lbl_CourseCode" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>رمز المادة </b>
                                         </td>
                                     </tr>
-                                    <tr>
+                               <%--     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Exam Day</b>
                                         </td>
                                         <td align="center">
-                                            <asp:Label ID="Label3" runat="server" Text="0501234567"></asp:Label>
+                                            <asp:DropDownList ID="drp_ExamDay" runat="server" CssClass="form-control"> 
+                                                 <asp:ListItem Text="Sunday" Value="Sunday" />
+                                           </asp:DropDownList>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>وذلك يوم </b>
                                         </td>
+                                    </tr>--%>
+                                                   <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Exam Date<span style="color: red">*</span></b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox ID="txt_ExamDate" runat="server" TextMode="Date" CssClass="form-control" required></asp:TextBox> 
+                                              <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Date Required" ControlToValidate="txt_ExamDate" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b><span style="color: red">*</span>الموافق لتاريخ  </b>
+                                        </td>
                                     </tr>
                                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Exam Date</b>
+                                            <b>Time of Exam<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_ExamDate" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox> 
+                                            <asp:TextBox ID="txt_ExamTime" runat="server" TextMode="Time" CssClass="form-control" required></asp:TextBox> 
+                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Time Required" ControlToValidate="txt_ExamTime" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>الموافق لتاريخ  </b>
-                                        </td>
-                                    </tr>
-                                                   <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Time of Exam</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:TextBox ID="txt_ExamTime" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox> 
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>الساعة  </b>
+                                            <b><span style="color: red">*</span>الساعة  </b>
                                         </td>
                                     </tr>
                                                    <tr>
@@ -221,7 +230,7 @@
                                             <b>Instructor’s Name</b>
                                         </td>
                                         <td align="center">
-                                            <asp:Label ID="Label6" runat="server" Text="0501234567"></asp:Label>
+                                            <asp:Label ID="lbl_Instructor" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>اســم مدرس المادة</b>
