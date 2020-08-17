@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SREG_FRM_021.aspx.cs" Inherits="SIS_Student.ECT_SAR_SREG_FRM_021" MasterPageFile="~/Student.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SREG_FRM_011.aspx.cs" Inherits="SIS_Student.ECT_SAR_SREG_FRM_011" MasterPageFile="~/Student.Master"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
@@ -73,8 +73,8 @@
                                 <table style="width: 100%">
                                     <tr>
                                         <th style="text-align: left; padding-left: 10px">Issue: 18/08/2011</th>
-                                        <th style="text-align: right;">Revision Date: 20/08/2019 </th>
-                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SREG-FRM.021</th>
+                                        <th style="text-align: right;">Revision Date: 10/06/2015 </th>
+                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SREG-FRM.011</th>
                                     </tr>
                                     <tr>
                                         <td>
@@ -83,8 +83,8 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Official Letter/Document Request Form<br />
-                                               خطاب رسمي / نموذج طلب الوثيقة
+                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Exam Proof Request<br />
+                                               طلب إفادة امتحان
                                             </p>
                                         </td>
                                     </tr>
@@ -156,6 +156,75 @@
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>رقم الموبايل</b>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr />
+                                           <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                    <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Has an Exam in</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="Label1" runat="server" Text="Student Name"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>لديه\ لديها امتحان في مادة</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Course Code</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="Label2" runat="server" Text="Student ID"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>رمز المادة </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Exam Day</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="Label3" runat="server" Text="0501234567"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>وذلك يوم </b>
+                                        </td>
+                                    </tr>
+                                                   <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Exam Date</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="Label4" runat="server" Text="0501234567"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>الموافق لتاريخ  </b>
+                                        </td>
+                                    </tr>
+                                                   <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Time of Exam</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="Label5" runat="server" Text="0501234567"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>الساعة  </b>
+                                        </td>
+                                    </tr>
+                                                   <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Instructor’s Name</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="Label6" runat="server" Text="0501234567"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>اســم مدرس المادة</b>
                                         </td>
                                     </tr>
                                 </table>

@@ -23,7 +23,7 @@ using System.Text;
 
 namespace SIS_Student
 {
-    public partial class ECT_SAR_SREG_FRM_021 : System.Web.UI.Page
+    public partial class ECT_SAR_SREG_FRM_011 : System.Web.UI.Page
     {
         InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         int CurrentRole = 0;
@@ -40,7 +40,7 @@ namespace SIS_Student
                     CurrentRole = (int)Session["CurrentRole"];
 
                     iRegYear = (int)Session["RegYear"];
-                    iRegSem = (int)Session["RegSemester"];                  
+                    iRegSem = (int)Session["RegSemester"];
                 }
                 else
                 {
@@ -108,7 +108,7 @@ namespace SIS_Student
                 lbl_StudentName.Text = dtStudentServices.Rows[0]["strLastDescEn"].ToString();
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
-                hdf_StudentEmail.Value= dtStudentServices.Rows[0]["sECTemail"].ToString();
+                hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
             }
 
         }
@@ -172,7 +172,7 @@ namespace SIS_Student
             myItem["RequestID"] = refno;
             myItem["Year"] = Convert.ToInt32(Session["RegYear"]);
             myItem["Semester"] = Convert.ToInt32(Session["RegSemester"]);
-            myItem["Request"] = "<b>Service ID:</b> "+lbl_ServiceID.Text+"<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text+" ("+ lbl_ServiceNameAr.Text +" )";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
@@ -218,7 +218,7 @@ namespace SIS_Student
                 string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
                 System.IO.File.Delete(FileUrls);
 
-                lbl_Msg.Text = "Request (ID# "+refno+") Generated Successfully";
+                lbl_Msg.Text = "Request (ID# " + refno + ") Generated Successfully";
                 lbl_Msg.Visible = true;
                 div_msg.Visible = true;
                 lnk_Generate.Enabled = false;
@@ -229,7 +229,7 @@ namespace SIS_Student
             }
             //Console.ReadLine();
         }
-       
+
         private static Random RNG = new Random();
 
         public string Create16DigitString()
@@ -241,5 +241,6 @@ namespace SIS_Student
             }
             return builder.ToString();
         }
+   
     }
 }
