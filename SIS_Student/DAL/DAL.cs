@@ -44,6 +44,12 @@ namespace SIS_Student.DAL
             return dt;
         }
 
+        public DataTable GetMajors(string connStr)
+        {
+            DataTable dt = GetData("SELECT distinct(strCaption) FROM Reg_Specializations WHERE (bAvailable = 1) and strCaption not in ('Diploma in Public Relations','Visiting Students') ORDER BY strCaption asc",connStr);
+            return dt;
+        }
+
         public DataTable GetData(string query)
         {
             DataTable dt = new DataTable();

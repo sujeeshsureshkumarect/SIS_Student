@@ -97,18 +97,13 @@ namespace SIS_Student
         {
             var services = new DAL.DAL();
             Connection_StringCLS connstr = new Connection_StringCLS(Campus);
-            int sem = 0;
-            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
-
-            int iYear = Year;
-            int iSem = sem;
-            string studentid = Session["CurrentStudent"].ToString();
-            DataTable dt = services.GetCoursesbyStudentId(studentid, connstr.Conn_string, iYear, iSem);
+           
+            DataTable dt = services.GetMajors(connstr.Conn_string);
             if (dt.Rows.Count > 0)
             {
                 drp_Course.DataSource = dt;
-                drp_Course.DataTextField = "Course";
-                drp_Course.DataValueField = "Code";
+                drp_Course.DataTextField = "strCaption";
+                drp_Course.DataValueField = "strCaption";
                 drp_Course.DataBind();
 
                 drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Major---", "---Select a Major---"));

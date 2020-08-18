@@ -5955,6 +5955,7 @@
     </Content>
     <Content Include="App_Start\TimeTableOLD.cs.exclude" />
     <Content Include="images\Icons\vssver2.scc" />
+    <Content Include="MyTimeTable.aspx" />
     <Content Include="Reports\Recommended_Add_Drop_Report.rpt.exclude" />
     <Content Include="Reports\Recommended_Report.rpt.exclude" />
     <Content Include="Reports\Recommended_Report2.rpt.exclude" />
@@ -6246,6 +6247,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTimeTable.aspx.cs">
+      <DependentUpon>MyTimeTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTimeTable.aspx.designer.cs">
+      <DependentUpon>MyTimeTable.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlainPage.aspx.cs">
       <DependentUpon>PlainPage.aspx</DependentUpon>
