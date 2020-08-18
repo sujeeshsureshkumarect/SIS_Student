@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SREG_FRM_011.aspx.cs" Inherits="SIS_Student.ECT_SAR_SREG_FRM_011" MasterPageFile="~/Student.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SREG_FRM_001.aspx.cs" Inherits="SIS_Student.ECT_SAR_SREG_FRM_001" MasterPageFile="~/Student.Master"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
@@ -74,7 +74,7 @@
                                     <tr>
                                         <th style="text-align: left; padding-left: 10px">Issue: 18/08/2011</th>
                                         <th style="text-align: right;">Revision Date: 10/06/2015</th>
-                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SREG-FRM.011</th>
+                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SREG-FRM.001</th>
                                     </tr>
                                     <tr>
                                         <td>
@@ -83,14 +83,21 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Exam Proof Request<br />
-                                               طلب إفادة امتحان
+                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Change Major Request<br />
+                                              طلب تغيير التخصص
                                             </p>
                                         </td>
                                     </tr>
                                 </table>
 
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                     <tr>
+                                                   <td colspan="4" align="center" style="background-color: #f2f2f2;">
+                                                       <b>Note:</b> <i>The Change of Major Request must be done at least two weeks before the beginning of the semester</i>    /                                                    
+                                                       يجب أن يتم تغيير التخصص قبل أسبوعين على الأقل من بداية الفصل الدراسي
+                                                   
+                                                          </td>
+                                               </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Service ID</b>
@@ -160,82 +167,32 @@
                                     </tr>
                                 </table>
                                 <hr />
-                                           <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
-                                    <tr>
+                                           <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">                                              
+                                                 <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Has an Exam in<span style="color: red">*</span></b>
+                                            <b>Current Major</b>
                                         </td>
                                         <td align="center">
-                                           <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control" OnSelectedIndexChanged="drp_Course_SelectedIndexChanged" AutoPostBack="true" required>                                                
+                                            <asp:Label ID="lbl_CurrentMajor" runat="server" Text=""></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>التخصص الحالي </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>New Requested Major<span style="color: red">*</span></b>
+                                        </td>
+                                        <td align="center">
+                                           <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control"  required>                                                
                                            </asp:DropDownList>
                                            
-                                            <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
+                                            <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Major---" ErrorMessage="*Please select a Major to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>لديه\ لديها امتحان في مادة</b>
+                                            <b><span style="color: red">*</span>مطلوب تخصص جديد</b>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Course Code</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:Label ID="lbl_CourseCode" runat="server" Text=""></asp:Label>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>رمز المادة </b>
-                                        </td>
-                                    </tr>
-                               <%--     <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Exam Day</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:DropDownList ID="drp_ExamDay" runat="server" CssClass="form-control"> 
-                                                 <asp:ListItem Text="Sunday" Value="Sunday" />
-                                           </asp:DropDownList>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>وذلك يوم </b>
-                                        </td>
-                                    </tr>--%>
-                                                   <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Exam Date<span style="color: red">*</span></b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:TextBox ID="txt_ExamDate" runat="server" TextMode="Date" CssClass="form-control" required></asp:TextBox> 
-                                              <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Date Required" ControlToValidate="txt_ExamDate" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>الموافق لتاريخ  </b>
-                                        </td>
-                                    </tr>
-                                                   <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Time of Exam<span style="color: red">*</span></b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:TextBox ID="txt_ExamTime" runat="server" TextMode="Time" CssClass="form-control" required></asp:TextBox> 
-                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Time Required" ControlToValidate="txt_ExamTime" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>الساعة  </b>
-                                        </td>
-                                    </tr>
-                                                   <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Instructor’s Name</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:Label ID="lbl_Instructor" runat="server" Text=""></asp:Label>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>اســم مدرس المادة</b>
-                                        </td>
-                                    </tr>
+                                    </tr>                                                                           
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
@@ -255,7 +212,7 @@
                                             <b>Remarks</b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Remarks / أدخل الملاحظات" Height="100px" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Reason(s) for Changing the Major / سبب تغيير التخصص" Height="100px" CssClass="form-control"></asp:TextBox>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>ملاحظات</b>
