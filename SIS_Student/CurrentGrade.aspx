@@ -29,6 +29,7 @@
             vertical-align: top;
             font-family: Arial, Helvetica, sans-serif;
         }
+
     </style>
                             </div>
                             <div class="clearfix"></div>
@@ -70,7 +71,7 @@
                                 Text='<%# Eval("lngStudentNumber") %>' Visible="False" />
                             <br />
                             <div align="center">
-                            <table width="70%" align="center">
+                            <table width="100%" align="center">
                                 <tr>
                                     <th>
                                         Academic Year</th>
@@ -195,7 +196,7 @@
                     <br />
                     <asp:DetailsView ID="CGPA_Females_dlt" runat="server" AutoGenerateRows="False" 
                         CellPadding="4" DataSourceID="CGPA_ds" ForeColor="#333333" GridLines="None" 
-                        Height="50px" Width="50%" HorizontalAlign="Center">
+                        Height="50px" Width="100%" HorizontalAlign="Center">
                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         <CommandRowStyle BackColor="#E2DED6" Font-Bold="True" />
                         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" Font-Bold="True" 
@@ -220,6 +221,7 @@
                         </SelectParameters>
                     </asp:SqlDataSource>
                 </asp:View>
+
                 <asp:View ID="View2" runat="server">
                     <asp:Label ID="Males_Emptylbl" runat="server" Text="No Data to Preview ..." CssClass="NoData"></asp:Label>
                     <br />
@@ -239,8 +241,9 @@
                             <asp:Label ID="Number_lbl" runat="server" 
                                 Text='<%# Eval("lngStudentNumber") %>' Visible="False" />
                             <br />
+
                             <div align="center">
-                            <table width="70%" align="center">
+                            <table width="100%" align="center">
                                 <tr>
                                     <th>
                                         Academic Year</th>
@@ -366,7 +369,7 @@
                     <br />
                     <asp:DetailsView ID="CGPA_Males_dlt" runat="server" AutoGenerateRows="False" 
                         CellPadding="4" DataSourceID="CGPA_Males_ds" ForeColor="#333333" 
-                        GridLines="None" Height="50px" Width="50%" HorizontalAlign="Center">
+                        GridLines="None" Height="50px" Width="100%" HorizontalAlign="Center">
                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         <CommandRowStyle BackColor="#E2DED6" Font-Bold="True" HorizontalAlign="Center" 
                             VerticalAlign="Middle" />
