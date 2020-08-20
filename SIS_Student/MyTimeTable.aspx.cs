@@ -147,6 +147,14 @@ namespace SIS_Student
 
                 string sStudentNumber = this.sNo;
 
+                int iSemester = Convert.ToInt32("0" + iSem.ToString());
+                int iRegYear = Convert.ToInt32("0" + iYear.ToString());
+
+                lbl_TitleYearSem.Text = " - " + iRegYear.ToString() + " / " + (iRegYear + 1).ToString() + " " + sSemester;
+                lbl_TitleStudent.Text = GetCaption();
+                lbl_TitleStudent.Text += "     -   Total Credit Hours: [ " + LibraryMOD.GetStudentRegisteredCredit(iRegYear, iSemester, sNo, Convert.ToInt32((InitializeModule.EnumCampus)this.Campus)).ToString() + " ]";
+                lbl_TitleMajor.Text = LibraryMOD.GetStudentMajor(this.Campus, sNo);
+
                 myTimeTables = myTimeTableDAL.GetStudentTimeTable(sStudentNumber, iYear, iSem, this.Campus);
                 Ds = Prepare_TimeTable_Report(myTimeTables);
 
@@ -244,9 +252,8 @@ namespace SIS_Student
                 dt.TableName = "StudentTimeTable";
                 dt.AcceptChanges();
                 ds.Tables.Add(dt);
-                //TimeTable_Grd.PageIndex = 0;
-                //TimeTable_Grd.DataSource = dt;
-                //TimeTable_Grd.DataBind();
+                RepterDetails.DataSource = dt;
+                RepterDetails.DataBind();
 
             }
             catch (Exception exp)
@@ -297,6 +304,9 @@ namespace SIS_Student
 
                 txt = (TextObject)myReport.ReportDefinition.ReportObjects["txtAcademicYear"];
                 txt.Text += " - " + iRegYear.ToString() + " / " + (iRegYear + 1).ToString() + " " + sSemester;
+
+              
+
 
                 txt = (TextObject)myReport.ReportDefinition.ReportObjects["UserTXT"];
                 string sUserName = Session["CurrentUserName"].ToString();
@@ -357,6 +367,11 @@ namespace SIS_Student
         {
             Session["errMsg"] = sMsg;
             Response.Redirect("ErrPage.aspx");
+        }
+
+        protected void PrintFM_CMD_Click(object sender, EventArgs e)
+        {
+            ExportStudentTimeTable();
         }
     }
 }
