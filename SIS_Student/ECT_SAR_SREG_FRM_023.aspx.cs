@@ -116,6 +116,16 @@ namespace SIS_Student
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
+
+                string cancelreason= dtStudentServices.Rows[0]["byteCancelReason"].ToString();
+                if(cancelreason != "3")
+                {
+                    div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
+                    lbl_Msg.Text = "You are not allowed to generate this request at this time (Only for Graduated Students)";
+                    lbl_Msg.Visible = true;
+                    div_msg.Visible = true;
+                    lnk_Generate.Enabled = false;
+                }
             }
 
         }

@@ -62,7 +62,7 @@
 
                                 <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="false">
 
-                                    <div class="alert alert-success alert-dismissible " role="alert">
+                                    <div class="alert alert-success alert-dismissible " role="alert" runat="server" id="div_Alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
@@ -83,8 +83,8 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Application for Issuing Duplicate Certificates and Transcripts for Graduates<br />
-                                              إستمارة طلب شهادة بدل فاقد/نُسخ إضافية من السجل الدراسي للخريجين
+                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Duplicate Certificates For Graduates<br />
+                                          طلب شهادة تخرج بدل فاقد
                                             </p>
                                         </td>
                                     </tr>
@@ -159,7 +159,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <hr />
+                                    <hr />                         
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
