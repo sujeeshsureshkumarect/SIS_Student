@@ -77,8 +77,7 @@ namespace SIS_Student
                     if (!IsPostBack)
                     {
                         getservicedetails();
-                        getdetails();
-                        getcourses();
+                        getdetails();                        
                     }
                 }
             }
@@ -91,24 +90,7 @@ namespace SIS_Student
 
             }
 
-        }
-
-        public void getcourses()
-        {
-            var services = new DAL.DAL();
-            Connection_StringCLS connstr = new Connection_StringCLS(Campus);
-
-            DataTable dt = services.GetMajors(connstr.Conn_string);
-            if (dt.Rows.Count > 0)
-            {
-                drp_Course.DataSource = dt;
-                drp_Course.DataTextField = "strCaption";
-                drp_Course.DataValueField = "strCaption";
-                drp_Course.DataBind();
-
-                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Major---", "---Select a Major---"));
-            }
-        }
+        }     
         public void getdetails()
         {
             Connection_StringCLS connstr = new Connection_StringCLS(Campus);
@@ -121,6 +103,11 @@ namespace SIS_Student
 
             lbl_AcademicYear.Text = iYear.ToString();
             lbl_Semester.Text = sSemester.ToString();
+
+            InitializeModule.EnumCampus CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+            string sSID = Session["CurrentStudent"].ToString();
+            decimal dAmount = LibraryMOD.GetStudentBalanceBTS(sSID, CurrentCampus);
+            lbl_Balance.Text= string.Format("{0:f}", dAmount);
 
             string studentid = Session["CurrentStudent"].ToString();
             var services = new DAL.DAL();
@@ -171,11 +158,8 @@ namespace SIS_Student
         }
 
         protected void lnk_Generate_Click(object sender, EventArgs e)
-        {
-            if (drp_Course.SelectedItem.Value != "---Select a Major---")
-            {
-                sentdatatoSPLIst();
-            }
+        {           
+                sentdatatoSPLIst();            
         }
 
         public void sentdatatoSPLIst()
@@ -204,7 +188,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Financial Status:</b> " + drp_Course.SelectedItem.Text + "<br/><b>New Requested Major:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Reason(s) for Changing the Major:</b> " + txt_Remarks.Text.Trim() + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Financial Status:</b> Balance: AED " + lbl_Balance.Text + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;

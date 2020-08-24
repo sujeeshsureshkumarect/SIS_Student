@@ -105,31 +105,13 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.Label lbl_StudentContact;
 
         /// <summary>
-        /// chk_NoBalance control.
+        /// lbl_Balance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chk_NoBalance;
-
-        /// <summary>
-        /// chk_WBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chk_WBalance;
-
-        /// <summary>
-        /// drp_Course control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drp_Course;
+        protected global::System.Web.UI.WebControls.Label lbl_Balance;
 
         /// <summary>
         /// lbl_Fess control.

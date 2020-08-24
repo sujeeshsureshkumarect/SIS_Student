@@ -197,7 +197,18 @@
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>رمز المادة </b>
                                         </td>
-                                    </tr>                                                                          
+                                    </tr>  
+                                                                     <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Instructor’s Name</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_Instructor" runat="server" Text=""></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>اســم مدرس المادة</b>
+                                        </td>
+                                    </tr>
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
@@ -214,7 +225,7 @@
                                     </tr>
                                       <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Remarks</b>
+                                            <b>Remarks<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Reason(s) for Withdrawal / سبب الإقلاع عن التدخين" Height="100px" CssClass="form-control"></asp:TextBox>
@@ -222,7 +233,7 @@
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>ملاحظات</b>
+                                            <b><span style="color: red">*</span>ملاحظات</b>
                                         </td>
                                     </tr>
                                     <tr>

@@ -108,6 +108,10 @@ namespace SIS_Student
 
                 drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Major---", "---Select a Major---"));
             }
+            else
+            {
+                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Major---", "---Select a Major---"));
+            }
         }
         public void getdetails()
         {

@@ -113,6 +113,10 @@ namespace SIS_Student
 
                 drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
             }
+            else
+            {
+                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
+            }
         }
         public void getdetails()
         {

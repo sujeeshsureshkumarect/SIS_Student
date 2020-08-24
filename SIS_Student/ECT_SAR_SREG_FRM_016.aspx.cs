@@ -97,15 +97,24 @@ namespace SIS_Student
         {
             var services = new DAL.DAL();
             Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+            int sem = 0;
+            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
 
-            DataTable dt = services.GetMajors(connstr.Conn_string);
+            int iYear = Year;
+            int iSem = sem;
+            string studentid = Session["CurrentStudent"].ToString();
+            DataTable dt = services.GetCoursesbyStudentId(studentid, connstr.Conn_string, iYear, iSem);
             if (dt.Rows.Count > 0)
             {
                 drp_Course.DataSource = dt;
-                drp_Course.DataTextField = "strCaption";
-                drp_Course.DataValueField = "strCaption";
+                drp_Course.DataTextField = "Course";
+                drp_Course.DataValueField = "Code";
                 drp_Course.DataBind();
 
+                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
+            }
+            else
+            {
                 drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
             }
         }
@@ -131,6 +140,7 @@ namespace SIS_Student
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
+                lbl_CurrentMajor.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
             }
 
         }
@@ -204,7 +214,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Financial Status:</b> " + drp_Course.SelectedItem.Text + "<br/><b>New Requested Major:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Reason(s) for Changing the Major:</b> " + txt_Remarks.Text.Trim() + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Course Title:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Course Code:</b> " + lbl_CourseCode.Text + "<br/><b>Instructor’s Name:</b> " + lbl_Instructor.Text + "<br/><b>Reason(s) for Withdrawal:</b> " + txt_Remarks.Text.Trim() + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
@@ -248,8 +258,11 @@ namespace SIS_Student
                 clientContext.Credentials = onlineCredentials;
                 clientContext.ExecuteQuery();
 
-                string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
-                System.IO.File.Delete(FileUrls);
+                if (flp_Upload.HasFile)
+                {
+                    string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                    System.IO.File.Delete(FileUrls);
+                }
 
                 lbl_Msg.Text = "Request (ID# " + refno + ") Generated Successfully";
                 lbl_Msg.Visible = true;
@@ -278,7 +291,28 @@ namespace SIS_Student
 
         protected void drp_Course_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (drp_Course.SelectedItem.Value != "---Select a Course---")
+            {
+                var services = new DAL.DAL();
+                Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+                int sem = 0;
+                int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
 
+                int iYear = Year;
+                int iSem = sem;
+                string studentid = Session["CurrentStudent"].ToString();
+                DataTable dt = services.GetCoursesbyCourseId(studentid, connstr.Conn_string, iYear, iSem, drp_Course.SelectedItem.Value);
+                if (dt.Rows.Count > 0)
+                {
+                    lbl_CourseCode.Text = drp_Course.SelectedItem.Value;
+                    lbl_Instructor.Text = dt.Rows[0]["strLecturerDescEn"].ToString();
+                }
+            }
+            else
+            {
+                lbl_CourseCode.Text = "";
+                lbl_Instructor.Text = "";
+            }
         }
     }
 }

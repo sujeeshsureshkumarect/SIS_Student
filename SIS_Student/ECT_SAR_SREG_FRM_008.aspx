@@ -174,27 +174,12 @@
                                             <b>Financial Status</b>
                                         </td>
                                         <td align="center">
-                                             <asp:CheckBox ID="chk_NoBalance" runat="server" Text="&nbsp;No Balance" Enabled="false" Checked="true"/>&nbsp;&nbsp;
-                                           <asp:CheckBox ID="chk_WBalance" runat="server" Text="&nbsp;With Balance" Enabled="false"/>
+                                           Balance: AED <asp:Label ID="lbl_Balance" runat="server"></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الوضع المالي</b>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>New Requested Major<span style="color: red">*</span></b>
-                                        </td>
-                                        <td align="center">
-                                           <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control"  required>                                                
-                                           </asp:DropDownList>
-                                           
-                                            <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Major---" ErrorMessage="*Please select a Major to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>مطلوب تخصص جديد</b>
-                                        </td>
-                                    </tr>                                                                           
+                                    </tr>                                                                                   
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
