@@ -213,6 +213,8 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Reason(s) for Changing the Major / سبب تغيير التخصص" Height="100px" CssClass="form-control"></asp:TextBox>
+                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Reason Required" ControlToValidate="txt_Remarks" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>ملاحظات</b>

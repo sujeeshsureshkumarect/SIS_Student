@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SREG_FRM_008.aspx.cs" Inherits="SIS_Student.ECT_SAR_SREG_FRM_008" MasterPageFile="~/Student.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SREG_FRM_016.aspx.cs" Inherits="SIS_Student.ECT_SAR_SREG_FRM_016" MasterPageFile="~/Student.Master"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
@@ -72,9 +72,9 @@
 
                                 <table style="width: 100%">
                                     <tr>
-                                        <th style="text-align: left; padding-left: 10px">Issue: 05/03/2018</th>
-                                        <th style="text-align: right;">Revision Date: </th>
-                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SREG-FRM.008</th>
+                                        <th style="text-align: left; padding-left: 10px">Issue: 18/08/2011</th>
+                                        <th style="text-align: right;">Revision Date: 10/06/2015</th>
+                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SREG-FRM.016</th>
                                     </tr>
                                     <tr>
                                         <td>
@@ -83,8 +83,8 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Graduation Letter and Transcript<br />
-                                               طلب افادة تخرج و كشف علامات
+                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Withdrawal from a Course Form<br />
+                                            الانسحاب من نموذج الدورة
                                             </p>
                                         </td>
                                     </tr>
@@ -162,39 +162,42 @@
                                 </table>
                                 <hr />
                                            <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">  
-                                               <tr>
-                                                   <td colspan="4" align="center" style="background-color: #f2f2f2;">
-                                                       <b>Note:</b> <i> There should be no outstanding financial balances</i>    /                                                    
-                                                       يجب ان لا يكون هنالك ارصدة مالية مترتبة 
-                                                   
-                                                          </td>
-                                               </tr>
                                                  <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Financial Status</b>
+                                            <b>Major</b>
                                         </td>
                                         <td align="center">
-                                             <asp:CheckBox ID="chk_NoBalance" runat="server" Text="&nbsp;No Balance" Enabled="false" Checked="true"/>&nbsp;&nbsp;
-                                           <asp:CheckBox ID="chk_WBalance" runat="server" Text="&nbsp;With Balance" Enabled="false"/>
+                                     <asp:Label ID="lbl_CurrentMajor" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الوضع المالي</b>
                                         </td>
                                     </tr>
-                                    <tr>
+                                         <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>New Requested Major<span style="color: red">*</span></b>
+                                            <b>Course Title<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                           <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control"  required>                                                
+                                           <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control" OnSelectedIndexChanged="drp_Course_SelectedIndexChanged" AutoPostBack="true" required>                                                
                                            </asp:DropDownList>
                                            
-                                            <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Major---" ErrorMessage="*Please select a Major to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
+                                            <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>مطلوب تخصص جديد</b>
+                                            <b><span style="color: red">*</span>عنوان الدورة</b>
                                         </td>
-                                    </tr>                                                                           
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Course Code</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_CourseCode" runat="server" Text=""></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>رمز المادة </b>
+                                        </td>
+                                    </tr>                                                                          
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
@@ -214,7 +217,9 @@
                                             <b>Remarks</b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Remarks / أدخل الملاحظات" Height="100px" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Reason(s) for Withdrawal / سبب الإقلاع عن التدخين" Height="100px" CssClass="form-control"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Reason Required" ControlToValidate="txt_Remarks" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>ملاحظات</b>
@@ -222,19 +227,19 @@
                                     </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Proof of Payment<span style="color: red">*</span></b><br />
+                                            <b>Proof of Payment</b><br />
                                            
                                         </td>
                                         <td align="center">
                                             <asp:FileUpload ID="flp_Upload" runat="server"/>
                                             <br /> <small style="color:red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>
-                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Document Required (.pdf/.jpg/.png)" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
+                                         <%--   <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Document Required (.pdf/.jpg/.png)" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>--%>
                                            <%-- <br />
                                               <asp:RegularExpressionValidator id="RegularExpressionValidator1" runat="server" ErrorMessage="Only PDF,JPG,PNG files are allowed!" ValidationExpression="^([a-z]|[A-Z]|[0-9]|[ ]|[-]|[_]|[(0-9)+]+)+\.(jpg|JPG|JPEG|jpeg|png|PNG|pdf|PDF)$" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no"></asp:RegularExpressionValidator>--%>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>إثبات دفع</b><br />                                            
+                                            <b>إثبات دفع</b><br />                                            
                                         </td>
                                     </tr>
                                 </table>
