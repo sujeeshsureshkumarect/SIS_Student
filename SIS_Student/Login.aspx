@@ -67,7 +67,7 @@
         <div class="navbar">
             <a href="https://lms.ectmoodle.ae/login/index.php" target="_blank">E-Learning</a>
             <a href="https://ect.ac.ae/" target="_blank">ECT Website</a>
-            <a href="https://ect.ac.ae/en/about-ect/" target="_blank">About Us</a>
+            <a href="https://ect.ac.ae/en/about-ect-2/" target="_blank">About Us</a>
             <a href="https://ect.ac.ae/en/contact-us/" target="_blank">Contact Us</a>
             <a href="Conditionss.aspx" target="_blank">Terms & Conditions</a>
             <img src="images/SSL.png" style="height:32px"/>
