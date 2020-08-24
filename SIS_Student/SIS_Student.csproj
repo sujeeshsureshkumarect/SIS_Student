@@ -193,6 +193,7 @@
     <Content Include="ECT_SAR_SREG_FRM_011.aspx" />
     <Content Include="ECT_SAR_SREG_FRM_016.aspx" />
     <Content Include="ECT_SAR_SREG_FRM_021.aspx" />
+    <Content Include="ECT_SAR_SREG_FRM_023.aspx" />
     <Content Include="ErrPage.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -6218,6 +6219,13 @@
     </Compile>
     <Compile Include="ECT_SAR_SREG_FRM_021.aspx.designer.cs">
       <DependentUpon>ECT_SAR_SREG_FRM_021.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ECT_SAR_SREG_FRM_023.aspx.cs">
+      <DependentUpon>ECT_SAR_SREG_FRM_023.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ECT_SAR_SREG_FRM_023.aspx.designer.cs">
+      <DependentUpon>ECT_SAR_SREG_FRM_023.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrPage.aspx.cs">
       <DependentUpon>ErrPage.aspx</DependentUpon>
