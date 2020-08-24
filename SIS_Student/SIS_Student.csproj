@@ -188,6 +188,7 @@
     <Content Include="Current_TimeTable.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="EarlyReg.aspx" />
     <Content Include="ECT_SAR_SREG_FRM_001.aspx" />
     <Content Include="ECT_SAR_SREG_FRM_006.aspx" />
     <Content Include="ECT_SAR_SREG_FRM_008.aspx" />
@@ -6185,6 +6186,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EarlyReg.aspx.cs">
+      <DependentUpon>EarlyReg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EarlyReg.aspx.designer.cs">
+      <DependentUpon>EarlyReg.aspx</DependentUpon>
     </Compile>
     <Compile Include="ECT_SAR_SREG_FRM_001.aspx.cs">
       <DependentUpon>ECT_SAR_SREG_FRM_001.aspx</DependentUpon>

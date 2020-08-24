@@ -110,8 +110,8 @@
                                                         <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("sCourse") %></td>
                                                         <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("sDesc") %></td>
                                                         <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("iClass") %></td>
-                                                        <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("dFrom") %></td>
-                                                        <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("dTo") %></td>
+                                                        <td align="center" style="border: 1px solid #e5e5e5"><span class="badge badge-success" style="font-size:100%"><%#Eval("dFrom") %></span></td>
+                                                        <td align="center" style="border: 1px solid #e5e5e5"><span class="badge badge-success" style="font-size:100%"><%#Eval("dTo") %></span></td>
                                                         <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("sLecturer") %></td>
                                                         <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("sDay") %></td>
                                                         <td align="center" style="border: 1px solid #e5e5e5"><%#Eval("sHall") %></td>
