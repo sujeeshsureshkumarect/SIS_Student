@@ -25,7 +25,7 @@ using CrystalDecisions.ReportAppServer.ClientDoc;
 
 namespace SIS_Student
 {
-    public partial class ECT_SAR_SREG_FRM_006 : System.Web.UI.Page
+    public partial class ECT_SAR_SREG_FRM_014 : System.Web.UI.Page
     {
         InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         int CurrentRole = 0;
@@ -121,7 +121,7 @@ namespace SIS_Student
             DataTable dtAcademicAdvisor = services.GetStudentAcademicAdvisor(studentid, connstr.Conn_string);
             if (dtStudentServices.Rows.Count > 0)
             {
-                lbl_AcademicAdvisor.Text= dtAcademicAdvisor.Rows[0]["strLecturerDescEn"].ToString();
+                lbl_AcademicAdvisor.Text = dtAcademicAdvisor.Rows[0]["strLecturerDescEn"].ToString();
             }
 
         }
@@ -192,7 +192,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Plegde:</b> I, the undersigned, pledge to improve my GPA in the next semester up to 2.0 or more in order to achieve a good academic standing. Failing to do so, I will be given only one more chance (Final probation).<br/><b>Academic Advisor Name:</b> " + lbl_AcademicAdvisor.Text + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Plegde:</b> I, the undersigned, pledge to improve my GPA in the next semester up to 2.0 or more in order to achieve a good academic standing. Failing to do so, I will be dismissed from the major and I have to continue in another major.<br/><b>Academic Advisor Name:</b> " + lbl_AcademicAdvisor.Text + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;

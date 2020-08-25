@@ -50,6 +50,12 @@ namespace SIS_Student.DAL
             return dt;
         }
 
+        public DataTable GetStudentAcademicAdvisor(string studentid, string connStr)
+        {
+            DataTable dt = GetData("SELECT Reg_Applications.lngStudentNumber, Reg_Lecturers.strLecturerDescEn FROM Reg_Applications LEFT OUTER JOIN Reg_Lecturers ON Reg_Applications.intAdvisor = Reg_Lecturers.intLecturer WHERE Reg_Applications.lngStudentNumber='" + studentid + "'", connStr);
+            return dt;
+        }
+
         public DataTable GetData(string query)
         {
             DataTable dt = new DataTable();

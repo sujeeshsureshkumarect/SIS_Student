@@ -59,26 +59,23 @@
                         
             <table width="100%" align="center">
                 <tr>
-                    <th colspan="2" align="center" style="font-size:16px;">Early Registration Offer terms &amp; conditions</th>
+                    <th colspan="2" align="center" style="font-size:16px;">Early Registration Offer terms &amp; conditions (شروط وأحكام 
+                        منحة التسجيل المبكر)</th>                
                 </tr>
-                <tr>
+     <%--           <tr>
                     <th colspan="2" align="center" 
                         style="font-family: Arial, Helvetica, sans-serif; font-size: medium">شروط وأحكام 
                         منحة التسجيل المبكر</th>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center" 
-                        style="font-family: Arial, Helvetica, sans-serif; font-size: medium; color: #FF0000">Read the following...</td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center" 
-                        style="font-family: Arial, Helvetica, sans-serif; font-size: medium; color: #FF0000">
-                        &nbsp;</td>
-                </tr>
+                </tr>--%>
+       <tr>
+           <td colspan="2" align="center" style="font-size: medium;">
+               Read the following...
+           </td>
+       </tr>
                 <tr>
                     <td colspan="2" align="center" 
                         style="font-family: Arial, Helvetica, sans-serif; font-size: medium; color: #FF0000">
-                        <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btrn btn-success btn-sm" 
+                        <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-success btn-sm" 
                              PostBackUrl="~/StudentRegistration.aspx"><i class="fa fa-check-square-o"></i> Proceed to Registration</asp:LinkButton>   
                         <br />&nbsp;
                     </td>
