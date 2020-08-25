@@ -301,6 +301,7 @@ namespace SIS_Student
                 }
                 else
                 {
+                    drp_SubReason.Items.Clear();
                     drp_SubReason.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Sub Reason---", "---Select a Sub Reason---"));
                 }
             }
