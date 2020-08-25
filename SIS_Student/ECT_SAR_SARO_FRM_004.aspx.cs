@@ -22,9 +22,10 @@ using Microsoft.Online.SharePoint.TenantAdministration;
 using System.Text;
 using System.Linq;
 using CrystalDecisions.ReportAppServer.ClientDoc;
+
 namespace SIS_Student
 {
-    public partial class ECT_SAR_SARO_FRM_003 : System.Web.UI.Page
+    public partial class ECT_SAR_SARO_FRM_004 : System.Web.UI.Page
     {
         InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         int CurrentRole = 0;
@@ -79,7 +80,7 @@ namespace SIS_Student
                     {
                         getservicedetails();
                         getdetails();
-                        getcourses();
+                        getmainreason();
                     }
                 }
             }
@@ -116,31 +117,27 @@ namespace SIS_Student
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
+                lbl_CurrentMajor.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
             }
         }
-        public void getcourses()
+        public void getmainreason()
         {
-            var services = new DAL.DAL();
-            Connection_StringCLS connstr = new Connection_StringCLS(Campus);
-            int sem = 0;
-            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
-
-            int iYear = Year;
-            int iSem = sem;
-            string studentid = Session["CurrentStudent"].ToString();
-            DataTable dt = services.GetCoursesbyStudentId(studentid, connstr.Conn_string, iYear, iSem);
+            var services = new DAL.DAL();          
+            DataTable dt = services.GetMainReasons();
             if (dt.Rows.Count > 0)
             {
-                drp_Course.DataSource = dt;
-                drp_Course.DataTextField = "Course";
-                drp_Course.DataValueField = "Code";
-                drp_Course.DataBind();
+                drp_MainReason.DataSource = dt;
+                drp_MainReason.DataTextField = "MainReason";
+                drp_MainReason.DataValueField = "byteMainReason";
+                drp_MainReason.DataBind();
 
-                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
+                drp_MainReason.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Main Reason---", "---Select a Main Reason---"));
+                drp_SubReason.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Sub Reason---", "---Select a Sub Reason---"));
             }
             else
             {
-                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
+                drp_MainReason.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Main Reason---", "---Select a Main Reason---"));
+                drp_SubReason.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Sub Reason---", "---Select a Sub Reason---"));
             }
         }
         public void getservicedetails()
@@ -186,7 +183,7 @@ namespace SIS_Student
 
         public void sentdatatoSPLIst()
         {
-            
+
 
             int sem = 0;
             int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
@@ -212,8 +209,8 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Course Details :</b> " + drp_Course.SelectedItem.Text + "<br/><b>The above-mentioned student missed the following :</b> " + drp_Missed.SelectedItem.Text + "<br/><b>Date of Absence:</b> " + txt_ExamDate.Text + "<br/><b>Reason of his/her absence: </b> " + drp_Reason.SelectedItem.Text + "<br/><b>Remarks: </b> " + txt_Remarks.Text.Trim() + "<br/>";
-            myItem["RequestNote"] = txt_Remarks.Text.Trim();
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> " + lbl_CurrentMajor.Text + "<br/><b>Student Status Request:</b> " + drp_StatusReuqest.SelectedItem.Text + "<br/><b>Main Reason:</b> " + drp_MainReason.SelectedItem.Text + "<br/><b>Sub Reason: </b> " + drp_SubReason.SelectedItem.Text + "<br/><b>Remarks: </b> " + txt_Remarks.Text.Trim() + "<br/>";
+            myItem["RequestNote"] = ""+ RadioButtonList1.SelectedItem.Value+ ";" + RadioButtonList2.SelectedItem.Value + ";" + RadioButtonList3.SelectedItem.Value + ";" + RadioButtonList4.SelectedItem.Value + "";
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
             //myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
@@ -287,29 +284,29 @@ namespace SIS_Student
             return finalString.ToString();
         }
 
-        protected void drp_Course_SelectedIndexChanged(object sender, EventArgs e)
+        protected void drp_MainReason_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (drp_Course.SelectedItem.Value != "---Select a Course---")
+            if (drp_MainReason.SelectedItem.Value != "---Select a Main Reason---")
             {
-                var services = new DAL.DAL();
-                Connection_StringCLS connstr = new Connection_StringCLS(Campus);
-                int sem = 0;
-                int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
-
-                int iYear = Year;
-                int iSem = sem;
-                string studentid = Session["CurrentStudent"].ToString();
-                DataTable dt = services.GetCoursesbyCourseId(studentid, connstr.Conn_string, iYear, iSem, drp_Course.SelectedItem.Value);
+                var services = new DAL.DAL();           
+                DataTable dt = services.GetSubReasons(Convert.ToInt32(drp_MainReason.SelectedItem.Value));
                 if (dt.Rows.Count > 0)
                 {
-                    lbl_CourseCode.Text = drp_Course.SelectedItem.Value;
-                    //lbl_Instructor.Text = dt.Rows[0]["strLecturerDescEn"].ToString();
+                    drp_SubReason.DataSource = dt;
+                    drp_SubReason.DataTextField = "SubReason";
+                    drp_SubReason.DataValueField = "byteSubReson";
+                    drp_SubReason.DataBind();
+
+                    drp_SubReason.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Sub Reason---", "---Select a Sub Reason---"));
+                }
+                else
+                {
+                    drp_SubReason.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Sub Reason---", "---Select a Sub Reason---"));
                 }
             }
             else
             {
-                lbl_CourseCode.Text = "";
-                //lbl_Instructor.Text = "";
+                
             }
         }
     }

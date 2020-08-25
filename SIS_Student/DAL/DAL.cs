@@ -56,6 +56,18 @@ namespace SIS_Student.DAL
             return dt;
         }
 
+        public DataTable GetMainReasons()
+        {
+            DataTable dt = GetData("SELECT [byteMainReason],[strMainReasonEn],[strMainReasonAr], ISNULL([strMainReasonEn],'') + ' (' + ISNULL([strMainReasonAr],'')+' )' as MainReason FROM [ECTData].[dbo].[Lkp_MainReasons] where byteMainReason !=0");
+            return dt;
+        }
+
+        public DataTable GetSubReasons(int MainReasonId)
+        {
+            DataTable dt = GetData("SELECT byteMainReason, byteSubReson,ISNULL(strSubReasonEn,'') + ' (' + ISNULL(strSubReasonAr,'')+' )' as SubReason FROM Lkp_SubReasons where byteSubReson!=0 and byteMainReason="+ MainReasonId + "");
+            return dt;
+        }
+
         public DataTable GetData(string query)
         {
             DataTable dt = new DataTable();
