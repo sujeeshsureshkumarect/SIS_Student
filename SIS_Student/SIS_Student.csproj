@@ -194,6 +194,7 @@
     <Content Include="ECT_SAR_SARO_FRM_001.aspx" />
     <Content Include="ECT_SAR_SARO_FRM_003.aspx" />
     <Content Include="ECT_SAR_SARO_FRM_004.aspx" />
+    <Content Include="ECT_SAR_SARO_FRM_010.aspx" />
     <Content Include="ECT_SAR_SARO_FRM_017.aspx" />
     <Content Include="ECT_SAR_SARO_FRM_018.aspx" />
     <Content Include="ECT_SAR_SARO_FRM_019.aspx" />
@@ -6237,6 +6238,13 @@
     </Compile>
     <Compile Include="ECT_SAR_SARO_FRM_004.aspx.designer.cs">
       <DependentUpon>ECT_SAR_SARO_FRM_004.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ECT_SAR_SARO_FRM_010.aspx.cs">
+      <DependentUpon>ECT_SAR_SARO_FRM_010.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ECT_SAR_SARO_FRM_010.aspx.designer.cs">
+      <DependentUpon>ECT_SAR_SARO_FRM_010.aspx</DependentUpon>
     </Compile>
     <Compile Include="ECT_SAR_SARO_FRM_017.aspx.cs">
       <DependentUpon>ECT_SAR_SARO_FRM_017.aspx</DependentUpon>
