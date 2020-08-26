@@ -23,7 +23,7 @@ using System.Text;
 
 namespace SIS_Student
 {
-    public partial class ECT_SAR_SARO_FRM_018 : System.Web.UI.Page
+    public partial class ECT_SAR_SARO_FRM_019 : System.Web.UI.Page
     {
         InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         int CurrentRole = 0;
@@ -241,7 +241,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> "+lbl_CurrentMajor.Text+"<br/><b>Course Semester:</b> "+ drp_Semester.SelectedItem.Text + "<br/><b>Course Title:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Course Code:</b> " + lbl_CourseCode.Text + "<br/><b>Instructor’s Name:</b> " + lbl_Instructor.Text + "<br/><b>Request Details:</b> " + txt_Remarks.Text.Trim() + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> " + lbl_CurrentMajor.Text + "<br/><b>Course Semester:</b> " + drp_Semester.SelectedItem.Text + "<br/><b>Course Title:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Course Code:</b> " + lbl_CourseCode.Text + "<br/><b>Instructor’s Name:</b> " + lbl_Instructor.Text + "<br/><b>Request Details:</b> " + txt_Remarks.Text.Trim() + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
@@ -285,10 +285,10 @@ namespace SIS_Student
                 clientContext.Credentials = onlineCredentials;
                 clientContext.ExecuteQuery();
 
-                
-                    string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
-                    System.IO.File.Delete(FileUrls);
-                
+
+                string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                System.IO.File.Delete(FileUrls);
+
 
                 lbl_Msg.Text = "Request (ID# " + refno + ") Generated Successfully";
                 lbl_Msg.Visible = true;
@@ -358,6 +358,7 @@ namespace SIS_Student
                 lbl_CourseCode.Text = "";
                 lbl_Instructor.Text = "";
             }
+               
         }
     }
 }
