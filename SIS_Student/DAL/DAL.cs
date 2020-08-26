@@ -38,6 +38,13 @@ namespace SIS_Student.DAL
             return dt;
         }
 
+        public DataTable GetSemestersbyTerm(int year, int sem)
+        {
+            int term = (year * 10) + sem;
+            DataTable dt = GetData("SELECT  top 4   AcademicYear, Semester, LongDesc, AcademicYear * 10 + Semester AS Term FROM Reg_Semester where term<"+term+" ORDER BY AcademicYear DESC, Semester DESC");
+            return dt;
+        }
+
         public DataTable GetCoursesbyCourseId(string studentid, string connStr, int year, int sem,string courseid)
         {
             DataTable dt = GetData("SELECT  Course_Balance_View_BothSides.iYear, Course_Balance_View_BothSides.Sem, Course_Balance_View_BothSides.Student, Course_Balance_View_BothSides.Course AS Code, Course_Balance_View_BothSides.Course + N'-' + Reg_Courses.strCourseDescEn AS Course, Reg_Lecturers.strLecturerDescEn FROM            Course_Balance_View_BothSides INNER JOIN Reg_Courses ON Course_Balance_View_BothSides.Course = Reg_Courses.strCourse INNER JOIN Reg_CourseTime_Schedule ON Course_Balance_View_BothSides.iYear = Reg_CourseTime_Schedule.intStudyYear AND Course_Balance_View_BothSides.Sem = Reg_CourseTime_Schedule.byteSemester AND Course_Balance_View_BothSides.Course = Reg_CourseTime_Schedule.strCourse INNER JOIN Reg_Lecturers ON Reg_CourseTime_Schedule.intLecturer = Reg_Lecturers.intLecturer WHERE        (Course_Balance_View_BothSides.iYear = " + year + ") AND (Course_Balance_View_BothSides.Sem = " + sem + ") AND (Course_Balance_View_BothSides.Student = N'" + studentid + "') AND (Reg_CourseTime_Schedule.bLab = 0) AND Course_Balance_View_BothSides.Course='"+courseid+"' ", connStr);
