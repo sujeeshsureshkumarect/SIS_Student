@@ -32,6 +32,12 @@ namespace SIS_Student.DAL
             return dt;
         }
 
+        public DataTable GetStudentDetailsIDbyNationality(string studentid, string connStr)
+        {
+            DataTable dt = GetData("SELECT Reg_Applications.lngStudentNumber, Reg_Students_Data.strLastDescEn, Reg_Specializations.strCaption, dbo.CleanPhone(Reg_Students_Data.strPhone1) AS Phone, Reg_Students_Data.sECTemail, Reg_Applications.byteCancelReason, Reg_Students_Data.strNationalID AS EID, Lkp_Nationalities.strNationalityDescEn FROM Reg_Applications INNER JOIN Reg_Students_Data ON Reg_Applications.lngSerial = Reg_Students_Data.lngSerial INNER JOIN Reg_Specializations ON Reg_Applications.strCollege = Reg_Specializations.strCollege AND Reg_Applications.strDegree = Reg_Specializations.strDegree AND Reg_Applications.strSpecialization = Reg_Specializations.strSpecialization INNER JOIN Lkp_Nationalities ON Reg_Students_Data.byteNationality = Lkp_Nationalities.byteNationality where Reg_Applications.lngStudentNumber='" + studentid + "'", connStr);
+            return dt;
+        }
+
         public DataTable GetCoursesbyStudentId(string studentid, string connStr,int year,int sem)
         {
             DataTable dt = GetData("SELECT  Course_Balance_View_BothSides.iYear, Course_Balance_View_BothSides.Sem, Course_Balance_View_BothSides.Student, Course_Balance_View_BothSides.Course AS Code, Course_Balance_View_BothSides.Course + N'-' + Reg_Courses.strCourseDescEn AS Course, Reg_Lecturers.strLecturerDescEn FROM            Course_Balance_View_BothSides INNER JOIN Reg_Courses ON Course_Balance_View_BothSides.Course = Reg_Courses.strCourse INNER JOIN Reg_CourseTime_Schedule ON Course_Balance_View_BothSides.iYear = Reg_CourseTime_Schedule.intStudyYear AND Course_Balance_View_BothSides.Sem = Reg_CourseTime_Schedule.byteSemester AND Course_Balance_View_BothSides.Course = Reg_CourseTime_Schedule.strCourse INNER JOIN Reg_Lecturers ON Reg_CourseTime_Schedule.intLecturer = Reg_Lecturers.intLecturer WHERE        (Course_Balance_View_BothSides.iYear = "+year+") AND (Course_Balance_View_BothSides.Sem = "+sem+") AND (Course_Balance_View_BothSides.Student = N'"+studentid+"') AND (Reg_CourseTime_Schedule.bLab = 0)", connStr);
