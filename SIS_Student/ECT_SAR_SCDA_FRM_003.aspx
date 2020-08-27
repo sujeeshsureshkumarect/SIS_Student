@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SCDA_FRM_005.aspx.cs" Inherits="SIS_Student.ECT_SAR_SCDA_FRM_005" MasterPageFile="~/Student.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ECT_SAR_SCDA_FRM_003.aspx.cs" Inherits="SIS_Student.ECT_SAR_SCDA_FRM_003" MasterPageFile="~/Student.Master"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
@@ -72,9 +72,9 @@
 
                                 <table style="width: 100%">
                                     <tr>
-                                        <th style="text-align: left; padding-left: 10px">Issue: 31/01/2018</th>
-                                        <th style="text-align: right;">Revision Date: </th>
-                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SCDA-FRM.005</th>
+                                        <th style="text-align: left; padding-left: 10px">Issue: 09/12/2013</th>
+                                        <th style="text-align: right;">Revision Date: 31/01/2018</th>
+                                        <th style="text-align: right; padding-right: 10px">Ref No.: ECT-SAR-SCDA-FRM.003</th>
                                     </tr>
                                     <tr>
                                         <td>
@@ -83,8 +83,8 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Alumni Data Update Form<br />
-                                            نموذج تحديث بيانات الخريجين
+                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Career Service Request<br />
+                                           طلب خدمة الدعم المهني
                                             </p>
                                         </td>
                                     </tr>
@@ -136,17 +136,6 @@
                                             <b>اسم الطالب</b>
                                         </td>
                                     </tr>
-                                     <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Date of Birth</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:Label ID="lbl_DOB" runat="server" Text=""></asp:Label>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>تاريخ الولادة</b>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Student ID #</b>
@@ -157,29 +146,7 @@
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الرقم الجامعي</b>
                                         </td>
-                                    </tr>
-                                     <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Graduation Semester</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:Label ID="lbl_GraduationSemester" runat="server" Text=""></asp:Label>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>فصل التخرج</b>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Graduation Year</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:Label ID="lbl_GraduationYear" runat="server" Text=""></asp:Label>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>سنة التخرج</b>
-                                        </td>
-                                    </tr>
+                                    </tr>       
                                        <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Major</b>
@@ -190,113 +157,23 @@
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>التخصص الحالي</b>
                                         </td>
-                                    </tr>
-                                           <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Address</b>
-                                        </td>
-                                        <td align="center">
-                                             <asp:TextBox ID="txt_Address" runat="server" TextMode="MultiLine" Height="100px" CssClass="form-control"></asp:TextBox>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>عنوان المنزل</b>
-                                        </td>
-                                    </tr>
+                                    </tr>                                          
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Student Contact #1<span style="color: red">*</span></b>
+                                            <b>Student Contact #</b>
                                         </td>
-                                        <td align="center">                                           
-                                              <asp:TextBox ID="txt_StudentContact1" runat="server" CssClass="form-control"></asp:TextBox>
-                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Contact Number Required" ControlToValidate="txt_StudentContact1" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>رقم الموبايل</b>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Student Contact #2</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:TextBox ID="txt_StudentContact2" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <td align="center">                                                                                        
+                                            <asp:Label ID="lbl_StudentContact" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>رقم الموبايل</b>
                                         </td>
                                     </tr>
-                                     <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Email<span style="color: red">*</span></b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:TextBox ID="txt_Email" runat="server" CssClass="form-control"></asp:TextBox>
-                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Email Address Required" ControlToValidate="txt_Email" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txt_Email"
-                                                ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
-                                                Display="Dynamic" ErrorMessage="*Invalid Email Address" ValidationGroup="no" />
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>عنوان البريد الالكترونى</b>
-                                        </td>
-                                    </tr>
-                                      <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Work Place</b>
-                                        </td>
-                                        <td align="center">
-                                             <asp:TextBox ID="txt_WorkPlace" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>مكان العمل</b>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Job Title</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:TextBox ID="txt_JobTitle" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>عنوان وظيفي</b>
-                                        </td>
-                                    </tr>
-                                       <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Direct Supervisor Name</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:TextBox ID="txt_DirSupName" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>اسم المشرف المباشر</b>
-                                        </td>
-                                    </tr>
-                                      <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Direct Supervisor Job Title</b>
-                                        </td>
-                                        <td align="center">
-                                             <asp:TextBox ID="txt_DirSupJobtitle" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>المسمى الوظيفي للمشرف المباشر</b>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Contact Details</b>
-                                        </td>
-                                        <td align="center">
-                                             <asp:TextBox ID="txt_ContactDetails" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>معلومات للتواصل</b>
-                                        </td>
-                                    </tr>
+                      
+                 
+                             
+                                  
+                                
                                        <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Career Development Activities (Workshop/Seminar)</b>
@@ -307,9 +184,10 @@
                                                <asp:ListItem Text="&nbsp;&nbsp;CV Writing" Value="CV Writing"></asp:ListItem>
                                                    <asp:ListItem Text="&nbsp;&nbsp;Job Search Techniques" Value="Job Search Techniques"></asp:ListItem>
                                                    <asp:ListItem Text="&nbsp;&nbsp;Interviewing" Value="Interviewing"></asp:ListItem>
+                                                   <asp:ListItem Text="&nbsp;&nbsp;Beyond the Interview" Value="Beyond the Interview"></asp:ListItem>
                                                <asp:ListItem Text="&nbsp;&nbsp;Business Etiquette" Value="Business Etiquette"></asp:ListItem>
                                                <asp:ListItem Text="&nbsp;&nbsp;Career Development Stages" Value="Career Development Stages"></asp:ListItem>
-                                                  <asp:ListItem Text="&nbsp;&nbsp;Others (Please specify in remarks)" Value="Others"></asp:ListItem>
+                                                  <asp:ListItem Text="&nbsp;&nbsp;Others (Please specify in Comments)" Value="Others"></asp:ListItem>
                                            </asp:CheckBoxList> 
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
@@ -318,24 +196,77 @@
                                     </tr>
                                      <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Other Activities</b>
+                                            <b>Career Service</b>
                                         </td>
                                         <td align="center">
                                              <asp:CheckBoxList ID="chk_OtherActivities" runat="server">
-                                               <asp:ListItem Text="&nbsp;&nbsp;Sports" Value="Sports"></asp:ListItem>
-                                               <asp:ListItem Text="&nbsp;&nbsp;Cultural" Value="Cultural"></asp:ListItem>
-                                                   <asp:ListItem Text="&nbsp;&nbsp;Community" Value="Community"></asp:ListItem>
-                                                   <asp:ListItem Text="&nbsp;&nbsp;Volunteering" Value="Volunteering"></asp:ListItem>
-                                               <asp:ListItem Text="&nbsp;&nbsp;Mentoring Students" Value="Mentoring Students"></asp:ListItem>                                               
+                                               <asp:ListItem Text="&nbsp;&nbsp;Career Interest Assessment" Value="Career Interest Assessment"></asp:ListItem>
+                                               <asp:ListItem Text="&nbsp;&nbsp;Career Advising" Value="Career Advising"></asp:ListItem>
+                                                   <asp:ListItem Text="&nbsp;&nbsp;Job Search Assistance" Value="Job Search Assistance"></asp:ListItem>
+                                                   <asp:ListItem Text="&nbsp;&nbsp;Mock Interview" Value="Mock Interview"></asp:ListItem>
+                                               <asp:ListItem Text="&nbsp;&nbsp;Summer Training" Value="Summer Training"></asp:ListItem>   
+                                                 <asp:ListItem Text="&nbsp;&nbsp;Non Academic Internship" Value="Non Academic Internship"></asp:ListItem>
+                                                  <asp:ListItem Text="&nbsp;&nbsp;Others (Please specify in Comments)" Value="Others"></asp:ListItem>
                                            </asp:CheckBoxList> 
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>نشاطات أخرى</b>
                                         </td>
                                     </tr>
+                                         <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Comments</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox ID="txt_Comments" runat="server" TextMode="MultiLine" placeholder="Enter Comments / أدخل الملاحظات" Height="100px" CssClass="form-control"></asp:TextBox>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>تعليقات</b>
+                                        </td>
+                                    </tr>
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                           <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Preferred Timing<span style="color: red">*</span></b>
+                                        </td>
+                                       <td >
+                                            <asp:Label ID="Label1" runat="server" Text="From" ></asp:Label>
+                                            <asp:TextBox ID="txt_From" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox>
+                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Time Required" ControlToValidate="txt_From" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
+                                            <br />
+                                            <asp:Label ID="Label2" runat="server" Text="To"></asp:Label>
+                                            <asp:TextBox ID="txt_To" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox>
+                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Time Required" ControlToValidate="txt_To" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>                                          
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b><span style="color: red">*</span>التوقيت المفضل</b>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Preferred Day(s) </b>
+                                        </td>
+                                        <td align="center">
+                                             <asp:CheckBoxList ID="chk_PreferedDays" runat="server">
+                                               <asp:ListItem Text="&nbsp;&nbsp;Sunday" Value="Sunday"></asp:ListItem>
+                                               <asp:ListItem Text="&nbsp;&nbsp;Monday" Value="Monday"></asp:ListItem>
+                                                   <asp:ListItem Text="&nbsp;&nbsp;Tuesday" Value="Tuesday"></asp:ListItem>
+                                                   <asp:ListItem Text="&nbsp;&nbsp;Wednesday" Value="Wednesday"></asp:ListItem>
+                                               <asp:ListItem Text="&nbsp;&nbsp;Thursday" Value="Thursday"></asp:ListItem>   
+                                                 <asp:ListItem Text="&nbsp;&nbsp;Friday" Value="Friday"></asp:ListItem>
+                                                  <asp:ListItem Text="&nbsp;&nbsp;Saturday" Value="Saturday"></asp:ListItem>
+                                           </asp:CheckBoxList> 
+                                             <asp:CustomValidator ID="CustomValidator1" ErrorMessage="*Please select at least one Day."
+    ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" Display="Dynamic" ValidationGroup="no"/>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>اليوم المفضلة</b>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Fees</b>
@@ -349,13 +280,13 @@
                                     </tr>
                                       <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Other Suggestion for Alumni services & Activities</b>
+                                            <b>Suggest a Workshop/Seminar/ Other Services</b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Remarks / أدخل الملاحظات" Height="100px" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine"  Height="100px" CssClass="form-control"></asp:TextBox>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>اقتراحات أخرى لخدمات وأنشطة الخريجين</b>
+                                            <b>اقتراح ورشة / ندوة / خدمات أخرى</b>
                                         </td>
                                     </tr>
                                     <%--<tr>
@@ -386,4 +317,18 @@
             </div>
         </div>
     </div>
+            <script type="text/javascript">
+        function ValidateCheckBoxList(sender, args) {
+            var checkBoxList = document.getElementById("<%=chk_PreferedDays.ClientID %>");
+            var checkboxes = checkBoxList.getElementsByTagName("input");
+            var isValid = false;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    isValid = true;
+                    break;
+                }
+            }
+            args.IsValid = isValid;
+        }
+            </script>
 </asp:Content>

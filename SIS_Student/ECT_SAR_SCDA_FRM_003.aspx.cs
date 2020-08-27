@@ -25,7 +25,7 @@ using CrystalDecisions.ReportAppServer.ClientDoc;
 
 namespace SIS_Student
 {
-    public partial class ECT_SAR_SCDA_FRM_005 : System.Web.UI.Page
+    public partial class ECT_SAR_SCDA_FRM_003 : System.Web.UI.Page
     {
         InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         int CurrentRole = 0;
@@ -114,12 +114,9 @@ namespace SIS_Student
             {
                 lbl_StudentName.Text = dtStudentServices.Rows[0]["strLastDescEn"].ToString();
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
-                txt_StudentContact1.Text = dtStudentServices.Rows[0]["Phone"].ToString();
+                lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_Major.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
-                lbl_GraduationSemester.Text = dtStudentServices.Rows[0]["byteGraduationSemester"].ToString();
-                lbl_GraduationYear.Text = dtStudentServices.Rows[0]["intGraduationYear"].ToString();
-                lbl_DOB.Text = Convert.ToDateTime(dtStudentServices.Rows[0]["dateBirth"]).ToString("dd/MM/yyyy");
                 string cancelreason = dtStudentServices.Rows[0]["byteCancelReason"].ToString();
                 if (cancelreason != "3")
                 {
@@ -127,7 +124,7 @@ namespace SIS_Student
                     lbl_Msg.Text = "You are not allowed to generate this request at this time (Only for Graduated Students)";
                     lbl_Msg.Visible = true;
                     div_msg.Visible = true;
-                    lnk_Generate.Enabled = false;
+                    //lnk_Generate.Enabled = false;
                 }
             }
 
@@ -177,6 +174,8 @@ namespace SIS_Student
         {
             string careeractivities = "";
             string otheractivities = "";
+            string prefereddays = "";
+            string preferedtime = "";
             string k = "";
             for (int i = 0; i < chk_CareerActivities.Items.Count; i++)
             {
@@ -198,6 +197,19 @@ namespace SIS_Student
 
             }
             otheractivities = j;
+
+            string a = "";
+            for (int q = 0; q < chk_PreferedDays.Items.Count; q++)
+            {
+                if (chk_PreferedDays.Items[q].Selected)
+                {
+                    a = a + chk_PreferedDays.Items[q].Value + ";";
+                }
+
+            }
+            prefereddays = a;
+
+            preferedtime = "From: "+Convert.ToDateTime(txt_From.Text).ToString("hh:mm tt")+" To: "+ Convert.ToDateTime(txt_To.Text).ToString("hh:mm tt") + "";
 
             int sem = 0;
             int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
@@ -223,7 +235,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Date of Birth:</b> " + lbl_DOB.Text + "<br/><b>Graduation Semester:</b> " + lbl_GraduationSemester.Text + "<br/><b>Graduation Year:</b> " + lbl_GraduationYear.Text + "<br/><b>Major:</b> " + lbl_Major.Text + "<br/><b>Address:</b> " + txt_Address.Text + "<br/><b>Mobile #1:</b> " + txt_StudentContact1.Text + "<br/><b>Mobile #2:</b> " + txt_StudentContact2.Text + "<br/><b>Email:</b> " + txt_Email.Text + "<br/><b>Work Place:</b> " + txt_WorkPlace.Text + "<br/><b>Job Title:</b> " + txt_JobTitle.Text + "<br/><b>Direct Supervisor Name:</b> " + txt_DirSupName.Text + "<br/><b>Direct Supervisor Job Title:</b> " + txt_DirSupJobtitle.Text + "<br/><b>Contact Details:</b> " + txt_ContactDetails.Text + "<br/><b>Career Development Activities (Workshop/Seminar):</b> " + careeractivities + "<br/><b>Other Activities:</b> " + otheractivities + "<br/><b>Other Suggestion for Alumni services & Activities:</b> " + txt_Remarks.Text + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> " + lbl_Major.Text + "<br/><b>Student Contact #:</b> " + lbl_StudentContact.Text + "<br/><b>Career Development Activities (Workshop/Seminar):</b> " + careeractivities + "<br/><b>Career Service:</b> " + otheractivities + "<br/><b>Comments:</b> " + txt_Comments.Text + "<br/><b>Prefered Timing:</b> " + preferedtime + "<br/><b>Prefered Days:</b> " + prefereddays + "<br/><b>Other Suggestion for Alumni services & Activities:</b> " + txt_Remarks.Text + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
@@ -231,7 +243,7 @@ namespace SIS_Student
             myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
             myItem["StudentID"] = lbl_StudentID.Text;
             myItem["StudentName"] = lbl_StudentName.Text;
-            myItem["Contact"] = txt_StudentContact1.Text;
+            myItem["Contact"] = lbl_StudentContact.Text;
             myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
             myItem["FinanceAction"] = "Initiate";
             myItem["FinanceNote"] = "";
