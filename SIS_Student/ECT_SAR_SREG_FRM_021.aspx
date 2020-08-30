@@ -125,6 +125,11 @@
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                    <%--<tr>
+                                        <td align="left" style="background-color: #f2f2f2;">
+                                            <b>Student Details</b>
+                                        </td>
+                                    </tr>--%>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Student Name</b>
