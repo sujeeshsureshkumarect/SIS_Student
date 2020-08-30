@@ -46,7 +46,6 @@ namespace SIS_Student
                         {
                             showErr("Sorry, you don't have the permission to view this page...");
                         }
-
                     }
                 }
                 else
