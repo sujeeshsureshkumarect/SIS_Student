@@ -79,7 +79,6 @@ namespace SIS_Student
 
                 if (Session["CurrentStudent"] != null)
                 {
-
                     sNo = Session["CurrentStudent"].ToString();
                     sName = Session["CurrentStudentName"].ToString();
                 }
