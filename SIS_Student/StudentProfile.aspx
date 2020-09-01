@@ -52,6 +52,18 @@
                     <div class="row">  
                         <div class="col-sm-9 col-md-9 col-xs-12">  
                             <div class="row">  
+                                       <div class="col-sm-6 col-md-6 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label>Student ID</label>  
+                                        <div class="input-group">  
+                                            <div class="input-group-prepend">  
+                                                <span class="input-group-text"><i class="fa fa-user"></i></span>  
+                                            </div>  
+                                            <asp:TextBox ID="txt_StudentID" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>  
+                                        </div>  
+                                        <%--<asp:RequiredFieldValidator ID="rvfLastName" ValidationGroup="no" ControlToValidate="txtLastName" CssClass="text-danger" runat="server" ErrorMessage="Last Name is required."></asp:RequiredFieldValidator>  --%>
+                                    </div>  
+                                </div> 
                                 <div class="col-sm-6 col-md-6 col-xs-12">  
                                     <div class="form-group">  
                                         <label>First Name</label>  
@@ -65,19 +77,9 @@
                                     </div>  
                                 </div> 
                                 <asp:HiddenField ID="hdfiUnifiedID" runat="server" />
-                                <div class="col-sm-6 col-md-6 col-xs-12">  
-                                    <div class="form-group">  
-                                        <label>Student ID</label>  
-                                        <div class="input-group">  
-                                            <div class="input-group-prepend">  
-                                                <span class="input-group-text"><i class="fa fa-user"></i></span>  
-                                            </div>  
-                                            <asp:TextBox ID="txt_StudentID" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>  
-                                        </div>  
-                                        <%--<asp:RequiredFieldValidator ID="rvfLastName" ValidationGroup="no" ControlToValidate="txtLastName" CssClass="text-danger" runat="server" ErrorMessage="Last Name is required."></asp:RequiredFieldValidator>  --%>
-                                    </div>  
-                                </div>  
-                            </div>  
+                          
+                            </div> 
+                        
                             <div class="row">  
                                 <div class="col-sm-6 col-md-6 col-xs-12">  
                                     <div class="form-group">  
@@ -99,6 +101,32 @@
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>  
                                             </div>  
                                             <asp:TextBox ID="txtDateofBirth" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>  
+                                        </div>  
+                                        <%--<asp:RequiredFieldValidator ID="rfvDateofBith" ValidationGroup="no" ControlToValidate="txtDateofBirth" CssClass="text-danger" runat="server" ErrorMessage="Choose date of birth."></asp:RequiredFieldValidator>  --%>
+                                    </div>  
+                                </div>  
+                            </div> 
+                                  <div class="row">  
+                                <div class="col-sm-6 col-md-6 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label>Major</label>  
+                                        <div class="input-group">  
+                                            <div class="input-group-prepend">  
+                                                <span class="input-group-text"><i class="fa fa-book"></i></span>  
+                                            </div>  
+                                              <asp:TextBox ID="txt_Major" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>   
+                                        </div>  
+                                        <%--<asp:RequiredFieldValidator ID="rfvGender" ValidationGroup="no" ControlToValidate="ddlGender" InitialValue="-1" CssClass="text-danger" runat="server" ErrorMessage="Choose gender."></asp:RequiredFieldValidator>  --%>
+                                    </div>  
+                                </div>  
+                                <div class="col-sm-6 col-md-6 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label>Nationality</label>  
+                                        <div class="input-group">  
+                                            <div class="input-group-prepend">  
+                                                <span class="input-group-text"><i class="fa fa-globe"></i></span>  
+                                            </div>  
+                                            <asp:TextBox ID="txt_Nationality" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>  
                                         </div>  
                                         <%--<asp:RequiredFieldValidator ID="rfvDateofBith" ValidationGroup="no" ControlToValidate="txtDateofBirth" CssClass="text-danger" runat="server" ErrorMessage="Choose date of birth."></asp:RequiredFieldValidator>  --%>
                                     </div>  

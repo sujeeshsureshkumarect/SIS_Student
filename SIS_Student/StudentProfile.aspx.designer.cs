@@ -33,6 +33,15 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.Label lbl_Msg;
 
         /// <summary>
+        /// txt_StudentID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_StudentID;
+
+        /// <summary>
         /// txtFisrtName control.
         /// </summary>
         /// <remarks>
@@ -51,15 +60,6 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.HiddenField hdfiUnifiedID;
 
         /// <summary>
-        /// txt_StudentID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_StudentID;
-
-        /// <summary>
         /// txt_Gender control.
         /// </summary>
         /// <remarks>
@@ -76,6 +76,24 @@ namespace SIS_Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDateofBirth;
+
+        /// <summary>
+        /// txt_Major control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Major;
+
+        /// <summary>
+        /// txt_Nationality control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Nationality;
 
         /// <summary>
         /// txtPhoneNumber control.

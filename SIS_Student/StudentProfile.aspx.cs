@@ -127,6 +127,8 @@ namespace SIS_Student
                 txtEmail.Text = dtStudentProfile.Rows[0]["sECTemail"].ToString();
                 txtPhoneNumber.Text = dtStudentProfile.Rows[0]["Phone"].ToString();
                 txt_StudentID.Text = dtStudentProfile.Rows[0]["lngStudentNumber"].ToString();
+                txt_Major.Text= dtStudentProfile.Rows[0]["strCaption"].ToString();
+                txt_Nationality.Text = dtStudentProfile.Rows[0]["strNationalityDescEn"].ToString();
                 string sPic = dtStudentProfile.Rows[0]["strStudentPic"].ToString();
                 hdfiUnifiedID.Value= dtStudentProfile.Rows[0]["iUnifiedID"].ToString();
                 string sDir = "Students";
