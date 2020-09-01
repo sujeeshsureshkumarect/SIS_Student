@@ -5987,6 +5987,7 @@
     <Content Include="images\Majors\Thumbs.db" />
     <Content Include="images\Majors\vssver.scc" />
     <Content Include="images\Majors\vssver2.scc" />
+    <Content Include="Handler1.ashx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login_v9\css\main.css" />
     <Content Include="Login_v9\css\util.css" />
@@ -6372,6 +6373,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handler1.ashx.cs">
+      <DependentUpon>Handler1.ashx</DependentUpon>
     </Compile>
     <Compile Include="HostedCheckOut.aspx.cs">
       <DependentUpon>HostedCheckOut.aspx</DependentUpon>
