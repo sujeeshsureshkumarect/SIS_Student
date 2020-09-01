@@ -12,8 +12,12 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 //using System.Xml.Linq;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Net;
+using System.IO;
 
 namespace SIS_Student
 {
@@ -68,7 +72,7 @@ namespace SIS_Student
                     sName = Session["CurrentStudentName"].ToString();
                     if (!IsPostBack)
                     {
-                        
+                        loadstudentprofile();
                     }
                 }
             }
@@ -104,5 +108,138 @@ namespace SIS_Student
             Session["errMsg"] = sMsg;
             Response.Redirect("ErrPage.aspx");
         }
+
+        //protected void btnReset_Click(object sender, EventArgs e)
+        //{
+
+        //}
+        public void loadstudentprofile()
+        {
+            Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+            string studentid = Session["CurrentStudent"].ToString();
+            var services = new DAL.DAL();
+            DataTable dtStudentProfile = services.GetStudentDetailsForProfile(studentid, connstr.Conn_string);
+            string sCampus = Session["CurrentCampus"].ToString();
+            if (dtStudentProfile.Rows.Count > 0)
+            {
+                txtFisrtName.Text = dtStudentProfile.Rows[0]["strLastDescEn"].ToString();
+                txtDateofBirth.Text = Convert.ToDateTime(dtStudentProfile.Rows[0]["dateBirth"]).ToString("dd/MM/yyyy");
+                txtEmail.Text = dtStudentProfile.Rows[0]["sECTemail"].ToString();
+                txtPhoneNumber.Text = dtStudentProfile.Rows[0]["Phone"].ToString();
+                txt_StudentID.Text = dtStudentProfile.Rows[0]["lngStudentNumber"].ToString();
+                string sPic = dtStudentProfile.Rows[0]["strStudentPic"].ToString();
+                hdfiUnifiedID.Value= dtStudentProfile.Rows[0]["iUnifiedID"].ToString();
+                string sDir = "Students";
+                if (sCampus == "Males")
+                {
+                    txt_Gender.Text = "Male";
+                }
+                else
+                {
+                    txt_Gender.Text = "Female";
+                }
+            }
+        }
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            string sPath = "";
+            Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+            if (ProfileFileUpload.HasFile)
+            {
+                string iUnifiedID = hdfiUnifiedID.Value;               
+                string sCampus = Session["CurrentCampus"].ToString();
+                string gender = "";
+                if(sCampus == "Males")
+                {
+                    gender = "M";
+                }
+                else
+                {
+                    gender = "F";
+                }
+
+                string sFileName = gender+iUnifiedID;
+                //string sfname = "PIC" + sFileName+".JPEG";
+                sPath = CreateImage(Convert.ToBase64String(ProfileFileUpload.FileBytes), sFileName);
+
+                SqlConnection sc = new SqlConnection(connstr.Conn_string);
+                SqlConnection sc1 = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
+                SqlCommand cmd = new SqlCommand("update Reg_Students_Data set strStudentPic=@strStudentPic where iUnifiedID=@iUnifiedID", sc);
+                cmd.Parameters.AddWithValue("@strStudentPic", sFileName);
+                cmd.Parameters.AddWithValue("@iUnifiedID", iUnifiedID);
+                try
+                {
+                    sc.Open();
+                    cmd.ExecuteNonQuery();
+                    sc.Close();
+
+                    SqlCommand cmd2 = new SqlCommand("update ACMS_User set PicPath=@PicPath,PIC=@PIC where Personnelnr=@Personnelnr", sc1);
+                    cmd2.Parameters.AddWithValue("@PicPath", sPath);
+                    cmd2.Parameters.AddWithValue("@PIC", sFileName);
+                    cmd2.Parameters.AddWithValue("@Personnelnr", sFileName);
+                    try
+                    {
+                        sc1.Open();
+                        cmd2.ExecuteNonQuery();
+                        sc1.Close();
+
+                        lbl_Msg.Visible = true;
+                        div_msg.Visible = true;
+                    }
+                    catch(Exception ex)
+                    {
+                        sc1.Close();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sc1.Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    sc.Close();
+                    throw ex;
+                }
+                finally
+                {
+                   sc.Close();
+                }
+            }
+
+        }
+
+       
+
+        private string CreateImage(string base64String, string sPic)
+        {
+            string sFilePath = "";
+            try
+            {
+                //***Save Base64 Encoded string as Image File***//
+                //Convert Base64 Encoded string to Byte Array.
+                byte[] imageBytes = Convert.FromBase64String(base64String);
+                //Save the Byte Array as Image File.
+                string filePath = Server.MapPath(ProfileFileUpload.FileName);
+                string sDir = "Students";
+                //System.IO.File.WriteAllBytes(filePath, imageBytes);
+                sFilePath = "\\\\management-m\\ETSD\\ETS\\Images\\" + sDir + "\\PIC" + sPic + ".jpeg";
+                System.GC.Collect();
+                System.GC.WaitForPendingFinalizers();
+                File.Delete(sFilePath);
+                System.IO.File.WriteAllBytes(sFilePath, imageBytes);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+            return sFilePath;
+        }
+
     }
+
 }

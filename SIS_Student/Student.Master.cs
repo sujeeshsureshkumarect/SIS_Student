@@ -16,6 +16,7 @@ namespace SIS_Student
     {
         SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
         DataTable Menus = new DataTable();
+        InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["CurrentURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -35,6 +36,26 @@ namespace SIS_Student
                 // showErr("Session is expired, Login again please...");
                 ClearSession();
                 Response.Redirect("Login.aspx");
+            }
+            if (Session["CurrentCampus"] != null)
+            {
+                string sCampus = Session["CurrentCampus"].ToString();
+                Campus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+                //Campus_ddl.SelectedValue = ((int)Campus).ToString();
+                string sConn = "";
+                Connection_StringCLS ConnectionString;
+                switch (Campus)
+                {
+                    case InitializeModule.EnumCampus.Males:
+                        ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Males);
+                        sConn = ConnectionString.Conn_string;
+                        break;
+                    case InitializeModule.EnumCampus.Females:
+                        ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Females);
+                        sConn = ConnectionString.Conn_string;
+                        break;
+                }
+
             }
 
             if (!IsPostBack)
@@ -59,7 +80,7 @@ namespace SIS_Student
                 }
                 lblUser.Text = Session["CurrentStudentName"].ToString();
                 lblUser1.Text = Session["CurrentStudentName"].ToString();
-
+                getprofilepic();
             }
 
            
@@ -206,6 +227,18 @@ namespace SIS_Student
         protected void lnk_Logout_Click(object sender, EventArgs e)
         {
             logUserOut();
+        }
+
+        public void getprofilepic()
+        {
+            Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+            string studentid = Session["CurrentStudent"].ToString();
+            var services = new DAL.DAL();
+            DataTable dtStudentProfile = services.GetStudentDetailsForProfile(studentid, connstr.Conn_string);
+            if (dtStudentProfile.Rows.Count > 0)
+            {                
+                Session["ProfilePIc"] = dtStudentProfile.Rows[0]["strStudentPic"].ToString();
+            }
         }
     }
 }
