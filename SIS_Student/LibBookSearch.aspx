@@ -75,8 +75,48 @@
             </table>
         </div>
                             <hr />                    
-                                                <div id="divResult" runat="server" class="table-responsive"> 
-                        </div>
+                                                <div id="divResult" runat="server" class="table-responsive">
+                                                    <asp:Repeater ID="RepterDetails" runat="server">
+                                                        <HeaderTemplate>
+                                                            <table id='datatable' class='table table-striped table-bordered' style='width: 100%'>
+                                                                <thead>
+                                                                    <tr class='headings'>
+                                                                        <th>#</th>
+                                                                        <th>Add?</th>
+                                                                        <th>Accesstion No</th>
+                                                                        <th>Title</th>
+                                                                        <th>Author</th>
+                                                                        <th>Publisher</th>
+                                                                        <th>Subject</th>
+                                                                        <th>Edition</th>
+                                                                        <th>Published</th>
+                                                                        <th>Library</th>
+                                                                        <th>Status</th>
+                                                                       <%-- <th>Status</th>--%>
+                                                                    </tr>
+                                                                </thead>
+                                                        </HeaderTemplate>
+                                                        <ItemTemplate>
+                                                            <tr>
+                                                               <td style='font-size: small'><%# Container.ItemIndex+1 %></td> 
+                                                               <td><input id='btn<%# Container.ItemIndex+1 %>' type='button' value='Add to basket' onclick='addtobasket(<%# ((Book)Container.DataItem).AccNo %>,<%# ((Book)Container.DataItem).iStatus %>);'></input></td>
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).AccNo %></td> 
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Title %></td>
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Author %></td>
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Publisher %></td>
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Subject %></td>
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Edition %></td>
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Published %></td>
+                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Library %></td>
+                                                                <td style='font-size: small' id="Status"><%# ((Book)Container.DataItem).Status %></td>   
+                                                               <%-- <td style='font-size: small'><%# ((Book)Container.DataItem).Status %></td> --%>
+                                                            </tr>
+                                                        </ItemTemplate>
+                                                        <FooterTemplate>
+                                                            </table>  
+                                                        </FooterTemplate>
+                                                    </asp:Repeater>
+                                                </div>
     
                                         </div>
                                     </div>
@@ -96,8 +136,13 @@
     vertical-align: top;
     border-top: 1px solid #dee2e6;
 }     
+        .badge{
+            font-size:100%;
+        }
+        
     </style>
-   
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+     <%--<script src="gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>--%>
     <script type="text/javascript">
 
         function addtobasket(accno,status) {
@@ -110,7 +155,20 @@
                 sPath = sPath.substr(0, sPath.indexOf("?"));
                 window.location.href = sPath + "?accno=" + accno;
             }            
-        }
+        }      
+
+        $(function () {
+            $("#datatable tr").each(function (i, row) {
+                if ($(row).children("td#Status").html() == "Available") // Any condition here
+                {
+                    $(row).children("td#Status").html("<span class='badge badge-success'>Available</span>");
+                }
+                else if ($(row).children("td#Status").html() == "Borrowed")
+                {
+                    $(row).children("td#Status").html("<span class='badge badge-danger'>Borrowed</span>");
+                }
+            });
+        });
     </script>
     
     </asp:Content>

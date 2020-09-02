@@ -21,7 +21,7 @@ namespace SIS_Student
     {
         int CurrentRole;
 
-        private struct Book
+        public struct Book
         {
             public string BookID;
             public string AccNo;
@@ -33,6 +33,7 @@ namespace SIS_Student
             public string Published;
             public string Library;
             public string Status;
+            public string iStatus;
         }
         public void ClearSession()
         {
@@ -184,7 +185,14 @@ namespace SIS_Student
                     myBook.Published = rd["PublishedYear"].ToString();
                     myBook.Library = rd["Library"].ToString();
                     myBook.Status = rd["Status"].ToString();
-
+                    if (rd["Status"].ToString() == "Available")
+                    {
+                        myBook.iStatus = "1";
+                    }
+                    else
+                    {
+                        myBook.iStatus = "0";
+                    }
                     myBooks.Add(myBook);
                 }
 
@@ -229,55 +237,57 @@ namespace SIS_Student
 
             try
             {
-                string sLink = "";
-                string myTable = "<table id='datatable' class='table table-striped table-bordered' style='width: 100%'>";
-                int iStatus = 0;
-                myTable += "<thead><tr class='headings'><th>#</th><th>Add?</th><th >Accesstion No</th><th>Title</th><th>Author</th><th >Publisher</th><th >Subject</th><th>Edition</th><th >Published</th><th>Library</th ><th>Status</th></tr></thead>";
+                //string sLink = "";
+                string myTable = "";
+                //int iStatus = 0;
+                //myTable += "<thead><tr class='headings'><th>#</th><th>Add?</th><th >Accesstion No</th><th>Title</th><th>Author</th><th >Publisher</th><th >Subject</th><th>Edition</th><th >Published</th><th>Library</th ><th>Status</th></tr></thead>";
                 if (!HeaderOnly)
                 {
-                    string cssClass = "even pointer";
+                    //string cssClass = "even pointer";
 
-                    for (int i = 0; i < myBooks.Count; i++)
-                    {
-                        if (i % 2 == 0)
-                        {
-                            cssClass = "R_NormalWhite";
-                        }
-                        else
-                        {
-                            cssClass = "R_NormalGray";
-                        }
-                        myTable += "<tr class='" + cssClass + "'>";
-                        myTable += "<td>" + (i + 1).ToString() + "</td>";
-                        iStatus = 0;
-                        if (myBooks[i].Status == "Available")
-                        {
-                            iStatus = 1;
-                        }
-                        myTable += "<td ><input id='btn" + (i + 1).ToString() + "' type='button' value='Add to basket' onclick='addtobasket(" + myBooks[i].AccNo + "," + iStatus + ");'></input></td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].AccNo + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Title + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Author + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Publisher + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Subject + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Edition + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Published + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Library + "</td>";
-                        myTable += "<td style='font-size: small'>" + myBooks[i].Status + "</td>";
+                    //for (int i = 0; i < myBooks.Count; i++)
+                    //{
+                    //    if (i % 2 == 0)
+                    //    {
+                    //        cssClass = "R_NormalWhite";
+                    //    }
+                    //    else
+                    //    {
+                    //        cssClass = "R_NormalGray";
+                    //    }
+                    //    myTable += "<tr class='" + cssClass + "'>";
+                    //    myTable += "<td>" + (i + 1).ToString() + "</td>";
+                    //    iStatus = 0;
+                    //    if (myBooks[i].Status == "Available")
+                    //    {
+                    //        iStatus = 1;
+                    //    }
+                    //    myTable += "<td ><input id='btn" + (i + 1).ToString() + "' type='button' value='Add to basket' onclick='addtobasket(" + myBooks[i].AccNo + "," + iStatus + ");'></input></td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].AccNo + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Title + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Author + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Publisher + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Subject + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Edition + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Published + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Library + "</td>";
+                    //    myTable += "<td style='font-size: small'>" + myBooks[i].Status + "</td>";
 
-                        myTable += "</tr>";
-                    }
-                    myTable += "</table>";
+                    //    myTable += "</tr>";
+                    //}
+                    //myTable += "</table>";
 
-                    //Literal1.Text = myTable;
-                    divResult.InnerHtml = myTable;
+                    ////Literal1.Text = myTable;
+                    divResult.Visible = true;
+                    RepterDetails.DataSource = myBooks;
+                    RepterDetails.DataBind();
                 }
                 else
                 {
                     myTable = "No Results found...";
 
                     //Literal1.Text = myTable;
-                    divResult.InnerHtml = myTable;
+                   // divResult.InnerHtml = myTable;
                 }
 
                 //myTable += "</table>";
