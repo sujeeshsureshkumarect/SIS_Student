@@ -6073,6 +6073,12 @@
     <Content Include="StudentProfile.aspx" />
     <Content Include="StudentRegistration.aspx" />
     <Content Include="Student_Services.aspx" />
+    <Content Include="Upload\1001.jpg" />
+    <Content Include="Upload\1002.jpg" />
+    <Content Include="Upload\1004.jpg" />
+    <Content Include="Upload\1006.jpg" />
+    <Content Include="Upload\1007.jpg" />
+    <Content Include="Upload\1010.jpg" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -6530,7 +6536,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

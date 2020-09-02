@@ -98,17 +98,17 @@
                                                         </HeaderTemplate>
                                                         <ItemTemplate>
                                                             <tr>
-                                                               <td style='font-size: small'><%# Container.ItemIndex+1 %></td> 
-                                                               <td><input id='btn<%# Container.ItemIndex+1 %>' type='button' value='Add to basket' onclick='addtobasket(<%# ((Book)Container.DataItem).AccNo %>,<%# ((Book)Container.DataItem).iStatus %>);'></input></td>
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).AccNo %></td> 
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Title %></td>
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Author %></td>
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Publisher %></td>
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Subject %></td>
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Edition %></td>
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Published %></td>
-                                                                <td style='font-size: small'><%# ((Book)Container.DataItem).Library %></td>
-                                                                <td style='font-size: small' id="Status"><%# ((Book)Container.DataItem).Status %></td>   
+                                                               <td align='center'><%# Container.ItemIndex+1 %></td> 
+                                                               <td data-toggle="tooltip" data-placement="right"  data-original-title="Add to Basket"><input id='btn<%# Container.ItemIndex+1 %>' type='button' value='Add to basket' onclick='addtobasket(<%# ((Book)Container.DataItem).AccNo %>,<%# ((Book)Container.DataItem).iStatus %>);'></input></td>
+                                                                <td align='center' data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).AccNo %>"><%# ((Book)Container.DataItem).AccNo %></td> 
+                                                                <td data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Title %>"><%# ((Book)Container.DataItem).Title %></td>
+                                                                <td data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Author %>"><%# ((Book)Container.DataItem).Author %></td>
+                                                                <td data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Publisher %>"><%# ((Book)Container.DataItem).Publisher %></td>
+                                                                <td data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Subject %>"><%# ((Book)Container.DataItem).Subject %></td>
+                                                                <td data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Edition %>"><%# ((Book)Container.DataItem).Edition %></td>
+                                                                <td align='center' data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Published %>"><%# ((Book)Container.DataItem).Published %></td>
+                                                                <td data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Library %>"><%# ((Book)Container.DataItem).Library %></td>
+                                                                <td id="Status" data-toggle="tooltip" data-placement="right"  data-original-title="<%# ((Book)Container.DataItem).Status %>"><%# ((Book)Container.DataItem).Status %></td>   
                                                                <%-- <td style='font-size: small'><%# ((Book)Container.DataItem).Status %></td> --%>
                                                             </tr>
                                                         </ItemTemplate>
@@ -116,8 +116,7 @@
                                                             </table>  
                                                         </FooterTemplate>
                                                     </asp:Repeater>
-                                                </div>
-    
+                                                </div>                                               
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +138,6 @@
         .badge{
             font-size:100%;
         }
-        
     </style>
     <script src="Scripts/jquery-3.4.1.min.js"></script>
      <%--<script src="gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>--%>
