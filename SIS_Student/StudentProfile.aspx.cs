@@ -191,7 +191,7 @@ namespace SIS_Student
                     catch(Exception ex)
                     {
                         sc1.Close();
-                        throw ex;
+                        Console.WriteLine("{0} Exception caught.", ex.Message);
                     }
                     finally
                     {
