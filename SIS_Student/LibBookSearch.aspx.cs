@@ -277,16 +277,34 @@ namespace SIS_Student
                     //myTable += "</table>";
 
                     ////Literal1.Text = myTable;
-                    divResult.Visible = true;
-                    RepterDetails.DataSource = myBooks;
-                    RepterDetails.DataBind();
+                    if(myBooks.Count>0)
+                    {
+                        divResult.Visible = true;
+                        RepterDetails.Visible = true;
+                       
+                        RepterDetails.DataSource = myBooks;
+                        RepterDetails.DataBind();
+                    }
+                    else
+                    {
+                        divResult.Visible = true;
+                        RepterDetails.Visible = false;
+                        RepterDetails.DataSource = myBooks;
+                        RepterDetails.DataBind();
+                    }
+
                 }
                 else
                 {
-                    myTable = "No Results found...";
+                    //myTable = "No Results found...";
 
                     //Literal1.Text = myTable;
-                   // divResult.InnerHtml = myTable;
+                    // divResult.InnerHtml = myTable;
+
+                    DataTable dt = new DataTable();
+                    RepterDetails.DataSource = dt;
+                    RepterDetails.DataBind();
+                    RepterDetails.Visible = false;
                 }
 
                 //myTable += "</table>";

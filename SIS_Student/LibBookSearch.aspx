@@ -76,6 +76,9 @@
         </div>
                             <hr />                    
                                                 <div id="divResult" runat="server" class="table-responsive">
+                                                   
+                                
+
                                                     <asp:Repeater ID="RepterDetails" runat="server">
                                                         <HeaderTemplate>
                                                             <table id='datatable' class='table table-striped table-bordered' style='width: 100%'>

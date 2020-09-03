@@ -154,7 +154,7 @@
                         </div>
                         <div class="modal-body">
                           <h4>Text in a modal</h4>
-                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>                          
+                          <p>Test Data / Description about the selected course.</p>                          
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
