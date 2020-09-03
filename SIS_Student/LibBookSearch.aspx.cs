@@ -219,7 +219,6 @@ namespace SIS_Student
             {
                 myBooks = myLibrary.FindAll(delegate (Book B) { return B.Title.ToLower().Contains(myCriteria.ToLower()) || B.Publisher.ToLower().Contains(myCriteria.ToLower()) || B.Subject.ToLower().Contains(myCriteria.ToLower()) || B.Author.ToLower().Contains(myCriteria.ToLower()); });
                 lblResult.Text = myBooks.Count.ToString() + " book(s) found...";
-
             }
             catch (Exception ex)
             {
