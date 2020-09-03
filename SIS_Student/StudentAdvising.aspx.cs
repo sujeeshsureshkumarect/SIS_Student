@@ -594,6 +594,8 @@ namespace SIS_Student
                 {
                     sPath = "Images/Majors/GIF/" + myMirror.Mirror[i].sCourse + ".gif";
                     sTable += "<td><img alt='' src='" + sPath + "' /></td>";
+                    //sTable += "<td><img alt='' src='" + sPath + "' data-toggle='modal' data-target='.bs-example-modal-sm'/></td>";
+                    //sTable += "<td style='height: 100px;max-width: 30px;'><div style='transform: rotate(270deg);'>" + myMirror.Mirror[i].sCourse + "</div></td>";
                 }
                 sTable += "</tr>";
                 sTable += "<tr>";
@@ -634,6 +636,7 @@ namespace SIS_Student
                 {
                     sPath = "Images/Majors/GIF/" + myMirror.Mirror[i].sCourse + ".gif";
                     sTable += "<td><img alt='' src='" + sPath + "' /></td>";
+                    //sTable += "<td style='height: 100px;max-width: 30px;'><div style='transform: rotate(270deg);'>" + myMirror.Mirror[i].sCourse + "</div></td>";
                 }
                 sTable += "</tr>";
                 sTable += "<tr>";

@@ -90,9 +90,9 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        td, th {
+        #ContentPlaceHolder1_tblDetail td, th {
   border: 1px solid #dddddd;
-  /*text-align: left;*/
+ /* text-align: left;*/
   padding: 9px;
 }
     </style>
@@ -141,7 +141,29 @@
            </table>
         </div>
     </div>  
+  
+<%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>--%>
+        <%--                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
 
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel2"><b>Course Title (Eg: ENG100)</b></h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h4>Text in a modal</h4>
+                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>--%>
                                         </div>
                                     </div>
                                 </div>
