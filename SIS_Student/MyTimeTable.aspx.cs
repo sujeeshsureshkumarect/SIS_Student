@@ -41,7 +41,7 @@ namespace SIS_Student
 
                     if (!IsPostBack)
                     {
-                        if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_RegisterOnline,
+                        if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Current_TimeTable,
                         InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
                         {
                             showErr("Sorry, you don't have the permission to view this page...");

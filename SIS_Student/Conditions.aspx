@@ -84,7 +84,7 @@
                             <br />
                             <p style="font-family: Arial, Helvetica, sans-serif; font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">Refund/Return Policy</p>
                             <br />
-                            <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">1. An amount of AED 3,500 Admission advance fess is not refundable.</p>
+                            <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">1. An amount of AED 3,500 Admission advance fees is not refundable.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">2. During the drop and add period the students is allowed to refund payments for registered courses.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">3. No fees to be refunded in case of registered student want to withdraw after the Drop and Add period.</p>
                             <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C">4. No fees to be refunded in case of student registered on the last registration day and applied to withdraw the next day after closing of the Add and Drop period.</p>

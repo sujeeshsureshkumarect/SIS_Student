@@ -51,6 +51,9 @@
                 <div class="card-body">  
                     <div class="row">  
                         <div class="col-sm-9 col-md-9 col-xs-12">  
+
+                        
+
                             <div class="row">  
                                        <div class="col-sm-6 col-md-6 col-xs-12">  
                                     <div class="form-group">  
@@ -66,7 +69,7 @@
                                 </div> 
                                 <div class="col-sm-6 col-md-6 col-xs-12">  
                                     <div class="form-group">  
-                                        <label>First Name</label>  
+                                        <label>Student Name</label>  
                                         <div class="input-group">  
                                             <div class="input-group-prepend">  
                                                 <span class="input-group-text"><i class="fa fa-user"></i></span>  
@@ -80,6 +83,33 @@
                           
                             </div> 
                         
+                                        <div class="row">  
+                                <div class="col-sm-6 col-md-6 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label>Academic Year</label>  
+                                        <div class="input-group">  
+                                            <div class="input-group-prepend">  
+                                                <span class="input-group-text"><i class="fa fa-graduation-cap"></i></span>  
+                                            </div>  
+                                              <asp:TextBox ID="txt_AcademicYear" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>   
+                                        </div>  
+                                        <%--<asp:RequiredFieldValidator ID="rfvGender" ValidationGroup="no" ControlToValidate="ddlGender" InitialValue="-1" CssClass="text-danger" runat="server" ErrorMessage="Choose gender."></asp:RequiredFieldValidator>  --%>
+                                    </div>  
+                                </div>  
+                                <div class="col-sm-6 col-md-6 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label>Current Semester</label>  
+                                        <div class="input-group">  
+                                            <div class="input-group-prepend">  
+                                                <span class="input-group-text"><i class="fa fa-calendar-o"></i></span>  
+                                            </div>  
+                                            <asp:TextBox ID="txt_CurrentSemester" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>  
+                                        </div>  
+                                        <%--<asp:RequiredFieldValidator ID="rfvDateofBith" ValidationGroup="no" ControlToValidate="txtDateofBirth" CssClass="text-danger" runat="server" ErrorMessage="Choose date of birth."></asp:RequiredFieldValidator>  --%>
+                                    </div>  
+                                </div>  
+                            </div> 
+
                             <div class="row">  
                                 <div class="col-sm-6 col-md-6 col-xs-12">  
                                     <div class="form-group">  
@@ -132,10 +162,13 @@
                                     </div>  
                                 </div>  
                             </div>  
+
+                           
+
                             <div class="row">  
                                 <div class="col-sm-6 col-md-6 col-xs-12">  
                                     <div class="form-group">  
-                                        <label>Phone Number</label>  
+                                        <label>Contact Number</label>  
                                         <div class="input-group">  
                                             <div class="input-group-prepend">  
                                                 <span class="input-group-text"><i class="fa fa-phone"></i></span>  
@@ -153,18 +186,51 @@
                                             <div class="input-group-prepend">  
                                                 <span class="input-group-text"><i class="fa fa-envelope"></i></span>  
                                             </div>  
-                                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>  
+                                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" ReadOnly="true" style = "text-transform:lowercase;"></asp:TextBox>  
                                         </div>  
                                         <%--<asp:RequiredFieldValidator ID="rfvEmail" ControlToValidate="txtEmail" CssClass="text-danger" runat="server" ErrorMessage="Email is required." Display="Dynamic" ValidationGroup="no"></asp:RequiredFieldValidator>  
                                         <asp:RegularExpressionValidator ID="revEmail" ControlToValidate="txtEmail" runat="server" ErrorMessage="Please enter valid email" Display="Dynamic" CssClass="text-danger" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="no"></asp:RegularExpressionValidator>  --%>
                                     </div>  
                                 </div>  
                             </div>  
-                        </div>  
-                        <div class="col-sm-3 col-md-3 col-xs-12" align="center">  
-                            <asp:Image ID="imagePreview" runat="server" CssClass="img-thumbnail" ImageUrl="Handler1.ashx"  Width="150" Height="175" ClientIDMode="Static" />  
+                        </div>
+                        <style>
+                            .img_description {
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                /*background: rgba(29, 106, 154, 0.72);*/
+                                background: rgba(42, 63, 84, 0.72);
+                                padding-top: 50px;
+                                padding-bottom: 50px;
+                                color: #fff;
+                                visibility: hidden;
+                                opacity: 0;
+                                /* transition effect. not necessary */
+                                transition: opacity .2s, visibility .2s;
+                            }
+
+                            .img_wrap:hover .img_description {
+                                visibility: visible;
+                                opacity: 1;
+                            }
+
+                            .img_wrap {
+                                position: relative;
+                                height: 190px;
+                                width: 150px;
+                            }
+                        </style>
+                        <div class="col-sm-3 col-md-3 col-xs-12" align="center">
+                            <div class="img_wrap">
+                                <asp:Image ID="imagePreview" runat="server" CssClass="img-thumbnail" ImageUrl="Handler1.ashx" Width="150" Height="175" ClientIDMode="Static" />
+                                <p class="img_description" style="text-align: center; font-weight: bold">Click on the Below Browse Button to Change the Profile Picture.</p>
+                            </div>
+
                             <div class="form-group">  
-                                <label>Profile Image</label>  
+                                <label>Profile Picture</label>  
                                 <div class="custom-file">  
                                     <asp:FileUpload ID="ProfileFileUpload" runat="server" CssClass="custom-file-input"  ToolTip="Change Profile Pictire"/>  
                                     <label class="custom-file-label"></label>  

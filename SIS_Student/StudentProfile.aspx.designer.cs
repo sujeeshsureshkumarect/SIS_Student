@@ -60,6 +60,24 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.HiddenField hdfiUnifiedID;
 
         /// <summary>
+        /// txt_AcademicYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_AcademicYear;
+
+        /// <summary>
+        /// txt_CurrentSemester control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_CurrentSemester;
+
+        /// <summary>
         /// txt_Gender control.
         /// </summary>
         /// <remarks>

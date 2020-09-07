@@ -85,7 +85,6 @@ namespace SIS_Student
 
             }
         }
- 
        
         public void ClearSession()
         {
@@ -122,6 +121,17 @@ namespace SIS_Student
             string sCampus = Session["CurrentCampus"].ToString();
             if (dtStudentProfile.Rows.Count > 0)
             {
+
+                int sem = 0;
+                int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
+
+                int iYear = Year;
+                int iSem = sem;
+                string sSemester = LibraryMOD.GetSemesterString(iSem);
+
+                txt_AcademicYear.Text = iYear.ToString();
+                txt_CurrentSemester.Text = sSemester.ToString();
+
                 txtFisrtName.Text = dtStudentProfile.Rows[0]["strLastDescEn"].ToString();
                 txtDateofBirth.Text = Convert.ToDateTime(dtStudentProfile.Rows[0]["dateBirth"]).ToString("dd/MM/yyyy");
                 txtEmail.Text = dtStudentProfile.Rows[0]["sECTemail"].ToString();
@@ -142,6 +152,7 @@ namespace SIS_Student
                 }
             }
         }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             string sPath = "";
@@ -200,8 +211,8 @@ namespace SIS_Student
                 }
                 catch(Exception ex)
                 {
-                    sc.Close();
-                    throw ex;
+                    sc.Close();                    
+                    Console.WriteLine("{0} Exception caught.", ex.Message);
                 }
                 finally
                 {
@@ -210,8 +221,6 @@ namespace SIS_Student
             }
 
         }
-
-       
 
         private string CreateImage(string base64String, string sPic)
         {
@@ -233,7 +242,7 @@ namespace SIS_Student
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("{0} Exception caught.", ex.Message);
             }
             finally
             {
