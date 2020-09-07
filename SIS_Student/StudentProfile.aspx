@@ -51,9 +51,6 @@
                 <div class="card-body">  
                     <div class="row">  
                         <div class="col-sm-9 col-md-9 col-xs-12">  
-
-                        
-
                             <div class="row">  
                                        <div class="col-sm-6 col-md-6 col-xs-12">  
                                     <div class="form-group">  
@@ -230,10 +227,10 @@
                             </div>
 
                             <div class="form-group">  
-                                <label>Profile Picture</label>  
+                                <%--<label>Profile Picture</label>  --%>
                                 <div class="custom-file">  
-                                    <asp:FileUpload ID="ProfileFileUpload" runat="server" CssClass="custom-file-input"  ToolTip="Change Profile Pictire"/>  
-                                    <label class="custom-file-label"></label>  
+                                    <asp:FileUpload ID="ProfileFileUpload" runat="server" CssClass="custom-file-input" ToolTip="Change Profile Pictire"/>  
+                                    <label class="custom-file-label">Profile Picture</label>  
                                 </div>  
                                 <asp:RequiredFieldValidator ID="rfvProfileFileUpload" ControlToValidate="ProfileFileUpload" runat="server" CssClass="text-danger" ErrorMessage="Choose image to upload" ValidationGroup="no"></asp:RequiredFieldValidator>  
                             </div>  
