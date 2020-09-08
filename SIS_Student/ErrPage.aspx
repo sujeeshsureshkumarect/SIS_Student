@@ -19,14 +19,16 @@
         #divErr
         {
             text-align: center;
-            background-color: #FFFFCC;
+            /*background-color: #FFFFCC;*/
             vertical-align: top;
             font-family: Arial, Helvetica, sans-serif;
             font-size: medium;
             font-weight: bold;
             color: #FF0000;
             vertical-align: middle;
-            
+/*            margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;*/
         }
     </style>
                             </div>
@@ -35,7 +37,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2><i class="fa fa-dashboard"></i> Message</h2>
+                                            <h2><i class="fa fa-exclamation-triangle"></i> Message</h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>                                              

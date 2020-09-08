@@ -182,6 +182,10 @@ function topFunction() {
     border-radius: 50%;
     background: white;
 }
+
+                    .alert-danger, .alert-error {
+                        color: #ffffff;
+                    }
 </style>
                
                 <!-- footer content -->
