@@ -12,7 +12,7 @@
                                         width: 100%;
                                         float: left;
                                         display: block;
-                                    }
+                                    }          
                                 </style>                              
                             </div>
                             <div class="clearfix"></div>
