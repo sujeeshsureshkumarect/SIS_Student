@@ -175,21 +175,33 @@ namespace SIS_Student
                 //string sfname = "PIC" + sFileName+".JPEG";
                 sPath = CreateImage(Convert.ToBase64String(ProfileFileUpload.FileBytes), sFileName);
 
+                
+
                 SqlConnection sc = new SqlConnection(connstr.Conn_string);
                 SqlConnection sc1 = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
                 SqlCommand cmd = new SqlCommand("update Reg_Students_Data set strStudentPic=@strStudentPic where iUnifiedID=@iUnifiedID", sc);
                 cmd.Parameters.AddWithValue("@strStudentPic", sFileName);
-                cmd.Parameters.AddWithValue("@iUnifiedID", iUnifiedID);
+                cmd.Parameters.AddWithValue("@iUnifiedID", iUnifiedID);               
                 try
                 {
                     sc.Open();
                     cmd.ExecuteNonQuery();
                     sc.Close();
 
-                    SqlCommand cmd2 = new SqlCommand("update ACMS_User set PicPath=@PicPath,PIC=@PIC where Personnelnr=@Personnelnr", sc1);
+                    // getting length of uploaded file
+                    int length = ProfileFileUpload.PostedFile.ContentLength;
+                    //create a byte array to store the binary image data
+                    byte[] imgbyte = new byte[length];
+                    //store the currently selected file in memeory
+                    HttpPostedFile img = ProfileFileUpload.PostedFile;
+                    //set the binary data
+                    img.InputStream.Read(imgbyte, 0, length);
+
+                    SqlCommand cmd2 = new SqlCommand("update ACMS_User set PicPath=@PicPath,PIC=@PIC,Image=@Imagedata where Personnelnr=@Personnelnr", sc1);
                     cmd2.Parameters.AddWithValue("@PicPath", sPath);
                     cmd2.Parameters.AddWithValue("@PIC", sFileName);
                     cmd2.Parameters.AddWithValue("@Personnelnr", sFileName);
+                    cmd2.Parameters.Add("@Imagedata", SqlDbType.Image).Value = imgbyte;
                     try
                     {
                         sc1.Open();
@@ -234,7 +246,7 @@ namespace SIS_Student
                 string filePath = Server.MapPath(ProfileFileUpload.FileName);
                 string sDir = "Students";
                 //System.IO.File.WriteAllBytes(filePath, imageBytes);
-                sFilePath = "\\\\management-m\\ETSD\\ETS\\Images\\" + sDir + "\\PIC" + sPic + ".jpeg";
+                sFilePath = "\\\\management-m\\ETSD\\ETS\\Images\\" + sDir + "\\PIC" + sPic + ".jpeg";               
                 System.GC.Collect();
                 System.GC.WaitForPendingFinalizers();
                 File.Delete(sFilePath);
@@ -250,6 +262,7 @@ namespace SIS_Student
             }
             return sFilePath;
         }
+       
 
     }
 

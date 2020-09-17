@@ -238,7 +238,7 @@
                         </div>  
                     </div>  
                   <%--  <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-info rounded-0" OnClick="btnReset_Click" />  --%>
-                    
+                    <asp:HiddenField ID="binaryImage" runat="server"/>
                 </div>  
             </div>  
                         </div>
