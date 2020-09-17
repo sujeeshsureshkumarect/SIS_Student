@@ -188,6 +188,7 @@ namespace SIS_Student
                     cmd.ExecuteNonQuery();
                     sc.Close();
 
+                    //Start Image Bianry Conversion
                     // getting length of uploaded file
                     int length = ProfileFileUpload.PostedFile.ContentLength;
                     //create a byte array to store the binary image data
@@ -196,6 +197,7 @@ namespace SIS_Student
                     HttpPostedFile img = ProfileFileUpload.PostedFile;
                     //set the binary data
                     img.InputStream.Read(imgbyte, 0, length);
+                    //End Image Bianry Conversion
 
                     SqlCommand cmd2 = new SqlCommand("update ACMS_User set PicPath=@PicPath,PIC=@PIC,Image=@Imagedata where Personnelnr=@Personnelnr", sc1);
                     cmd2.Parameters.AddWithValue("@PicPath", sPath);
