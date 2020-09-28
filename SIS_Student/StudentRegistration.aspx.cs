@@ -13,6 +13,10 @@ using System.Collections.Generic;
 using CrystalDecisions.CrystalReports.Engine;
 using System.Data.SqlClient;
 using System.Drawing;
+using SelectPdf;
+using System.IO;
+using System.Text;
+using System.Drawing.Imaging;
 
 namespace SIS_Student
 {
@@ -1391,12 +1395,90 @@ namespace SIS_Student
             return MyTable;
         }
 
+        public void htmltoimage(string htmltext)
+        {
+            // read parameters from the webpage
+            string htmlString = htmltext;
+            string baseUrl = "";
+
+            string image_format = "jpg";
+            ImageFormat imageFormat = ImageFormat.Png;
+            if (image_format == "jpg")
+            {
+                imageFormat = ImageFormat.Jpeg;
+            }
+            else if (image_format == "bmp")
+            {
+                imageFormat = ImageFormat.Bmp;
+            }
+
+            int webPageWidth = 1024;
+            try
+            {
+                webPageWidth = Convert.ToInt32(webPageWidth);
+            }
+            catch { }
+
+            int webPageHeight = 0;
+            try
+            {
+                webPageHeight = Convert.ToInt32(webPageHeight);
+            }
+            catch { }
+
+            // instantiate a html to image converter object
+            HtmlToImage imgConverter = new HtmlToImage();
+
+            // set converter options
+            imgConverter.WebPageWidth = webPageWidth;
+            imgConverter.WebPageHeight = webPageHeight;
+
+            // create a new image converting an url
+            System.Drawing.Image image =
+                imgConverter.ConvertHtmlString(htmlString, baseUrl);
+
+            string filename = Session["CurrentStudent"].ToString() + "_" + DateTime.Now.ToString("ddMMyyyy") + "." + image_format;
+
+
+            string imagePath = Server.MapPath("~/StudentAcceptance/" + filename);
+
+            // send image to browser
+            //Response.Clear();
+            //Response.ClearHeaders();
+            //Response.AddHeader("Content-Type", "image/" +
+            //    imageFormat.ToString().ToLower());
+            //Response.AppendHeader("content-disposition",
+            //    "attachment;filename=\""+ filename + "." + image_format + "\"");
+            image.Save(imagePath, imageFormat);
+            // Response.End();
+        }
+
         protected void Wizard1_ActiveStepChanged(object sender, EventArgs e)
         {
             try
             {
                 if (Wizard1.ActiveStepIndex == 1)
                 {
+                    string html1 = String.Empty;
+                    using (TextWriter myTextWriter1 = new StringWriter(new StringBuilder()))
+                    {
+                        using (HtmlTextWriter myWriter1 = new HtmlTextWriter(myTextWriter1))
+                        {
+                            divDetail.RenderControl(myWriter1);
+                            html1 = myTextWriter1.ToString();
+                        }
+                    }
+
+                    string html = String.Empty;
+                    using (TextWriter myTextWriter = new StringWriter(new StringBuilder()))
+                    {
+                        using (HtmlTextWriter myWriter = new HtmlTextWriter(myTextWriter))
+                        {
+                            WizardStep1.RenderControl(myWriter);
+                            html = html1 + "<br/><hr/><br/>" + myTextWriter.ToString();
+                            htmltoimage(html);
+                        }
+                    }
 
                     System.Web.UI.WebControls.Table Advising_tbl = Create_Rec_Table(myList[0]);
                     Advising_pnl.Controls.Clear();
@@ -1427,7 +1509,11 @@ namespace SIS_Student
 
             }
         }
-
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
         private void ExportStudentTimeTable()
         {
             ReportDocument myReport = new ReportDocument();
