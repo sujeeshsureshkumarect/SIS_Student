@@ -191,6 +191,7 @@
     <Content Include="Current_TimeTable.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="DocsUpload.aspx" />
     <Content Include="EarlyReg.aspx" />
     <Content Include="ECT_ACAF_LC_FRM_001.aspx" />
     <Content Include="ECT_AF_AFO_FRM_001.aspx" />
@@ -214,6 +215,7 @@
     <Content Include="ECT_SAR_SREG_FRM_016.aspx" />
     <Content Include="ECT_SAR_SREG_FRM_021.aspx" />
     <Content Include="ECT_SAR_SREG_FRM_023.aspx" />
+    <Content Include="ECT_style.css" />
     <Content Include="ErrPage.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -3997,6 +3999,7 @@
     <Content Include="images\Icons\correct1.png" />
     <Content Include="images\Icons\Delete.gif" />
     <Content Include="images\Icons\Print.gif" />
+    <Content Include="images\InitialImage.png" />
     <Content Include="images\Majors\010103.bmp" />
     <Content Include="images\Majors\ACC100.bmp" />
     <Content Include="images\Majors\ACC101.bmp" />
@@ -4761,6 +4764,7 @@
     <Content Include="images\Majors\Untitled.png" />
     <Content Include="images\New_Logo.png" />
     <Content Include="images\noimage.jpg" />
+    <Content Include="images\SelectedButton.png" />
     <Content Include="images\SSL.png" />
     <Content Include="images\Student.jpg" />
     <Content Include="LibBookSearch.aspx" />
@@ -6048,6 +6052,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery.searchabledropdown.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -6082,6 +6087,7 @@
     <Content Include="Upload\1006.jpg" />
     <Content Include="Upload\1007.jpg" />
     <Content Include="Upload\1010.jpg" />
+    <Content Include="verification.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -6212,6 +6218,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DocsUpload.aspx.cs">
+      <DependentUpon>DocsUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocsUpload.aspx.designer.cs">
+      <DependentUpon>DocsUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="EarlyReg.aspx.cs">
       <DependentUpon>EarlyReg.aspx</DependentUpon>
@@ -6529,6 +6542,13 @@
     <Compile Include="Student_Services.aspx.designer.cs">
       <DependentUpon>Student_Services.aspx</DependentUpon>
     </Compile>
+    <Compile Include="verification.aspx.cs">
+      <DependentUpon>verification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verification.aspx.designer.cs">
+      <DependentUpon>verification.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6540,6 +6560,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="StudentAcceptance\" />
+    <Folder Include="StudentDocs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
