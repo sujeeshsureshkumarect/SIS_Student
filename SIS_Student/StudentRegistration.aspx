@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentRegistration.aspx.cs" Inherits="SIS_Student.StudentRegistration" MasterPageFile="~/Student.Master" EnableEventValidation="false"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MaintainScrollPositionOnPostback="true" CodeBehind="StudentRegistration.aspx.cs" Inherits="SIS_Student.StudentRegistration" MasterPageFile="~/Student.Master" EnableEventValidation="false"%>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">      
+    <script src="Scripts/jquery-1.4.1.min.js"></script>
      <script type="text/javascript">
     $(document).ready(function(){
     $("#divConfirmation").hide();

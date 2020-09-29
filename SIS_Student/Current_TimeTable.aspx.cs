@@ -19,6 +19,8 @@ namespace SIS_Student
     public partial class Current_TimeTable : System.Web.UI.Page
     {
         int CurrentRole;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -34,11 +36,12 @@ namespace SIS_Student
                     //showErr("Session is expired, Login again please...");
                     ClearSession();
                     Response.Redirect("Login.aspx");
-
                 }
 
                 if (!IsPostBack)
                 {
+                    //int i = Convert.ToInt32(Session["RegYear"]);
+                    //i = Convert.ToInt32(Session["RegSemester"]);
                     if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Current_TimeTable,
                     InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
                     {
@@ -46,18 +49,12 @@ namespace SIS_Student
                     }
 
                     lblTerm.Text = getRegTerm();
+                    showdata();
 
                 }
 
-                Connection_StringCLS ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Females);
-                string sConn = ConnectionString.Conn_string;
-                TM_FM_DS.ConnectionString = sConn;
-                TM_FE_DS.ConnectionString = sConn;
-                TM_WEF_DS.ConnectionString = sConn;
-                ConnectionString = new Connection_StringCLS(InitializeModule.EnumCampus.Males);
-                sConn = ConnectionString.Conn_string;
-                TM_ME_DS.ConnectionString = sConn;
-                TM_WEM_DS.ConnectionString = sConn;
+
+
             }
             catch (Exception exp)
             {
@@ -69,12 +66,10 @@ namespace SIS_Student
             {
 
             }
+
+
         }
-        private void showErr(string sMsg)
-        {
-            Session["errMsg"] = sMsg;
-            Response.Redirect("ErrPage");
-        }
+
         public void ClearSession()
         {
             Session["CurrentUserName"] = null;
@@ -91,139 +86,34 @@ namespace SIS_Student
             Session["CurrentStudentName"] = null;
             Session["CurrentMajorCampus"] = null;
         }
-        private string getRegTerm()
-        {
-            string sRegTerm = "";
-            try
-            {
-                int iYear = Convert.ToInt32(Session["RegYear"]);
-                int iSem = Convert.ToInt32(Session["RegSemester"]);
-                sRegTerm = LibraryMOD.GetTermDesc(iYear, iSem);
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("{0} Exception caught.", exp);
-            }
-            finally
-            {
-                //myTimeTable.Clear();
-            }
-            return (sRegTerm);
-        }
 
-        protected void FM_lnk_Click(object sender, EventArgs e)
-        {
-            TM_mtv.ActiveViewIndex = 0;
-            FM_lnk.CssClass = "btn btn-primary";
-            FE_lnk.CssClass = "btn btn-success";
-            WEF_lnk.CssClass = "btn btn-success";
-            ME_lnk.CssClass = "btn btn-success";
-            WEM_lnk.CssClass = "btn btn-success";
-        }
-
-        protected void FE_lnk_Click(object sender, EventArgs e)
-        {
-            TM_mtv.ActiveViewIndex = 1;
-            FM_lnk.CssClass = "btn btn-success";
-            FE_lnk.CssClass = "btn btn-primary";
-            WEF_lnk.CssClass = "btn btn-success";
-            ME_lnk.CssClass = "btn btn-success";
-            WEM_lnk.CssClass = "btn btn-success";
-        }
-
-        protected void WEF_lnk_Click(object sender, EventArgs e)
-        {
-            TM_mtv.ActiveViewIndex = 2;
-            FM_lnk.CssClass = "btn btn-success";
-            FE_lnk.CssClass = "btn btn-success";
-            WEF_lnk.CssClass = "btn btn-primary";
-            ME_lnk.CssClass = "btn btn-success";
-            WEM_lnk.CssClass = "btn btn-success";
-        }
-
-        protected void ME_lnk_Click(object sender, EventArgs e)
-        {
-            TM_mtv.ActiveViewIndex = 3;
-            FM_lnk.CssClass = "btn btn-success";
-            FE_lnk.CssClass = "btn btn-success";
-            WEF_lnk.CssClass = "btn btn-success";
-            ME_lnk.CssClass = "btn btn-primary";
-            WEM_lnk.CssClass = "btn btn-success";
-        }
-
-        protected void WEM_lnk_Click(object sender, EventArgs e)
-        {
-            TM_mtv.ActiveViewIndex = 4;
-            FM_lnk.CssClass = "btn btn-success";
-            FE_lnk.CssClass = "btn btn-success";
-            WEF_lnk.CssClass = "btn btn-success";
-            ME_lnk.CssClass = "btn btn-success";
-            WEM_lnk.CssClass = "btn btn-primary";
-        }
-        protected void TM_WEF_DS_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-            e.Command.CommandTimeout = 90;
-        }
-        protected void TM_ME_DS_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-            e.Command.CommandTimeout = 90;
-        }
-        protected void TM_FM_DS_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-            e.Command.CommandTimeout = 90;
-        }
-        protected void TM_FE_DS_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-            e.Command.CommandTimeout = 90;
-        }
-        protected void TM_WEM_DS_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-            e.Command.CommandTimeout = 90;
-        }
-
-        protected void PrintCMD_Click(object sender, EventArgs e)
+        protected void PrintCMD_Click(object sender, ImageClickEventArgs e)
         {
             if (LibraryMOD.isRoleAuthorized(InitializeModule.enumPrivilegeObjects.ECT_Current_TimeTable,
-            InitializeModule.enumPrivilege.Print, CurrentRole) != true)
+                InitializeModule.enumPrivilege.Print, CurrentRole) != true)
             {
-                //showmsg(InitializeModule.MsgPrintAuthorization);
+                showmsg(InitializeModule.MsgPrintAuthorization);
                 return;
             }
 
-            int iSession = 0;
-            LinkButton btn = (LinkButton)sender;
-            switch (btn.ID)
-            {
-                case "PrintFM_CMD":
-                    iSession = 1;
-                    break;
-                case "PrintFE_CMD":
-                    iSession = 2;
-                    break;
-                case "PrintME_CMD":
-                    iSession = 4;
-                    break;
-                case "PrintWEM_CMD":
-                    iSession = 8;
-                    break;
-                case "PrintWEF_CMD":
-                    iSession = 9;
-                    break;
-            }
-
-            Export(iSession, InitializeModule.ECT_Buttons.Print);
+            Export(InitializeModule.ECT_Buttons.Print);
         }
-        private void Export(int iSession, InitializeModule.ECT_Buttons iExport)
+
+        private void Export(InitializeModule.ECT_Buttons iExport)
         {
             ReportDocument myReport = new ReportDocument();
 
             try
             {
-
+                if (Session["rptDS"] == null)
+                {
+                    return;
+                }
                 DataSet rptDS = new DataSet();
 
 
-                rptDS = Prepare_Report(Retrieve(iSession));
+                rptDS = (DataSet)Session["rptDS"]; //Prepare_Report(Retrieve(iSession));
+                int iSession = Convert.ToInt32(rbnSession.SelectedValue);
 
                 string reportPath = Server.MapPath("Reports/CurrentTimeTable_rpt.rpt");
                 myReport.Load(reportPath);
@@ -267,6 +157,7 @@ namespace SIS_Student
                 myReport.Dispose();
             }
         }
+
         private List<TimeTable> Retrieve(int iSession)
         {
             List<TimeTable> myTimeTable = new List<TimeTable>();
@@ -394,6 +285,9 @@ namespace SIS_Student
                 dt.TableName = "TimeTable";
                 dt.AcceptChanges();
                 ds.Tables.Add(dt);
+                Print_btn.Visible = (dt.Rows.Count > 0);
+                grdTM.DataSource = dt;
+                grdTM.DataBind();
 
             }
             catch (Exception exp)
@@ -431,9 +325,68 @@ namespace SIS_Student
 
             return sCaption;
         }
-        protected void DataListWEM_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }       
+
+        private void showmsg(string sMsg)
+        {
+            //divMsgText.InnerHtml = sMsg;
+            runScr("showmsg('" + sMsg + "');");
+            //divMsg.Visible = true;
+        }
+
+        private void runScr(string sScr)
+        {
+            string str = "<script>" + sScr + "</script>";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", str, false);
+        }
+
+        private string getRegTerm()
+        {
+            string sRegTerm = "";
+            try
+            {
+                int iYear = Convert.ToInt32(Session["RegYear"]);
+                int iSem = Convert.ToInt32(Session["RegSemester"]);
+                sRegTerm = LibraryMOD.GetTermDesc(iYear, iSem);
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("{0} Exception caught.", exp);
+            }
+            finally
+            {
+                //myTimeTable.Clear();
+            }
+            return (sRegTerm);
+        }
+
+        private void showErr(string sMsg)
+        {
+            Session["errMsg"] = sMsg;
+            Response.Redirect("ErrPage.aspx");
+        }
+
+        protected void showdata()
+        {
+            int iSession = Convert.ToInt32(rbnSession.SelectedValue);
+            DataSet rptDS = new DataSet();
+
+            rptDS = Prepare_Report(Retrieve(iSession));
+            Session["rptDS"] = rptDS;
+        }
+        protected void rbnSession_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            showdata();
+        }
+        protected void Print_btn_Click(object sender, ImageClickEventArgs e)
+        {
+            Export(InitializeModule.ECT_Buttons.Print);
+        }
+
+        protected void PrintFM_CMD_Click(object sender, EventArgs e)
+        {
+            Export(InitializeModule.ECT_Buttons.Print);
+        }
     }
+
 }

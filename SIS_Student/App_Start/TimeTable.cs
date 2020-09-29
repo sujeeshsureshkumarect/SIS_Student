@@ -27,7 +27,7 @@ public class Classes
         dWed = 16,
         dThu = 32,
         dFri = 64
-    } 
+    }
 
     public struct Students
     {
@@ -48,9 +48,9 @@ public class Classes
     }
     public struct Times
     {
-        public  int _iLecturer;
-        public  string _sLecturer;
-        public  DateTime _dFrom;
+        public int _iLecturer;
+        public string _sLecturer;
+        public DateTime _dFrom;
         public DateTime _dTo;
         public int _iDays;
         public string _sDays;
@@ -61,7 +61,7 @@ public class Classes
         public string _sCampus;
         public decimal _dTeachingHours;
     }
-    
+
 
 }
 public class TimeTable
@@ -74,7 +74,7 @@ public class TimeTable
     //dbo.Reg_Courses ON AV.strCourse = dbo.Reg_Courses.strCourse INNER JOIN dbo.Reg_Lecturers AS L ON CT.intLecturer = L.intLecturer
     //WHERE (AV.intStudyYear = 2009) AND (AV.byteSemester = 2)
 
-#region "Decleration"
+    #region "Decleration"
 
     private int _iPeriod;
     private string _sPeriod;
@@ -91,9 +91,9 @@ public class TimeTable
     private decimal _dCreditHours;
     private List<Classes.Times> _ClassTimes;
     private List<Classes.Students> _ClassStudents;
-    
-#endregion
-#region "Puplic Properties"
+
+    #endregion
+    #region "Puplic Properties"
 
     public int IPeriod
     {
@@ -149,7 +149,7 @@ public class TimeTable
         get { return _iClass; }
         set { _iClass = value; }
     }
-    
+
     public int IMax
     {
         get { return _iMax; }
@@ -172,7 +172,7 @@ public class TimeTable
     {
         get { return _ClassTimes; }
         set { _ClassTimes = value; }
-    } 
+    }
 
     public List<Classes.Students> ClassStudents
     {
@@ -180,12 +180,12 @@ public class TimeTable
         set { _ClassStudents = value; }
     }
 
-#endregion
+    #endregion
 
-	public TimeTable()
-	{
-		
-	}
+    public TimeTable()
+    {
+
+    }
     public TimeTable(int iPeriod, string sPeriod, string sCourse, string sUnified, string sDispalyUnified, string sCollege, int iCommitteeID, string sDesc, string seBookCode, int iClass,
     int iMax, int iCapacity, decimal dCreditHours, List<Classes.Times> ClassTimes, List<Classes.Students> ClassStudents)
     {
@@ -195,7 +195,7 @@ public class TimeTable
         _sUnified = sUnified;
         _sDispalyUnified = sDispalyUnified;
         _sCollege = sCollege;
-        _CommitteeID = iCommitteeID; 
+        _CommitteeID = iCommitteeID;
         _sDesc = sDesc;
         _seBookCode = seBookCode;
         _iClass = iClass;
@@ -324,7 +324,7 @@ public class TimeTableDAL
                 sDays += "Fri.";
                 iCount++;
             }
-       }
+        }
         catch (Exception ex)
         {
             //Interaction.MsgBox(ex.Message);
@@ -608,15 +608,15 @@ public class TimeTableDAL
             sSQL += " , CT.dateTimeTo AS dTo, CT.byteDay AS iDays, CT.Notes";
             sSQL += " , CT.strHall AS sHall,strBuilding as sCampus, (CASE WHEN H.intMaxSeats < MaxCapacity THEN H.intMaxSeats ELSE MaxCapacity END) AS iMax, ISNULL(CCU.RegCapacity, 0) AS sCount";
             sSQL += " , CT.bLab,AV.strUnified AS sUnified,C.strCollege AS sCollege,C.CommitteeID,C.sDispalyUnified ";
-           
-            sSQL += " FROM  Reg_Available_Courses AS AV INNER JOIN"; 
+
+            sSQL += " FROM  Reg_Available_Courses AS AV INNER JOIN";
             sSQL += " Reg_CourseTime_Schedule AS CT ON AV.intStudyYear = CT.intStudyYear AND AV.byteSemester = CT.byteSemester AND AV.strCourse = CT.strCourse AND ";
             sSQL += " AV.byteClass = CT.byteClass AND AV.byteShift = CT.byteShift INNER JOIN Lkp_Halls AS H ON CT.strHall = H.strHall INNER JOIN";
             sSQL += " Reg_Lecturers AS L ON CT.intLecturer = L.intLecturer INNER JOIN Reg_Courses AS C ON AV.strCourse = C.strCourse INNER JOIN";
             sSQL += " Reg_Shifts AS P ON AV.byteShift = P.byteShift INNER JOIN Lkp_Course_Classes AS CCL ON C.byteCourseClass = CCL.byteCourseClass LEFT OUTER JOIN";
             sSQL += " ClassCapacity_Unified AS CCU ON AV.intStudyYear = CCU.iYear AND AV.byteSemester = CCU.Sem AND AV.strUnified = CCU.strUnified AND ";
             sSQL += " AV.byteClass = CCU.Class AND AV.byteShift = CCU.Shift";
-                       
+
             //string sSQL = "SELECT AV.byteShift AS iPeriod, P.strShortcut AS sPeriod, AV.strCourse AS sCourse, C.strCourseDescEn AS sDesc, AV.byteClass AS iClass,";
             //sSQL += " L.strLecturerDescEn AS sLecturer, CT.intLecturer AS iLecturer,CT.dateTimeFrom AS dFrom, CT.dateTimeTo AS dTo, CT.byteDay AS iDays,CT.Notes, CT.strHall AS sHall, convert(int,H.intMaxSeats * C.CapFactor) AS iMax,Counts.sCount,CT.bLab";
             //sSQL += " FROM dbo.Reg_Available_Courses AS AV INNER JOIN dbo.Reg_CourseTime_Schedule AS CT ON AV.intStudyYear = CT.intStudyYear AND AV.byteSemester = CT.byteSemester AND ";
@@ -658,7 +658,7 @@ public class TimeTableDAL
                 //get Unified course code
                 CoursesDAL my_Courses = new CoursesDAL();
 
-                string sDisplayUnified = my_Courses.GetDisplayUnified (Campus, sCourse);
+                string sDisplayUnified = my_Courses.GetDisplayUnified(Campus, sCourse);
 
                 sSQL += " AND C.sDispalyUnified ='" + sDisplayUnified + "'";
                 //sSQL += " AND AV.strCourse='" + sCourse + "'";
@@ -705,7 +705,7 @@ public class TimeTableDAL
 
             TimeTable myTimeTable = new TimeTable();
 
-            Available_CoursesDAL myAvailable_Courses = new Available_CoursesDAL ();
+            Available_CoursesDAL myAvailable_Courses = new Available_CoursesDAL();
             //Add Begin
             myTimeTable.IPeriod = 0;
             myTimeTable.SCourse = "Begin";
@@ -719,10 +719,10 @@ public class TimeTableDAL
                 sRdUnified = Rd["sUnified"].ToString();
                 sRdDispalyUnified = Rd["sDispalyUnified"].ToString();
                 sRdCollege = Rd["sCollege"].ToString();
-                iRdCommitteeID =int.Parse( Rd["CommitteeID"].ToString()); 
+                iRdCommitteeID = int.Parse(Rd["CommitteeID"].ToString());
                 iRdClass = int.Parse(Rd["iClass"].ToString());
 
-                int IsOffered =InitializeModule.FALSE_VALUE  ;
+                int IsOffered = InitializeModule.FALSE_VALUE;
                 IsOffered = myAvailable_Courses.IsCourseOffered(Campus, sRdDispalyUnified, iYear, iSemester, iRdClass, iRdPeriod);
 
                 if ((_iPeriod != iRdPeriod) || (_sCourse != sRdCourse) || (_iClass != iRdClass))
@@ -738,33 +738,33 @@ public class TimeTableDAL
                     myTimeTable.IPeriod = iRdPeriod;
                     myTimeTable.SCourse = sRdCourse;
                     myTimeTable.sUnified = sRdUnified;
-                    myTimeTable.sDispalyUnified  = sRdDispalyUnified;
-                    myTimeTable.sCollege= sRdCollege;
+                    myTimeTable.sDispalyUnified = sRdDispalyUnified;
+                    myTimeTable.sCollege = sRdCollege;
                     myTimeTable.iCommitteeID = iRdCommitteeID;
                     myTimeTable.IClass = iRdClass;
                     myTimeTable.SPeriod = Rd["sPeriod"].ToString();
                     myTimeTable.SDesc = Rd["sDesc"].ToString();
 
-                     
+
                     //if ((sRdDispalyUnified == sRdCourse && IsOffered == InitializeModule.TRUE_VALUE) || (sRdUnified == sRdCourse  && IsOffered == InitializeModule.FALSE_VALUE))
                     //{
-                        myTimeTable.IMax = int.Parse(Rd["iMax"].ToString());
+                    myTimeTable.IMax = int.Parse(Rd["iMax"].ToString());
 
-                        if (!Rd["sCount"].Equals(DBNull.Value))
-                        {
-                            myTimeTable.ICapacity = int.Parse(Rd["sCount"].ToString());
-                        }
-                        else
-                        {
-                            myTimeTable.ICapacity = 0;
-                        }
+                    if (!Rd["sCount"].Equals(DBNull.Value))
+                    {
+                        myTimeTable.ICapacity = int.Parse(Rd["sCount"].ToString());
+                    }
+                    else
+                    {
+                        myTimeTable.ICapacity = 0;
+                    }
                     //}
-                  
+
                     //else
                     //{
                     //    myTimeTable.ICapacity = 0;
                     //}
-                    
+
 
                     myTimeTable.ClassTimes = new List<Classes.Times>();
                     if (isStudentsIncluded)
@@ -772,56 +772,56 @@ public class TimeTableDAL
                         myTimeTable.ClassStudents = new List<Classes.Students>();
                         myTimeTable.ClassStudents = Get_Students(iYear, iSemester, iRdPeriod, sRdCourse, iRdClass, Campus);
                     }
-                      
-                }
-                 //================== hide equivelant courses details (class,lecturer,time,days,max,capacity)
 
-                 myTimes = new Classes.Times();
+                }
+                //================== hide equivelant courses details (class,lecturer,time,days,max,capacity)
+
+                myTimes = new Classes.Times();
                 //-------------------------------------------
-                    myTimes._sHall = Rd["sHall"].ToString();
-                    myTimes._sCampus = Rd["sCampus"].ToString();
-                    myTimes._iDays = int.Parse(Rd["iDays"].ToString());
-                    if (!Rd["bLab"].Equals(DBNull.Value))
-                    {
-                        isLab = bool.Parse(Rd["bLab"].ToString());
-                    }
-                    else
-                    {
-                        isLab = false;
-                    }
-                    if (isLab)
-                    {
-                        myTimes._sDays = GetDays(myTimes._iDays) + " (Lab)";
-                    }
-                    else
-                    {
-                        myTimes._sDays = GetDays(myTimes._iDays);
-                    }
-                    myTimes._dFrom = DateTime.Parse(Rd["dFrom"].ToString());
-                    myTimes._dTo = DateTime.Parse(Rd["dTo"].ToString());
-                //--------------------------------------------
-               // if (sRdUnified == sRdCourse)
-                 if ((sRdDispalyUnified == sRdCourse && IsOffered == InitializeModule.TRUE_VALUE) || (sRdUnified == sRdCourse && IsOffered == InitializeModule.FALSE_VALUE))   
+                myTimes._sHall = Rd["sHall"].ToString();
+                myTimes._sCampus = Rd["sCampus"].ToString();
+                myTimes._iDays = int.Parse(Rd["iDays"].ToString());
+                if (!Rd["bLab"].Equals(DBNull.Value))
                 {
-                  
+                    isLab = bool.Parse(Rd["bLab"].ToString());
+                }
+                else
+                {
+                    isLab = false;
+                }
+                if (isLab)
+                {
+                    myTimes._sDays = GetDays(myTimes._iDays) + " (Lab)";
+                }
+                else
+                {
+                    myTimes._sDays = GetDays(myTimes._iDays);
+                }
+                myTimes._dFrom = DateTime.Parse(Rd["dFrom"].ToString());
+                myTimes._dTo = DateTime.Parse(Rd["dTo"].ToString());
+                //--------------------------------------------
+                // if (sRdUnified == sRdCourse)
+                if ((sRdDispalyUnified == sRdCourse && IsOffered == InitializeModule.TRUE_VALUE) || (sRdUnified == sRdCourse && IsOffered == InitializeModule.FALSE_VALUE))
+                {
+
                     myTimes._iLecturer = int.Parse(Rd["iLecturer"].ToString());
                     myTimes._sLecturer = Rd["sLecturer"].ToString();
-                   
+
 
                 }
 
-                 else
-                 {
-                     myTimes._iLecturer = 0;
-                     myTimes._sLecturer = "";
-                     //myTimes._sHall = "";
-                     //myTimes._iDays = 0;
-                     //myTimes._sDays = "";
-                     //myTimes._dFrom = DateTime.Parse("");
-                     //myTimes._dTo = DateTime.Parse("");
-                 }
+                else
+                {
+                    myTimes._iLecturer = 0;
+                    myTimes._sLecturer = "";
+                    //myTimes._sHall = "";
+                    //myTimes._iDays = 0;
+                    //myTimes._sDays = "";
+                    //myTimes._dFrom = DateTime.Parse("");
+                    //myTimes._dTo = DateTime.Parse("");
+                }
 
-                 myTimeTable.ClassTimes.Add(myTimes);
+                myTimeTable.ClassTimes.Add(myTimes);
             }
 
             if (Rd.HasRows)
@@ -860,16 +860,16 @@ public class TimeTableDAL
             sSQL += " , CT.dateTimeTo AS dTo, CT.byteDay AS iDays, CT.Notes";
             sSQL += " , CT.strHall AS sHall,strBuilding as sCampus, H.intMaxSeats AS iMax, ISNULL(CC.RegCapacity, 0) AS sCount";
             sSQL += " , CT.bLab,AV.strUnified AS sUnified,C.strCollege AS sCollege,C.CommitteeID,C.sDispalyUnified ";
-                              
+
             sSQL += " FROM Reg_Available_Courses AS AV INNER JOIN Reg_CourseTime_Schedule AS CT ON AV.intStudyYear = CT.intStudyYear AND AV.byteSemester = CT.byteSemester AND AV.strCourse = CT.strCourse AND ";
             sSQL += " AV.byteClass = CT.byteClass AND AV.byteShift = CT.byteShift INNER JOIN Lkp_Halls AS H ON CT.strHall = H.strHall INNER JOIN";
             sSQL += " Reg_Lecturers AS L ON CT.intLecturer = L.intLecturer INNER JOIN Reg_Courses AS C ON AV.strCourse = C.strCourse INNER JOIN";
             sSQL += " Reg_Shifts AS P ON AV.byteShift = P.byteShift INNER JOIN ClassCapacity AS CC ON AV.intStudyYear = CC.iYear AND AV.byteSemester = CC.Sem AND AV.strCourse = CC.Course AND AV.byteClass = CC.Class AND ";
             sSQL += " AV.byteShift = CC.Shift";
-                       
+
             sSQL += " WHERE AV.intStudyYear=" + iYear;
             sSQL += " AND AV.byteSemester=" + iSemester;
-            sSQL += " AND H.iCampus="+iCampus;
+            sSQL += " AND H.iCampus=" + iCampus;
 
             if (!isHiddenShown)
             {
@@ -1042,27 +1042,27 @@ public class TimeTableDAL
                 }
                 myTimes._dFrom = DateTime.Parse(Rd["dFrom"].ToString());
                 myTimes._dTo = DateTime.Parse(Rd["dTo"].ToString());
-                //--------------------------------------------
-                // if (sRdUnified == sRdCourse)
-                if ((sRdDispalyUnified == sRdCourse && IsOffered == InitializeModule.TRUE_VALUE) || (sRdUnified == sRdCourse && IsOffered == InitializeModule.FALSE_VALUE))
-                {
+                ////--------------------------------------------
+                //// if (sRdUnified == sRdCourse)
+                //if ((sRdDispalyUnified == sRdCourse && IsOffered == InitializeModule.TRUE_VALUE) || (sRdUnified == sRdCourse && IsOffered == InitializeModule.FALSE_VALUE))
+                //{
 
-                    myTimes._iLecturer = int.Parse(Rd["iLecturer"].ToString());
-                    myTimes._sLecturer = Rd["sLecturer"].ToString();
+                myTimes._iLecturer = int.Parse(Rd["iLecturer"].ToString());
+                myTimes._sLecturer = Rd["sLecturer"].ToString();
 
 
-                }
+                //}
 
-                else
-                {
-                    myTimes._iLecturer = 0;
-                    myTimes._sLecturer = "";
-                    //myTimes._sHall = "";
-                    //myTimes._iDays = 0;
-                    //myTimes._sDays = "";
-                    //myTimes._dFrom = DateTime.Parse("");
-                    //myTimes._dTo = DateTime.Parse("");
-                }
+                //else
+                //{
+                //    myTimes._iLecturer = 0;
+                //    myTimes._sLecturer = "";
+                //    //myTimes._sHall = "";
+                //    //myTimes._iDays = 0;
+                //    //myTimes._sDays = "";
+                //    //myTimes._dFrom = DateTime.Parse("");
+                //    //myTimes._dTo = DateTime.Parse("");
+                //}
 
                 myTimeTable.ClassTimes.Add(myTimes);
             }
@@ -1087,7 +1087,7 @@ public class TimeTableDAL
         }
         return Result;
     }
-       
+
 
     public List<TimeTable> GetStudentTimeTable(string sStudentNumber, int iYear, int iSemester, InitializeModule.EnumCampus Campus)
     {
@@ -1102,7 +1102,7 @@ public class TimeTableDAL
             string sSQL = "SELECT P.strShortcut AS sPeriod, CT.strCourse AS sCourse, C.strCourseDescEn AS sDesc, CT.byteClass AS iClass, L.strLecturerDescEn AS sLecturer,";
             sSQL += " CT.strHall AS sHall,H.strBuilding AS sCampus, CT.dateTimeFrom AS dFrom, CT.dateTimeTo AS dTo, dbo.ExtractDays(COALESCE (CT.byteDay, 0)) ";
             sSQL += " + (CASE CT.bLab WHEN 1 THEN ' (Lab)' ELSE '' END) AS iDays, CT.Notes,eBook.eBookCode,CT.byteDay";
-            sSQL +=" FROM LOCALECT.ECTData.dbo.Course_Balance_View AS CV INNER JOIN";
+            sSQL += " FROM LOCALECT.ECTData.dbo.Course_Balance_View AS CV INNER JOIN";
             sSQL += " LOCALECT.ECTData.dbo.Reg_Courses AS C ON CV.Course = C.strCourse INNER JOIN";
             sSQL += " LOCALECT.ECTData.dbo.Reg_CourseTime_Schedule AS CT INNER JOIN";
             sSQL += " LOCALECT.ECTData.dbo.Reg_Shifts AS P ON CT.byteShift = P.byteShift INNER JOIN";
@@ -1129,23 +1129,23 @@ public class TimeTableDAL
             sSQL += " AND CV.Sem = eBook.Semester AND CV.Course = eBook.CourseID ";
             sSQL += " AND CV.Student = eBook.StudentID";
             sSQL += " WHERE (CT.intStudyYear = " + iYear + ") AND (CT.byteSemester = " + iSemester + ") AND (CV.Student = '" + sStudentNumber + "')";
- 
+
 
             sSQL += " ORDER BY sCourse, CT.byteDay, dFrom";
-                       
+
             SqlCommand Cmd = new SqlCommand(sSQL, Conn);
             SqlDataReader Rd = Cmd.ExecuteReader();
-            
-           
+
+
             //Add Begin
             //myTimeTable.IPeriod = 0;
             //myTimeTable.SCourse = "Begin";
             Classes.Times myTimes;
-            
+
             while (Rd.Read())
             {
                 TimeTable myTimeTable = new TimeTable();
-               // myTimeTable.IPeriod = int.Parse(Rd["iPeriod"].ToString());
+                // myTimeTable.IPeriod = int.Parse(Rd["iPeriod"].ToString());
                 myTimeTable.SCourse = Rd["sCourse"].ToString();
                 myTimeTable.SDesc = Rd["sDesc"].ToString();
                 myTimeTable.IClass = int.Parse(Rd["iClass"].ToString());
@@ -1207,7 +1207,7 @@ public class TimeTableDAL
 
             sSQL += " WHERE AV.intStudyYear=" + iYear;
             sSQL += " AND AV.byteSemester=" + iSemester;
-            
+
             if (iPeriod != 0)
             {
                 if (iPeriod < 0)
@@ -1379,13 +1379,13 @@ public class TimeTableDAL
             SqlCommand Cmd = new SqlCommand(sSQL, Conn);
 
             SqlDataReader Rd = Cmd.ExecuteReader();
-            Classes.Students myStudent; 
-            int iSerial=0;
+            Classes.Students myStudent;
+            int iSerial = 0;
             while (Rd.Read())
             {
-                iSerial+=1;
+                iSerial += 1;
                 myStudent = new Classes.Students();
-                myStudent._Serial=iSerial;
+                myStudent._Serial = iSerial;
                 myStudent._StudentNumber = Rd["sNo"].ToString();
                 myStudent._Name = Rd["sName"].ToString();
                 myStudent._Period = Rd["sPeriod"].ToString();
@@ -1408,7 +1408,7 @@ public class TimeTableDAL
                 {
                     myStudent._CGPA = decimal.Parse(Rd["CGPA"].ToString());
                 }
-                else 
+                else
                 {
                     myStudent._CGPA = 101;
                 }
@@ -1446,12 +1446,12 @@ public class TimeTableDAL
         try
         {
             string sSQL = "SELECT A.lngStudentNumber as sNo, SD.strLastDescEn as sName";
-            sSQL += " FROM Reg_Applications AS A INNER JOIN Reg_Students_Data AS SD ON A.lngSerial = SD.lngSerial INNER JOIN"; 
-            sSQL += " Course_Balance_View AS CB ON A.lngStudentNumber = CB.Student";            
+            sSQL += " FROM Reg_Applications AS A INNER JOIN Reg_Students_Data AS SD ON A.lngSerial = SD.lngSerial INNER JOIN";
+            sSQL += " Course_Balance_View AS CB ON A.lngStudentNumber = CB.Student";
             sSQL += " WHERE CB.iYear =" + iYear;
             sSQL += " AND CB.Sem =" + iSem;
             sSQL += " AND CB.Shift =" + iPeriod;
-            sSQL += " AND CB.Course ='" + sCourse +"'";
+            sSQL += " AND CB.Course ='" + sCourse + "'";
             sSQL += " AND CB.Class =" + iClass;
             sSQL += " ORDER BY SD.strLastDescEn";
 
@@ -1466,7 +1466,7 @@ public class TimeTableDAL
                 myStudent._Name = "Select Student ...";
                 Result.Add(myStudent);
             }
-           
+
             while (Rd.Read())
             {
                 myStudent = new Classes.Students();
@@ -1489,7 +1489,7 @@ public class TimeTableDAL
         return Result;
     }
 
-    public List<TimeTable> GetTimeTable(int iYear, int iSemester, int iPeriod, string sCourse, int iClass, int iLecturer, string sHall, string sUnit, bool isStudentsIncluded, InitializeModule.EnumCampus Campus,string sCampus)
+    public List<TimeTable> GetTimeTable(int iYear, int iSemester, int iPeriod, string sCourse, int iClass, int iLecturer, string sHall, string sUnit, bool isStudentsIncluded, InitializeModule.EnumCampus Campus, string sCampus)
     {
         List<TimeTable> Result = new List<TimeTable>();
         Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
