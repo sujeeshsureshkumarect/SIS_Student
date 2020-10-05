@@ -98,7 +98,7 @@ namespace SIS_Student
                             }
                             else
                             {
-                                sentdatatoSPLIst();
+                                sentdatatoSPLIst(sVoucher);
                                 lblResult.Text = "Payment registered in the system successfully.";
                                 divMsg.InnerHtml = "";
                                 Session["PmtSession"] = null;
@@ -132,7 +132,7 @@ namespace SIS_Student
 
         }
 
-        public void sentdatatoSPLIst()
+        public void sentdatatoSPLIst(string sVoucher)
         {
             DataTable CurrentdtSPList = Session["CurrentdtSPList"] as DataTable;
 
@@ -172,6 +172,7 @@ namespace SIS_Student
             myItem["ProviderAction"] = CurrentdtSPList.Rows[0]["ProviderAction"].ToString();
             myItem["ProviderNote"] = "";
             myItem["Status"] = CurrentdtSPList.Rows[0]["Status"].ToString();
+            myItem["Payment_Ref"] = sVoucher;
             //myItem["Modified"] = DateTime.Now;
             //myItem["Created"] = DateTime.Now;
             //myItem["Created By"] = hdf_StudentEmail.Value;
