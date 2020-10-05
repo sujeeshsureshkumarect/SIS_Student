@@ -76,7 +76,7 @@
                 <tr>
                     <td align="right" width="50%">  
                                 
-                        <asp:Label ID="lbl_OrderID" runat="server" Text="Order ID :" style="font-weight: 700"></asp:Label>  
+                        <asp:Label ID="lbl_OrderID" runat="server" Text="Payment ID :" style="font-weight: 700"></asp:Label>  
                                 
                     </td>
                     <td align="left" style="margin-left:20px">  
@@ -88,7 +88,7 @@
                 <tr>
                     <td align="right" class="auto-style1">  
                                 
-                        <asp:Label ID="lbl_OrderID0" runat="server" Text="Order Details :" style="font-weight: 700"></asp:Label>  
+                        <asp:Label ID="lbl_OrderID0" runat="server" Text="Payment Details :" style="font-weight: 700"></asp:Label>  
                                 
                     </td>
                     <td align="left" style="margin-left:20px" class="auto-style1">  
@@ -100,7 +100,7 @@
                 <tr>
                     <td align="right" class="auto-style1">  
                                 
-                        <asp:Label ID="lbl_OrderID2" runat="server" Text="Receipt No :" style="font-weight: 700"></asp:Label>  
+                        <asp:Label ID="lbl_OrderID2" runat="server" Text="Payment Receipt No :" style="font-weight: 700"></asp:Label>  
                                 
                     </td>
                     <td align="left" style="margin-left:20px" class="auto-style1">  
@@ -112,7 +112,7 @@
                 <tr>
                     <td align="right">  
                                 
-                        <asp:Label ID="lbl_OrderID1" runat="server" Text="Order Amount (AED) :" style="font-weight: 700"></asp:Label>  
+                        <asp:Label ID="lbl_OrderID1" runat="server" Text="Payment Amount (AED) :" style="font-weight: 700"></asp:Label>  
                                 
                     </td>
                     <td align="left" style="margin-left:20px">  
