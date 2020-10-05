@@ -11,17 +11,17 @@ namespace SIS_Student
 {
 
 
-    public partial class ECT_SAR_SREG_FRM_021
+    public partial class Student_Services_HostedResult
     {
 
         /// <summary>
-        /// div_msg control.
+        /// div_msg1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg1;
 
         /// <summary>
         /// lbl_Msg control.
@@ -33,120 +33,138 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.Label lbl_Msg;
 
         /// <summary>
-        /// lbl_ServiceID control.
+        /// divResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ServiceID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResult;
 
         /// <summary>
-        /// lbl_ServiceNameEn control.
+        /// lbl_OrderID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ServiceNameEn;
+        protected global::System.Web.UI.WebControls.Label lbl_OrderID;
 
         /// <summary>
-        /// lbl_ServiceNameAr control.
+        /// lblOrderID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ServiceNameAr;
+        protected global::System.Web.UI.WebControls.Label lblOrderID;
 
         /// <summary>
-        /// lbl_AcademicYear control.
+        /// lbl_OrderID0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_AcademicYear;
+        protected global::System.Web.UI.WebControls.Label lbl_OrderID0;
 
         /// <summary>
-        /// lbl_Semester control.
+        /// lblDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Semester;
+        protected global::System.Web.UI.WebControls.Label lblDesc;
 
         /// <summary>
-        /// lbl_StudentName control.
+        /// lbl_OrderID2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_StudentName;
+        protected global::System.Web.UI.WebControls.Label lbl_OrderID2;
 
         /// <summary>
-        /// lbl_StudentID control.
+        /// lblReceiptNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_StudentID;
+        protected global::System.Web.UI.WebControls.Label lblReceiptNo;
 
         /// <summary>
-        /// lbl_StudentContact control.
+        /// lbl_OrderID1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_StudentContact;
+        protected global::System.Web.UI.WebControls.Label lbl_OrderID1;
 
         /// <summary>
-        /// lbl_Fess control.
+        /// lblAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Fess;
+        protected global::System.Web.UI.WebControls.Label lblAmount;
 
         /// <summary>
-        /// txt_Remarks control.
+        /// lbl_PaymentReference control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Remarks;
+        protected global::System.Web.UI.WebControls.Label lbl_PaymentReference;
 
         /// <summary>
-        /// hdf_Price control.
+        /// lblPRef control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdf_Price;
+        protected global::System.Web.UI.WebControls.Label lblPRef;
 
         /// <summary>
-        /// hdf_StudentEmail control.
+        /// lbl_PaymentStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdf_StudentEmail;
+        protected global::System.Web.UI.WebControls.Label lbl_PaymentStatus;
 
         /// <summary>
-        /// lnk_Generate control.
+        /// lblPStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_Generate;
+        protected global::System.Web.UI.WebControls.Label lblPStatus;
+
+        /// <summary>
+        /// lblResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResult;
+
+        /// <summary>
+        /// divMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMsg;
     }
 }

@@ -131,6 +131,7 @@ namespace SIS_Student
                 lbl_ServiceNameAr.Text = dtStudentServices.Rows[0]["ServiceAr"].ToString();
                 lbl_Fess.Text = "AED " + Convert.ToDouble(dtStudentServices.Rows[0]["Sum"]).ToString("N");
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
+                Session["FeesType"] = dtStudentServices.Rows[0]["FeesType"].ToString();
             }
         }
         public void ClearSession()
@@ -156,8 +157,80 @@ namespace SIS_Student
         }
 
         protected void lnk_Generate_Click(object sender, EventArgs e)
-        {            
-            sentdatatoSPLIst();
+        {
+            int sem = 0;
+            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
+
+            int iYear = Year;
+            int iSem = sem;
+            string sSemester = LibraryMOD.GetSemesterString(iSem);
+            string refno = Create16DigitString();
+            string sACC = "0200000";
+            if(Session["CurrentCampus"].ToString() == "Males")
+            {
+                sACC = "0100000";
+            }
+            else
+            {
+                sACC = "0200000";
+            }
+            // Create a DataTable  
+            DataTable dtSPList = new DataTable();
+            dtSPList.Clear();
+            dtSPList.Columns.Add("Title");
+            dtSPList.Columns.Add("Year");
+            dtSPList.Columns.Add("Semester");
+            dtSPList.Columns.Add("Request");
+            dtSPList.Columns.Add("RequestNote");
+            dtSPList.Columns.Add("ServiceID");
+            dtSPList.Columns.Add("Fees");
+            dtSPList.Columns.Add("Requester");
+            dtSPList.Columns.Add("StudentID");
+            dtSPList.Columns.Add("StudentName");
+            dtSPList.Columns.Add("Contact");
+            dtSPList.Columns.Add("Finance");
+            dtSPList.Columns.Add("FinanceAction");
+            dtSPList.Columns.Add("FinanceNote");
+            dtSPList.Columns.Add("Host");
+            dtSPList.Columns.Add("HostAction");
+            dtSPList.Columns.Add("HostNote");
+            dtSPList.Columns.Add("ProviderAction");
+            dtSPList.Columns.Add("ProviderNote");
+            dtSPList.Columns.Add("Status");
+
+            // Add items using Add method   
+            DataRow dr = dtSPList.NewRow();
+            dr["Title"] = refno;
+            dr["Year"] = iYear;
+            dr["Semester"] = iSem;
+            dr["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )";
+            dr["RequestNote"] = txt_Remarks.Text.Trim();
+            dr["ServiceID"] = lbl_ServiceID.Text;
+            dr["Fees"] = hdf_Price.Value;
+            dr["Requester"] = "sujeesh.sureshkumar@ect.ac.ae";//hdf_StudentEmail.Value
+            dr["StudentID"] = lbl_StudentID.Text;
+            dr["StudentName"] = lbl_StudentName.Text;
+            dr["Contact"] = lbl_StudentContact.Text;
+            dr["Finance"] = "ihab.awad@ect.ac.ae";
+            dr["FinanceAction"] = "Initiate";
+            dr["FinanceNote"] = "";
+            dr["Host"] = "ihab.awad@ect.ac.ae";
+            dr["HostAction"] = "Initiate";
+            dr["HostNote"] = "";
+            dr["ProviderAction"] = "Initiate";
+            dr["ProviderNote"] = "";
+            dr["Status"] = "Finance Approval Needed";
+            dtSPList.Rows.Add(dr);
+
+            //sentdatatoSPLIst();
+
+            Session["CurrentService"] = "Student Services: "+ lbl_ServiceID.Text + "";
+            Session["CurrentServiceName"] = lbl_ServiceNameEn.Text;
+            Session["CurrentServiceAmount"] = string.Format("{0:f}", hdf_Price.Value);
+            Session["CurrentdtSPList"] = dtSPList;
+            Session["CurrentAccount"] = sACC;
+            Session["cancelpage"] = "ECT_SAR_SREG_FRM_021.aspx";
+            Response.Redirect("Student_Services_HostedPayment.aspx");
         }
 
         public void sentdatatoSPLIst()
@@ -213,25 +286,25 @@ namespace SIS_Student
             {
                 myItem.Update();
 
-                if (flp_Upload.HasFile)
-                {
-                    var attachment = new AttachmentCreationInformation();
+                //if (flp_Upload.HasFile)
+                //{
+                //    var attachment = new AttachmentCreationInformation();
 
-                    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
-                    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                //    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
+                //    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
 
-                    string filePath = FileUrl;
-                    attachment.FileName = Path.GetFileName(filePath);
-                    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
-                    Attachment att = myItem.AttachmentFiles.Add(attachment);
-                }
+                //    string filePath = FileUrl;
+                //    attachment.FileName = Path.GetFileName(filePath);
+                //    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
+                //    Attachment att = myItem.AttachmentFiles.Add(attachment);
+                //}
 
                 var onlineCredentials = new SharePointOnlineCredentials(login, securePassword);
                 clientContext.Credentials = onlineCredentials;
                 clientContext.ExecuteQuery();
 
-                string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
-                System.IO.File.Delete(FileUrls);
+                //string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                //System.IO.File.Delete(FileUrls);
 
                 lbl_Msg.Text = "Request (ID# "+refno+") Generated Successfully";
                 lbl_Msg.Visible = true;

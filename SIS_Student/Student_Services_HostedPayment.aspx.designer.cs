@@ -11,142 +11,151 @@ namespace SIS_Student
 {
 
 
-    public partial class ECT_SAR_SREG_FRM_021
+    public partial class Student_Services_HostedPayment
     {
 
         /// <summary>
-        /// div_msg control.
+        /// divPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPayment;
 
         /// <summary>
-        /// lbl_Msg control.
+        /// Div1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Msg;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
 
         /// <summary>
-        /// lbl_ServiceID control.
+        /// divMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ServiceID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMsg;
 
         /// <summary>
-        /// lbl_ServiceNameEn control.
+        /// lblMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ServiceNameEn;
+        protected global::System.Web.UI.WebControls.Label lblMsg;
 
         /// <summary>
-        /// lbl_ServiceNameAr control.
+        /// lbl_Service control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ServiceNameAr;
+        protected global::System.Web.UI.WebControls.Label lbl_Service;
 
         /// <summary>
-        /// lbl_AcademicYear control.
+        /// lblPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_AcademicYear;
+        protected global::System.Web.UI.WebControls.Label lblPayment;
 
         /// <summary>
-        /// lbl_Semester control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Semester;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// lbl_StudentName control.
+        /// divTerms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_StudentName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTerms;
 
         /// <summary>
-        /// lbl_StudentID control.
+        /// Div2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_StudentID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
 
         /// <summary>
-        /// lbl_StudentContact control.
+        /// chkAgree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_StudentContact;
+        protected global::System.Web.UI.WebControls.CheckBox chkAgree;
 
         /// <summary>
-        /// lbl_Fess control.
+        /// hdnSession control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Fess;
+        protected global::System.Web.UI.WebControls.HiddenField hdnSession;
 
         /// <summary>
-        /// txt_Remarks control.
+        /// hdnSID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Remarks;
+        protected global::System.Web.UI.WebControls.HiddenField hdnSID;
 
         /// <summary>
-        /// hdf_Price control.
+        /// hdnName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdf_Price;
+        protected global::System.Web.UI.WebControls.HiddenField hdnName;
 
         /// <summary>
-        /// hdf_StudentEmail control.
+        /// hdnACC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdf_StudentEmail;
+        protected global::System.Web.UI.WebControls.HiddenField hdnACC;
 
         /// <summary>
-        /// lnk_Generate control.
+        /// hdnAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_Generate;
+        protected global::System.Web.UI.WebControls.HiddenField hdnAmount;
+
+        /// <summary>
+        /// hdnFees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnFees;
     }
 }

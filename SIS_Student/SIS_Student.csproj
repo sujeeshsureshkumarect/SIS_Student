@@ -6082,6 +6082,9 @@
     <Content Include="StudentProfile.aspx" />
     <Content Include="StudentRegistration.aspx" />
     <Content Include="Student_Services.aspx" />
+    <Content Include="Student_Services_HostedCheckOut.aspx" />
+    <Content Include="Student_Services_HostedPayment.aspx" />
+    <Content Include="Student_Services_HostedResult.aspx" />
     <Content Include="Upload\1001.jpg" />
     <Content Include="Upload\1002.jpg" />
     <Content Include="Upload\1004.jpg" />
@@ -6542,6 +6545,27 @@
     </Compile>
     <Compile Include="Student_Services.aspx.designer.cs">
       <DependentUpon>Student_Services.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student_Services_HostedCheckOut.aspx.cs">
+      <DependentUpon>Student_Services_HostedCheckOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student_Services_HostedCheckOut.aspx.designer.cs">
+      <DependentUpon>Student_Services_HostedCheckOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student_Services_HostedPayment.aspx.cs">
+      <DependentUpon>Student_Services_HostedPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student_Services_HostedPayment.aspx.designer.cs">
+      <DependentUpon>Student_Services_HostedPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student_Services_HostedResult.aspx.cs">
+      <DependentUpon>Student_Services_HostedResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student_Services_HostedResult.aspx.designer.cs">
+      <DependentUpon>Student_Services_HostedResult.aspx</DependentUpon>
     </Compile>
     <Compile Include="verification.aspx.cs">
       <DependentUpon>verification.aspx</DependentUpon>

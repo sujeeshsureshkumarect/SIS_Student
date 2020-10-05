@@ -13,7 +13,7 @@ using System.Data.SqlClient;
 
 namespace SIS_Student
 {
-    public partial class HostedPayment : System.Web.UI.Page
+    public partial class Student_Services_HostedPayment : System.Web.UI.Page
     {
         int CurrentRole = 0;
         InitializeModule.EnumCampus CurrentCampus;
@@ -53,10 +53,11 @@ namespace SIS_Student
                 hdnSID.Value = Session["CurrentStudent"].ToString();
                 hdnName.Value = Session["CurrentStudentName"].ToString();
                 hdnACC.Value = Session["CurrentAccount"].ToString();
-                decimal dAmount = Convert.ToDecimal(Session["CurrentAmount"].ToString());
+                decimal dAmount = Convert.ToDecimal(Session["CurrentServiceAmount"].ToString());
                 hdnAmount.Value = string.Format("{0:f}", dAmount);
                 lblPayment.Text = hdnAmount.Value + " AED";
-                hdnFees.Value = Session["CurrentFees"].ToString();
+                lbl_Service.Text= Session["CurrentService"].ToString()+"-"+ Session["CurrentServiceName"].ToString();
+                hdnFees.Value = Session["CurrentService"].ToString();
 
             }
         }
@@ -80,7 +81,6 @@ namespace SIS_Student
             Session["LibarayBooks"] = null;
 
         }
-
         public void SessionCreate(string orderid, double amount, string desc)
         {
             using (var httpClient = new HttpClient())
@@ -129,7 +129,7 @@ namespace SIS_Student
                     Session["PmtDesc"] = desc;
                     Session["PmtAmount"] = amount;
 
-                    Response.Redirect("HostedCheckOut.aspx?sessionid=" + sessionid + "&sessionresults=" + sessionresults + "&successindicator=" + sessionsuccessIndicator + "&sessionversion=" + sessionsessionVersion + "&sessionupdate=" + sessionupdatestatus + "&orderid=" + orderid + "&desc=" + desc + "&amount=" + amount + "");
+                    Response.Redirect("Student_Services_HostedCheckOut.aspx?sessionid=" + sessionid + "&sessionresults=" + sessionresults + "&successindicator=" + sessionsuccessIndicator + "&sessionversion=" + sessionsessionVersion + "&sessionupdate=" + sessionupdatestatus + "&orderid=" + orderid + "&desc=" + desc + "&amount=" + amount + "&cancelpage="+ Session["cancelpage"].ToString()+ "");
                 }
             }
         }
@@ -165,7 +165,6 @@ namespace SIS_Student
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             SessionCreate(orderid, amount, description);
         }
-
         private void showmsg(string sMsg)
         {
 
