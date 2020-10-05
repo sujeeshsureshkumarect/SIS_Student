@@ -83,8 +83,9 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Excuse Form<br />
-                                               نموذج تقديم عذر غياب
+                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">
+                                                Excuse Form<br />
+                                                نموذج تقديم عذر غياب
                                             </p>
                                         </td>
                                     </tr>
@@ -158,7 +159,7 @@
                                             <b>رقم الموبايل</b>
                                         </td>
                                     </tr>
-                                      <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Major</b>
                                         </td>
@@ -171,20 +172,20 @@
                                     </tr>
                                 </table>
                                 <hr />
-                                              <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Excuses Dates<span style="color: red">*</span></b>
                                         </td>
-                                        <td >
-                                            <asp:Label ID="Label1" runat="server" Text="From" ></asp:Label>
+                                        <td>
+                                            <asp:Label ID="Label1" runat="server" Text="From"></asp:Label>
                                             <asp:TextBox ID="txt_From" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Date Required" ControlToValidate="txt_From" ForeColor="Red" ValidationGroup="no">
+                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Date Required" ControlToValidate="txt_From" ForeColor="Red" ValidationGroup="no">
                                             </asp:RequiredFieldValidator>
                                             <br />
                                             <asp:Label ID="Label2" runat="server" Text="To"></asp:Label>
                                             <asp:TextBox ID="txt_To" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Date Required" ControlToValidate="txt_To" ForeColor="Red" ValidationGroup="no">
+                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Date Required" ControlToValidate="txt_To" ForeColor="Red" ValidationGroup="no">
                                             </asp:RequiredFieldValidator>
                                             <asp:CompareValidator ID="CompareValidator1" ValidationGroup="no" ForeColor="Red"
                                                 runat="server" ControlToValidate="txt_From" ControlToCompare="txt_To"
@@ -199,7 +200,7 @@
                                             <b>Request Details</b>
                                         </td>
                                         <td align="center">
-                                           <asp:CheckBox runat="server" ID="chk_Request" Text="&nbsp;&nbsp;Re-examination letter requested (طلب إعادة فحص الخطاب)"/>
+                                            <asp:CheckBox runat="server" ID="chk_Request" Text="&nbsp;&nbsp;Re-examination letter requested (طلب إعادة فحص الخطاب)" />
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الرقم الجامعي</b>
@@ -210,14 +211,14 @@
                                             <b>Requested Letters<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                              <asp:CheckBoxList ID="chk_Courses" runat="server"></asp:CheckBoxList> 
-                               <asp:CustomValidator ID="CustomValidator1" ErrorMessage="*Please select at least one course."
-    ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" Display="Dynamic" ValidationGroup="no"/>
+                                            <asp:CheckBoxList ID="chk_Courses" runat="server"></asp:CheckBoxList>
+                                            <asp:CustomValidator ID="CustomValidator1" ErrorMessage="*Please select at least one course."
+                                                ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" Display="Dynamic" ValidationGroup="no" />
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>رقم الموبايل</b>
                                         </td>
-                                    </tr>    
+                                    </tr>
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
@@ -232,7 +233,7 @@
                                             <b>الرسوم</b>
                                         </td>
                                     </tr>
-                                      <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Remarks</b>
                                         </td>
@@ -243,26 +244,23 @@
                                             <b>ملاحظات</b>
                                         </td>
                                     </tr>
-                                    <tr>
+                             <%--       <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Proof of Payment</b><br />
-                                           
+
                                         </td>
                                         <td align="center">
-                                            <asp:FileUpload ID="flp_Upload" runat="server"/>
-                                            <br /> <small style="color:red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>
-                                           <%-- <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Document Required (.pdf/.jpg/.png)" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>--%>
-                                           <%-- <br />
-                                              <asp:RegularExpressionValidator id="RegularExpressionValidator1" runat="server" ErrorMessage="Only PDF,JPG,PNG files are allowed!" ValidationExpression="^([a-z]|[A-Z]|[0-9]|[ ]|[-]|[_]|[(0-9)+]+)+\.(jpg|JPG|JPEG|jpeg|png|PNG|pdf|PDF)$" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no"></asp:RegularExpressionValidator>--%>
+                                            <asp:FileUpload ID="flp_Upload" runat="server" />
+                                            <br />
+                                            <small style="color: red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>إثبات دفع</b><br />                                            
+                                            <b>إثبات دفع</b><br />
                                         </td>
-                                    </tr>
+                                    </tr>--%>
                                 </table>
-                                <asp:HiddenField ID="hdf_Price" runat="server" Visible="false"/>
-                                 <asp:HiddenField ID="hdf_StudentEmail" runat="server" Visible="false"/>
+                                <asp:HiddenField ID="hdf_Price" runat="server" Visible="false" />
+                                <asp:HiddenField ID="hdf_StudentEmail" runat="server" Visible="false" />
                                 <br />
                                 <asp:LinkButton ID="lnk_Generate" runat="server" CssClass="btn btn-success btn-sm" ValidationGroup="no" OnClick="lnk_Generate_Click"><i class="fa fa-send"> </i> Generate Request</asp:LinkButton>
                             </div>

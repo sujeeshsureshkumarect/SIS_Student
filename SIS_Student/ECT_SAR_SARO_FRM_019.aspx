@@ -251,7 +251,7 @@
                                             <b><span style="color: red">*</span>ملاحظات</b>
                                         </td>
                                     </tr>
-                                    <tr>
+                                 <%--   <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Proof of Payment<span style="color: red">*</span></b><br />
                                            
@@ -260,19 +260,17 @@
                                             <asp:FileUpload ID="flp_Upload" runat="server"/>
                                             <br /> <small style="color:red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>
                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Document Required (.pdf/.jpg/.png)" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
-                                           <%-- <br />
-                                              <asp:RegularExpressionValidator id="RegularExpressionValidator1" runat="server" ErrorMessage="Only PDF,JPG,PNG files are allowed!" ValidationExpression="^([a-z]|[A-Z]|[0-9]|[ ]|[-]|[_]|[(0-9)+]+)+\.(jpg|JPG|JPEG|jpeg|png|PNG|pdf|PDF)$" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no"></asp:RegularExpressionValidator>--%>
+                                            </asp:RequiredFieldValidator>                                          
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>إثبات دفع</b><br />                                            
                                         </td>
-                                    </tr>
+                                    </tr>--%>
                                 </table>
                                 <asp:HiddenField ID="hdf_Price" runat="server" Visible="false"/>
                                  <asp:HiddenField ID="hdf_StudentEmail" runat="server" Visible="false"/>
                                 <br />
-                                <asp:LinkButton ID="lnk_Generate" runat="server" CssClass="btn btn-success btn-sm" ValidationGroup="no" OnClick="lnk_Generate_Click"><i class="fa fa-send"> </i> Generate Request</asp:LinkButton>
+                                <asp:LinkButton ID="lnk_Generate" runat="server" CssClass="btn btn-success btn-sm" ValidationGroup="no" OnClick="lnk_Generate_Click"><i class="fa fa-money"> </i> Proceed to Payment</asp:LinkButton>
                             </div>
                         </div>
                     </div>
