@@ -205,14 +205,14 @@ namespace SIS_Student
                 MyTable.Width = Unit.Percentage(100);
                 MyTable.BorderWidth = 1;
                 MyTable.GridLines = GridLines.Horizontal;
-                MyTable.ID = "tblDetail";
+                //MyTable.ID = "tblDetail";
 
                 TableHeaderRow Hr = new TableHeaderRow();
                 TableHeaderCell Hc = new TableHeaderCell();
                 TableCell Hd = new TableCell();
 
                 Hc.ColumnSpan = 4;
-                Hc.Text = "Student Information";
+                Hc.Text = "Student Info";
                 Hc.HorizontalAlign = HorizontalAlign.Center;
                 Hr.Cells.Add(Hc);
                 MyTable.Rows.Add(Hr);
@@ -594,8 +594,7 @@ namespace SIS_Student
                 {
                     sPath = "Images/Majors/GIF/" + myMirror.Mirror[i].sCourse + ".gif";
                     sTable += "<td><img alt='' src='" + sPath + "' /></td>";
-                    //sTable += "<td><img alt='' src='" + sPath + "' data-toggle='modal' data-target='.bs-example-modal-sm'/></td>";
-                    //sTable += "<td style='height: 100px;max-width: 30px;'><div style='transform: rotate(270deg);'>" + myMirror.Mirror[i].sCourse + "</div></td>";
+
                 }
                 sTable += "</tr>";
                 sTable += "<tr>";
@@ -636,7 +635,7 @@ namespace SIS_Student
                 {
                     sPath = "Images/Majors/GIF/" + myMirror.Mirror[i].sCourse + ".gif";
                     sTable += "<td><img alt='' src='" + sPath + "' /></td>";
-                    //sTable += "<td style='height: 100px;max-width: 30px;'><div style='transform: rotate(270deg);'>" + myMirror.Mirror[i].sCourse + "</div></td>";
+                    
                 }
                 sTable += "</tr>";
                 sTable += "<tr>";

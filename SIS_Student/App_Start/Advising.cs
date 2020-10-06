@@ -240,7 +240,7 @@ public class Advising
                     //|| myMirror[0].Mirror[i].sGrade == "@S1" || myMirror[0].Mirror[i].sGrade == "@S2"
 
                     //Current Semester Reg Cosidered as Passed
-                    string sCSemester = "@W";
+                    string sCSemester = "@S2";
                     //if reg year semester > current semester
                     switch (Semester)
                     {
@@ -418,7 +418,7 @@ public class Advising
                 isLow = false;
                 isEmpty = false;
 
-                string sCSemester = "@W";
+                string sCSemester = "@S2";
 
                 switch (Semester)
                 {
@@ -455,7 +455,7 @@ public class Advising
 
                 iCredit = myMirror[i].iCredit;
                 isOver = (iHours + iCredit > iSemMax);
-                if (isRecommended && (iHours + iCredit <= (iSemMax + 6)))//changed to 1 for summer//add 3 course as alternative
+                if (isRecommended && (iHours + iCredit <= (iSemMax + 9)))//changed to 1 for summer//add 3 course as alternative
                 {
                     //Not Registered
 
