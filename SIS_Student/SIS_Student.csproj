@@ -6085,6 +6085,7 @@
     <Content Include="Student_Services_HostedCheckOut.aspx" />
     <Content Include="Student_Services_HostedPayment.aspx" />
     <Content Include="Student_Services_HostedResult.aspx" />
+    <Content Include="TestPage.aspx" />
     <Content Include="Upload\1001.jpg" />
     <Content Include="Upload\1002.jpg" />
     <Content Include="Upload\1004.jpg" />
@@ -6484,10 +6485,10 @@
       <DependentUpon>Recommended_Report3.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\StudentTimeTable_eBooksRPT.cs">
+    <Compile Include="Reports\Student_Services_Payment_Receipt.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentTimeTable_eBooksRPT.rpt</DependentUpon>
+      <DependentUpon>Student_Services_Payment_Receipt.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Site.Master.cs">
@@ -6567,6 +6568,13 @@
     <Compile Include="Student_Services_HostedResult.aspx.designer.cs">
       <DependentUpon>Student_Services_HostedResult.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="verification.aspx.cs">
       <DependentUpon>verification.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6626,9 +6634,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Recommended_Report3.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\StudentTimeTable_eBooksRPT.rpt">
+    <EmbeddedResource Include="Reports\Student_Services_Payment_Receipt.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>StudentTimeTable_eBooksRPT.cs</LastGenOutput>
+      <LastGenOutput>Student_Services_Payment_Receipt.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

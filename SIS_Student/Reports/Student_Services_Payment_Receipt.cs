@@ -16,14 +16,14 @@ namespace SIS_Student.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class StudentTimeTable_eBooksRPT : ReportClass {
+    public class Student_Services_Payment_Receipt : ReportClass {
         
-        public StudentTimeTable_eBooksRPT() {
+        public Student_Services_Payment_Receipt() {
         }
         
         public override string ResourceName {
             get {
-                return "StudentTimeTable_eBooksRPT.rpt";
+                return "Student_Services_Payment_Receipt.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace SIS_Student.Reports {
         
         public override string FullResourceName {
             get {
-                return "SIS_Student.Reports.StudentTimeTable_eBooksRPT.rpt";
+                return "SIS_Student.Reports.Student_Services_Payment_Receipt.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace SIS_Student.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedStudentTimeTable_eBooksRPT : Component, ICachedReport {
+    public class CachedStudent_Services_Payment_Receipt : Component, ICachedReport {
         
-        public CachedStudentTimeTable_eBooksRPT() {
+        public CachedStudent_Services_Payment_Receipt() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace SIS_Student.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            StudentTimeTable_eBooksRPT rpt = new StudentTimeTable_eBooksRPT();
+            Student_Services_Payment_Receipt rpt = new Student_Services_Payment_Receipt();
             rpt.Site = this.Site;
             return rpt;
         }
