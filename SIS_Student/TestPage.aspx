@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <img src="images/ECT Logo.png" style="height:100%;width:30%;margin-left: auto;margin-right: auto; display: block;"/>
         </div>
     </form>
 </body>

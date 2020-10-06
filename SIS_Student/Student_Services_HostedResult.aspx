@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Student_Services_HostedResult.aspx.cs" Inherits="SIS_Student.Student_Services_HostedResult" MasterPageFile="~/Student.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Student_Services_HostedResult.aspx.cs" Inherits="SIS_Student.Student_Services_HostedResult" MasterPageFile="~/Student.Master" EnableEventValidation="false"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
@@ -58,6 +58,7 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">
+                                           
                                                <div class="x_content bs-example-popovers" id="div_msg1" runat="server" visible="false">
 
                                     <div class="alert alert-success alert-dismissible " role="alert">
@@ -170,11 +171,12 @@
             </table>
         </div>
     </div>
-
+                                                </div>
+<%--<asp:LinkButton ID="Print_btn" runat="server" CssClass="btn btn-success btn-sm pull-right" style="margin-right: 5px;" OnClick="Print_btn_Click" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print as PDF" Visible="false"><i class="fa fa-print"></i> Print as PDF</asp:LinkButton>                                       --%>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
     </asp:Content>
