@@ -24,7 +24,7 @@ namespace SIS_Student
         }
         protected void btn_Login_Click(object sender, EventArgs e)
         {
-            if (txtUser.Text == "ihabadm" || txtUser.Text == "mousah" || txtUser.Text == "Suhib" || txtUser.Text == "ESM2009001")
+            if (txtUser.Text == "ihabadm" || txtUser.Text == "mousah" || txtUser.Text == "Suhib" || txtUser.Text == "MohammadShaath" || txtUser.Text == "ESM2009001")
             {
                 try
                 {
