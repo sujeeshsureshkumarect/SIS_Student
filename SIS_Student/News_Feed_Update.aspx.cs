@@ -19,7 +19,7 @@ using System.IO;
 
 namespace SIS_Student
 {
-    public partial class News_Feed_Create : System.Web.UI.Page
+    public partial class News_Feed_Update : System.Web.UI.Page
     {
         InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Females;
         int CurrentRole = 0;
@@ -71,7 +71,11 @@ namespace SIS_Student
                     sName = Session["CurrentStudentName"].ToString();
                     if (!IsPostBack)
                     {
-
+                        string id = Request.QueryString["id"];
+                        if (id != null)
+                        {
+                            bindnewsfeed(id);
+                        }
                     }
                 }
             }
@@ -85,7 +89,43 @@ namespace SIS_Student
             }
         }
 
+        public void bindnewsfeed(string id)
+        {
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+            SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
+            SqlCommand cmd = new SqlCommand("select * from ECT_SIS_News_Feed where iSerial=@iSerial", sc);
+            cmd.Parameters.AddWithValue("@iSerial", id);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                sc.Open();
+                da.Fill(dt);
+                sc.Close();
 
+                if (dt.Rows.Count > 0)
+                {
+                    txt_Header.Text = dt.Rows[0]["sHeader"].ToString();
+                    txt_Detail.Text = dt.Rows[0]["sDetail"].ToString();
+                    txt_Link.Text = dt.Rows[0]["sLink"].ToString();
+                    txt_Date.Text = Convert.ToDateTime(dt.Rows[0]["dDate"]).ToString("dd/MM/yyyy");
+                    HyperLink1.NavigateUrl = dt.Rows[0]["sAttachment"].ToString();
+                    HyperLink1.Text = dt.Rows[0]["sAttachment"].ToString();
+                    bool isActive =Convert.ToBoolean(dt.Rows[0]["isActive"]);
+                    int boolInt = isActive ? 1 : 0;
+                    drp_Status.SelectedIndex = drp_Status.Items.IndexOf(drp_Status.Items.FindByValue(boolInt.ToString()));
+                }
+            }
+            catch (Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine("{0} Exception caught.", ex);
+            }
+            finally
+            {
+                sc.Close();
+            }
+        }
         public void ClearSession()
         {
             Session["CurrentUserName"] = null;
@@ -113,7 +153,7 @@ namespace SIS_Student
             Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
             SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
 
-            SqlCommand cmd = new SqlCommand("insert into ECT_SIS_News_Feed values(@sHeader,@sDetail,@dDate,@sLink,@sAttachment,@isActive,@sUser,@dCreated)", sc);
+            SqlCommand cmd = new SqlCommand("update ECT_SIS_News_Feed set sHeader=@sHeader,sDetail=@sDetail,dDate=@dDate,sLink=@sLink,sAttachment=@sAttachment,isActive=@isActive,sUser=@sUser,dCreated=@dCreated where iSerial=@iSerial", sc);
             cmd.Parameters.AddWithValue("@sHeader", txt_Header.Text.Trim());
             cmd.Parameters.AddWithValue("@sDetail", txt_Detail.Text.Trim());
             DateTime date = DateTime.ParseExact(txt_Date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -127,23 +167,28 @@ namespace SIS_Student
                 flp_Upload.SaveAs(Server.MapPath("~/NewsFeed/" + filename));
                 path = "NewsFeed/" + filename;
             }
+            else
+            {
+                path = HyperLink1.NavigateUrl;
+            }
             cmd.Parameters.AddWithValue("@sAttachment", path);
-            cmd.Parameters.AddWithValue("@isActive",drp_Status.SelectedItem.Value);
+            cmd.Parameters.AddWithValue("@isActive", drp_Status.SelectedItem.Value);
             cmd.Parameters.AddWithValue("@sUser", sName);
             cmd.Parameters.AddWithValue("@dCreated", DateTime.Now);
+            cmd.Parameters.AddWithValue("@iSerial", Request.QueryString["id"]);
             try
             {
                 sc.Open();
                 cmd.ExecuteNonQuery();
                 sc.Close();
 
-                txt_Header.Text = "";
-                txt_Detail.Text = "";
-                txt_Link.Text = "";
-                txt_Date.Text = "";
+                //txt_Header.Text = "";
+                //txt_Detail.Text = "";
+                //txt_Link.Text = "";
+                //txt_Date.Text = "";
                 div_msg.Visible = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 sc.Close();
                 Console.WriteLine("{0} Exception caught.", ex);

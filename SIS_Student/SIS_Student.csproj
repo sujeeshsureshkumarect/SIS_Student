@@ -5989,6 +5989,7 @@
     <Content Include="MyTimeTable.aspx" />
     <Content Include="News_Feed_Create.aspx" />
     <Content Include="News_Feed_Home.aspx" />
+    <Content Include="News_Feed_Update.aspx" />
     <Content Include="Reports\Recommended_Add_Drop_Report.rpt.exclude" />
     <Content Include="Reports\Recommended_Report.rpt.exclude" />
     <Content Include="Reports\Recommended_Report2.rpt.exclude" />
@@ -6465,6 +6466,13 @@
     </Compile>
     <Compile Include="News_Feed_Home.aspx.designer.cs">
       <DependentUpon>News_Feed_Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="News_Feed_Update.aspx.cs">
+      <DependentUpon>News_Feed_Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News_Feed_Update.aspx.designer.cs">
+      <DependentUpon>News_Feed_Update.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlainPage.aspx.cs">
       <DependentUpon>PlainPage.aspx</DependentUpon>

@@ -46,7 +46,7 @@
                                                     !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
                                                 </script>                                                
                                             </div> 
-                                            <div class="col-md-8">
+                                            <div class="col-md-8" style="width:100%;overflow-y:scroll;max-height:550px;">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>ECT Announcements</h2>
@@ -66,54 +66,29 @@
 
                         <!-- end of user messages -->
                         <ul class="messages">
-                          <li>
-                            <img src="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">16</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">PERSONALIZED MEDICINE AND NOVEL THERAPY DATE MAY 18 2020</h4>
-                              <blockquote class="message">Every person has a unique variation of the human genome. Although most of the variation between individuals has no effect on health...</blockquote>
-                              <br>
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <img src="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-error">9</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">ECT would like to express its sincere gratitude to UAE’s international Aikido coach</h4>
-                              <blockquote class="message">Emirates College of Technology would like to express its sincere gratitude to UAE's international Aikido coach “Captain Dhiyab Al-Asiri” for his great performance on our digital platform...</blockquote>
-                              <br>
-                              <p class="url">
-                                <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                <a href="#" data-original-title="">Download</a>
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <img src="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">17</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">President Sabouni Weekly-Message Wk9 -17 May 2020</h4>
-                              <blockquote class="message">Greetings to you all in this weekly briefing which marks the completion of two months of full successful operation in “distance working & learning”. I pray to the Almighty God that you are all doing well and in good health...</blockquote>
-                              <br>
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                              </p>
-                            </div>
-                          </li>
+                            <asp:Repeater ID="RepeaterNews" runat="server">
+                                <HeaderTemplate></HeaderTemplate>
+                                <ItemTemplate>
+                                    <li>
+                                        <img src="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" class="avatar" alt="Avatar">
+                                        <div class="message_date">
+                                            <h3 class="date text-info"><%# Eval("dDate", "{0:dd}") %></h3>
+                                            <p class="month"><%# Eval("dDate", "{0:MMM}") %></p>
+                                            <p class="month"><%# Eval("dDate", "{0:yyyy}") %></p>
+                                        </div>
+                                        <div class="message_wrapper">
+                                            <h4 class="heading"><a href="<%#Eval("sLink") %>" target="_blank"><%#Eval("sHeader") %></a></h4>
+                                            <blockquote class="message" style="text-align: justify;text-justify: inter-word;"><%#Eval("sDetail") %>...</blockquote>
+                                            <br>
+                                            <p class="url">
+                                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                                <a href="<%#Eval("sAttachment") %>" target="_blank"><i class="fa fa-paperclip"></i> <%#Eval("sAttachment") %></a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ItemTemplate>
+                                <FooterTemplate></FooterTemplate>
+                            </asp:Repeater>
                         </ul>
                         <!-- end of user messages -->
 
