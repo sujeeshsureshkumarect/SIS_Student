@@ -124,7 +124,7 @@ namespace SIS_Student
                     lbl_Msg.Text = "You are not allowed to generate this request at this time (Only for Graduated Students)";
                     lbl_Msg.Visible = true;
                     div_msg.Visible = true;
-                    //lnk_Generate.Enabled = false;
+                    lnk_Generate.Enabled = false;
                 }
             }
 
