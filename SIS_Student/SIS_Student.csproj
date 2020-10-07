@@ -5987,6 +5987,8 @@
     <Content Include="App_Start\TimeTableOLD.cs.exclude" />
     <Content Include="images\Icons\vssver2.scc" />
     <Content Include="MyTimeTable.aspx" />
+    <Content Include="News_Feed_Create.aspx" />
+    <Content Include="News_Feed_Home.aspx" />
     <Content Include="Reports\Recommended_Add_Drop_Report.rpt.exclude" />
     <Content Include="Reports\Recommended_Report.rpt.exclude" />
     <Content Include="Reports\Recommended_Report2.rpt.exclude" />
@@ -6450,6 +6452,20 @@
     <Compile Include="MyTimeTable.aspx.designer.cs">
       <DependentUpon>MyTimeTable.aspx</DependentUpon>
     </Compile>
+    <Compile Include="News_Feed_Create.aspx.cs">
+      <DependentUpon>News_Feed_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News_Feed_Create.aspx.designer.cs">
+      <DependentUpon>News_Feed_Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="News_Feed_Home.aspx.cs">
+      <DependentUpon>News_Feed_Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News_Feed_Home.aspx.designer.cs">
+      <DependentUpon>News_Feed_Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PlainPage.aspx.cs">
       <DependentUpon>PlainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6595,6 +6611,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="NewsFeed\" />
     <Folder Include="StudentAcceptance\" />
     <Folder Include="StudentDocs\" />
   </ItemGroup>
