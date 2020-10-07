@@ -5,6 +5,7 @@
 <head>
     <title>Emirates College of Technology: Log in to the site</title>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
     <link rel="shortcut icon" href="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" />
@@ -35,7 +36,7 @@
     <div class="container-login100" style="background-image: url('Login_v9/images/bg_02.jpg');">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
             <form class="login100-form validate-form" runat="server">
-                <img src="images/ECT Logo.png" / style="height:100%;width:100%">
+                <img src="images/ECT Logo.png" style="height:100%;width:100%">
                 <span class="login100-form-title p-b-37">
                 </span>
 
@@ -85,6 +86,7 @@
   position: fixed;
   bottom: 0;
   width: 70%;
+  left:15%;
 }
 
 .navbar a {

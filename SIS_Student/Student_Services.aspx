@@ -107,7 +107,7 @@
     .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgb(42 63 84);
+    background-color: #2a3f54;
     border-bottom: 1px solid rgba(0,0,0,.125);
     color: #ECF0F1 !important;
 }
