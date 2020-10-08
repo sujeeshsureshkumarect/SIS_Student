@@ -92,7 +92,7 @@ namespace SIS_Student
         public void bindnewsfeed(string id)
         {
             Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
-            SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
             SqlCommand cmd = new SqlCommand("select * from ECT_SIS_News_Feed where iSerial=@iSerial", sc);
             cmd.Parameters.AddWithValue("@iSerial", id);
             DataTable dt = new DataTable();
@@ -151,7 +151,7 @@ namespace SIS_Student
         protected void btn_Create_Click(object sender, EventArgs e)
         {
             Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
-            SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
 
             SqlCommand cmd = new SqlCommand("update ECT_SIS_News_Feed set sHeader=@sHeader,sDetail=@sDetail,dDate=@dDate,sLink=@sLink,sAttachment=@sAttachment,isActive=@isActive,sUser=@sUser,dCreated=@dCreated where iSerial=@iSerial", sc);
             cmd.Parameters.AddWithValue("@sHeader", txt_Header.Text.Trim());

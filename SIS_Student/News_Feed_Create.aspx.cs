@@ -111,7 +111,7 @@ namespace SIS_Student
         protected void btn_Create_Click(object sender, EventArgs e)
         {
             Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
-            SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
 
             SqlCommand cmd = new SqlCommand("insert into ECT_SIS_News_Feed values(@sHeader,@sDetail,@dDate,@sLink,@sAttachment,@isActive,@sUser,@dCreated)", sc);
             cmd.Parameters.AddWithValue("@sHeader", txt_Header.Text.Trim());

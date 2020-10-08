@@ -82,7 +82,7 @@
                                             <br>
                                             <p class="url">
                                                 <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                <a href="<%#Eval("sAttachment") %>" target="_blank"><i class="fa fa-paperclip"></i> <%#Eval("sAttachment") %></a>
+                                                <a href="<%#Eval("sAttachment") %>" target="_blank" style="color: blue;"><u><i class="fa fa-paperclip"></i> <%#Eval("sAttachment") %></u></a>
                                             </p>
                                         </div>
                                     </li>

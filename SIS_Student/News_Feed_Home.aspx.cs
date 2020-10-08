@@ -35,6 +35,15 @@ namespace SIS_Student
 
                     iRegYear = (int)Session["RegYear"];
                     iRegSem = (int)Session["RegSemester"];
+                    //if(CurrentRole == 165 || CurrentRole==91)
+                    //{
+
+                    //}
+                    //else
+                    //{
+                    //    Session["errMsg"] = "You don't have access to view this page. Please contact Administrator.";
+                    //    Response.Redirect("ErrPage.aspx");
+                    //}
                 }
                 else
                 {
@@ -67,8 +76,10 @@ namespace SIS_Student
                 {
                     sNo = Session["CurrentStudent"].ToString();
                     sName = Session["CurrentStudentName"].ToString();
+
                     if (!IsPostBack)
                     {
+                        bindcount();
                         bindtotal();
                     }
                 }
@@ -110,7 +121,7 @@ namespace SIS_Student
         public void bindtotal()
         {
             Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
-            SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
 
             SqlCommand cmd = new SqlCommand("select * from ECT_SIS_News_Feed", sc);
             DataTable dt = new DataTable();
@@ -123,6 +134,96 @@ namespace SIS_Student
 
                 Repeater1.DataSource = dt;
                 Repeater1.DataBind();
+            }
+            catch(Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine("{0} Exception caught.", ex);
+            }
+            finally
+            {
+                sc.Close();
+            }
+        }
+
+        protected void LinkButton8_Click(object sender, EventArgs e)
+        {
+            bindtotal();
+        }
+
+        protected void LinkButton9_Click(object sender, EventArgs e)
+        {
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
+
+            SqlCommand cmd = new SqlCommand("select * from ECT_SIS_News_Feed where isActive='1'", sc);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                sc.Open();
+                da.Fill(dt);
+                sc.Close();
+
+                Repeater1.DataSource = dt;
+                Repeater1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine("{0} Exception caught.", ex);
+            }
+            finally
+            {
+                sc.Close();
+            }
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
+
+            SqlCommand cmd = new SqlCommand("select * from ECT_SIS_News_Feed where isActive='0'", sc);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                sc.Open();
+                da.Fill(dt);
+                sc.Close();
+
+                Repeater1.DataSource = dt;
+                Repeater1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine("{0} Exception caught.", ex);
+            }
+            finally
+            {
+                sc.Close();
+            }
+        }
+
+        public void bindcount()
+        {
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+            SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
+
+            SqlCommand cmd = new SqlCommand("select count(iSerial) as Total from ECT_SIS_News_Feed;  select  count(iSerial) as Active from ECT_SIS_News_Feed where isActive='1';  select count(iSerial) as Inactive from ECT_SIS_News_Feed where isActive='0'", sc);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                sc.Open();
+                da.Fill(ds);
+                sc.Close();
+
+                lbl_total.Text = ds.Tables[0].Rows[0]["Total"].ToString();
+                lbl_Active.Text = ds.Tables[1].Rows[0]["Active"].ToString();
+                lbl_Inactive.Text = ds.Tables[2].Rows[0]["Inactive"].ToString();
             }
             catch(Exception ex)
             {

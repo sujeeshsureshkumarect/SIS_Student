@@ -80,7 +80,15 @@ namespace SIS_Student
                 }
                 lblUser.Text = Session["CurrentStudentName"].ToString();
                 lblUser1.Text = Session["CurrentStudentName"].ToString();
-                getprofilepic();
+                //if (Session["CurrentStudent"] == null)
+                //{
+                   
+                //}
+                //else
+                //{
+                    getprofilepic();
+                //}
+               
             }
 
            

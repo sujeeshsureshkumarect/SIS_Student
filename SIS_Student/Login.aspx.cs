@@ -159,48 +159,57 @@ namespace SIS_Student
                     iRole = myUserDAL.GetUserRole(iUserNo, iSystem);
                     if (iRole > 0)
                     {
-                        Session["CurrentUserName"] = myUser.UserName;//txtUser.Text;
-                        Session["CurrentUserNo"] = iUserNo;
-                        CMPS = (InitializeModule.EnumCampus)iCampus;
-                        Session["CurrentYear"] = iYear;
-                        Session["CurrentSemester"] = iSem;
-                        Session["CurrentCampus"] = CMPS;
-                        Session["CurrentRole"] = iRole;
-                        Session["CurrentSystem"] = iSystem;
-                        Session["CurrentLecturer"] = iLecturer;
-                        Session["MarkYear"] = iMarkYear;
-                        Session["MarkSemester"] = iMarkSem;
-
-                        //server name
-                        Session["CurrentPCName"] = LibraryMOD.GetComputerName(Request.UserHostAddress);
-                        Session["CurrentNetUserName"] = LibraryMOD.GetCurrentNtUserName();
-
-
                         if (iRole == 105 || iRole == 111)
                         {
-                            Student_SearchDAL mySearch = new Student_SearchDAL();
 
-                            sNo = LibraryMOD.GetSIDFromUser((InitializeModule.EnumCampus)iCampus, iUserNo);
-                            //bool isEnable = Enable_Disable(sNo, (InitializeModule.EnumCampus)iCampus);
-                            //if (!isEnable)
-                            //{
-                            //    return false;
-                            //}
-
-                            sName = mySearch.Sync_Students_No((InitializeModule.EnumCampus)iCampus, sNo);
+                            Session["CurrentUserName"] = myUser.UserName;//txtUser.Text;
+                            Session["CurrentUserNo"] = iUserNo;
                             CMPS = (InitializeModule.EnumCampus)iCampus;
+                            Session["CurrentYear"] = iYear;
+                            Session["CurrentSemester"] = iSem;
                             Session["CurrentCampus"] = CMPS;
-                            Session["CurrentStudent"] = sNo;
-                            Session["CurrentStudentName"] = sName;
-                            Session["CurrentYear"] = Session["RegYear"];
-                            Session["CurrentSemester"] = Session["RegSemester"];
-                            int iCurrentMajorCampus = LibraryMOD.GetCurrentStCampus(sNo, (InitializeModule.EnumCampus)iCampus);
-                            Session["CurrentMajorCampus"] = iCurrentMajorCampus;
+                            Session["CurrentRole"] = iRole;
+                            Session["CurrentSystem"] = iSystem;
+                            Session["CurrentLecturer"] = iLecturer;
+                            Session["MarkYear"] = iMarkYear;
+                            Session["MarkSemester"] = iMarkSem;
 
+                            //server name
+                            Session["CurrentPCName"] = LibraryMOD.GetComputerName(Request.UserHostAddress);
+                            Session["CurrentNetUserName"] = LibraryMOD.GetCurrentNtUserName();
+
+
+                            if (iRole == 105 || iRole == 111)
+                            {
+                                Student_SearchDAL mySearch = new Student_SearchDAL();
+
+                                sNo = LibraryMOD.GetSIDFromUser((InitializeModule.EnumCampus)iCampus, iUserNo);
+                                //bool isEnable = Enable_Disable(sNo, (InitializeModule.EnumCampus)iCampus);
+                                //if (!isEnable)
+                                //{
+                                //    return false;
+                                //}
+
+                                sName = mySearch.Sync_Students_No((InitializeModule.EnumCampus)iCampus, sNo);
+                                CMPS = (InitializeModule.EnumCampus)iCampus;
+                                Session["CurrentCampus"] = CMPS;
+                                Session["CurrentStudent"] = sNo;
+                                Session["CurrentStudentName"] = sName;
+                                Session["CurrentYear"] = Session["RegYear"];
+                                Session["CurrentSemester"] = Session["RegSemester"];
+                                int iCurrentMajorCampus = LibraryMOD.GetCurrentStCampus(sNo, (InitializeModule.EnumCampus)iCampus);
+                                Session["CurrentMajorCampus"] = iCurrentMajorCampus;
+
+                            }
+
+                            isIt = true;
+                            //showmsg("Welcome ...  " + Session["CurrentStudentName"].ToString());
                         }
-
-                        isIt = true;
-                        //showmsg("Welcome ...  " + Session["CurrentStudentName"].ToString());
+                        else
+                        {
+                            isIt = false;
+                            lblMsg.Text = "Access Denied";
+                        }
                     }
                     else
                     {

@@ -37,11 +37,11 @@
                                 <div class="positionchane"><i class="glyphicon glyphicon-cog icon-white"></i></div>
                                 <div class="details">
                                     <div class="number">
-                                        <asp:Label ID="lbl_system" runat="server" Text="0"></asp:Label></div>
+                                        <asp:Label ID="lbl_total" runat="server" Text="0"></asp:Label></div>
                                     <div class="desc">Total </div>
                                 </div>
                                 <%--<a class="more" style=" background:#4D85B7 !important;color: #FFFFFF;" href="javascript:void(0);"> View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i> </a> --%>
-                                <asp:LinkButton ID="LinkButton8" runat="server" class="more" Style="background: #4D85B7 !important; color: #FFFFFF;"  Font-Underline="true">View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton8" runat="server" class="more" Style="background: #4D85B7 !important; color: #FFFFFF;" OnClick="LinkButton8_Click" Font-Underline="true">View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i></asp:LinkButton>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                                     <div class="desc">Active </div>
                                 </div>
                                 <%-- <a class="more" style=" background:#7B6A9A !important;color: #FFFFFF;" href="javascript:void(0);"> View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i> </a> --%>
-                                <asp:LinkButton ID="LinkButton9" runat="server" class="more" Style="background: #649035 !important; color: #FFFFFF;"  Font-Underline="true">View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton9" runat="server" class="more" Style="background: #649035 !important; color: #FFFFFF;" OnClick="LinkButton9_Click" Font-Underline="true">View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i></asp:LinkButton>
                             </div>
                         </div>
                     </div>  
@@ -70,12 +70,14 @@
                                         <asp:Label ID="lbl_Inactive" runat="server" Text="0"></asp:Label></div>
                                     <div class="desc">Inactive </div>
                                 </div>
-                                <asp:LinkButton ID="LinkButton3" runat="server" class="more" Font-Underline="true">View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton3" runat="server" class="more" OnClick="LinkButton3_Click" Font-Underline="true">View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i></asp:LinkButton>
                                 <%-- <a class="more" href="javascript:void(0);"> View More <i class="glyphicon glyphicon-circle-arrow-right" style="font-size:12px"></i> </a>--%>
                             </div>
                         </div>
                     </div>           
+                                            <a href="News_Feed_Create.aspx" style="float:right;" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i> Create New News Feed</a>
                                             <div class="clearfix"></div>
+                                             
                    <hr />
                          <div id="datatable_wrapper" class="table-responsive">
                      
@@ -143,13 +145,13 @@
                    table.rows[i].cells[3].innerHTML = '';
                }
                else {
-                   table.rows[i].cells[3].innerHTML = '<a href='+link+' target="_blank"><u>View</u></a>';
+                   table.rows[i].cells[3].innerHTML = '<a href=' + link +' target="_blank"><i class="fa fa-globe"></i> <u>View</u></a>';
                }  
                if (attachment == "") {
                    table.rows[i].cells[4].innerHTML = '';
                }
                else {
-                   table.rows[i].cells[4].innerHTML = '<a href=' + attachment + ' target="_blank"><u>View</u></a>';
+                   table.rows[i].cells[4].innerHTML = '<a href=' + attachment + ' target="_blank"><i class="fa fa-paperclip"></i> <u>View</u></a>';
                } 
                if (status == "True") {
                    table.rows[i].cells[5].innerHTML = '<span class="badge badge-success">Active</span>';

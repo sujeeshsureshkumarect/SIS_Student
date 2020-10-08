@@ -37,7 +37,7 @@ namespace SIS_Student
         {
             Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
             SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
-            SqlCommand cmd = new SqlCommand("select TOP (5) * from ECT_SIS_News_Feed where isActive=1 order by dDate desc", sc);
+            SqlCommand cmd = new SqlCommand("select TOP (5) * from ECT_SIS_News_Feed where isActive=1 order by dCreated desc", sc);
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             try
