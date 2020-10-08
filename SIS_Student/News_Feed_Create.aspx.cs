@@ -153,5 +153,10 @@ namespace SIS_Student
                 sc.Close();
             }
         }
+
+        protected void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("News_Feed_Home");
+        }
     }
 }

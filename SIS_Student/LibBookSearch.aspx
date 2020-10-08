@@ -158,17 +158,32 @@
             }
         }
 
-        $(function () {
-            $("#datatable tr").each(function (i, row) {
-                if ($(row).children("td#Status").html() == "Available") // Any condition here
-                {
-                    $(row).children("td#Status").html("<span class='badge badge-success'>Available</span>");
-                }
-                else if ($(row).children("td#Status").html() == "Borrowed") {
-                    $(row).children("td#Status").html("<span class='badge badge-danger'>Borrowed</span>");
-                }
-            });
-        });
+        //$(function () {
+        //    $("#datatable tr").each(function (i, row) {
+        //        if ($(row).children("td#Status").html() == "Available") // Any condition here
+        //        {
+        //            $(row).children("td#Status").html("<span class='badge badge-success'>Available</span>");
+        //        }
+        //        else if ($(row).children("td#Status").html() == "Borrowed") {
+        //            $(row).children("td#Status").html("<span class='badge badge-danger'>Borrowed</span>");
+        //        }
+        //    });
+        //});
     </script>
+   <script>
+       var table = document.getElementById("datatable");
+       if (table != null) {
+           for (var i = 1; i < table.rows.length; i++) {
+               var appr1 = table.rows[i].cells[10].textContent;
 
+
+               if (appr1 == "Available") {
+                   table.rows[i].cells[10].innerHTML = '<span class="badge badge-success">Available</span>';
+               }
+               else if (appr1 == "Borrowed") {
+                   table.rows[i].cells[10].innerHTML = '<span class="badge badge-danger">Borrowed</span>';
+               }                                              
+           }
+       }
+   </script>
 </asp:Content>
