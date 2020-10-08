@@ -133,6 +133,7 @@ namespace SIS_Student
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
                 hdf_ServiceDescEn.Value = dtStudentServices.Rows[0]["ServiceDescEn"].ToString()+" ("+ dtStudentServices.Rows[0]["ServiceDescAr"].ToString()+" )";
                 Session["FeesType"] = dtStudentServices.Rows[0]["FeesType"].ToString();
+                Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
             }
         }
         public void ClearSession()
@@ -216,7 +217,7 @@ namespace SIS_Student
             dr["Finance"] = "ihab.awad@ect.ac.ae";
             dr["FinanceAction"] = "Initiate";
             dr["FinanceNote"] = "";
-            dr["Host"] = "ihab.awad@ect.ac.ae";
+            dr["Host"] = "ihab.awad@ect.ac.ae";//Session["HostEmail"].ToString();
             dr["HostAction"] = "Initiate";
             dr["HostNote"] = "";
             dr["ProviderAction"] = "Initiate";

@@ -115,6 +115,7 @@ namespace SIS_Student
                                 Session["CurrentAccount"] = null;
                                 Session["cancelpage"] = null;
                                 Session["FeesType"] = null;
+                                Session["HostEmail"] = null;
                                 //Print_btn.Visible = true;
                             }
                         }
@@ -216,14 +217,14 @@ namespace SIS_Student
             myItem["ServiceID"] = CurrentdtSPList.Rows[0]["ServiceID"].ToString();
             myItem["Fees"] = CurrentdtSPList.Rows[0]["Fees"].ToString();
             //myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
-            myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
+            myItem["Requester"] = clientContext.Web.EnsureUser(CurrentdtSPList.Rows[0]["Requester"].ToString());
             myItem["StudentID"] = CurrentdtSPList.Rows[0]["StudentID"].ToString();
             myItem["StudentName"] = CurrentdtSPList.Rows[0]["StudentName"].ToString();
             myItem["Contact"] = CurrentdtSPList.Rows[0]["Contact"].ToString();
             myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
             myItem["FinanceAction"] = CurrentdtSPList.Rows[0]["FinanceAction"].ToString();
             myItem["FinanceNote"] = "";
-            myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["Host"] = clientContext.Web.EnsureUser(CurrentdtSPList.Rows[0]["Host"].ToString());
             myItem["HostAction"] = CurrentdtSPList.Rows[0]["HostAction"].ToString();
             myItem["HostNote"] = "";
             //myItem["Provider"] = "";

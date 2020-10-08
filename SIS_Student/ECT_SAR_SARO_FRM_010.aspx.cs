@@ -156,6 +156,7 @@ namespace SIS_Student
                 lbl_ServiceNameAr.Text = dtStudentServices.Rows[0]["ServiceAr"].ToString();
                 lbl_Fess.Text = "AED " + Convert.ToDouble(dtStudentServices.Rows[0]["Sum"]).ToString("N");
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
+                Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
             }
         }
         public void ClearSession()
@@ -227,7 +228,7 @@ namespace SIS_Student
             myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
             myItem["FinanceAction"] = "Initiate";
             myItem["FinanceNote"] = "";
-            myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");//Session["HostEmail"].ToString();
             myItem["HostAction"] = "Initiate";
             myItem["HostNote"] = "";
             //myItem["Provider"] = "";

@@ -230,6 +230,20 @@ namespace SIS_Student
             Session["myBookSearch"] = null;
             Session["BooksBasket"] = null;
             Session["LibarayBooks"] = null;
+            Session["HostEmail"] = null;
+            Session["PmtSession"] = null;
+            Session["PmtOrder"] = null;
+            Session["PmtResultIndicator"] = null;
+            Session["PmtResult"] = null;
+            Session["PmtDesc"] = null;
+            Session["PmtAmount"] = null;
+            Session["CurrentService"] = null;
+            Session["CurrentServiceName"] = null;
+            Session["CurrentServiceAmount"] = null;
+            Session["CurrentdtSPList"] = null;
+            Session["CurrentAccount"] = null;
+            Session["cancelpage"] = null;
+            Session["FeesType"] = null;
         }
 
         protected void lnk_Logout_Click(object sender, EventArgs e)
