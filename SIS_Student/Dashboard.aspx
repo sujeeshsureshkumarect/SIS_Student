@@ -12,7 +12,10 @@
                                         width: 100%;
                                         float: left;
                                         display: block;
-                                    }                                    
+                                    }     
+                                    A[href=""], A[href="#"] {
+  display: none;
+}
                                 </style>
                                 <%--  <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -49,7 +52,7 @@
                                             <div class="col-md-8" style="width:100%;overflow-y:scroll;max-height:550px;">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>ECT Announcements</h2>
+                    <h2><i class="fa fa-volume-up"></i> ECT Announcements</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -77,8 +80,8 @@
                                             <p class="month"><%# Eval("dDate", "{0:yyyy}") %></p>
                                         </div>
                                         <div class="message_wrapper">
-                                            <h4 class="heading"><a href="<%#Eval("sLink") %>" target="_blank"><%#Eval("sHeader") %></a></h4>
-                                            <blockquote class="message" style="text-align: justify;text-justify: inter-word;"><%#Eval("sDetail") %>...</blockquote>
+                                            <h4 class="heading"><a href="<%#Eval("sLink") %>?header=link" target="_blank"><%#Eval("sHeader") %></a></h4>
+                                            <blockquote class="message" style="text-align: justify;text-justify: inter-word;"><%#Eval("sDetail") %></blockquote>
                                             <br>
                                             <p class="url">
                                                 <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
