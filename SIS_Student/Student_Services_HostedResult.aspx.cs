@@ -221,7 +221,7 @@ namespace SIS_Student
             myItem["StudentID"] = CurrentdtSPList.Rows[0]["StudentID"].ToString();
             myItem["StudentName"] = CurrentdtSPList.Rows[0]["StudentName"].ToString();
             myItem["Contact"] = CurrentdtSPList.Rows[0]["Contact"].ToString();
-            myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["Finance"] = clientContext.Web.EnsureUser(CurrentdtSPList.Rows[0]["Finance"].ToString());
             myItem["FinanceAction"] = CurrentdtSPList.Rows[0]["FinanceAction"].ToString();
             myItem["FinanceNote"] = "";
             myItem["Host"] = clientContext.Web.EnsureUser(CurrentdtSPList.Rows[0]["Host"].ToString());

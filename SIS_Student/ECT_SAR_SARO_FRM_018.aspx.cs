@@ -185,6 +185,7 @@ namespace SIS_Student
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
                 Session["FeesType"] = dtStudentServices.Rows[0]["FeesType"].ToString();
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
+                Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();
             }
         }
         public void ClearSession()
@@ -263,14 +264,14 @@ namespace SIS_Student
                 dr["RequestNote"] = txt_Remarks.Text.Trim();
                 dr["ServiceID"] = lbl_ServiceID.Text;
                 dr["Fees"] = hdf_Price.Value;
-                dr["Requester"] = "sujeesh.sureshkumar@ect.ac.ae";//hdf_StudentEmail.Value
+                dr["Requester"] = hdf_StudentEmail.Value;
                 dr["StudentID"] = lbl_StudentID.Text;
                 dr["StudentName"] = lbl_StudentName.Text;
                 dr["Contact"] = lbl_StudentContact.Text;
-                dr["Finance"] = "ihab.awad@ect.ac.ae";
+                dr["Finance"] = Session["FinanceEmail"].ToString();
                 dr["FinanceAction"] = "Initiate";
                 dr["FinanceNote"] = "";
-                dr["Host"] = "ihab.awad@ect.ac.ae";//Session["HostEmail"].ToString();
+                dr["Host"] = Session["HostEmail"].ToString();
                 dr["HostAction"] = "Initiate";
                 dr["HostNote"] = "";
                 dr["ProviderAction"] = "Initiate";

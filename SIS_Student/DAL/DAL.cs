@@ -22,7 +22,7 @@ namespace SIS_Student.DAL
         }
         public DataTable GetStudentServicesbyID(string serviceid)
         {
-            DataTable dt = GetData("SELECT     S.ServiceID, S.ServiceEn, S.ServiceAr, S.ServiceDescEn, S.ServiceDescAr, S.Audience, S.Host, S.HostDesc, S.FeesType, S.RequestList, S.RequestLink, S.ExampleLink, ISNULL(F.curAmount, 0) AS Fees, ISNULL(F.curVAT, 0) AS VAT,ISNULL((F.curAmount + F.curVAT),0) as Sum, S.DataNeeded FROM         ECT_Services AS S LEFT OUTER JOIN (SELECT     bytePaymentFor, curAmount, curVAT FROM          ECTData.dbo.Acc_Payment_For AS ACCP) AS F ON S.FeesType = F.bytePaymentFor where S.Audience='Students' and S.ServiceID='"+ serviceid + "' ORDER BY S.ServiceID asc");
+            DataTable dt = GetData("SELECT     S.Finance,S.ServiceID, S.ServiceEn, S.ServiceAr, S.ServiceDescEn, S.ServiceDescAr, S.Audience, S.Host, S.HostDesc, S.FeesType, S.RequestList, S.RequestLink, S.ExampleLink, ISNULL(F.curAmount, 0) AS Fees, ISNULL(F.curVAT, 0) AS VAT,ISNULL((F.curAmount + F.curVAT),0) as Sum, S.DataNeeded FROM         ECT_Services AS S LEFT OUTER JOIN (SELECT     bytePaymentFor, curAmount, curVAT FROM          ECTData.dbo.Acc_Payment_For AS ACCP) AS F ON S.FeesType = F.bytePaymentFor where S.Audience='Students' and S.ServiceID='"+ serviceid + "' ORDER BY S.ServiceID asc");
             return dt;
         }
 

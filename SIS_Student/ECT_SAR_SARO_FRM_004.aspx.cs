@@ -153,6 +153,7 @@ namespace SIS_Student
                 lbl_Fess.Text = "AED " + Convert.ToDouble(dtStudentServices.Rows[0]["Sum"]).ToString("N");
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
+                Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();
             }
         }
         public void ClearSession()
@@ -214,15 +215,15 @@ namespace SIS_Student
             myItem["RequestNote"] = ""+ RadioButtonList1.SelectedItem.Value+ ";" + RadioButtonList2.SelectedItem.Value + ";" + RadioButtonList3.SelectedItem.Value + ";" + RadioButtonList4.SelectedItem.Value + "";
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
-            //myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
-            myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
+            myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
+            //myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
             myItem["StudentID"] = lbl_StudentID.Text;
             myItem["StudentName"] = lbl_StudentName.Text;
             myItem["Contact"] = lbl_StudentContact.Text;
-            myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["Finance"] = clientContext.Web.EnsureUser(Session["FinanceEmail"].ToString());
             myItem["FinanceAction"] = "Initiate";
             myItem["FinanceNote"] = "";
-            myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");//Session["HostEmail"].ToString();
+            myItem["Host"] = clientContext.Web.EnsureUser(Session["HostEmail"].ToString());//Session["HostEmail"].ToString();
             myItem["HostAction"] = "Initiate";
             myItem["HostNote"] = "";
             //myItem["Provider"] = "";
