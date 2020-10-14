@@ -84,7 +84,7 @@
                                     <tr>
                                         <td colspan="3">
                                             <p style="text-align: center; font-size: 23px; font-weight: bold;">Withdrawal from a Course Form<br />
-                                            الانسحاب من نموذج الدورة
+                                            نموذج طلب الانسحاب من مساق
                                             </p>
                                         </td>
                                     </tr>
@@ -170,7 +170,7 @@
                                      <asp:Label ID="lbl_CurrentMajor" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>الوضع المالي</b>
+                                            <b>التخصص</b>
                                         </td>
                                     </tr>
                                          <tr>
@@ -184,7 +184,7 @@
                                             <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>عنوان الدورة</b>
+                                            <b><span style="color: red">*</span>المساق</b>
                                         </td>
                                     </tr>
                                     <tr>
@@ -195,7 +195,7 @@
                                             <asp:Label ID="lbl_CourseCode" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>رمز المادة </b>
+                                            <b>رمز المساق</b>
                                         </td>
                                     </tr>  
                                                                      <tr>
@@ -206,7 +206,7 @@
                                             <asp:Label ID="lbl_Instructor" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>اســم مدرس المادة</b>
+                                            <b>اسم مدرس المساق</b>
                                         </td>
                                     </tr>
                                 </table>
@@ -228,7 +228,7 @@
                                             <b>Remarks<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Reason(s) for Withdrawal / سبب الإقلاع عن التدخين" Height="100px" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Reason(s) for Withdrawal / سبب الانسحاب" Height="100px" CssClass="form-control"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Reason Required" ControlToValidate="txt_Remarks" ForeColor="Red" ValidationGroup="no">
                                             </asp:RequiredFieldValidator>
                                         </td>
