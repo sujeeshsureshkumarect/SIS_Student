@@ -41,6 +41,9 @@
                         background-color: #4CAF50;
                         color: white;
                     }
+                    .td1 {
+                        width: 16%;
+                    }
                 </style>
             </div>
             <div class="clearfix"></div>
@@ -160,16 +163,80 @@
                                     </tr>
                                 </table>
                                 <hr />
-                                           <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                <asp:Repeater ID="RepterDetails" runat="server">
+                                    <HeaderTemplate>
+                                        <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details" id="tblContacts">
+
+
+
+                                            <tr>
+                                                <td align="center" style="background-color: #f2f2f2; color: #73879C;"><b>✅</b></td>
+                                                <td align="center" style="background-color: #f2f2f2; color: #73879C;"><b>Has an Exam in<br />
+                                                    (لديه\ لديها امتحان في مادة)</b></td>
+                                                <td align="center" style="background-color: #f2f2f2; color: #73879C;"><b>Course Code
+                                                    <br />
+                                                    (رمز المادة)</b></td>
+                                                <td align="center" style="background-color: #f2f2f2; color: #73879C;"><b>Instructor’s Name
+                                                    <br />
+                                                    (اســم مدرس المادة)</b></td>
+                                                <td align="center" style="background-color: #f2f2f2; color: #73879C;"><b>Exam Date <span style="color: red">*</span><br />
+                                                    (الموافق لتاريخ)</b></td>
+                                                <td align="center" style="background-color: #f2f2f2; color: #73879C;"><b>Time of Exam <span style="color: red">*</span><br />
+                                                    (الساعة)</b></td>
+                                            </tr>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td align="center">
+                                                <asp:CheckBox ID="chk" runat="server" /></td>
+                                            <td align="center">
+                                                <asp:Label ID="lbl_exam" runat="server" Text='<%#Eval("Course") %>'></asp:Label></td>
+                                            <td align="center">
+                                                <asp:Label ID="lbl_code" runat="server" Text='<%#Eval("Code") %>'></asp:Label></td>
+                                            <td align="center">
+                                                <asp:Label ID="lbl_instructor" runat="server" Text='<%#Eval("strLecturerDescEn") %>'></asp:Label></td>
+                                            <td align="center">
+                                                <asp:TextBox ID="txt_Date" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                                                <%--<asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Date Required" ControlToValidate="txt_Date" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>--%>
+                                            </td>
+                                            <td align="center">
+                                                <asp:TextBox ID="txt_Time" runat="server" TextMode="Time" CssClass="form-control"></asp:TextBox></td>
+                                        </tr>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </table>
+                                    
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="*Please select at least one Course."
+    ClientValidationFunction="Validate" ForeColor="Red" ValidationGroup="no" Display="Dynamic"></asp:CustomValidator>
+                                <script type="text/javascript">
+                                    function Validate(sender, args) {
+                                        var gridView = document.getElementById("tblContacts");
+                                        var checkBoxes = gridView.getElementsByTagName("input");
+                                        for (var i = 0; i < checkBoxes.length; i++) {
+                                            if (checkBoxes[i].type == "checkbox" && checkBoxes[i].checked) {
+                                                args.IsValid = true;
+                                                return;
+                                            }
+                                        }
+                                        args.IsValid = false;
+                                    }
+                                </script>
+
+                                <hr />
+
+                                <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Has an Exam in<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                           <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control" OnSelectedIndexChanged="drp_Course_SelectedIndexChanged" AutoPostBack="true" required>                                                
-                                           </asp:DropDownList>
-                                           
-                                            <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
+                                            <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control" OnSelectedIndexChanged="drp_Course_SelectedIndexChanged" AutoPostBack="true" required>
+                                            </asp:DropDownList>
+
+                                            <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no" />--%>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>لديه\ لديها امتحان في مادة</b>
@@ -186,46 +253,33 @@
                                             <b>رمز المادة </b>
                                         </td>
                                     </tr>
-                               <%--     <tr>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Exam Day</b>
-                                        </td>
-                                        <td align="center">
-                                            <asp:DropDownList ID="drp_ExamDay" runat="server" CssClass="form-control"> 
-                                                 <asp:ListItem Text="Sunday" Value="Sunday" />
-                                           </asp:DropDownList>
-                                        </td>
-                                        <td align="center" style="background-color: #f2f2f2;">
-                                            <b>وذلك يوم </b>
-                                        </td>
-                                    </tr>--%>
-                                                   <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Exam Date<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_ExamDate" runat="server" TextMode="Date" CssClass="form-control" required></asp:TextBox> 
-                                              <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Date Required" ControlToValidate="txt_ExamDate" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
+                                            <asp:TextBox ID="txt_ExamDate" runat="server" TextMode="Date" CssClass="form-control" required></asp:TextBox>
+                                            <%--<asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Date Required" ControlToValidate="txt_ExamDate" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>--%>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>الموافق لتاريخ  </b>
                                         </td>
                                     </tr>
-                                                   <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Time of Exam<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_ExamTime" runat="server" TextMode="Time" CssClass="form-control" required></asp:TextBox> 
-                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Time Required" ControlToValidate="txt_ExamTime" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>
+                                            <asp:TextBox ID="txt_ExamTime" runat="server" TextMode="Time" CssClass="form-control" required></asp:TextBox>
+                                           <%-- <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Time Required" ControlToValidate="txt_ExamTime" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>--%>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>الساعة  </b>
                                         </td>
                                     </tr>
-                                                   <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Instructor’s Name</b>
                                         </td>

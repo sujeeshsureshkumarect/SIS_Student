@@ -106,6 +106,9 @@ namespace SIS_Student
             DataTable dt = services.GetCoursesbyStudentId(studentid, connstr.Conn_string, iYear,iSem);
             if (dt.Rows.Count > 0)
             {
+                RepterDetails.DataSource = dt;
+                RepterDetails.DataBind();
+
                 drp_Course.DataSource = dt; 
                 drp_Course.DataTextField = "Course";  
                 drp_Course.DataValueField = "Code"; 
@@ -184,6 +187,23 @@ namespace SIS_Student
 
         protected void lnk_Generate_Click(object sender, EventArgs e)
         {
+            string request = "";
+            foreach (RepeaterItem item in RepterDetails.Items)
+            {
+                if (((CheckBox)item.FindControl("chk")).Checked)
+                {
+                    //Do something
+                    var lbl_exam = (Label)item.FindControl("lbl_exam") as Label;
+                    var lbl_code = (Label)item.FindControl("lbl_code") as Label;
+                    var lbl_instructor = (Label)item.FindControl("lbl_instructor") as Label;
+                    var txt_Date = (TextBox)item.FindControl("txt_Date") as TextBox;
+                    string day = Convert.ToDateTime(txt_Date.Text).ToString("dddd");
+                    var txt_Time = (TextBox)item.FindControl("txt_Time") as TextBox;
+                    request = request + "<b>Has an Exam in:</b> " + lbl_exam.Text + "<br/><b>Course Code:</b> " + lbl_code.Text + "<br/><b>Exam Day:</b> " + day + "<br/><b>Exam Date:</b> " + txt_Date.Text + "<br/><b>Time of Exam:</b> " + txt_Time.Text + "<br/><b>Instructor’s Name:</b> " + lbl_instructor.Text + "<br/><br/>";
+                }
+            }
+
+
             if (drp_Course.SelectedItem.Value != "---Select a Course---")
             {
                 //sentdatatoSPLIst();   
