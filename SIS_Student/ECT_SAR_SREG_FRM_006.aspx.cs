@@ -139,6 +139,16 @@ namespace SIS_Student
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
                 Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();
+                Session["LanguageOption"] = dtStudentServices.Rows[0]["LanguageOption"].ToString();
+
+                if (dtStudentServices.Rows[0]["LanguageOption"].ToString() == "True")
+                {
+                    tdlanguage.Visible = true;
+                }
+                else
+                {
+                    tdlanguage.Visible = false;
+                }
             }
         }
         public void ClearSession()
@@ -177,6 +187,12 @@ namespace SIS_Student
             int iSem = sem;
             string sSemester = LibraryMOD.GetSemesterString(iSem);
 
+            string languageoption = "";
+            if (Session["LanguageOption"].ToString() == "True")
+            {
+                languageoption = "<b>Language:</b> " + ddlLanguage.SelectedItem.Text + "";
+            }
+
             string login = "ets.services.admin@ect.ac.ae"; //give your username here  
             string password = "Ser71ces@328"; //give your password  
             var securePassword = new SecureString();
@@ -194,7 +210,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Plegde:</b> I, the undersigned, pledge to improve my GPA in the next semester up to 2.0 or more in order to achieve a good academic standing. Failing to do so, I will be given only one more chance (Final probation).<br/><b>Academic Advisor Name:</b> " + lbl_AcademicAdvisor.Text + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Plegde:</b> I, the undersigned, pledge to improve my GPA in the next semester up to 2.0 or more in order to achieve a good academic standing. Failing to do so, I will be given only one more chance (Final probation).<br/><b>Academic Advisor Name:</b> " + lbl_AcademicAdvisor.Text + "<br/>" + languageoption + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;

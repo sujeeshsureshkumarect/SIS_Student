@@ -212,6 +212,20 @@
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                    <tr id="tdlanguage" runat="server">
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Language</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:DropDownList runat="server" ID="ddlLanguage" CssClass="form-control">
+                                                <asp:ListItem Text="Arabic" Value="Arabic" Selected></asp:ListItem>
+                                                <asp:ListItem Text="English" Value="English" ></asp:ListItem>                                                
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>لغة</b>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Fees</b>

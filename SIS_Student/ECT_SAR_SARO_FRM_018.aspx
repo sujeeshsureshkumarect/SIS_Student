@@ -234,6 +234,20 @@
                                             <b>* قي حال تغيب الطالب عن إمتحان الإعادة يحق له إعادته مرة واحدة فقط بعد تقديم العذر المناسب وإذا تغيب عنه يحصل على علامة"F  " في المادة.</b></b>
                                         </td>
                                     </tr>
+                                    <tr id="tdlanguage" runat="server">
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Language</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:DropDownList runat="server" ID="ddlLanguage" CssClass="form-control">
+                                                <asp:ListItem Text="Arabic" Value="Arabic" Selected></asp:ListItem>
+                                                <asp:ListItem Text="English" Value="English" ></asp:ListItem>                                                
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>لغة</b>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Fees</b>

@@ -154,6 +154,16 @@ namespace SIS_Student
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
                 Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();
+                Session["LanguageOption"] = dtStudentServices.Rows[0]["LanguageOption"].ToString();
+
+                if (dtStudentServices.Rows[0]["LanguageOption"].ToString() == "True")
+                {
+                    tdlanguage.Visible = true;
+                }
+                else
+                {
+                    tdlanguage.Visible = false;
+                }
             }
         }
         public void ClearSession()
@@ -194,6 +204,12 @@ namespace SIS_Student
             int iSem = sem;
             string sSemester = LibraryMOD.GetSemesterString(iSem);
 
+            string languageoption = "";
+            if (Session["LanguageOption"].ToString() == "True")
+            {
+                languageoption = "<b>Language:</b> " + ddlLanguage.SelectedItem.Text + "";
+            }
+
             string login = "ets.services.admin@ect.ac.ae"; //give your username here  
             string password = "Ser71ces@328"; //give your password  
             var securePassword = new SecureString();
@@ -211,7 +227,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> " + lbl_CurrentMajor.Text + "<br/><b>Student Status Request:</b> " + drp_StatusReuqest.SelectedItem.Text + "<br/><b>Main Reason:</b> " + drp_MainReason.SelectedItem.Text + "<br/><b>Sub Reason: </b> " + drp_SubReason.SelectedItem.Text + "<br/><b>Remarks: </b> " + txt_Remarks.Text.Trim() + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> " + lbl_CurrentMajor.Text + "<br/><b>Student Status Request:</b> " + drp_StatusReuqest.SelectedItem.Text + "<br/><b>Main Reason:</b> " + drp_MainReason.SelectedItem.Text + "<br/><b>Sub Reason: </b> " + drp_SubReason.SelectedItem.Text + "<br/><b>Remarks: </b> " + txt_Remarks.Text.Trim() + "<br/>" + languageoption + "<br/>";
             myItem["RequestNote"] = ""+ RadioButtonList1.SelectedItem.Value+ ";" + RadioButtonList2.SelectedItem.Value + ";" + RadioButtonList3.SelectedItem.Value + ";" + RadioButtonList4.SelectedItem.Value + "";
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;

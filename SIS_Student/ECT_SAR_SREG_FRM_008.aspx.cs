@@ -136,6 +136,16 @@ namespace SIS_Student
                 Session["FeesType"] = dtStudentServices.Rows[0]["FeesType"].ToString();
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
                 Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();
+                Session["LanguageOption"] = dtStudentServices.Rows[0]["LanguageOption"].ToString();
+
+                if (dtStudentServices.Rows[0]["LanguageOption"].ToString() == "True")
+                {
+                    tdlanguage.Visible = true;
+                }
+                else
+                {
+                    tdlanguage.Visible = false;
+                }
             }
         }
         public void ClearSession()
@@ -179,6 +189,13 @@ namespace SIS_Student
             {
                 sACC = "0200000";
             }
+
+            string languageoption = "";
+            if (Session["LanguageOption"].ToString() == "True")
+            {
+                languageoption = "<b>Language:</b> " + ddlLanguage.SelectedItem.Text + "";
+            }
+
             // Create a DataTable  
             DataTable dtSPList = new DataTable();
             dtSPList.Clear();
@@ -208,7 +225,7 @@ namespace SIS_Student
             dr["Title"] = refno;
             dr["Year"] = iYear;
             dr["Semester"] = iSem;
-            dr["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Financial Status:</b> Balance: AED " + lbl_Balance.Text + "<br/>";
+            dr["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Financial Status:</b> Balance: AED " + lbl_Balance.Text + "<br/>" + languageoption + "<br/>";
             dr["RequestNote"] = txt_Remarks.Text.Trim();
             dr["ServiceID"] = lbl_ServiceID.Text;
             dr["Fees"] = hdf_Price.Value;
