@@ -177,7 +177,7 @@
                                             </asp:DropDownList>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>لغة</b>
+                                            <b>اللغة</b>
                                         </td>
                                     </tr>
                                     <tr>
