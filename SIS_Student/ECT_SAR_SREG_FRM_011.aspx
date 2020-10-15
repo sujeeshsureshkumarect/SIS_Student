@@ -227,7 +227,7 @@
 
                                 <hr />
 
-                                <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                               <%-- <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Has an Exam in<span style="color: red">*</span></b>
@@ -236,7 +236,7 @@
                                             <asp:DropDownList ID="drp_Course" runat="server" CssClass="form-control" OnSelectedIndexChanged="drp_Course_SelectedIndexChanged" AutoPostBack="true" required>
                                             </asp:DropDownList>
 
-                                            <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no" />--%>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no" />
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>لديه\ لديها امتحان في مادة</b>
@@ -259,8 +259,8 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox ID="txt_ExamDate" runat="server" TextMode="Date" CssClass="form-control" required></asp:TextBox>
-                                            <%--<asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Date Required" ControlToValidate="txt_ExamDate" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>--%>
+                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Date Required" ControlToValidate="txt_ExamDate" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>الموافق لتاريخ  </b>
@@ -272,8 +272,8 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox ID="txt_ExamTime" runat="server" TextMode="Time" CssClass="form-control" required></asp:TextBox>
-                                           <%-- <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Time Required" ControlToValidate="txt_ExamTime" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>--%>
+                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Exam Time Required" ControlToValidate="txt_ExamTime" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b><span style="color: red">*</span>الساعة  </b>
@@ -291,8 +291,22 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <hr />
+                                <hr />--%>
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
+                                    <tr id="tdlanguage" runat="server">
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Language</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:DropDownList runat="server" ID="ddlLanguage" CssClass="form-control">
+                                                <asp:ListItem Text="Arabic" Value="Arabic" Selected></asp:ListItem>
+                                                <asp:ListItem Text="English" Value="English" ></asp:ListItem>                                                
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>لغة</b>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Fees</b>

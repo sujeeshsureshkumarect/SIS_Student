@@ -123,49 +123,22 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
 
         /// <summary>
-        /// drp_Course control.
+        /// tdlanguage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drp_Course;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow tdlanguage;
 
         /// <summary>
-        /// lbl_CourseCode control.
+        /// ddlLanguage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CourseCode;
-
-        /// <summary>
-        /// txt_ExamDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_ExamDate;
-
-        /// <summary>
-        /// txt_ExamTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_ExamTime;
-
-        /// <summary>
-        /// lbl_Instructor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Instructor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
 
         /// <summary>
         /// lbl_Fess control.

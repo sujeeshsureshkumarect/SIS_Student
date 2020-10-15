@@ -109,17 +109,17 @@ namespace SIS_Student
                 RepterDetails.DataSource = dt;
                 RepterDetails.DataBind();
 
-                drp_Course.DataSource = dt; 
-                drp_Course.DataTextField = "Course";  
-                drp_Course.DataValueField = "Code"; 
-                drp_Course.DataBind();
+                //drp_Course.DataSource = dt; 
+                //drp_Course.DataTextField = "Course";  
+                //drp_Course.DataValueField = "Code"; 
+                //drp_Course.DataBind();
 
-                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
+                //drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
             }
-            else
-            {
-                drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
-            }
+            //else
+            //{
+            //    drp_Course.Items.Insert(0, new System.Web.UI.WebControls.ListItem("---Select a Course---", "---Select a Course---"));
+            //}
         }
         public void getdetails()
         {
@@ -161,6 +161,16 @@ namespace SIS_Student
                 Session["FeesType"] = dtStudentServices.Rows[0]["FeesType"].ToString();
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
                 Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();
+                Session["LanguageOption"] = dtStudentServices.Rows[0]["LanguageOption"].ToString();
+
+                if (dtStudentServices.Rows[0]["LanguageOption"].ToString()=="True")
+                {
+                    tdlanguage.Visible = true;
+                }
+                else
+                {
+                    tdlanguage.Visible = false;
+                }
             }
         }
         public void ClearSession()
@@ -187,7 +197,9 @@ namespace SIS_Student
 
         protected void lnk_Generate_Click(object sender, EventArgs e)
         {
+            string header = "<table style='width: 100 %; border: 1px solid #000' align='center'  id='tblContacts'><tbody><tr><td align='center' style='background-color: #f2f2f2; color: #000;'><b>Has an Exam in<br>(لديه لديها امتحان في مادة)</b></td><td align='center' style='background-color: #f2f2f2; color: #000;'><b>Course Code<br>(رمز المادة)</b></td><td align='center' style='background-color: #f2f2f2; color: #000;'><b>Instructor’s Name<br>(اســم مدرس المادة)</b></td><td align='center' style='background-color: #f2f2f2; color: #000;'><b>Exam Day<br>(يوم الامتحان)</b></td><td align='center' style='background-color: #f2f2f2; color: #000;'><b>Exam Date <br>(الموافق لتاريخ)</b></td><td align='center' style='background-color: #f2f2f2; color: #000;'><b>Time of Exam <br>(الساعة)</b></td></tr>";
             string request = "";
+            string footer = "</tbody></table>";
             foreach (RepeaterItem item in RepterDetails.Items)
             {
                 if (((CheckBox)item.FindControl("chk")).Checked)
@@ -199,13 +211,13 @@ namespace SIS_Student
                     var txt_Date = (TextBox)item.FindControl("txt_Date") as TextBox;
                     string day = Convert.ToDateTime(txt_Date.Text).ToString("dddd");
                     var txt_Time = (TextBox)item.FindControl("txt_Time") as TextBox;
-                    request = request + "<b>Has an Exam in:</b> " + lbl_exam.Text + "<br/><b>Course Code:</b> " + lbl_code.Text + "<br/><b>Exam Day:</b> " + day + "<br/><b>Exam Date:</b> " + txt_Date.Text + "<br/><b>Time of Exam:</b> " + txt_Time.Text + "<br/><b>Instructor’s Name:</b> " + lbl_instructor.Text + "<br/><br/>";
+                    request = request + "<tr><td align='center'> " + lbl_exam.Text + "</td><td align='center'> " + lbl_code.Text + "</td><td align='center'> " + lbl_instructor.Text + "</td><td align='center'> " + day + "</td><td align='center'> " + txt_Date.Text + "</td><td align='center'> " + txt_Time.Text + "</td></tr>";
                 }
             }
+            string htmltext = header + request + footer;
 
-
-            if (drp_Course.SelectedItem.Value != "---Select a Course---")
-            {
+            //if (drp_Course.SelectedItem.Value != "---Select a Course---")
+            //{
                 //sentdatatoSPLIst();   
                 int sem = 0;
                 int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
@@ -214,7 +226,7 @@ namespace SIS_Student
                 int iSem = sem;
                 string sSemester = LibraryMOD.GetSemesterString(iSem);
                 string refno = Create16DigitString();
-                string day = Convert.ToDateTime(txt_ExamDate.Text).ToString("dddd");
+                //string day = Convert.ToDateTime(txt_ExamDate.Text).ToString("dddd");
                 string sACC = "0200000";
                 if (Session["CurrentCampus"].ToString() == "Males")
                 {
@@ -224,8 +236,16 @@ namespace SIS_Student
                 {
                     sACC = "0200000";
                 }
-                // Create a DataTable  
-                DataTable dtSPList = new DataTable();
+
+            string languageoption = "";
+            if (Session["LanguageOption"].ToString() == "True")
+            {
+                languageoption="<b>Language:</b> " + ddlLanguage.SelectedItem.Text + "";
+            }
+
+
+            // Create a DataTable  
+            DataTable dtSPList = new DataTable();
                 dtSPList.Clear();
                 dtSPList.Columns.Add("Title");
                 dtSPList.Columns.Add("Year");
@@ -253,17 +273,20 @@ namespace SIS_Student
                 dr["Title"] = refno;
                 dr["Year"] = iYear;
                 dr["Semester"] = iSem;
-                dr["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Has an Exam in:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Course Code:</b> " + lbl_CourseCode.Text + "<br/><b>Exam Day:</b> " + day + "<br/><b>Exam Date:</b> " + txt_ExamDate.Text + "<br/><b>Time of Exam:</b> " + txt_ExamTime.Text + "<br/><b>Instructor’s Name:</b> " + lbl_Instructor.Text + "";
+                dr["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/>" + languageoption + "<br/><b><u>Service Request:</u></b><br/><br/>" + htmltext+"";
                 dr["RequestNote"] = txt_Remarks.Text.Trim();
                 dr["ServiceID"] = lbl_ServiceID.Text;
                 dr["Fees"] = hdf_Price.Value;
+                //dr["Requester"] = "sujeesh.sureshkumar@ect.ac.ae";
                 dr["Requester"] = hdf_StudentEmail.Value;
                 dr["StudentID"] = lbl_StudentID.Text;
                 dr["StudentName"] = lbl_StudentName.Text;
                 dr["Contact"] = lbl_StudentContact.Text;
+                //dr["Finance"] = "ihab.awad@ect.ac.ae";
                 dr["Finance"] = Session["FinanceEmail"].ToString();
                 dr["FinanceAction"] = "Initiate";
                 dr["FinanceNote"] = "";
+                //dr["Host"] = "ihab.awad@ect.ac.ae";
                 dr["Host"] = Session["HostEmail"].ToString();
                 dr["HostAction"] = "Initiate";
                 dr["HostNote"] = "";
@@ -281,95 +304,95 @@ namespace SIS_Student
                 Session["CurrentAccount"] = sACC;
                 Session["cancelpage"] = "ECT_SAR_SREG_FRM_011.aspx?ServiceID="+ lbl_ServiceID.Text + "";
                 Response.Redirect("Student_Services_HostedPayment.aspx");
-            }                
+            //}                
         }
 
-        public void sentdatatoSPLIst()
-        {
-            int sem = 0;
-            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
+        //public void sentdatatoSPLIst()
+        //{
+        //    int sem = 0;
+        //    int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
 
-            int iYear = Year;
-            int iSem = sem;
-            string sSemester = LibraryMOD.GetSemesterString(iSem);
+        //    int iYear = Year;
+        //    int iSem = sem;
+        //    string sSemester = LibraryMOD.GetSemesterString(iSem);
 
-            string day = Convert.ToDateTime(txt_ExamDate.Text).ToString("dddd");
+        //    string day = Convert.ToDateTime(txt_ExamDate.Text).ToString("dddd");
 
-            string login = "ets.services.admin@ect.ac.ae"; //give your username here  
-            string password = "Ser71ces@328"; //give your password  
-            var securePassword = new SecureString();
-            foreach (char c in password)
-            {
-                securePassword.AppendChar(c);
-            }
-            string siteUrl = "https://ectacae.sharepoint.com/sites/ECTPortal/eservices/studentservices";
-            ClientContext clientContext = new ClientContext(siteUrl);
-            Microsoft.SharePoint.Client.List myList = clientContext.Web.Lists.GetByTitle("Students_Requests");
-            ListItemCreationInformation itemInfo = new ListItemCreationInformation();
-            Microsoft.SharePoint.Client.ListItem myItem = myList.AddItem(itemInfo);
-            string refno = Create16DigitString();
-            myItem["Title"] = refno;
-            //myItem["RequestID"] = refno;
-            myItem["Year"] = iYear;
-            myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Has an Exam in:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Course Code:</b> " + lbl_CourseCode.Text + "<br/><b>Exam Day:</b> " + day + "<br/><b>Exam Date:</b> " + txt_ExamDate.Text + "<br/><b>Time of Exam:</b> " + txt_ExamTime.Text + "<br/><b>Instructor’s Name:</b> " + lbl_Instructor.Text + "";
-            myItem["RequestNote"] = txt_Remarks.Text.Trim();
-            myItem["ServiceID"] = lbl_ServiceID.Text;
-            myItem["Fees"] = hdf_Price.Value;
-            //myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
-            myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
-            myItem["StudentID"] = lbl_StudentID.Text;
-            myItem["StudentName"] = lbl_StudentName.Text;
-            myItem["Contact"] = lbl_StudentContact.Text;
-            myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
-            myItem["FinanceAction"] = "Initiate";
-            myItem["FinanceNote"] = "";
-            myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
-            myItem["HostAction"] = "Initiate";
-            myItem["HostNote"] = "";
-            //myItem["Provider"] = "";
-            myItem["ProviderAction"] = "Initiate";
-            myItem["ProviderNote"] = "";
-            myItem["Status"] = "Finance Approval Needed";
-            //myItem["Modified"] = DateTime.Now;
-            //myItem["Created"] = DateTime.Now;
-            //myItem["Created By"] = hdf_StudentEmail.Value;
-            //myItem["Modified By"] = hdf_StudentEmail.Value;
-            try
-            {
-                myItem.Update();
+        //    string login = "ets.services.admin@ect.ac.ae"; //give your username here  
+        //    string password = "Ser71ces@328"; //give your password  
+        //    var securePassword = new SecureString();
+        //    foreach (char c in password)
+        //    {
+        //        securePassword.AppendChar(c);
+        //    }
+        //    string siteUrl = "https://ectacae.sharepoint.com/sites/ECTPortal/eservices/studentservices";
+        //    ClientContext clientContext = new ClientContext(siteUrl);
+        //    Microsoft.SharePoint.Client.List myList = clientContext.Web.Lists.GetByTitle("Students_Requests");
+        //    ListItemCreationInformation itemInfo = new ListItemCreationInformation();
+        //    Microsoft.SharePoint.Client.ListItem myItem = myList.AddItem(itemInfo);
+        //    string refno = Create16DigitString();
+        //    myItem["Title"] = refno;
+        //    //myItem["RequestID"] = refno;
+        //    myItem["Year"] = iYear;
+        //    myItem["Semester"] = iSem;
+        //    myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Has an Exam in:</b> " + drp_Course.SelectedItem.Text + "<br/><b>Course Code:</b> " + lbl_CourseCode.Text + "<br/><b>Exam Day:</b> " + day + "<br/><b>Exam Date:</b> " + txt_ExamDate.Text + "<br/><b>Time of Exam:</b> " + txt_ExamTime.Text + "<br/><b>Instructor’s Name:</b> " + lbl_Instructor.Text + "";
+        //    myItem["RequestNote"] = txt_Remarks.Text.Trim();
+        //    myItem["ServiceID"] = lbl_ServiceID.Text;
+        //    myItem["Fees"] = hdf_Price.Value;
+        //    //myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
+        //    myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
+        //    myItem["StudentID"] = lbl_StudentID.Text;
+        //    myItem["StudentName"] = lbl_StudentName.Text;
+        //    myItem["Contact"] = lbl_StudentContact.Text;
+        //    myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+        //    myItem["FinanceAction"] = "Initiate";
+        //    myItem["FinanceNote"] = "";
+        //    myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+        //    myItem["HostAction"] = "Initiate";
+        //    myItem["HostNote"] = "";
+        //    //myItem["Provider"] = "";
+        //    myItem["ProviderAction"] = "Initiate";
+        //    myItem["ProviderNote"] = "";
+        //    myItem["Status"] = "Finance Approval Needed";
+        //    //myItem["Modified"] = DateTime.Now;
+        //    //myItem["Created"] = DateTime.Now;
+        //    //myItem["Created By"] = hdf_StudentEmail.Value;
+        //    //myItem["Modified By"] = hdf_StudentEmail.Value;
+        //    try
+        //    {
+        //        myItem.Update();
 
-                //if (flp_Upload.HasFile)
-                //{
-                //    var attachment = new AttachmentCreationInformation();
+        //        //if (flp_Upload.HasFile)
+        //        //{
+        //        //    var attachment = new AttachmentCreationInformation();
 
-                //    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
-                //    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+        //        //    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
+        //        //    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
 
-                //    string filePath = FileUrl;
-                //    attachment.FileName = Path.GetFileName(filePath);
-                //    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
-                //    Attachment att = myItem.AttachmentFiles.Add(attachment);
-                //}
+        //        //    string filePath = FileUrl;
+        //        //    attachment.FileName = Path.GetFileName(filePath);
+        //        //    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
+        //        //    Attachment att = myItem.AttachmentFiles.Add(attachment);
+        //        //}
 
-                var onlineCredentials = new SharePointOnlineCredentials(login, securePassword);
-                clientContext.Credentials = onlineCredentials;
-                clientContext.ExecuteQuery();
+        //        var onlineCredentials = new SharePointOnlineCredentials(login, securePassword);
+        //        clientContext.Credentials = onlineCredentials;
+        //        clientContext.ExecuteQuery();
 
-                //string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
-                //System.IO.File.Delete(FileUrls);
+        //        //string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+        //        //System.IO.File.Delete(FileUrls);
 
-                lbl_Msg.Text = "Request (ID# " + refno + ") Generated Successfully";
-                lbl_Msg.Visible = true;
-                div_msg.Visible = true;
-                lnk_Generate.Enabled = false;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            //Console.ReadLine();
-        }
+        //        lbl_Msg.Text = "Request (ID# " + refno + ") Generated Successfully";
+        //        lbl_Msg.Visible = true;
+        //        div_msg.Visible = true;
+        //        lnk_Generate.Enabled = false;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //    //Console.ReadLine();
+        //}
 
         public string Create16DigitString()
         {
@@ -384,30 +407,30 @@ namespace SIS_Student
             return finalString.ToString();
         }
 
-        protected void drp_Course_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(drp_Course.SelectedItem.Value!= "---Select a Course---")
-            {
-                var services = new DAL.DAL();
-                Connection_StringCLS connstr = new Connection_StringCLS(Campus);
-                int sem = 0;
-                int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
+        //protected void drp_Course_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if(drp_Course.SelectedItem.Value!= "---Select a Course---")
+        //    {
+        //        var services = new DAL.DAL();
+        //        Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+        //        int sem = 0;
+        //        int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
 
-                int iYear = Year;
-                int iSem = sem;
-                string studentid = Session["CurrentStudent"].ToString();
-                DataTable dt = services.GetCoursesbyCourseId(studentid, connstr.Conn_string, iYear, iSem, drp_Course.SelectedItem.Value);
-                if (dt.Rows.Count > 0)
-                {
-                    lbl_CourseCode.Text = drp_Course.SelectedItem.Value;
-                    lbl_Instructor.Text = dt.Rows[0]["strLecturerDescEn"].ToString();
-                }
-            }
-            else
-            {
-                lbl_CourseCode.Text = "";
-                lbl_Instructor.Text = "";
-            }
-        }
+        //        int iYear = Year;
+        //        int iSem = sem;
+        //        string studentid = Session["CurrentStudent"].ToString();
+        //        DataTable dt = services.GetCoursesbyCourseId(studentid, connstr.Conn_string, iYear, iSem, drp_Course.SelectedItem.Value);
+        //        if (dt.Rows.Count > 0)
+        //        {
+        //            lbl_CourseCode.Text = drp_Course.SelectedItem.Value;
+        //            lbl_Instructor.Text = dt.Rows[0]["strLecturerDescEn"].ToString();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        lbl_CourseCode.Text = "";
+        //        lbl_Instructor.Text = "";
+        //    }
+        //}
     }
 }
