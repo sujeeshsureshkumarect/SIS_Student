@@ -24,6 +24,15 @@ namespace SIS_Student
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_msg;
 
         /// <summary>
+        /// div_Alert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Alert;
+
+        /// <summary>
         /// lbl_Msg control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace SIS_Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Msg;
+
+        /// <summary>
+        /// hyp_Paynow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyp_Paynow;
 
         /// <summary>
         /// lbl_ServiceID control.

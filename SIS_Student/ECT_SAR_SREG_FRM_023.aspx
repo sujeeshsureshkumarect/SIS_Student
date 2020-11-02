@@ -63,9 +63,9 @@
                                 <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="false">
 
                                     <div class="alert alert-success alert-dismissible " role="alert" runat="server" id="div_Alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <%--<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
-                                        </button>
+                                        </button>--%>
                                         <asp:Label ID="lbl_Msg" runat="server" Text="Request Generated Successfully" Visible="false" Font-Bold="true" Font-Size="16px"></asp:Label>
 <%--                                        <asp:LinkButton ID="lnk_Paynow" runat="server" CssClass="btn btn-success btn-sm" Visible="false" OnClick="lnk_Paynow_Click"><i class="fa fa-money"></i> Pay Now</asp:LinkButton>--%>
                                         <asp:HyperLink runat="server" ID="hyp_Paynow"  CssClass="btn btn-success btn-sm" Visible="false"><i class="fa fa-money"></i> Pay Now</asp:HyperLink>

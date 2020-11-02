@@ -154,6 +154,10 @@
                             <p style="font-family: Arial, Helvetica, sans-serif; font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">FAQs</p>
                             <br />
                             <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #73879C"><B>Not Applicable</B></p>
+                            <br />
+                             <p style="font-family: Arial, Helvetica, sans-serif; font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">Note :</p>
+                            <br />
+                            <p style="font-family: Arial, Helvetica, sans-serif;  font-weight: normal; text-transform: capitalize; color: #FF0000"><B>300 AED Penalty Fees For Each Bounced Cheque.</B></p>
                             <%--<br />
                             <p style="font-family: Arial, Helvetica, sans-serif; font-size: large; font-weight: bold; text-transform: capitalize; color: #73879C; text-decoration: underline;">Check out Window</p>
                             <br />

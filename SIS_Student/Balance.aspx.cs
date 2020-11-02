@@ -61,7 +61,6 @@ namespace SIS_Student
                     }
                     else
                     {
-
                         dAmount = LibraryMOD.GetStudentBalanceBTS(sSID, CurrentCampus);
                     }
 
@@ -78,9 +77,6 @@ namespace SIS_Student
                     if (dAmount < 0) { dAmount = 1; }
 
                     txtPayment.Text = string.Format("{0:f}", dAmount);
-
-
-
                 }
 
 

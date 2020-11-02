@@ -390,6 +390,14 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td align="left" style="padding: 0px 0px 0px 50px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
+                                    <span id="MainContent_Wizard1_Label33" style="display:inline-block;color:#0066FF;font-size:Medium;font-weight:bold;width:330px;font-size: small">Note : 300 AED penalty fees for each bounced cheque</span>
+                                </td>
+                                <td align="right" style="padding: 0px 50px 0px 0px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
+                                    <span id="MainContent_Wizard1_Label32" style="display:inline-block;color:#0066FF;font-size:Medium;font-weight:bold;width:330px;font-family: Arial">ملاحظة : 300 درهم رسوم غرامة لكل شيك مرتجع</span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td align="left" 
                                     style="padding: 0px 0px 0px 50px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
                                     &nbsp;</td>
