@@ -54,7 +54,16 @@ namespace SIS_Student
                     sName = Session["CurrentStudentName"].ToString();
                     getStdAcc();
                     Session["CurrentAccount"] = sACC;
-                    decimal dAmount = LibraryMOD.GetStudentBalanceBTS(sSID, CurrentCampus);
+                    decimal dAmount = 0;
+                    if(Request.QueryString["amt"]!=null && Request.QueryString["amt"] != "")
+                    {
+                        dAmount = Convert.ToDecimal(Request.QueryString["amt"]);
+                    }
+                    else
+                    {
+
+                        dAmount = LibraryMOD.GetStudentBalanceBTS(sSID, CurrentCampus);
+                    }
 
                     int iCurrentTerm = LibraryMOD.GetCurrentTerm();
                     if (isHidden(sSID, iCurrentTerm))

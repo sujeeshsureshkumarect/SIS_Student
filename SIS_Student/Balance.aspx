@@ -125,7 +125,7 @@
                                     style="color: #FF0000" ValidationGroup="Payment">*</asp:RequiredFieldValidator>
                                 <asp:RangeValidator ID="RangeValidator1" runat="server" 
                                     ControlToValidate="txtPayment" Display="Dynamic" 
-                                    ErrorMessage="Positive numbers only " MaximumValue="30000" MinimumValue="0" 
+                                    ErrorMessage="Positive numbers only " MaximumValue="100000" MinimumValue="0" 
                                     SetFocusOnError="True" style="color: #FF0000" Type="Currency" 
                                     ValidationGroup="Payment">*</asp:RangeValidator>
                             </td>

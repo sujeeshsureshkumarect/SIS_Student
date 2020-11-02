@@ -106,7 +106,7 @@ namespace SIS_Student
 
             InitializeModule.EnumCampus CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             string sSID = Session["CurrentStudent"].ToString();
-            decimal dAmount = LibraryMOD.GetStudentBalanceBTS(sSID, CurrentCampus);
+            decimal dAmount = LibraryMOD.GetStudentUptodateBalanceBTS(sSID, CurrentCampus);
             lbl_Balance.Text= string.Format("{0:f}", dAmount);
 
             string studentid = Session["CurrentStudent"].ToString();

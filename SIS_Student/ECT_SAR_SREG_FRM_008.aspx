@@ -171,10 +171,10 @@
                                                </tr>
                                                  <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Financial Status</b>
+                                            <b>UpToDate Balance</b>
                                         </td>
                                         <td align="center">
-                                           Balance: AED <asp:Label ID="lbl_Balance" runat="server"></asp:Label>
+                                           AED <asp:Label ID="lbl_Balance" runat="server"></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>الوضع المالي</b>

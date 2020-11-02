@@ -67,6 +67,8 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                         <asp:Label ID="lbl_Msg" runat="server" Text="Request Generated Successfully" Visible="false" Font-Bold="true" Font-Size="16px"></asp:Label>
+<%--                                        <asp:LinkButton ID="lnk_Paynow" runat="server" CssClass="btn btn-success btn-sm" Visible="false" OnClick="lnk_Paynow_Click"><i class="fa fa-money"></i> Pay Now</asp:LinkButton>--%>
+                                        <asp:HyperLink runat="server" ID="hyp_Paynow"  CssClass="btn btn-success btn-sm" Visible="false"><i class="fa fa-money"></i> Pay Now</asp:HyperLink>
                                     </div>
                                 </div>
 
