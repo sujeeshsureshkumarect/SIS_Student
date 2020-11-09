@@ -6118,6 +6118,7 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\ClsMoodleAPI.cs" />
     <Compile Include="App_Start\Connection.cs" />
     <Compile Include="App_Start\Connection_StringsCLS.cs" />
     <Compile Include="App_Start\CoursesCls.cs" />

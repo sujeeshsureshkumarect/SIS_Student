@@ -17,6 +17,12 @@ using SelectPdf;
 using System.IO;
 using System.Text;
 using System.Drawing.Imaging;
+using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 namespace SIS_Student
 {
@@ -1490,7 +1496,6 @@ namespace SIS_Student
                 {
                     if (Enable_Disable(sNo, Campus))
                     {
-
                         Session["iFormNumber"] = this.CreateHeader();
                     }
                     else
@@ -1506,7 +1511,6 @@ namespace SIS_Student
             catch (Exception exp)
             {
                 Console.WriteLine("{0} Exception caught.", exp);
-
             }
         }
         public override void VerifyRenderingInServerForm(Control control)
@@ -1772,7 +1776,69 @@ namespace SIS_Student
                         myCourseDetail.UpdateCourse_Detail(this.Campus, iMode, iYear, iSemester, 1, iFormNumber, sCourse, iClass, iShift, iTrans, "True", "", "", 0, sUserName, DateTime.Now, sUserName, DateTime.Now, sPCName, sNetUserName);
                     }
                     Reg_grd.DataBind();
+                    if (Reg_grd.Rows.Count > 0)
+                    {
+                        //Update Registration Status- Status Registered
 
+                        //Check Email exists or not
+                        string studentid = Session["CurrentStudent"].ToString();
+                        var services = new DAL.DAL();
+                        Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+                        DataTable dtStudentServices = services.GetStudentDetailsID(studentid, connstr.Conn_string);
+                        string emailid= dtStudentServices.Rows[0]["sECTemail"].ToString();
+                        string fname= dtStudentServices.Rows[0]["strFirstDescEn"].ToString();
+                        string lname = dtStudentServices.Rows[0]["strSecondDescEn"].ToString();
+                        hdnStudentMajor.Value= dtStudentServices.Rows[0]["strCaption"].ToString();
+
+                        if (emailid!=""&&emailid!=null)
+                        {
+                            //Don't Call Email Creation function
+                        }
+                        else
+                        {
+                            string sSID = Session["CurrentStudent"].ToString();
+                            int iSerial = GetSerial(sSID);
+                            Session["StudentSerialNo"] = iSerial;
+                            hdnSerial.Value = iSerial.ToString();
+                            int iCSem = 0;
+                            int iCYear = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out iCSem);
+                            Session["CurrentYear"] = iCYear;
+                            Session["CurrentSemester"] = iCSem;
+                            int iRegisteredHours = LibraryMOD.GetCurrentRegisteredCourses(this.Campus, sSID, iCYear, iCSem);
+                            if (iRegisteredHours == 0)
+                            {
+                                //lbl_Msg.Text = "Student must register courses before creating email.";
+                                //div_msg.Visible = true;
+                                return;
+                            }
+                            //======= Generate Student email
+                            CreateStudentEmail(lname);
+                            if (hdnStudentEmail.Value.Length < 17)
+                            {
+                                return;
+                            }
+                            //======= Create email in Office365 & AD 
+                            CreateStudentEmailAD(this.Campus, sSID);
+
+                            //======= Create Moodle Account
+                            if (ClsMoodleAPI.CreateUpdateMoodleAccount(hdnStudentEmail.Value, sSID) == InitializeModule.SUCCESS_RET)
+                            {
+                                //lbl_Msg.Text += " & Moodle";
+                            }
+                            //======== Enroll student in Moodle courses
+                            if (ClsMoodleAPI.EnrollStudentinMoodleCourses(hdnStudentEmail.Value, sSID) == InitializeModule.SUCCESS_RET)
+                            {
+                                //lbl_Msg.Text += ", Student enrolled in Moodle courses";
+                            }
+                            //======= Create Zoom Account
+                            string sFirstName = fname + " " + lname;
+                            string sLastName = " - " + sSID;
+                            CreateZoomAccount(hdnStudentEmail.Value, sFirstName, sLastName);
+                        }
+
+                        //API Call-Update Registration Status
+                        apicall_UpdateRegistrationStatus(Reg_grd.Rows.Count, Session["CurrentStudent"].ToString());
+                    }
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "testScript", "$(document).ready(function(){ $('#divConfirmation').text('Course " + sCourse + " added successfully.').slideToggle('slow'); });", true);
                 }
                 else
@@ -1785,6 +1851,449 @@ namespace SIS_Student
             {
                 Console.WriteLine("{0} Exception caught.", exp);
 
+            }
+        }
+        public void CreateZoomAccount(string email, string firstname, string lastname)
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.DefaultConnectionLimit = 9999;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
+            string userid = "";
+
+            string JWTaccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IktUUUpsM1ZiU0k2aVBPNDl0VmVma1EiLCJleHAiOjE3MzU3MTEyMDAsImlhdCI6MTYwMDI0NDY5MX0.GgRVMlmMsmf0j_d5TUY4jKKO-4xZfSt7u5hmQb9QFks";
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://api.zoom.us/v2/users"))
+                {
+                    request.Headers.TryAddWithoutValidation("authorization", "Bearer " + JWTaccessToken + "");
+
+                    request.Content = new StringContent("{\"action\":\"create\",\"user_info\":{\"email\":\"" + email + "\",\"type\":1,\"first_name\":\"" + firstname + "\",\"last_name\":\"" + lastname + "\"}}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    var task = httpClient.SendAsync(request);
+                    task.Wait();
+                    var response = task.Result;
+                    string s = response.Content.ReadAsStringAsync().Result;
+                    var x = JObject.Parse(s);
+                    var uID = x["id"];
+                    if (uID != null) //added by bahaa 25-09-2020 //
+                    {
+                        userid = uID.ToString();
+                    }
+
+
+                }
+            }
+
+            if (userid != "" && userid != null)
+            {
+                string groupid = "OU8bD5WPTxSpMLMvtG5H4w";//Group Name-Student
+                string emailID = email;
+
+                AddZoomGroupMemebers(groupid, emailID, userid, JWTaccessToken);
+
+                //string IMGroupID = "W6jUNfWfSuC-vY7VqWpwOQ";//Default IM Group - Restricted 
+                //if (Gender == "Males")
+                //{
+                //    IMGroupID = "seOLrQ4DQFWA7WMZzqwZhQ";//Males Studnets         
+                //}
+                //else if (Gender == "Females")
+                //{
+                //    IMGroupID = "1ShdTaaERVKs3KZmgO6JuQ";//Females Studnet
+                //}
+                //else
+                //{
+                //    IMGroupID = "W6jUNfWfSuC-vY7VqWpwOQ";//Default IM Group - Restricted 
+                //}
+                //addZoomIMGroupMembers(IMGroupID, emailID, userid);
+
+                //deleteZoomIMGroupMemeber("W6jUNfWfSuC-vY7VqWpwOQ", userid);//Remove the User from Default IM Group - Restricted 
+            }
+        }
+        public void AddZoomGroupMemebers(string groupid, string email, string userid, string JWTaccessToken)
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.DefaultConnectionLimit = 9999;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://api.zoom.us/v2/groups/" + groupid + "/members"))
+                {
+                    request.Headers.TryAddWithoutValidation("authorization", "Bearer " + JWTaccessToken + "");
+
+                    request.Content = new StringContent("{\"members\":[{\"id\":\"" + userid + "\",\"email\":\"" + email + "\"}]}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                    var task = httpClient.SendAsync(request);
+                    task.Wait();
+                    var response = task.Result;
+                    string s = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+        }
+        public void CreateStudentEmailAD(InitializeModule.EnumCampus Campus, string sStudentID)
+        {
+            string sSQL = "";
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+            SqlConnection Con = new SqlConnection(myConnection_String.Conn_string);
+            try
+            {
+                sSQL = "SELECT  SD.strFirstDescEn + ' ' + SD.strSecondDescEn AS [Given_Name]";
+                sSQL += ", ' - ' + REPLACE(A.lngStudentNumber, '.', '') AS Surname";
+                sSQL += ", SD.strFirstDescEn + ' ' + SD.strSecondDescEn AS [Display_Name]";
+                sSQL += ", SD.sECTemail AS [Email_Addresses], LEFT(SD.sECTemail, LEN(SD.sECTemail) - 10) AS [Sam_Account_Name]";
+                sSQL += ", 'ect@12345' AS Password, 'ect@12345' AS [User_Password], 'ect@12345' AS ChangePasswordOnNextLogon";
+                sSQL += ", 'SMTP:' + SD.sECTemail AS [Proxy_Addresses], 'Student' AS [Personal_Title]";
+                sSQL += ", M.strMajor AS Department, (CASE WHEN iCampus = 1 THEN 'Males Campus' ";
+                sSQL += " WHEN iCampus = 2 THEN 'Females Campus' ";
+                sSQL += " WHEN iCampus = 3 AND bSex = 1 THEN 'Media-Males Campus' ";
+                sSQL += " WHEN iCampus = 3 AND bSex = 0 THEN 'Media-Females Campus' END) AS Description";
+                sSQL += ", 'Emirates College of Technology' AS Company ";
+                sSQL += " FROM Reg_Applications AS A INNER JOIN Reg_Students_Data AS SD ";
+                sSQL += " ON A.lngSerial = SD.lngSerial INNER JOIN Reg_Specializations AS M ";
+                sSQL += " ON A.strCollege = M.strCollege AND A.strDegree = M.strDegree ";
+                sSQL += " AND A.strSpecialization = M.strSpecialization LEFT OUTER JOIN Last_Time_Registered ";
+                sSQL += " ON A.lngStudentNumber = Last_Time_Registered.Student LEFT OUTER JOIN Lkp_Reasons ";
+                sSQL += " ON A.byteCancelReason = Lkp_Reasons.byteReason ";
+                sSQL += " WHERE  (SD.sECTemail IS NOT NULL) AND SD.sECTemail <> '' ";
+                //if (sStudentID.Contains("M"))
+                //{
+                //    sSQL += " AND (SD.bSex = 1)";
+                //}
+                //else
+                //{
+                //    sSQL += " AND (SD.bSex = 0)";
+                //}
+                sSQL += " AND (SD.IsEmailCreationRequired = 1) ";
+                sSQL += " AND A.lngStudentNumber ='" + sStudentID + "'";
+                sSQL += " ORDER BY SD.iUnifiedID";
+
+                SqlCommand cmd = new SqlCommand(sSQL, Con);
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                Con.Open();
+                da.Fill(dt);
+                Con.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    //for (int i = 0; i < dt.Rows.Count; i++)
+                    //{  
+                    int i = 0;
+                    CreateUserEmailAD(dt.Rows[i]["Given_Name"].ToString(), dt.Rows[i]["Surname"].ToString(), dt.Rows[i]["Display_Name"].ToString(), dt.Rows[i]["Description"].ToString(), dt.Rows[i]["Email_Addresses"].ToString(), dt.Rows[i]["Sam_Account_Name"].ToString(), dt.Rows[i]["Department"].ToString(), dt.Rows[i]["Company"].ToString(), true);
+                    //}
+                    UpdateEmailCreationRequired(Con, Convert.ToInt32(hdnSerial.Value));
+                    //lbl_Msg.Text = "Students Email Created Successfully in Office365";
+                    //div_Alert.Attributes.Add("class", "alert alert-success alert-dismissible");
+                    //div_msg.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Con.Close();
+                throw ex;
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+        public void UpdateEmailCreationRequired(SqlConnection Con, int iSerialNo)
+        {
+
+            string sSQL = "";
+
+            try
+            {
+                sSQL = "UPDATE Reg_Students_Data set IsEmailCreationRequired = 0";
+                sSQL += " WHERE IsEmailCreationRequired = 1";
+                sSQL += " AND lngSerial=" + iSerialNo;
+
+                SqlCommand cmd = new SqlCommand(sSQL, Con);
+                Con.Open();
+                cmd.ExecuteNonQuery();
+                Con.Close();
+            }
+            catch (Exception ex)
+            {
+                Con.Close();
+                throw ex;
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+        public int CreateUserEmailAD(string firstName, string lastName, string displayname, string description, string emailAddress, string userLogonName, string department, string company, bool enabled)
+        {
+            string Ounames = "Females";
+            if (description == "Females Campus")
+            {
+                Ounames = "Females";
+            }
+            else
+            {
+                Ounames = "Males";
+            }
+            // Creating the PrincipalContext
+            PrincipalContext principalContext = null;
+            string adminusername = "ets.services.admin";
+            string adminpassword = "Ser71ces@328";
+            string userdomainLdappath = "OU=" + Ounames + ",OU=ECT Students,OU=Emirates College of Technology,DC=ectuae,DC=com";
+            string Server = "ectuae";
+            try
+            {
+                principalContext = new PrincipalContext(ContextType.Domain, Server, userdomainLdappath, adminusername, adminpassword);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            // Check if user object already exists in the AD
+            UserPrincipal usr = UserPrincipal.FindByIdentity(principalContext, userLogonName);
+            if (usr != null)
+            {
+                //User Already Exists
+            }
+            else
+            {
+                //Create New User
+                DirectoryEntry myLdapConnection = DirectEntry(Ounames);
+                DirectoryEntry user = myLdapConnection.Children.Add("CN=" + userLogonName + " ", "user");
+
+                // User name (Domain-Based)   
+                user.Properties["userprincipalname"].Add(userLogonName + "@" + "ectuae.com");
+
+                // User name (Older-Systems)  
+                user.Properties["samaccountname"].Add(userLogonName);
+
+                // Surname  
+                user.Properties["sn"].Add(lastName);
+
+                // Given-Name  
+                user.Properties["givenname"].Add(firstName);
+
+                // Display-Name  
+                user.Properties["displayname"].Add(displayname);
+
+                // Description  
+                user.Properties["description"].Add(description);
+
+                // E-mail  
+                user.Properties["mail"].Add(emailAddress);
+
+                // Department  
+                user.Properties["department"].Add(department);
+
+                // Company  
+                user.Properties["company"].Add(company);
+
+                // Personal-Title  
+                user.Properties["personalTitle"].Add("Student");
+
+                // Proxy-Addresses  
+                user.Properties["proxyAddresses"].Add("SMTP:" + emailAddress + "");
+
+                // User-Password  
+                user.Properties["userPassword"].Add("ect@12345");
+
+                user.CommitChanges();
+                user.Invoke("SetPassword", "ect@12345");
+
+                //Force Password Change on Next Login
+                //user.Properties["pwdLastSet"].Value = 0;
+
+                if (enabled)
+                    user.Invoke("Put", new object[] { "userAccountControl", "544" });
+
+                user.CommitChanges();
+
+                //AddUserToGroup(userLogonName, "Males");
+                AddUserToGroup(userLogonName, Ounames);
+            }
+            return 0;
+        }
+        public static DirectoryEntry DirectEntry(string ouname)
+        {
+            DirectoryEntry ldapConnection = new DirectoryEntry("rch");
+            //ldapConnection.Path = "LDAP://OU=Males,OU=ECT Students,OU=Emirates College of Technology,DC=ectuae,DC=com";
+            ldapConnection.Path = "LDAP://OU=" + ouname + ",OU=ECT Students,OU=Emirates College of Technology,DC=ectuae,DC=com";
+            ldapConnection.Username = "ets.services.admin";
+            ldapConnection.Password = "Ser71ces@328";
+            return ldapConnection;
+        }
+        public static void AddUserToGroup(string userId, string groupName)
+        {
+            string adminusername = "ets.services.admin";
+            string adminpassword = "Ser71ces@328";
+            string Server = "ectuae";
+            //string userdomainLdappath = "OU=Males,OU=ECT Students,OU=Emirates College of Technology,DC=ectuae,DC=com";
+            string userdomainLdappath = "OU=" + groupName + ",OU=ECT Students,OU=Emirates College of Technology,DC=ectuae,DC=com";
+            try
+            {
+                using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, Server, userdomainLdappath, adminusername, adminpassword))
+                {
+                    GroupPrincipal group = GroupPrincipal.FindByIdentity(pc, groupName);
+                    group.Members.Add(pc, IdentityType.SamAccountName, userId);
+                    group.Save();
+                }
+            }
+            catch (System.DirectoryServices.DirectoryServicesCOMException E)
+            {
+                //doSomething with E.Message.ToString(); 
+            }
+        }
+        private void CreateStudentEmail(string lname)
+        {
+            //if (txtECTEmail.Text.Length > 17) 
+            //{
+            //    return;
+            //    btnCreateEmail.Enabled = false;
+            //}
+            string sFName = "";
+            string sECTEmail = "";
+            if (lname.Trim().Length <= 1)
+            {
+                //lbl_Msg.Text = "Please enter correct name in (Last Name) ";
+                //div_msg.Visible = true;
+                return;
+            }
+            int iUnifiedID = LibraryMOD.GetMaxUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
+            //update Unified ID
+            if (iUnifiedID > 0)
+            {
+                LibraryMOD.UpdateStudentUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), iUnifiedID);
+                //check reference number
+                if (LibraryMOD.UpdateStudentUnifiedIDIfHasRefID(Campus, Convert.ToInt32(hdnSerial.Value)) == true)
+                {
+                    //Get updated UnifiedID
+                    iUnifiedID = LibraryMOD.GetUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value));
+                }
+            }
+            else
+            {
+                iUnifiedID = LibraryMOD.GetUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
+                if (iUnifiedID == 0)
+                {
+                    iUnifiedID = LibraryMOD.GetMaxUnifiedID_withoutCheckRefID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
+                }
+                LibraryMOD.UpdateStudentUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), iUnifiedID);
+            }
+            //Update student email    
+            sECTEmail = sFName.ToString().Trim().Replace(" ", string.Empty) + iUnifiedID.ToString().PadLeft(6, Convert.ToChar("0")) + "@ect.ac.ae";
+            if (LibraryMOD.UpdateStudentEmail(Campus, Convert.ToInt32(hdnSerial.Value), sECTEmail) == true)
+            {
+                //lbl_Msg.Text = "Student email has been created successfully";
+                //div_Alert.Attributes.Add("class", "alert alert-success alert-dismissible");
+                //div_msg.Visible = true;
+                hdnStudentEmail.Value = sECTEmail;
+            }
+            else
+            {
+                //lbl_Msg.Text = "The student's email has not been created";
+                //div_msg.Visible = true;
+            }
+            //btnCreateEmail.Enabled = false;
+        }
+        private int GetSerial(string sNumber)
+        {
+            int iserial = 0;
+            try
+            {
+                ApplicationsDAL myapp = new ApplicationsDAL();
+                iserial = myapp.GetSerial(Campus, sNumber);
+            }
+            catch (Exception ex)
+            {
+            }
+            return iserial;
+        }
+
+        public void apicall_UpdateRegistrationStatus(int count,string sSID)
+        {
+            string registrationstatus = "Registered";
+            string retention_status = "Opened";
+            string numberofregisteredcourses = "0";
+            string cgpa = "-1";
+            string ect_student_id = sSID;
+            string financialbalance = "A";
+            string sisusername = sSID;
+            string sispassword = "ect@12345";
+            string ectemailpassword = "ect@12345";
+            string major = hdnStudentMajor.Value;
+            string Credit_Completed = "0";
+            string contactid = "0";
+            if (count>0)
+            {
+                registrationstatus= "Registered";
+                retention_status = "Registered";
+                numberofregisteredcourses = count.ToString();
+            }
+            else
+            {
+                registrationstatus = "Unregistered";
+                retention_status = "Opened";
+                numberofregisteredcourses = "0";
+            }
+
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+            SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
+            SqlCommand cmd = new SqlCommand("SELECT  [UserNo],[UserName],[Password] FROM [ECTDataNew].[dbo].[Cmn_User] where UserNo in (SELECT intOnlineUser from [ECTData].[dbo].[Reg_Student_Accounts] where lngStudentNumber=@lngStudentNumber);SELECT GPA FROM GPA_Until WHERE lngStudentNumber=@lngStudentNumber;  select icontactid FROM [ECTData].[dbo].[Reg_Applications] where lngStudentNumber=@lngStudentNumber", sc);
+            cmd.Parameters.AddWithValue("@lngStudentNumber", sSID);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                sc.Open();
+                da.Fill(ds);
+                sc.Close();
+                if(ds.Tables[0].Rows.Count>0)
+                {
+                    sisusername = ds.Tables[0].Rows[0]["UserName"].ToString();
+                    sispassword = ds.Tables[0].Rows[0]["Password"].ToString();
+                }
+                if (ds.Tables[1].Rows.Count > 0)
+                {
+                    cgpa = ds.Tables[1].Rows[0]["GPA"].ToString();
+                }
+                if (ds.Tables[2].Rows.Count > 0)
+                {
+                    contactid = ds.Tables[2].Rows[0]["icontactid"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sc.Close();
+            }
+
+            //API Call
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.DefaultConnectionLimit = 9999;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            string accessToken = InitializeModule.CxPwd;
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), "https://ect.custhelp.com/services/rest/connect/v1.4/contacts/"+ contactid + ""))
+                {
+                    request.Headers.TryAddWithoutValidation("Authorization", accessToken);
+                    request.Headers.TryAddWithoutValidation("OSvC-CREST-Application-Context", "application/x-www-form-urlencoded");
+
+                    request.Content = new StringContent("{\n    \"customFields\": {\n        \"c\": {\n            \"registrationstatus\": {\n                \"lookupName\": \""+ registrationstatus + "\"\n            },\n            \"numberofregisteredcourses\": "+numberofregisteredcourses+",\n            \"cgpa\": "+cgpa+",\n            \"retention_status\": {\n                \"lookupName\": \""+retention_status+"\"\n            },\n            \"ect_student_id\": \""+ect_student_id+"\",\n            \"financialbalance\": \""+financialbalance+"\",\n            \"sisusername\": \""+sisusername+"\",\n            \"sispassword\": \""+sispassword+"\",\n            \"ectemailpassword\": \""+ectemailpassword+"\"\n        },\n        \"CO\": {\n            \"Major\": \""+major+"\",\n            \"Credit_Completed\": "+Credit_Completed+"\n        }\n    }\n}");
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                    var task = httpClient.SendAsync(request);
+                    task.Wait();
+                    var response = task.Result;
+                    string s = response.Content.ReadAsStringAsync().Result;
+                }
             }
         }
         //handling drop link in Reg_grd
@@ -1902,6 +2411,20 @@ namespace SIS_Student
                 }
 
                 Reg_grd.DataBind();
+                if(Reg_grd.Rows.Count<=0)
+                {
+                    string studentid = Session["CurrentStudent"].ToString();
+                    var services = new DAL.DAL();
+                    Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+                    DataTable dtStudentServices = services.GetStudentDetailsID(studentid, connstr.Conn_string);
+                    //string emailid = dtStudentServices.Rows[0]["sECTemail"].ToString();
+                    //string fname = dtStudentServices.Rows[0]["strFirstDescEn"].ToString();
+                    //string lname = dtStudentServices.Rows[0]["strSecondDescEn"].ToString();
+                    hdnStudentMajor.Value = dtStudentServices.Rows[0]["strCaption"].ToString();
+                    //Update Registration Status
+                    //API Call-Update Registration Status
+                    apicall_UpdateRegistrationStatus(Reg_grd.Rows.Count, Session["CurrentStudent"].ToString());
+                }
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "testScript", "$(document).ready(function(){ $('#divConfirmation').text('Course " + sCourse + " dropped successfully.').slideToggle('slow'); });", true);
             }
             catch (Exception exp)

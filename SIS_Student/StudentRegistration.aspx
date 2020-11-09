@@ -880,6 +880,9 @@
     line-height: inherit;
 }
 </style>
+                                              <asp:HiddenField ID="hdnSerial" runat="server" />
+                                            <asp:HiddenField ID="hdnStudentEmail" runat="server" />
+                                             <asp:HiddenField ID="hdnStudentMajor" runat="server" />
                                         </div>
                                     </div>
                                 </div>

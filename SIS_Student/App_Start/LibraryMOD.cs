@@ -70,7 +70,401 @@ public class LibraryMOD
         }
         return functionReturnValue;
     }
+    public static int GetStudentMoodleUserNo(string sUserName)
+    {
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+        SqlConnection conn = new SqlConnection(myConnection_String.Conn_string);
+        conn.Open();
+        try
+        {
 
+            sUserName = sUserName.Replace(".", "").Trim();
+            string sSQL = "SELECT MoodleUserNo FROM Cmn_User WHERE UserName = '" + sUserName + "'";
+
+            SqlCommand cmd = new SqlCommand(sSQL, conn);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+        catch (Exception ex)
+        {
+            return 0;
+        }
+        finally
+        {
+            conn.Close();
+            conn.Dispose();
+        }
+    }
+    public static int GetStudentUserNo(string sUserName)
+    {
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+        SqlConnection conn = new SqlConnection(myConnection_String.Conn_string);
+        conn.Open();
+        try
+        {
+
+            sUserName = sUserName.Replace(".", "").Trim();
+            string sSQL = "SELECT UserNo FROM Cmn_User WHERE UserName = '" + sUserName + "'";
+
+            SqlCommand cmd = new SqlCommand(sSQL, conn);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+        catch (Exception ex)
+        {
+            return 0;
+        }
+        finally
+        {
+            conn.Close();
+            conn.Dispose();
+        }
+    }
+    public static int GetMaxUnifiedID(InitializeModule.EnumCampus Campus, int iSerialNo, out string FName)
+    {
+        int functionReturnValue = 0;
+
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+        string sFName = "";
+
+        try
+        {
+            string sSQL = null;
+
+            sSQL = "SELECT LUnified.MUnifiedID, SD.strFirstDescEn";
+            //sSQL += ",SD.lngSerial";
+            //sSQL += ", SD.strLastDescEn AS Name, SD.iUnifiedID, A.intStudyYear * 10 + A.byteSemester AS Term, A.lngStudentNumber";
+            sSQL += " FROM     Reg_Students_Data AS SD INNER JOIN";
+            sSQL += " Reg_Applications AS A ON SD.lngSerial = A.lngSerial LEFT OUTER JOIN";
+            sSQL += " Reg_Applications AS A0 ON A.sReference = A0.lngStudentNumber CROSS JOIN";
+            sSQL += " (SELECT  MAX(iUnifiedID) + 1 AS MUnifiedID";
+            sSQL += " FROM     Reg_Students_Data AS SD) AS LUnified";
+            sSQL += " WHERE  (SD.iUnifiedID IS NULL) AND (A0.lngStudentNumber IS NULL) ";
+            if (Campus == InitializeModule.EnumCampus.Males)
+            {
+                sSQL += " AND (SD.byteShift = 3 OR";
+                sSQL += " SD.byteShift = 4 OR";
+                sSQL += " SD.byteShift = 8)";
+            }
+            else
+            {
+                sSQL += " AND (SD.byteShift = 1 OR";
+                sSQL += " SD.byteShift = 2 OR";
+                sSQL += " SD.byteShift = 9)";
+            }
+            sSQL += " AND (SD.lngSerial = " + iSerialNo + ")";
+
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            SqlDataReader rd = Cmd.ExecuteReader();
+            int iMax = 0;
+
+            while (rd.Read())
+            {
+                iMax = int.Parse("0" + rd["MUnifiedID"].ToString());
+                sFName = rd["strFirstDescEn"].ToString();
+            }
+            rd.Close();
+
+            //FName = sFName;
+            functionReturnValue = iMax;
+        }
+        catch (Exception ex)
+        {
+            ShowErrorMessage(ex);
+        }
+        finally
+        {
+
+        }
+        FName = sFName;
+        return functionReturnValue;
+    }
+    public static bool UpdateStudentUnifiedID(InitializeModule.EnumCampus Campus, int iSerialNo, int iUnifiedID)
+    {
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+        bool isChanged = false;
+        try
+        {
+
+            string sSQL = "UPDATE Reg_Students_Data";
+            sSQL += " SET iUnifiedID = " + iUnifiedID;
+            sSQL += " WHERE lngSerial=" + iSerialNo;
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            int iEffected = 0;
+
+            iEffected = Cmd.ExecuteNonQuery();
+            isChanged = (iEffected > 0);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("{0} Exception caught.", ex);
+
+        }
+        finally
+        {
+            Conn.Close();
+            Conn.Dispose();
+        }
+        return isChanged;
+    }
+    public static bool UpdateStudentUnifiedIDIfHasRefID(InitializeModule.EnumCampus Campus, int iSerialNo)
+    {
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+        bool isChanged = false;
+        try
+        {
+
+            string sSQL = "UPDATE SD SET SD.iUnifiedID=SD0.iUnifiedID";
+            sSQL += " FROM Reg_Students_Data AS SD INNER JOIN";
+            sSQL += " Reg_Applications AS A ON SD.lngSerial = A.lngSerial INNER JOIN";
+            sSQL += " Reg_Applications AS A0 ON A.sReference = A0.lngStudentNumber INNER JOIN";
+            sSQL += " Reg_Students_Data AS SD0 ON A0.lngSerial = SD0.lngSerial";
+            sSQL += " WHERE (SD.iUnifiedID IS NULL OR";
+            sSQL += " SD.iUnifiedID <> SD0.iUnifiedID) ";
+            if (Campus == InitializeModule.EnumCampus.Males)
+            {
+                sSQL += " AND (SD.byteShift = 3 OR SD.byteShift = 4 OR SD.byteShift = 8)";
+            }
+            else
+            {
+                sSQL += " AND (SD.byteShift = 1 OR SD.byteShift = 2 OR SD.byteShift = 9)";
+            }
+            sSQL += " AND (SD0.iUnifiedID IS NOT NULL) ";
+            sSQL += " AND (SD.sECTemail IS NULL)";
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            int iEffected = 0;
+
+            iEffected = Cmd.ExecuteNonQuery();
+            isChanged = (iEffected > 0);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("{0} Exception caught.", ex);
+
+        }
+        finally
+        {
+            Conn.Close();
+            Conn.Dispose();
+        }
+        return isChanged;
+    }
+    public static int GetUnifiedID(InitializeModule.EnumCampus Campus, int iSerialNo)
+    {
+        int functionReturnValue = 0;
+
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+
+
+        try
+        {
+            string sSQL = null;
+
+            sSQL = "SELECT SD.iUnifiedID";
+            sSQL += " FROM Reg_Students_Data AS SD";
+            sSQL += " WHERE (SD.lngSerial = " + iSerialNo + ")";
+
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            SqlDataReader rd = Cmd.ExecuteReader();
+            int iUID = 0;
+
+            while (rd.Read())
+            {
+                iUID = int.Parse("0" + rd["iUnifiedID"].ToString());
+            }
+            rd.Close();
+
+
+            functionReturnValue = iUID;
+        }
+        catch (Exception ex)
+        {
+            ShowErrorMessage(ex);
+        }
+        finally
+        {
+
+        }
+        return functionReturnValue;
+    }
+    public static int GetUnifiedID(InitializeModule.EnumCampus Campus, int iSerialNo, out string FName)
+    {
+        int functionReturnValue = 0;
+
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+
+        string sFName = "";
+        try
+        {
+            string sSQL = null;
+
+            sSQL = "SELECT SD.iUnifiedID, SD.strFirstDescEn";
+            sSQL += " FROM Reg_Students_Data AS SD";
+            sSQL += " WHERE (SD.lngSerial = " + iSerialNo + ")";
+
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            SqlDataReader rd = Cmd.ExecuteReader();
+            int iUID = 0;
+
+            while (rd.Read())
+            {
+                iUID = int.Parse("0" + rd["iUnifiedID"].ToString());
+                sFName = rd["strFirstDescEn"].ToString();
+            }
+            rd.Close();
+
+
+            functionReturnValue = iUID;
+        }
+        catch (Exception ex)
+        {
+            ShowErrorMessage(ex);
+        }
+        finally
+        {
+
+        }
+        FName = sFName;
+        return functionReturnValue;
+    }
+    public static int GetMaxUnifiedID_withoutCheckRefID(InitializeModule.EnumCampus Campus, int iSerialNo, out string FName)
+    {
+        int functionReturnValue = 0;
+
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+        string sFName = "";
+
+        try
+        {
+            string sSQL = null;
+
+            sSQL = "SELECT LUnified.MUnifiedID, SD.strFirstDescEn";
+            //sSQL += ",SD.lngSerial";
+            //sSQL += ", SD.strLastDescEn AS Name, SD.iUnifiedID, A.intStudyYear * 10 + A.byteSemester AS Term, A.lngStudentNumber";
+            sSQL += " FROM     Reg_Students_Data AS SD INNER JOIN";
+            sSQL += " Reg_Applications AS A ON SD.lngSerial = A.lngSerial";
+            sSQL += " CROSS JOIN";
+            sSQL += " (SELECT  MAX(iUnifiedID) + 1 AS MUnifiedID";
+            sSQL += " FROM     Reg_Students_Data AS SD) AS LUnified";
+            sSQL += " WHERE  (SD.iUnifiedID IS NULL) ";
+            if (Campus == InitializeModule.EnumCampus.Males)
+            {
+                sSQL += " AND (SD.byteShift = 3 OR";
+                sSQL += " SD.byteShift = 4 OR";
+                sSQL += " SD.byteShift = 8)";
+            }
+            else
+            {
+                sSQL += " AND (SD.byteShift = 1 OR";
+                sSQL += " SD.byteShift = 2 OR";
+                sSQL += " SD.byteShift = 9)";
+            }
+            sSQL += " AND (SD.lngSerial = " + iSerialNo + ")";
+
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            SqlDataReader rd = Cmd.ExecuteReader();
+            int iMax = 0;
+
+            while (rd.Read())
+            {
+                iMax = int.Parse("0" + rd["MUnifiedID"].ToString());
+                sFName = rd["strFirstDescEn"].ToString();
+            }
+            rd.Close();
+
+            //FName = sFName;
+            functionReturnValue = iMax;
+        }
+        catch (Exception ex)
+        {
+            ShowErrorMessage(ex);
+        }
+        finally
+        {
+
+        }
+        FName = sFName;
+        return functionReturnValue;
+    }
+    public static bool UpdateStudentEmail(InitializeModule.EnumCampus Campus, int iSerialNo, string sEmail)
+    {
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+        bool isChanged = false;
+        try
+        {
+
+            string sSQL = "UPDATE Reg_Students_Data";
+            sSQL += " SET sECTemail = '" + sEmail + "'";
+            sSQL += " ,IsEmailCreationRequired =1";
+            sSQL += " WHERE lngSerial=" + iSerialNo;
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            int iEffected = 0;
+
+            iEffected = Cmd.ExecuteNonQuery();
+            isChanged = (iEffected > 0);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("{0} Exception caught.", ex);
+
+        }
+        finally
+        {
+            Conn.Close();
+            Conn.Dispose();
+        }
+        return isChanged;
+    }
+    public static int GetCurrentRegisteredCourses(InitializeModule.EnumCampus Campus, string sNo, int iYear, int iSem)
+    {
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+        int iCurrentReg = 0;
+        try
+        {
+
+
+            string sSQL = "SELECT MCRS + FCRS AS Reg FROM Reg_Both_Side ";
+            sSQL += " WHERE Student='" + sNo + "'";
+            sSQL += " AND (iYear = " + iYear + ") AND (Sem = " + iSem + ")";
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            iCurrentReg = Convert.ToInt32("0" + Cmd.ExecuteScalar().ToString());
+
+        }
+        catch (Exception exp)
+        {
+
+        }
+        finally
+        {
+            Conn.Close();
+            Conn.Dispose();
+        }
+        return iCurrentReg;
+    }
     public static int GetMaxID(SqlConnection con, string ColName, string sPKCol, int iPKColValue, string TableName)
     {
         int functionReturnValue = 0;
