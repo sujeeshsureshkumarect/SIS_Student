@@ -2218,7 +2218,7 @@ namespace SIS_Student
             string registrationstatus = "Registered";
             string retention_status = "Opened";
             string numberofregisteredcourses = "0";
-            string cgpa = "-1";
+            string cgpa = "0";
             string ect_student_id = sSID;
             string financialbalance = "A";
             string sisusername = sSID;
@@ -2239,10 +2239,20 @@ namespace SIS_Student
                 retention_status = "Opened";
                 numberofregisteredcourses = "0";
             }
-
+            int iCSem = 0;
+            int iCYear = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out iCSem);
+            int hrs = 18;
+            if(iCSem==1 || iCSem==2)//Fall & Spring
+            {
+                hrs = 18;
+            }
+            else if (iCSem == 3 || iCSem == 4)//Summer 1 & Summer 2
+            {
+                hrs = 9;
+            }
             Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
             SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
-            SqlCommand cmd = new SqlCommand("SELECT  [UserNo],[UserName],[Password] FROM [ECTDataNew].[dbo].[Cmn_User] where UserNo in (SELECT intOnlineUser from [ECTData].[dbo].[Reg_Student_Accounts] where lngStudentNumber=@lngStudentNumber);SELECT GPA FROM GPA_Until WHERE lngStudentNumber=@lngStudentNumber;  select icontactid FROM [ECTData].[dbo].[Reg_Applications] where lngStudentNumber=@lngStudentNumber", sc);
+            SqlCommand cmd = new SqlCommand("SELECT  A.lngStudentNumber AS SID, dbo.Completed_Successfully(A.lngStudentNumber, "+ iCYear + ", "+ iCSem + ", A.strDegree, A.strSpecialization) AS Completed, dbo.GetSARFinanceCategory("+ iCYear + ", "+ iCSem + ", A.lngStudentNumber, "+ hrs + ") AS Balance, ISNULL(G.GPA, 0) AS CGPA, SD.sECTemail AS EMail, ISNULL(AC.intOnlineUser, 0) AS [User] FROM Reg_Applications AS A INNER JOIN Reg_Students_Data AS SD ON A.lngSerial = SD.lngSerial LEFT OUTER JOIN Reg_Student_Accounts AS AC ON A.lngStudentNumber = AC.lngStudentNumber LEFT OUTER JOIN GPA_Until AS G ON A.lngStudentNumber = G.lngStudentNumber WHERE (A.lngStudentNumber = @lngStudentNumber);SELECT  [UserNo],[UserName],[Password] FROM [ECTDataNew].[dbo].[Cmn_User] where UserNo in (SELECT intOnlineUser from [ECTData].[dbo].[Reg_Student_Accounts] where lngStudentNumber=@lngStudentNumber);SELECT GPA FROM GPA_Until WHERE lngStudentNumber=@lngStudentNumber;  select icontactid FROM [ECTData].[dbo].[Reg_Applications] where lngStudentNumber=@lngStudentNumber", sc);
             cmd.Parameters.AddWithValue("@lngStudentNumber", sSID);
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -2251,18 +2261,27 @@ namespace SIS_Student
                 sc.Open();
                 da.Fill(ds);
                 sc.Close();
-                if(ds.Tables[0].Rows.Count>0)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    sisusername = ds.Tables[0].Rows[0]["UserName"].ToString();
-                    sispassword = ds.Tables[0].Rows[0]["Password"].ToString();
+                    Credit_Completed = ds.Tables[0].Rows[0]["Completed"].ToString();
+                    financialbalance = ds.Tables[0].Rows[0]["Balance"].ToString();
                 }
-                if (ds.Tables[1].Rows.Count > 0)
+                if (ds.Tables[1].Rows.Count>0)
                 {
-                    cgpa = ds.Tables[1].Rows[0]["GPA"].ToString();
+                    sisusername = ds.Tables[1].Rows[0]["UserName"].ToString();
+                    sispassword = ds.Tables[1].Rows[0]["Password"].ToString();
                 }
                 if (ds.Tables[2].Rows.Count > 0)
                 {
-                    contactid = ds.Tables[2].Rows[0]["icontactid"].ToString();
+                    cgpa = ds.Tables[2].Rows[0]["GPA"].ToString();
+                }
+                else
+                {
+                    cgpa = "0";
+                }
+                if (ds.Tables[3].Rows.Count > 0)
+                {
+                    contactid = ds.Tables[3].Rows[0]["icontactid"].ToString();
                 }
             }
             catch(Exception ex)
@@ -2276,6 +2295,7 @@ namespace SIS_Student
             }
 
             //API Call
+            
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.DefaultConnectionLimit = 9999;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
