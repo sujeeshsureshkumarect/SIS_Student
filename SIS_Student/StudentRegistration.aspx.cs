@@ -1823,12 +1823,12 @@ namespace SIS_Student
                             //======= Create Moodle Account
                             if (ClsMoodleAPI.CreateUpdateMoodleAccount(hdnStudentEmail.Value, sSID) == InitializeModule.SUCCESS_RET)
                             {
-                                //lbl_Msg.Text += " & Moodle";
+                                hdnMsg.Value += " & Moodle";
                             }
                             //======== Enroll student in Moodle courses
                             if (ClsMoodleAPI.EnrollStudentinMoodleCourses(hdnStudentEmail.Value, sSID) == InitializeModule.SUCCESS_RET)
                             {
-                                //lbl_Msg.Text += ", Student enrolled in Moodle courses";
+                                hdnMsg.Value += ", Student enrolled in Moodle courses";
                             }
                             //======= Create Zoom Account
                             string sFirstName = fname + " " + lname;
@@ -1880,6 +1880,7 @@ namespace SIS_Student
                     if (uID != null) //added by bahaa 25-09-2020 //
                     {
                         userid = uID.ToString();
+                        hdnMsg.Value += ",Zoom Account Created";
                     }
 
 
@@ -1909,6 +1910,7 @@ namespace SIS_Student
                 //addZoomIMGroupMembers(IMGroupID, emailID, userid);
 
                 //deleteZoomIMGroupMemeber("W6jUNfWfSuC-vY7VqWpwOQ", userid);//Remove the User from Default IM Group - Restricted 
+                hdnMsg.Value += ",Zoom Account User Added to Group";
             }
         }
         public void AddZoomGroupMemebers(string groupid, string email, string userid, string JWTaccessToken)
@@ -1986,7 +1988,7 @@ namespace SIS_Student
                     CreateUserEmailAD(dt.Rows[i]["Given_Name"].ToString(), dt.Rows[i]["Surname"].ToString(), dt.Rows[i]["Display_Name"].ToString(), dt.Rows[i]["Description"].ToString(), dt.Rows[i]["Email_Addresses"].ToString(), dt.Rows[i]["Sam_Account_Name"].ToString(), dt.Rows[i]["Department"].ToString(), dt.Rows[i]["Company"].ToString(), true);
                     //}
                     UpdateEmailCreationRequired(Con, Convert.ToInt32(hdnSerial.Value));
-                    //lbl_Msg.Text = "Students Email Created Successfully in Office365";
+                    hdnMsg.Value += ",Students Email Created Successfully in Office365";
                     //div_Alert.Attributes.Add("class", "alert alert-success alert-dismissible");
                     //div_msg.Visible = true;
                 }
@@ -2158,7 +2160,7 @@ namespace SIS_Student
             string sECTEmail = "";
             if (lname.Trim().Length <= 1)
             {
-                //lbl_Msg.Text = "Please enter correct name in (Last Name) ";
+                hdnMsg.Value = "Please enter correct name in (Last Name) ";
                 //div_msg.Visible = true;
                 return;
             }
@@ -2187,14 +2189,14 @@ namespace SIS_Student
             sECTEmail = sFName.ToString().Trim().Replace(" ", string.Empty) + iUnifiedID.ToString().PadLeft(6, Convert.ToChar("0")) + "@ect.ac.ae";
             if (LibraryMOD.UpdateStudentEmail(Campus, Convert.ToInt32(hdnSerial.Value), sECTEmail) == true)
             {
-                //lbl_Msg.Text = "Student email has been created successfully";
+                hdnMsg.Value = "Student email has been created successfully";
                 //div_Alert.Attributes.Add("class", "alert alert-success alert-dismissible");
                 //div_msg.Visible = true;
                 hdnStudentEmail.Value = sECTEmail;
             }
             else
             {
-                //lbl_Msg.Text = "The student's email has not been created";
+                hdnMsg.Value = "The student's email has not been created";
                 //div_msg.Visible = true;
             }
             //btnCreateEmail.Enabled = false;
@@ -2302,17 +2304,23 @@ namespace SIS_Student
             string accessToken = InitializeModule.CxPwd;
             using (var httpClient = new HttpClient())
             {
-                using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), "https://ect.custhelp.com/services/rest/connect/v1.4/contacts/"+ contactid + ""))
+                using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), "https://ect.custhelp.com/services/rest/connect/v1.4/contacts/" + contactid + ""))
                 {
                     request.Headers.TryAddWithoutValidation("Authorization", accessToken);
                     request.Headers.TryAddWithoutValidation("OSvC-CREST-Application-Context", "application/x-www-form-urlencoded");
 
-                    request.Content = new StringContent("{\n    \"customFields\": {\n        \"c\": {\n            \"registrationstatus\": {\n                \"lookupName\": \""+ registrationstatus + "\"\n            },\n            \"numberofregisteredcourses\": "+numberofregisteredcourses+",\n            \"cgpa\": "+cgpa+",\n            \"retention_status\": {\n                \"lookupName\": \""+retention_status+"\"\n            },\n            \"ect_student_id\": \""+ect_student_id+"\",\n            \"financialbalance\": \""+financialbalance+"\",\n            \"sisusername\": \""+sisusername+"\",\n            \"sispassword\": \""+sispassword+"\",\n            \"ectemailpassword\": \""+ectemailpassword+"\"\n        },\n        \"CO\": {\n            \"Major\": \""+major+"\",\n            \"Credit_Completed\": "+Credit_Completed+"\n        }\n    }\n}");
+                    request.Content = new StringContent("{\n    \"customFields\": {\n        \"c\": {\n            \"registrationstatus\": {\n                \"lookupName\": \"" + registrationstatus + "\"\n            },\n            \"numberofregisteredcourses\": " + numberofregisteredcourses + ",\n            \"cgpa\": " + cgpa + ",\n            \"retention_status\": {\n                \"lookupName\": \"" + retention_status + "\"\n            },\n            \"ect_student_id\": \"" + ect_student_id + "\",\n            \"financialbalance\": \"" + financialbalance + "\",\n            \"sisusername\": \"" + sisusername + "\",\n            \"sispassword\": \"" + sispassword + "\",\n            \"ectemailpassword\": \"" + ectemailpassword + "\"\n        },\n        \"CO\": {\n            \"Major\": \"" + major + "\",\n            \"Credit_Completed\": " + Credit_Completed + "\n        }\n    }\n}");
                     request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                     var task = httpClient.SendAsync(request);
                     task.Wait();
                     var response = task.Result;
                     string s = response.Content.ReadAsStringAsync().Result;
+                    //If Status 200
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        hdnMsg.Value += ", API Call-Update Registration Status-SUCCESS";
+                    }
+
                 }
             }
         }

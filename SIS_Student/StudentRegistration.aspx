@@ -883,6 +883,7 @@
                                               <asp:HiddenField ID="hdnSerial" runat="server" />
                                             <asp:HiddenField ID="hdnStudentEmail" runat="server" />
                                              <asp:HiddenField ID="hdnStudentMajor" runat="server" />
+                                             <asp:HiddenField ID="hdnMsg" runat="server" />
                                         </div>
                                     </div>
                                 </div>
