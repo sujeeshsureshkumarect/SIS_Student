@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace SIS_Student
 {
@@ -80,6 +83,7 @@ namespace SIS_Student
                             }
                             else
                             {
+                                checkfirstpayment(sAcc);//checking that its first payment done by student or not
                                 lblResult.Text = "Payment registered in the system successfully.";
                                 divMsg.InnerHtml = "";
                                 Session["PmtSession"] = null;
@@ -279,6 +283,203 @@ namespace SIS_Student
             }
             return sVoucher;
 
+        }
+
+        public void checkfirstpayment(string sAcc)
+        {
+            //checking that its first payment done by student or not
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
+            SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
+            SqlCommand cmd = new SqlCommand("SELECT count(strAccountNo) as Count FROM [ECTData].[dbo].[Acc_Voucher_Detail] where strAccountNo=@strAccountNo", sc);
+            cmd.Parameters.AddWithValue("@strAccountNo", sAcc);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                sc.Open();
+                da.Fill(dt);
+                sc.Close();
+
+                if(dt.Rows.Count>0)
+                {
+                    int count = Convert.ToInt32(dt.Rows[0]["Count"]);
+                    if(count==1)//First Payment
+                    {
+                        int opportunityid = 0;
+                        string sSID = Session["CurrentStudent"].ToString();
+                        int iSerial = GetSerial(sSID);
+                        Session["StudentSerialNo"] = iSerial;
+                        SqlCommand cmd1 = new SqlCommand("select iOpportunityID from Reg_Applications where lngSerial=@lngSerial", sc);
+                        cmd1.Parameters.AddWithValue("@lngSerial", iSerial);
+                        DataTable dt1 = new DataTable();
+                        SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+                        try
+                        {
+                            sc.Open();
+                            da1.Fill(dt1);
+                            sc.Close();
+
+                            if(dt1.Rows.Count>0)
+                            {
+                                opportunityid =Convert.ToInt32(dt1.Rows[0]["iOpportunityID"]);
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            sc.Close();
+                            Console.WriteLine(ex.Message);
+                        }
+                        finally
+                        {
+                            sc.Close();
+                        }
+
+                        //Call API Function Update Opportunity
+                        lnkOpportunity_Command(opportunityid);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                sc.Close();
+                divMsg.InnerText = ex.Message;
+            }
+            finally
+            {
+                sc.Close();
+            }
+        }
+        private int GetSerial(string sNumber)
+        {
+            int iserial = 0;
+            try
+            {
+                ApplicationsDAL myapp = new ApplicationsDAL();
+                iserial = myapp.GetSerial(CurrentCampus, sNumber);
+            }
+            catch (Exception ex)
+            {
+            }
+            return iserial;
+        }
+        public void lnkOpportunity_Command(int opportunityid)
+        {
+            string sSID = Session["CurrentStudent"].ToString();
+            int iOpportunity = 0;
+            if (isOpportunitySet(sSID, out iOpportunity))
+            {
+               
+            }
+            else
+            {
+                if (iOpportunity > 0 && iOpportunity.ToString() == opportunityid.ToString())
+                {
+                    //this.ClientScript.RegisterStartupScript(this.GetType(), "test", "setOpportunity();", true);
+                    ServicePointManager.Expect100Continue = true;
+                    ServicePointManager.DefaultConnectionLimit = 9999;
+                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+                    string accessToken = InitializeModule.CxPwd;
+
+                    using (var httpClient = new HttpClient())
+                    {
+                        using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://ect.custhelp.com/services/rest/connect/v1.4/opportunities/" + opportunityid + ""))
+                        {
+                            request.Headers.TryAddWithoutValidation("Authorization", accessToken);
+                            request.Headers.TryAddWithoutValidation("OSvC-CREST-Application-Context", "application/x-www-form-urlencoded");
+
+                            request.Content = new StringContent("{\n\t\"customFields\": {\n\t\t\"c\": {\n\t\t\t\"paymentstatus\": {\n                \"id\": 1094,\n                \"lookupName\": \"Payment Succeeded\"\n            }\n\t\t}\n\t},\n\t\"statusWithType\": {\n        \"status\": {\n            \"id\": 11\n        }\n    }\n}");
+                            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+                            var task = httpClient.SendAsync(request);
+                            task.Wait();
+                            var response = task.Result;
+                            string s = response.Content.ReadAsStringAsync().Result;
+                            //If Status 200
+                            if (response.IsSuccessStatusCode == true)
+                            {
+                                SetOpportunity(sSID);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    divMsg.InnerText = "Opportunity ID must be saved first.";
+                    //div_msg.Visible = true;
+                }
+            }
+        }
+        private bool isOpportunitySet(string sSID, out int iOpportunity)
+        {
+            bool isSet = false;
+            iOpportunity = 0;
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
+            SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+            Conn.Open();
+            try
+            {
+
+                string sSQL = "SELECT iOpportunityID, isOpportunitySet";
+                sSQL += " FROM Reg_Applications";
+                sSQL += " WHERE (lngStudentNumber = '" + sSID + "')";
+
+                SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+                SqlDataReader Rd = Cmd.ExecuteReader();
+
+                while (Rd.Read())
+                {
+                    iOpportunity = Convert.ToInt32(Rd["iOpportunityID"].ToString());
+                    isSet = Convert.ToBoolean(Rd["isOpportunitySet"].ToString());
+                }
+                Rd.Close();
+
+            }
+            catch (Exception ex)
+            {
+                LibraryMOD.ShowErrorMessage(ex);
+                divMsg.InnerText = ex.Message;
+                //div_msg.Visible = true;
+            }
+            finally
+            {
+                Conn.Close();
+                Conn.Dispose();
+            }
+            return isSet;
+        }
+        public static bool SetOpportunity(string sSID)
+        {
+            bool isSet = false;
+            //U cannot use var from out of the scope. (Campus)
+            InitializeModule.EnumCampus campus = InitializeModule.EnumCampus.Males;
+            if (sSID.Contains("AF") || sSID.Contains("ESF"))
+            {
+                campus = InitializeModule.EnumCampus.Females;
+            }
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(campus);
+            SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+            Conn.Open();
+            try
+            {
+
+                string sSQL = "UPDATE Reg_Applications SET isOpportunitySet=1";
+                sSQL += " WHERE (lngStudentNumber = '" + sSID + "')";
+
+                SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+                isSet = (Cmd.ExecuteNonQuery() > 0);
+
+
+            }
+            catch (Exception ex)
+            {
+                LibraryMOD.ShowErrorMessage(ex);
+                //divMsg.InnerText = ex.Message;
+            }
+            finally
+            {
+                Conn.Close();
+                Conn.Dispose();
+            }
+            return isSet;
         }
     }
 }

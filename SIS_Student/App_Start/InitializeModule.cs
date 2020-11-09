@@ -20,6 +20,7 @@ public class InitializeModule
     public const string MCam_DB = "ECTData";
     public const string FCam_DB = "ECTData";
     public const string merchantId = "7006448";//"TEST7006448";
+    public const string CxPwd = "Basic bG9jYWxlY3Q6RWN0QDIwMjA=";
 
     public const string APP_TITLE = "ECT System";
     public const string POSSIBLE_CONDITION = "1=1";
