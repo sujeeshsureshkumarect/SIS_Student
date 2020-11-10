@@ -1778,7 +1778,7 @@ namespace SIS_Student
                     Reg_grd.DataBind();
                     if (Reg_grd.Rows.Count > 0)
                     {
-                        //Update Registration Status- Status Registered
+                        //Update Registration Status - Status Registered
 
                         //Check Email exists or not
                         string studentid = Session["CurrentStudent"].ToString();
@@ -2214,7 +2214,6 @@ namespace SIS_Student
             }
             return iserial;
         }
-
         public void apicall_UpdateRegistrationStatus(int count,string sSID)
         {
             string registrationstatus = "Registered";
