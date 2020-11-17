@@ -334,8 +334,38 @@ namespace SIS_Student
                             sc.Close();
                         }
 
-                        //Call API Function Update Opportunity
-                        lnkOpportunity_Command(opportunityid);
+                        
+                        //Check Payment >= Payment Value
+                        SqlCommand cmd2 = new SqlCommand("select iAdmissionPaymentType,cAdmissionPaymentValue from Reg_Student_Accounts where strAccountNo=@strAccountNo", sc);
+                        cmd2.Parameters.AddWithValue("@strAccountNo", sAcc);
+                        DataTable dt2 = new DataTable();
+                        SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                        try
+                        {
+                            sc.Open();
+                            da2.Fill(dt2);
+                            sc.Close();
+
+                            if(dt2.Rows.Count>0)
+                            {
+                                double paymentvalue = Convert.ToDouble(dt2.Rows[0]["cAdmissionPaymentValue"]);
+                                if(Convert.ToDouble(Session["PmtAmount"])>= paymentvalue)
+                                {
+                                    //Call API Function Update Opportunity
+                                    lnkOpportunity_Command(opportunityid);
+                                    updateuserole(sAcc);
+                                }
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            sc.Close();
+                            Console.WriteLine(ex.Message);
+                        }
+                        finally
+                        {
+                            sc.Close();
+                        }
                     }
                 }
             }
@@ -347,6 +377,49 @@ namespace SIS_Student
             finally
             {
                 sc.Close();
+            }
+        }
+        public void updateuserole(string sAcc)
+        {
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
+            SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+            try
+            {
+                string sSQL = "";
+                SqlCommand Cmd = new SqlCommand();
+                Cmd.Connection = Conn;
+                int iStatus = 2;
+
+                Cmd.CommandText = "Create_Online_User";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Parameters.Add("@sNo", SqlDbType.VarChar).Value = Session["CurrentStudent"].ToString();
+                Cmd.Parameters.Add("@sAccount", SqlDbType.VarChar).Value = sAcc;
+                Cmd.Parameters.Add("@iRole", SqlDbType.Int).Value = 105;
+                Conn.Open();
+                Cmd.ExecuteNonQuery();
+                Conn.Close();
+
+
+                sSQL = "UPDATE Reg_Student_Accounts";
+                sSQL += " SET intOnlineStatus =" + iStatus;
+                sSQL += ",strUserSave='" + Session["CurrentUserName"].ToString() + "',dateLastSave=getDate()";
+                sSQL += " Where strAccountNo='" + sAcc + "'";
+                Cmd.CommandType = CommandType.Text;
+                Cmd.CommandText = sSQL;
+                Conn.Open();
+                Cmd.ExecuteNonQuery();
+                Conn.Close();
+            }
+            catch (Exception exp)
+            {
+                //Console.WriteLine("{0} Exception caught.", exp);                
+                //lbl_Msg.Text = "Online Status not updated";
+                //div_msg.Visible = true;
+            }
+            finally
+            {
+                Conn.Close();
+                Conn.Dispose();
             }
         }
         private int GetSerial(string sNumber)
