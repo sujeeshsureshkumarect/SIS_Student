@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="shortcut icon" href="https://lms.ectmoodle.ae/theme/image.php/ect/theme/1595326309/favicon" />
+    <link rel="shortcut icon" href="images/favicon32.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="Login_v9/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
