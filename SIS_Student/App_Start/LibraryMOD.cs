@@ -3393,29 +3393,64 @@ public class LibraryMOD
         return isHeMissing;
     }
 
+    //public static int GetMajorGeneralIndex(string sDegree, string sMajor)
+    //{
+    //    int iIndex = 0;
+    //    try
+    //    {
+    //        //Foundation
+    //        if (sDegree == "2" && sMajor == "2")
+    //        {
+    //            iIndex = 5;
+    //        }
+    //        if (sDegree == "2" && sMajor == "1")
+    //        {
+    //            iIndex = 7;
+    //        }
+    //        //PR With TOEFL 450
+    //        else if (sDegree == "1" && sMajor == "24")
+    //        {
+    //            iIndex = 11;
+    //        }
+    //        //PR Without TOEFL 450
+    //        else if (sDegree == "1" && sMajor == "25")
+    //        {
+    //            iIndex = 13;
+    //        }
+    //        //Other Majors
+    //        else
+    //        {
+    //            iIndex = 9;
+    //        }
+    //    }
+
+    //    catch (Exception exp)
+    //    {
+    //        Console.WriteLine("{0} Exception caught.", exp);
+    //    }
+    //    finally
+    //    {
+
+    //    }
+    //    return iIndex;
+    //}
+
     public static int GetMajorGeneralIndex(string sDegree, string sMajor)
     {
+        InitializeModule.EnumCampus Campus = InitializeModule.EnumCampus.Males;
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
         int iIndex = 0;
         try
         {
             //Foundation
-            if (sDegree == "2" && sMajor == "2")
+            if ((sDegree == "2") || (sDegree == "1" && (sMajor == "24" || sMajor == "25")))
             {
-                iIndex = 5;
-            }
-            if (sDegree == "2" && sMajor == "1")
-            {
-                iIndex = 7;
-            }
-            //PR With TOEFL 450
-            else if (sDegree == "1" && sMajor == "24")
-            {
-                iIndex = 11;
-            }
-            //PR Without TOEFL 450
-            else if (sDegree == "1" && sMajor == "25")
-            {
-                iIndex = 13;
+                string sSQL = "SELECT COUNT(strCourse) AS CRS FROM Reg_Specialization_Courses";
+                sSQL += " WHERE strCollege='1' AND strDegree='" + sDegree + "'AND strSpecialization='" + sMajor + "'";
+                SqlCommand CMD = new SqlCommand(sSQL, Conn);
+                iIndex = Convert.ToInt32("0" + CMD.ExecuteScalar().ToString());
             }
             //Other Majors
             else
@@ -3424,12 +3459,18 @@ public class LibraryMOD
             }
         }
 
+
+
         catch (Exception exp)
         {
             Console.WriteLine("{0} Exception caught.", exp);
         }
         finally
         {
+            Conn.Close();
+            Conn.Dispose();
+
+
 
         }
         return iIndex;
