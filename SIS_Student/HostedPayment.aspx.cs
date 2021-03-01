@@ -93,10 +93,10 @@ namespace SIS_Student
                     contentList.Add("apiPassword=deeb63937d9daf76831ef22114223968");
                     contentList.Add("interaction.operation=PURCHASE");
                     //contentList.Add("interaction.returnUrl=https://localhost:44387/Result");
-                    //contentList.Add("apiUsername=merchant.TEST7006448");
-                    contentList.Add("apiUsername=merchant.7006448");
-                    //contentList.Add("merchant=TEST7006448");
-                    contentList.Add("merchant=7006448");
+                    contentList.Add("apiUsername=merchant.TEST7006448");
+                    //contentList.Add("apiUsername=merchant.7006448");
+                    contentList.Add("merchant=TEST7006448");
+                    //contentList.Add("merchant=7006448");
                     contentList.Add("order.id=" + orderid + "");
                     contentList.Add("order.amount=" + amount + "");
                     contentList.Add("order.currency=AED");

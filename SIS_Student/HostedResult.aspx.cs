@@ -455,7 +455,7 @@ namespace SIS_Student
 
                     using (var httpClient = new HttpClient())
                     {
-                        using (var request = new HttpRequestMessage(new HttpMethod("GET"), "https://ect.custhelp.com/services/rest/connect/v1.4/opportunities/" + opportunityid + ""))
+                        using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), "https://ect.custhelp.com/services/rest/connect/v1.4/opportunities/" + opportunityid + ""))
                         {
                             request.Headers.TryAddWithoutValidation("Authorization", accessToken);
                             request.Headers.TryAddWithoutValidation("OSvC-CREST-Application-Context", "application/x-www-form-urlencoded");
