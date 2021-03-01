@@ -66,7 +66,8 @@
             var orderId = (urlParams["orderid"]);                
             var desc = (urlParams["desc"]);
             var amount = (urlParams["amount"]);
-            var merchantId = 'TEST7006448';
+            //var merchantId = 'TEST7006448';
+            var merchantId = '7006448';
 
             //var resultIndicator = null;
             //var successIndicator = null;

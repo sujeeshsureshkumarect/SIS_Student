@@ -90,13 +90,14 @@ namespace SIS_Student
 
                     var contentList = new List<string>();
                     contentList.Add("apiOperation=CREATE_CHECKOUT_SESSION");
-                    contentList.Add("apiPassword=deeb63937d9daf76831ef22114223968");
+                    //contentList.Add("apiPassword=deeb63937d9daf76831ef22114223968");//f2474867cc7dbba096b0e4373271d3f0
+                    contentList.Add("apiPassword=f2474867cc7dbba096b0e4373271d3f0");
                     contentList.Add("interaction.operation=PURCHASE");
                     //contentList.Add("interaction.returnUrl=https://localhost:44387/Result");
-                    contentList.Add("apiUsername=merchant.TEST7006448");
-                    //contentList.Add("apiUsername=merchant.7006448");
-                    contentList.Add("merchant=TEST7006448");
-                    //contentList.Add("merchant=7006448");
+                    //contentList.Add("apiUsername=merchant.TEST7006448");
+                    contentList.Add("apiUsername=merchant.7006448");
+                    //contentList.Add("merchant=TEST7006448");
+                    contentList.Add("merchant=7006448");
                     contentList.Add("order.id=" + orderid + "");
                     contentList.Add("order.amount=" + amount + "");
                     contentList.Add("order.currency=AED");
