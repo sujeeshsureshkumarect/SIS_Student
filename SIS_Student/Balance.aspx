@@ -141,8 +141,8 @@
                         <tr align="center">
                               <td colspan="1" class="style1">
                             <p>Accepted Card Types</p>
-                          <img src="gentelella-master/production/images/visa.png" alt="Visa">
-                          <img src="gentelella-master/production/images/mastercard.png" />
+                          <img src="images/1Cards.png" alt="Visa">
+                          <%--<img src="gentelella-master/production/images/mastercard.png" />--%>
                                  </td>
                             <td colspan="1" class="style1">
                                 <asp:LinkButton ID="lnkPayNow" runat="server" CssClass="btn btn-success btn-sm" 
@@ -155,8 +155,8 @@
                             </td>
                              <td colspan="1" class="style1">
                             <p>أنواع البطاقات المقبولة</p>
-                          <img src="gentelella-master/production/images/visa.png" alt="Visa">
-                          <img src="gentelella-master/production/images/mastercard.png" />
+                          <img src="images/1Cards.png" alt="Visa">
+                         <%-- <img src="gentelella-master/production/images/mastercard.png" />--%>
                                  </td>
                         </tr>
                        

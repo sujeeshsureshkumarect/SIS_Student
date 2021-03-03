@@ -3996,6 +3996,7 @@
     <Content Include="HostedPayment.aspx" />
     <Content Include="HostedResult.aspx" />
     <Content Include="images\Cards.png" />
+    <Content Include="images\1Cards.png" />
     <Content Include="images\ECT Logo.png" />
     <Content Include="images\favicon32.png" />
     <Content Include="images\Icons\Cart.png" />

@@ -72,8 +72,9 @@
             <a href="https://ect.ac.ae/en/contact-us/" target="_blank">Contact Us</a>
             <a href="Conditionss.aspx" target="_blank">Terms & Conditions</a>
             <img src="images/SSL.png" style="height:32px"/>
-            <img src="gentelella-master/production/images/visa.png" alt="Visa" title="Accepted Payment Methods">
-            <img src="gentelella-master/production/images/mastercard.png" alt="Mastercard" title="Accepted Payment Methods">
+            <%--<img src="gentelella-master/production/images/visa.png" alt="Visa" title="Accepted Payment Methods">
+            <img src="gentelella-master/production/images/mastercard.png" alt="Mastercard" title="Accepted Payment Methods">--%>
+            <img src="images/1Cards.png" alt="Visa" title="Accepted Payment Methods">
         </div>
     </div>    
     
