@@ -12,7 +12,7 @@ namespace SIS_Student.DAL
     {
         public DataTable GetMenuData(int roleid)
         {
-            DataTable dt = GetData("SELECT O.ObjectID, O.ObjectNameEn, O.DisplayObjectName, O.ShowOrder, O.SystemID, O.ParentID, O.sURL, O.iLevel, COUNT(RP.PrivilegeID) AS [Privileges] FROM Cmn_RolePermissions AS RP INNER JOIN Cmn_PrivilegeObjects AS O ON RP.ObjectID = O.ObjectID Where RP.RoleID = "+roleid+ " and O.SystemID = 10 GROUP BY O.ObjectID, O.ObjectNameEn, O.DisplayObjectName, O.ShowOrder, O.SystemID, O.ParentID, O.sURL, O.iLevel Order by O.iLevel,O.ShowOrder asc");
+            DataTable dt = GetData("SELECT O.ObjectID, O.ObjectNameEn, O.DisplayObjectName, O.ShowOrder, O.SystemID, O.ParentID, O.sURL, O.iLevel, COUNT(RP.PrivilegeID) AS [Privileges] FROM Cmn_RolePermissions AS RP INNER JOIN Cmn_PrivilegeObjects AS O ON RP.ObjectID = O.ObjectID Where RP.RoleID = "+roleid+ " and O.SystemID = 10 and O.isVisible=1 GROUP BY O.ObjectID, O.ObjectNameEn, O.DisplayObjectName, O.ShowOrder, O.SystemID, O.ParentID, O.sURL, O.iLevel Order by O.iLevel,O.ShowOrder asc");
             return dt;
         }
         public DataTable GetStudentServices()
