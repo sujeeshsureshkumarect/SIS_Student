@@ -170,7 +170,7 @@ namespace SIS_Student
                 int iSem = iRegSem;
                 //Is Grades Hidden
                 bool isHidden = LibraryMOD.isGradesHidden(Campus);
-                myMirror = myAdvising.GetAdvising(sNo, true, iYear, iSem, true, isHidden, out Plan, Campus);
+                myMirror = myAdvising.GetAdvising(sNo, true, iYear, iSem, true, isHidden, out Plan, Campus, Session["sCSemester"].ToString());
                 System.Web.UI.WebControls.Table myTable = Create_Table(myMirror[0]);
                 divDetail.Controls.Clear();
                 divDetail.Controls.Add(myTable);

@@ -11,11 +11,13 @@ using System.Net;
 using System.Data;
 using System.Drawing;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace SIS_Student
 {
     public partial class Login : System.Web.UI.Page
     {
+        SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataMales"].ConnectionString);
         User myUser = new User(); 
         
         protected void Page_Load(object sender, EventArgs e)
@@ -195,13 +197,22 @@ namespace SIS_Student
                                 Session["CurrentCampus"] = CMPS;
                                 Session["CurrentStudent"] = sNo;
                                 Session["CurrentStudentName"] = sName;
+
+                                int iRSem = 0;
+                                int iRYear = LibraryMOD.SeperateTerm(LibraryMOD.GetRegTerm(), out iRSem);
+
+                                Session["RegYear"] = iRYear;
+                                Session["RegSemester"] = iRSem;
+
                                 Session["CurrentYear"] = Session["RegYear"];
                                 Session["CurrentSemester"] = Session["RegSemester"];
                                 int iCurrentMajorCampus = LibraryMOD.GetCurrentStCampus(sNo, (InitializeModule.EnumCampus)iCampus);
                                 Session["CurrentMajorCampus"] = iCurrentMajorCampus;
 
-                            }
 
+
+                            }
+                            get_sCSemester();
                             isIt = true;
                             //showmsg("Welcome ...  " + Session["CurrentStudentName"].ToString());
                         }
@@ -237,6 +248,29 @@ namespace SIS_Student
                 myApplication.Clear();
             }
             return isIt;
+        }
+        public void get_sCSemester()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT sAdvisingTerm FROM Cmn_Firm", sc);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            try
+            {
+                sc.Open();
+                da.Fill(dt);
+                sc.Close();
+
+                Session["sCSemester"] = dt.Rows[0]["sAdvisingTerm"].ToString();
+            }
+            catch (Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sc.Close();
+            }
         }
         public void ClearSession()
         {

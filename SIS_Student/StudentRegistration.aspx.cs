@@ -55,7 +55,18 @@ namespace SIS_Student
                         InitializeModule.enumPrivilege.ShowBrowse, CurrentRole) != true)
                         {
                             showErr("Sorry, you don't have the permission to view this page...");
+                        }
 
+                        if(Session["Student_AT"].ToString()== "Permanently Accepted" && Session["Student_AC"].ToString()== "All conditions have been met")
+                        {
+                            
+                        }
+                        else
+                        {
+                            string msg = "Sorry, you cannot register | نأسف, لا يمكنك التسجيل";
+                            string sRegMsg = "<br />Contact the registration please | يرجى مراجعة التسجيل";
+                            msg = msg+"<br />"+sRegMsg;
+                            showErr(msg);
                         }
 
                     }
@@ -319,7 +330,7 @@ namespace SIS_Student
                 int iSem = iRegSem;
                 //Is Grades Hidden
                 bool isHidden = LibraryMOD.isGradesHidden(Campus);
-                myMirror = myAdvising.GetAdvising(sNo, true, iYear, iSem, true, isHidden, out Plan, Campus);
+                myMirror = myAdvising.GetAdvising(sNo, true, iYear, iSem, true, isHidden, out Plan, Campus, Session["sCSemester"].ToString());
                 System.Web.UI.WebControls.Table myTable = Create_Table(myMirror[0]);
                 divDetail.Controls.Clear();
                 divDetail.Controls.Add(myTable);

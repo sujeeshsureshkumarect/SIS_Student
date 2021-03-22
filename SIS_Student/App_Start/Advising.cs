@@ -38,7 +38,7 @@ public class Advising
 
     }
 
-    public List<MirrorCLS> GetAdvising(string sNo, bool isIncluded, int Year, int Semester, bool isRegisteredPassed, bool isHidden, out Plans Plan, InitializeModule.EnumCampus Campus)
+    public List<MirrorCLS> GetAdvising(string sNo, bool isIncluded, int Year, int Semester, bool isRegisteredPassed, bool isHidden, out Plans Plan, InitializeModule.EnumCampus Campus,string sCSemester1)
     {
         List<MirrorCLS> myMirror = new List<MirrorCLS>();
         MirrorDAL myMirrorDAL = new MirrorDAL();
@@ -240,7 +240,7 @@ public class Advising
                     //|| myMirror[0].Mirror[i].sGrade == "@S1" || myMirror[0].Mirror[i].sGrade == "@S2"
 
                     //Current Semester Reg Cosidered as Passed
-                    string sCSemester = "@S2";
+                    string sCSemester = sCSemester1;
                     //if reg year semester > current semester
                     switch (Semester)
                     {
@@ -383,7 +383,7 @@ public class Advising
     }
 
 
-    public List<Advised.Courses> Advise(int Year, int Semester, int iShift, string sNo, string sCollege, string sDegree, string sMajor, bool isRegisteredPassed, decimal CGPA, int iSemMax, StudentCourses.StudentMirror[] myMirror, InitializeModule.EnumCampus Campus)
+    public List<Advised.Courses> Advise(int Year, int Semester, int iShift, string sNo, string sCollege, string sDegree, string sMajor, bool isRegisteredPassed, decimal CGPA, int iSemMax, StudentCourses.StudentMirror[] myMirror, InitializeModule.EnumCampus Campus,string sCSemester1)
     {
         List<Advised.Courses> myAdvise = new List<Advised.Courses>();
 
@@ -418,7 +418,7 @@ public class Advising
                 isLow = false;
                 isEmpty = false;
 
-                string sCSemester = "@S2";
+                string sCSemester = sCSemester1;
 
                 switch (Semester)
                 {
