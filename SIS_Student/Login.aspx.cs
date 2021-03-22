@@ -52,8 +52,16 @@ namespace SIS_Student
                         {
                             //BuildMainTree();
                             //lnkLogin.Text = "Logout";
-                            Response.Redirect("Dashboard", false);
-                            Context.ApplicationInstance.CompleteRequest(); // end response
+                            if(Session["cpage"] !=null)
+                            {
+                                Response.Redirect(Session["cpage"].ToString(), false);
+                                Context.ApplicationInstance.CompleteRequest(); // end response
+                            }
+                            else
+                            {
+                                Response.Redirect("Dashboard", false);
+                                Context.ApplicationInstance.CompleteRequest(); // end response
+                            }                            
                         }
                     }
                     else

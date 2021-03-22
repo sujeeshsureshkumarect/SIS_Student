@@ -55,6 +55,7 @@ namespace SIS_Student
                 {
                     //showErr("Session is expired, Login again please...");
                     ClearSession();
+                    Session["cpage"] = "Student_Services.aspx";
                     Response.Redirect("Login.aspx");
 
                 }
