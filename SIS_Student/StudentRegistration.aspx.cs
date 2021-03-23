@@ -2355,6 +2355,10 @@ namespace SIS_Student
             string major = hdnStudentMajor.Value;
             string Credit_Completed = "0";
             string contactid = "0";
+
+
+
+
             if (count>0)
             {
                 registrationstatus= "Registered";

@@ -23,8 +23,8 @@ namespace SIS_Student
             Session["CurrentURL"] = HttpContext.Current.Request.Url.AbsoluteUri;
         }
         protected void btn_Login_Click(object sender, EventArgs e)
-        {
-            if (txtUser.Text == "ihabadm" || txtUser.Text == "mousah" || txtUser.Text == "Suhib" || txtUser.Text == "MohammadShaath" || txtUser.Text == "ESM2009001")
+        {            
+            if (txtUser.Text.ToLower() == "ihabadm" || txtUser.Text.ToLower() == "mousah" || txtUser.Text.ToLower() == "suhib" || txtUser.Text.ToLower() == "mohammadshaath" || txtUser.Text.ToLower() == "ESM2009001" || txtUser.Text.ToLower() == "nael")
             {
                 try
                 {
