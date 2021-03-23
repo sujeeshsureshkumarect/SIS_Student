@@ -260,6 +260,7 @@ namespace SIS_Student
             if (dtStudentProfile.Rows.Count > 0)
             {                
                 Session["ProfilePIc"] = dtStudentProfile.Rows[0]["strStudentPic"].ToString();
+                Session["sEmail"]= dtStudentProfile.Rows[0]["sECTemail"].ToString();
             }
         }
     }

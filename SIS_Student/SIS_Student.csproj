@@ -6093,6 +6093,7 @@
     <Content Include="Student_Services_HostedCheckOut.aspx" />
     <Content Include="Student_Services_HostedPayment.aspx" />
     <Content Include="Student_Services_HostedResult.aspx" />
+    <Content Include="Student_Services_MyRequests.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Upload\1001.jpg" />
     <Content Include="Upload\1002.jpg" />
@@ -6597,6 +6598,13 @@
     </Compile>
     <Compile Include="Student_Services_HostedResult.aspx.designer.cs">
       <DependentUpon>Student_Services_HostedResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student_Services_MyRequests.aspx.cs">
+      <DependentUpon>Student_Services_MyRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student_Services_MyRequests.aspx.designer.cs">
+      <DependentUpon>Student_Services_MyRequests.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestPage.aspx.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>

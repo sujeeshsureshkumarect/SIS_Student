@@ -400,9 +400,12 @@ namespace SIS_Student
                 Conn.Close();
 
 
+                int iRSem = 0;
+                int iRYear = LibraryMOD.SeperateTerm(LibraryMOD.GetRegTerm(), out iRSem);
+
                 sSQL = "UPDATE Reg_Student_Accounts";
                 sSQL += " SET intOnlineStatus =" + iStatus;
-                sSQL += ",strUserSave='" + Session["CurrentUserName"].ToString() + "',dateLastSave=getDate()";
+                sSQL += ",strUserSave='" + Session["CurrentUserName"].ToString() + "',dateLastSave=getDate(),intRegYear=" + iRYear + ",byteRegSem=" + iRSem + " ";
                 sSQL += " Where strAccountNo='" + sAcc + "'";
                 Cmd.CommandType = CommandType.Text;
                 Cmd.CommandText = sSQL;
