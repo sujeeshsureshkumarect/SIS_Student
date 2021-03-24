@@ -102,7 +102,7 @@ namespace SIS_Student
             LDT.Columns.Add("Status");
             LDT.Columns.Add("ServiceID");
             LDT.Columns.Add("Requester");
-            LDT.Columns.Add("Created");
+            LDT.Columns.Add("Created", System.Type.GetType("System.DateTime"));
             //fill datatatable
             foreach (Microsoft.SharePoint.Client.ListItem item in items)
             {
@@ -112,8 +112,9 @@ namespace SIS_Student
                 //clientContext.ExecuteQuery();
                 //string thisWillBeUsersLoginName = user.LoginName;
                 //string request = item["Request"].ToString();
-                LDT.Rows.Add(item["Title"], item["Status"], item["Request"], item["Requester"], item["Created"]);
+                LDT.Rows.Add(item["Title"], item["Status"], item["Request"], item["Requester"],Convert.ToDateTime(item["Created"]));
             }
+            LDT.DefaultView.Sort = "Created DESC";
             Repeater1.DataSource = LDT;
             Repeater1.DataBind();
         }

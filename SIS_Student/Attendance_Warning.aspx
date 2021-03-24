@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Student_Services_MyRequests.aspx.cs" Inherits="SIS_Student.Student_Services_MyRequests" MasterPageFile="~/Student.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Attendance_Warning.aspx.cs" Inherits="SIS_Student.Attendance_Warning" MasterPageFile="~/Student.Master"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
@@ -20,9 +20,9 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2><i class="fa fa-files-o"></i> My Requests <asp:LinkButton ID="lnk_refresh" runat="server" CssClass="btn btn-success btn-sm" OnClick="lnk_refresh_Click" ToolTip="Refresh"><i class="fa fa-refresh"></i></asp:LinkButton></h2>
+                                            <h2><i class="fa fa-warning"></i> Attendance Warnings</h2>
                                             <ul class="nav navbar-right panel_toolbox">
-                                                                                            <a href="Student_Services.aspx"  class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i> Create New Service</a>
+                                                                                            
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>                                              
                                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
@@ -31,10 +31,17 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="x_content">                                                
+                                            
+                                <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="true" align="middle">
+
+                                    <div class="alert alert-danger alert-dismissible " role="alert" runat="server" id="div_Alert">
+                                        <asp:Label ID="lbl_Msg" runat="server" Text="Warning: You will be enforced to withdraw from the course if absence exceeded 30%. <br/>تحذير : سوف يتم سحب المادة اذا تجاوز غيابك %30" Visible="true" Font-Bold="true" Font-Size="16px"></asp:Label>
+                                    </div>
+                                </div>
 
                                             <div class="clearfix"></div>                                           
                          <div id="datatable_wrapper" class="table-responsive">
-                    
+                     
                         <div class="row">
                             <div class="col-sm-12">
                                         <asp:Repeater ID="Repeater1" runat="server">
@@ -43,19 +50,18 @@
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" width="50px">SR No.</th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" width="300px">Service Name</th>
-                                            <%--<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">Detail</th>--%>
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending">Status</th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending">Created on</th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" width="300px">Course</th>                                            
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending">Warning</th>   
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending">Message</th>  
                                         </tr>
                                     </thead>
                                     </HeaderTemplate>
                                             <ItemTemplate>
                                                 <tr>
                                                     <td><%#Container.ItemIndex+1 %></td>
-                                                    <td><%#Eval("ServiceID")%></td>                                                                                                         
-                                                    <td><%#Eval("Status")%></td>                                                                                                        
-                                                    <td><span style="display: none;"><%#Eval("Created","{0:yyyyMMdd}")%></span><%#Eval("Created","{0:dd/MM/yyyy hh:mm tt}")%></td>
+                                                    <td><%#Eval("Course")%></td>                                                                                                         
+                                                    <td><%#Eval("Warning")%></td>  
+                                                    <td><%#Eval("Warning")%></td>      
                                                 </tr>
                                         
                                    </ItemTemplate>
@@ -79,10 +85,28 @@
        var table = document.getElementById("datatable");
        if (table != null) {
            for (var i = 1; i < table.rows.length; i++) {              
-               var status = table.rows[i].cells[2].textContent;               
-               if (status == "Completed") {
-                   table.rows[i].cells[2].innerHTML = '<span class="badge badge-success">Completed</span>';
-               }                 
+               var warning = table.rows[i].cells[2].textContent;               
+               if (warning == "1") {
+                   table.rows[i].cells[2].innerHTML = 'First Warning';
+                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warning1">Absence reached 10%</span>';
+               }   
+               else if (warning == "2") {
+                   table.rows[i].cells[2].innerHTML = 'Second Warning';
+                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warning2">Absence reached 20%</span>';
+               } 
+               else if (warning == "3") {
+                   table.rows[i].cells[2].innerHTML = 'Third Warning';
+                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warning3">Absence reached 30%</span>';
+               } 
+               else if (warning == "4") {
+                   table.rows[i].cells[2].innerHTML = '<span class="badge badge-warningEW">EW</span>';
+                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warningEW">Absence exceeded 30%</span>';
+               } 
+               else {
+                   table.rows[i].cells[2].innerHTML = '-';
+                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-success1">No Warning</span>';
+               }
+
            }
        }
        </script>
@@ -227,6 +251,26 @@
     font-size: 11px;
     opacity: 0.7;
     filter: alpha(opacity=70);
+}
+.badge-warning1 {
+    color: #212529;
+    background-color: #ffff8a;/*light yellow*/
+}
+.badge-warning2 {
+    color: #212529;
+    background-color: #f7ca79;/*light orange*/
+}
+.badge-warning3 {
+    color: #212529;
+    background-color: #ea6254;/*red*/
+}
+.badge-warningEW {
+    color: red;/*text red bold*/
+    font-weight:bold;
+}
+.badge-success1 {
+    color: #212529;
+    background-color: #90ee90;/*light green*/
 }
     </style>
     </asp:Content>

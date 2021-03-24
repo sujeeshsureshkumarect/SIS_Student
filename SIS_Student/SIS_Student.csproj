@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Attendance_Warning.aspx" />
     <Content Include="Balance.aspx" />
     <Content Include="ChangePwd.aspx" />
     <Content Include="Conditions.aspx" />
@@ -6170,6 +6171,13 @@
     <Compile Include="App_Start\Student_Search.cs" />
     <Compile Include="App_Start\TimeTable.cs" />
     <Compile Include="App_Start\UserCls.cs" />
+    <Compile Include="Attendance_Warning.aspx.cs">
+      <DependentUpon>Attendance_Warning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Attendance_Warning.aspx.designer.cs">
+      <DependentUpon>Attendance_Warning.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Balance.aspx.cs">
       <DependentUpon>Balance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

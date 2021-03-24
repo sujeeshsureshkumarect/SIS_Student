@@ -179,98 +179,98 @@ namespace SIS_Student
 
         protected void lnk_Generate_Click(object sender, EventArgs e)
         {
-            //sentdatatoSPLIst();
-            int sem = 0;
-            int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
+            sentdatatoSPLIst();
+            //int sem = 0;
+            //int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
 
-            int iYear = Year;
-            int iSem = sem;
-            string sSemester = LibraryMOD.GetSemesterString(iSem);
-            string refno = Create16DigitString();
-            String requestedtype = "";
-            string k = "";
-            for (int i = 0; i < chk_Types.Items.Count; i++)
-            {
-                if (chk_Types.Items[i].Selected)
-                {
-                    k = k + chk_Types.Items[i].Value + ";";
-                }
+            //int iYear = Year;
+            //int iSem = sem;
+            //string sSemester = LibraryMOD.GetSemesterString(iSem);
+            //string refno = Create16DigitString();
+            //String requestedtype = "";
+            //string k = "";
+            //for (int i = 0; i < chk_Types.Items.Count; i++)
+            //{
+            //    if (chk_Types.Items[i].Selected)
+            //    {
+            //        k = k + chk_Types.Items[i].Value + ";";
+            //    }
 
-            }
-            requestedtype = k;
-            string sACC = "0200000";
-            if (Session["CurrentCampus"].ToString() == "Males")
-            {
-                sACC = "0100000";
-            }
-            else
-            {
-                sACC = "0200000";
-            }
+            //}
+            //requestedtype = k;
+            //string sACC = "0200000";
+            //if (Session["CurrentCampus"].ToString() == "Males")
+            //{
+            //    sACC = "0100000";
+            //}
+            //else
+            //{
+            //    sACC = "0200000";
+            //}
 
-            string languageoption = "";
-            if (Session["LanguageOption"].ToString() == "True")
-            {
-                languageoption = "<b>Language:</b> " + ddlLanguage.SelectedItem.Text + "";
-            }
+            //string languageoption = "";
+            //if (Session["LanguageOption"].ToString() == "True")
+            //{
+            //    languageoption = "<b>Language:</b> " + ddlLanguage.SelectedItem.Text + "";
+            //}
 
             // Create a DataTable  
-            DataTable dtSPList = new DataTable();
-            dtSPList.Clear();
-            dtSPList.Columns.Add("Title");
-            dtSPList.Columns.Add("Year");
-            dtSPList.Columns.Add("Semester");
-            dtSPList.Columns.Add("Request");
-            dtSPList.Columns.Add("RequestNote");
-            dtSPList.Columns.Add("ServiceID");
-            dtSPList.Columns.Add("Fees");
-            dtSPList.Columns.Add("Requester");
-            dtSPList.Columns.Add("StudentID");
-            dtSPList.Columns.Add("StudentName");
-            dtSPList.Columns.Add("Contact");
-            dtSPList.Columns.Add("Finance");
-            dtSPList.Columns.Add("FinanceAction");
-            dtSPList.Columns.Add("FinanceNote");
-            dtSPList.Columns.Add("Host");
-            dtSPList.Columns.Add("HostAction");
-            dtSPList.Columns.Add("HostNote");
-            dtSPList.Columns.Add("ProviderAction");
-            dtSPList.Columns.Add("ProviderNote");
-            dtSPList.Columns.Add("Status");
+            //DataTable dtSPList = new DataTable();
+            //dtSPList.Clear();
+            //dtSPList.Columns.Add("Title");
+            //dtSPList.Columns.Add("Year");
+            //dtSPList.Columns.Add("Semester");
+            //dtSPList.Columns.Add("Request");
+            //dtSPList.Columns.Add("RequestNote");
+            //dtSPList.Columns.Add("ServiceID");
+            //dtSPList.Columns.Add("Fees");
+            //dtSPList.Columns.Add("Requester");
+            //dtSPList.Columns.Add("StudentID");
+            //dtSPList.Columns.Add("StudentName");
+            //dtSPList.Columns.Add("Contact");
+            //dtSPList.Columns.Add("Finance");
+            //dtSPList.Columns.Add("FinanceAction");
+            //dtSPList.Columns.Add("FinanceNote");
+            //dtSPList.Columns.Add("Host");
+            //dtSPList.Columns.Add("HostAction");
+            //dtSPList.Columns.Add("HostNote");
+            //dtSPList.Columns.Add("ProviderAction");
+            //dtSPList.Columns.Add("ProviderNote");
+            //dtSPList.Columns.Add("Status");
 
-            // Add items using Add method   
-            DataRow dr = dtSPList.NewRow();
-            dr["Title"] = refno;
-            dr["Year"] = iYear;
-            dr["Semester"] = iSem;
-            dr["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Request Type:</b> " + requestedtype + "<br/><b>Graduation Semester:</b> " + lbl_GraduationSemester.Text + "<br/><b>Graduation Year:</b> " + lbl_GraduationYear.Text + "<br/><b>Request Details:</b> " + txt_Remarks.Text.Trim() + "<br/>" + languageoption + "<br/>";
-            dr["RequestNote"] = txt_Remarks.Text.Trim();
-            dr["ServiceID"] = lbl_ServiceID.Text;
-            dr["Fees"] = hdf_Price.Value;
-            dr["Requester"] = hdf_StudentEmail.Value;
-            dr["StudentID"] = lbl_StudentID.Text;
-            dr["StudentName"] = lbl_StudentName.Text;
-            dr["Contact"] = lbl_StudentContact.Text;
-            dr["Finance"] = Session["FinanceEmail"].ToString();
-            dr["FinanceAction"] = "Initiate";
-            dr["FinanceNote"] = "";
-            dr["Host"] = Session["HostEmail"].ToString();
-            dr["HostAction"] = "Initiate";
-            dr["HostNote"] = "";
-            dr["ProviderAction"] = "Initiate";
-            dr["ProviderNote"] = "";
-            dr["Status"] = "Finance Approval Needed";
-            dtSPList.Rows.Add(dr);
+            //// Add items using Add method   
+            //DataRow dr = dtSPList.NewRow();
+            //dr["Title"] = refno;
+            //dr["Year"] = iYear;
+            //dr["Semester"] = iSem;
+            //dr["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Request Type:</b> " + requestedtype + "<br/><b>Graduation Semester:</b> " + lbl_GraduationSemester.Text + "<br/><b>Graduation Year:</b> " + lbl_GraduationYear.Text + "<br/><b>Request Details:</b> " + txt_Remarks.Text.Trim() + "<br/>" + languageoption + "<br/>";
+            //dr["RequestNote"] = txt_Remarks.Text.Trim();
+            //dr["ServiceID"] = lbl_ServiceID.Text;
+            //dr["Fees"] = hdf_Price.Value;
+            //dr["Requester"] = hdf_StudentEmail.Value;
+            //dr["StudentID"] = lbl_StudentID.Text;
+            //dr["StudentName"] = lbl_StudentName.Text;
+            //dr["Contact"] = lbl_StudentContact.Text;
+            //dr["Finance"] = Session["FinanceEmail"].ToString();
+            //dr["FinanceAction"] = "Initiate";
+            //dr["FinanceNote"] = "";
+            //dr["Host"] = Session["HostEmail"].ToString();
+            //dr["HostAction"] = "Initiate";
+            //dr["HostNote"] = "";
+            //dr["ProviderAction"] = "Initiate";
+            //dr["ProviderNote"] = "";
+            //dr["Status"] = "Finance Approval Needed";
+            //dtSPList.Rows.Add(dr);
 
             //sentdatatoSPLIst();
 
-            Session["CurrentService"] = "Student Services: " + lbl_ServiceID.Text + "";
-            Session["CurrentServiceName"] = lbl_ServiceNameEn.Text;
-            Session["CurrentServiceAmount"] = string.Format("{0:f}", hdf_Price.Value);
-            Session["CurrentdtSPList"] = dtSPList;
-            Session["CurrentAccount"] = sACC;
-            Session["cancelpage"] = "ECT_SAR_SARO_FRM_011.aspx?ServiceID=" + lbl_ServiceID.Text + "";
-            Response.Redirect("Student_Services_HostedPayment.aspx");
+            //Session["CurrentService"] = "Student Services: " + lbl_ServiceID.Text + "";
+            //Session["CurrentServiceName"] = lbl_ServiceNameEn.Text;
+            //Session["CurrentServiceAmount"] = string.Format("{0:f}", hdf_Price.Value);
+            //Session["CurrentdtSPList"] = dtSPList;
+            //Session["CurrentAccount"] = sACC;
+            //Session["cancelpage"] = "ECT_SAR_SARO_FRM_011.aspx?ServiceID=" + lbl_ServiceID.Text + "";
+            //Response.Redirect("Student_Services_HostedPayment.aspx");
         }
 
         public void sentdatatoSPLIst()
@@ -302,6 +302,12 @@ namespace SIS_Student
             }
             requestedtype = k;
 
+            string languageoption = "";
+            if (Session["LanguageOption"].ToString() == "True")
+            {
+                languageoption = "<b>Language:</b> " + ddlLanguage.SelectedItem.Text + "";
+            }
+
             string siteUrl = "https://ectacae.sharepoint.com/sites/ECTPortal/eservices/studentservices";
             ClientContext clientContext = new ClientContext(siteUrl);
             Microsoft.SharePoint.Client.List myList = clientContext.Web.Lists.GetByTitle("Students_Requests");
@@ -312,19 +318,19 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Request Type:</b> " + requestedtype + "<br/><b>Graduation Semester:</b> " + lbl_GraduationSemester.Text + "<br/><b>Graduation Year:</b> " + lbl_GraduationYear.Text + "<br/><b>Request Details:</b> " + txt_Remarks.Text.Trim() + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Request Type:</b> " + requestedtype + "<br/><b>Graduation Semester:</b> " + lbl_GraduationSemester.Text + "<br/><b>Graduation Year:</b> " + lbl_GraduationYear.Text + "<br/><b>Request Details:</b> " + txt_Remarks.Text.Trim() + "<br/>" + languageoption + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;
             //myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
-            myItem["Requester"] = clientContext.Web.EnsureUser("sujeesh.sureshkumar@ect.ac.ae");
+            myItem["Requester"] = clientContext.Web.EnsureUser(hdf_StudentEmail.Value);
             myItem["StudentID"] = lbl_StudentID.Text;
             myItem["StudentName"] = lbl_StudentName.Text;
             myItem["Contact"] = lbl_StudentContact.Text;
-            myItem["Finance"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["Finance"] = clientContext.Web.EnsureUser(Session["FinanceEmail"].ToString());
             myItem["FinanceAction"] = "Initiate";
             myItem["FinanceNote"] = "";
-            myItem["Host"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");
+            myItem["Host"] = clientContext.Web.EnsureUser(Session["HostEmail"].ToString());
             myItem["HostAction"] = "Initiate";
             myItem["HostNote"] = "";
             //myItem["Provider"] = "";
