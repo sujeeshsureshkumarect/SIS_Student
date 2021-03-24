@@ -35,7 +35,7 @@
                                 <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="true" align="middle">
 
                                     <div class="alert alert-danger alert-dismissible " role="alert" runat="server" id="div_Alert">
-                                        <asp:Label ID="lbl_Msg" runat="server" Text="Warning: You will be enforced to withdraw from the course if absence exceeded 30%. <br/>تحذير : سوف يتم سحب المادة اذا تجاوز غيابك %30" Visible="true" Font-Bold="true" Font-Size="16px"></asp:Label>
+                                        <asp:Label ID="lbl_Msg" runat="server" Text="Warning : The course will be withdrawn if absence exceeded 30%. <br/>تحذير : سوف يتم سحب المادة اذا تجاوز غيابك %30" Visible="true" Font-Bold="true" Font-Size="16px"></asp:Label>
                                     </div>
                                 </div>
 
