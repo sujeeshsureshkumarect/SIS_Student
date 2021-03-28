@@ -34,7 +34,15 @@
 
                                             <div class="clearfix"></div>                                           
                          <div id="datatable_wrapper" class="table-responsive">
-                    
+                     <style>                      
+                        #datatable tbody td div{
+width:490px;
+max-height:100px !important;
+overflow:scroll;
+white-space: nowrap;
+}
+
+                    </style>
                         <div class="row">
                             <div class="col-sm-12">
                                         <asp:Repeater ID="Repeater1" runat="server">
