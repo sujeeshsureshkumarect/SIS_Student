@@ -90,7 +90,7 @@ namespace SIS_Student
 
             }
 
-        }     
+        }
         public void getdetails()
         {
             Connection_StringCLS connstr = new Connection_StringCLS(Campus);
@@ -107,7 +107,7 @@ namespace SIS_Student
             InitializeModule.EnumCampus CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             string sSID = Session["CurrentStudent"].ToString();
             decimal dAmount = LibraryMOD.GetStudentUptodateBalanceBTS(sSID, CurrentCampus);
-            lbl_Balance.Text= string.Format("{0:f}", dAmount);
+            lbl_Balance.Text = string.Format("{0:f}", dAmount);
 
             string studentid = Session["CurrentStudent"].ToString();
             var services = new DAL.DAL();
@@ -120,40 +120,78 @@ namespace SIS_Student
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
 
                 string cancelreason = dtStudentServices.Rows[0]["byteCancelReason"].ToString();
-                //Non-Graduated Students Check
-                if (cancelreason != "3")
+
+                if(lbl_ServiceID.Text=="1004")//Service # 1004 this must be for graduated and expected to Graduate only 
                 {
-                    div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
-                    lbl_Msg.Text = "You are not allowed to generate this request at this time (Only for Graduated Students)";
-                    lbl_Msg.Visible = true;
-                    div_msg.Visible = true;
-                    hyp_Paynow.Visible = false;
-                    lnk_Generate.Enabled = false;
-                }
-                else
-                {
-                    //If Graduated Checking the Uptodate Balance. If balance <=0 then allow to proceed else proceed for payment.
-                    //InitializeModule.EnumCampus CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
-                    //string sSID = Session["CurrentStudent"].ToString();
-                    //decimal dAmount = LibraryMOD.GetStudentUptodateBalanceBTS(sSID, CurrentCampus);
-                    //lbl_Balance.Text = string.Format("{0:f}", dAmount);
-                    if (dAmount <= 0)
+                    //Non-Graduated Students Check
+                    if (cancelreason != "3" && cancelreason != "25")
                     {
-                        //Proceed for Request Generation
+                        div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
+                        lbl_Msg.Text = "You are not allowed to generate this request at this time (Only for Graduated and Expected to Graduate Students).";
+                        lbl_Msg.Visible = true;
+                        div_msg.Visible = true;
+                        hyp_Paynow.Visible = false;
+                        lnk_Generate.Enabled = false;
                     }
                     else
                     {
-                        div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
-                        lbl_Msg.Text = "You are not allowed to generate this request at this time (UpToDate Balance: AED " + string.Format("{0:f}", dAmount) + " is pending.)";
-                        lbl_Msg.Visible = true;
-                        div_msg.Visible = true;
-                        hyp_Paynow.Visible = true;
-                        hyp_Paynow.NavigateUrl = "Balance?amt=" + string.Format("{0:f}", dAmount) + "";
-                        lnk_Generate.Enabled = false;
+                        //If Graduated Checking the Uptodate Balance. If balance <=0 then allow to proceed else proceed for payment.
+                        InitializeModule.EnumCampus CurrentCampus1 = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+                        string sSID1 = Session["CurrentStudent"].ToString();
+                        decimal dAmount1 = LibraryMOD.GetStudentUptodateBalanceBTS(sSID1, CurrentCampus1);
+                        lbl_Balance.Text = string.Format("{0:f}", dAmount1);
+                        if (dAmount1 <= 0)
+                        {
+                            //Proceed for Request Generation
+                        }
+                        else
+                        {
+                            div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
+                            lbl_Msg.Text = "You are not allowed to generate this request at this time (UpToDate Balance: AED " + string.Format("{0:f}", dAmount1) + " is pending.)";
+                            lbl_Msg.Visible = true;
+                            div_msg.Visible = true;
+                            hyp_Paynow.Visible = true;
+                            hyp_Paynow.NavigateUrl = "Balance?amt=" + string.Format("{0:f}", dAmount1) + "";
+                            lnk_Generate.Enabled = false;
+                        }
                     }
                 }
+                else
+                {
+                    //Non-Graduated Students Check
+                    //if (cancelreason != "3")
+                    //{
+                    //    div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
+                    //    lbl_Msg.Text = "You are not allowed to generate this request at this time (Only for Graduated Students)";
+                    //    lbl_Msg.Visible = true;
+                    //    div_msg.Visible = true;
+                    //    hyp_Paynow.Visible = false;
+                    //    lnk_Generate.Enabled = false;
+                    //}
+                    //else
+                    //{
+                        //If Graduated Checking the Uptodate Balance. If balance <=0 then allow to proceed else proceed for payment.
+                        InitializeModule.EnumCampus CurrentCampus1 = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+                        string sSID1 = Session["CurrentStudent"].ToString();
+                        decimal dAmount1 = LibraryMOD.GetStudentUptodateBalanceBTS(sSID1, CurrentCampus1);
+                        lbl_Balance.Text = string.Format("{0:f}", dAmount1);
+                        if (dAmount1 <= 0)
+                        {
+                            //Proceed for Request Generation
+                        }
+                        else
+                        {
+                            div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
+                            lbl_Msg.Text = "You are not allowed to generate this request at this time (UpToDate Balance: AED " + string.Format("{0:f}", dAmount1) + " is pending.)";
+                            lbl_Msg.Visible = true;
+                            div_msg.Visible = true;
+                            hyp_Paynow.Visible = true;
+                            hyp_Paynow.NavigateUrl = "Balance?amt=" + string.Format("{0:f}", dAmount1) + "";
+                            lnk_Generate.Enabled = false;
+                        }
+                    //}
+                }              
             }
-
         }
         public void getservicedetails()
         {
