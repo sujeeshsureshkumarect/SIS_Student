@@ -80,6 +80,11 @@ namespace SIS_Student
                     {
                         getservicedetails();
                         getdetails();
+                        if (Session["PmtOrder"] != null)
+                        {
+                            cancelonlinepayment(Session["PmtOrder"].ToString());
+                        }
+
                     }
                 }
             }
@@ -92,6 +97,31 @@ namespace SIS_Student
 
             }
 
+        }
+        public void cancelonlinepayment(string sOrder)
+        {
+            //CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+            Connection_StringCLS connstr = new Connection_StringCLS(Campus);
+            SqlConnection sc = new SqlConnection(connstr.Conn_string);
+            SqlCommand cmd = new SqlCommand("update [ECTData].[dbo].[Acc_Payment_Order] set isCanceled=@isCanceled where sOrder=@sOrder", sc);
+            cmd.Parameters.AddWithValue("@isCanceled", true);
+            cmd.Parameters.AddWithValue("@sOrder", sOrder);
+            try
+            {
+                sc.Open();
+                cmd.ExecuteNonQuery();
+                sc.Close();
+                Session["PmtOrder"] = null;
+            }
+            catch (Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sc.Close();
+            }
         }
         public void getdetails()
         {

@@ -70,6 +70,7 @@ namespace SIS_Student
 
                     if (sPmtResult == "SUCCESS")
                     {
+                        updateonlinepayment_beforevoucher(sPmtOrder);
                         sVoucher = AddVoucher(sAcc, sSID, sPmtSession, "Order:" + sPmtOrder);
                         lblReceiptNo.Text = sVoucher;
                         if (sVoucher != "")
@@ -83,6 +84,7 @@ namespace SIS_Student
                             }
                             else
                             {
+                                updateonlinepayment(sPmtOrder, sVoucher);
                                 checkfirstpayment(sAcc);//checking that its first payment done by student or not
                                 lblResult.Text = "Payment registered in the system successfully.";
                                 divMsg.InnerHtml = "";
@@ -108,6 +110,60 @@ namespace SIS_Student
                 }
             }
 
+        }
+        public void updateonlinepayment_beforevoucher(string sOrder)
+        {
+            CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+            Connection_StringCLS connstr = new Connection_StringCLS(CurrentCampus);
+            SqlConnection sc = new SqlConnection(connstr.Conn_string);
+            SqlCommand cmd = new SqlCommand("update [ECTData].[dbo].[Acc_Payment_Order] set isCaptured=@isCaptured,dCaptured=@dCaptured,isCanceled=@isCanceled where sOrder=@sOrder", sc);
+            cmd.Parameters.AddWithValue("@isCaptured", true);
+            cmd.Parameters.AddWithValue("@dCaptured", DateTime.Now);
+            //cmd.Parameters.AddWithValue("@sVoucherNo", sVoucherNo);
+            cmd.Parameters.AddWithValue("@isCanceled", false);
+            cmd.Parameters.AddWithValue("@sOrder", sOrder);
+            try
+            {
+                sc.Open();
+                cmd.ExecuteNonQuery();
+                sc.Close();
+            }
+            catch (Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sc.Close();
+            }
+        }
+        public void updateonlinepayment(string sOrder,string sVoucherNo)
+        {
+            CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
+            Connection_StringCLS connstr = new Connection_StringCLS(CurrentCampus);
+            SqlConnection sc = new SqlConnection(connstr.Conn_string);
+            SqlCommand cmd = new SqlCommand("update [ECTData].[dbo].[Acc_Payment_Order] set sVoucherNo=@sVoucherNo where sOrder=@sOrder", sc);
+            //cmd.Parameters.AddWithValue("@isCaptured", true);
+            //cmd.Parameters.AddWithValue("@dCaptured", DateTime.Now);
+            cmd.Parameters.AddWithValue("@sVoucherNo", sVoucherNo);
+            //cmd.Parameters.AddWithValue("@isCanceled", false);
+            cmd.Parameters.AddWithValue("@sOrder", sOrder);
+            try
+            {
+                sc.Open();
+                cmd.ExecuteNonQuery();
+                sc.Close();                
+            }
+            catch (Exception ex)
+            {
+                sc.Close();
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sc.Close();
+            }
         }
         public void ClearSession()
         {
