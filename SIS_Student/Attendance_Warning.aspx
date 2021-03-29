@@ -36,7 +36,7 @@
 
                                     <div class="alert alert-danger alert-dismissible " role="alert" runat="server" id="div_Alert">
                                         <i class="fa fa-warning" style="float:left;font-size:50px"></i>
-                                        <asp:Label ID="lbl_Msg" runat="server" Text="Warning : The course will be withdrawn if absence exceeded 30%. <br/>تحذير : سوف يتم سحب المادة اذا تجاوز غيابك %30" Visible="true" Font-Bold="true" Font-Size="16px"></asp:Label>
+                                        <asp:Label ID="lbl_Msg" runat="server" Text="Warning: You will be given an EW grade in any of your classes if your absence exceeds 30%. <br/>EW تحذير: سوف يتم سحب أي مساق تتجاوز غياباتك فيه مستوى ال 30% المسموح به وتحصل على علامة" Visible="true" Font-Bold="true" Font-Size="16px"></asp:Label>
                                     </div>
                                 </div>
 
