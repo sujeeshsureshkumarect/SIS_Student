@@ -101,7 +101,7 @@ namespace SIS_Student
                             else
                             {
                                 updateonlinepayment(sPmtOrder, sVoucher);
-                                //sentdatatoSPLIst(sVoucher);                                
+                                sentdatatoSPLIst(sVoucher);                                
                                 lblResult.Text = "Payment registered in the system successfully.";
                                 divMsg.InnerHtml = "";
                                 Session["PmtSession"] = null;
