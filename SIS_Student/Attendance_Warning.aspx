@@ -32,11 +32,23 @@
                                         </div>
                                         <div class="x_content">                                                
                                             
-                                <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="true" align="middle">
+                                <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="true" >
 
                                     <div class="alert alert-danger alert-dismissible " role="alert" runat="server" id="div_Alert">
-                                        <i class="fa fa-warning" style="float:left;font-size:50px"></i>
-                                        <asp:Label ID="lbl_Msg" runat="server" Text="Warning: You will be given an EW grade in any of your classes if your absence exceeds 30%. <br/>EW تحذير: سوف يتم سحب أي مساق تتجاوز غياباتك فيه مستوى ال 30% المسموح به وتحصل على علامة" Visible="true" Font-Bold="true" Font-Size="16px"></asp:Label>
+                                        <%--<i class="fa fa-warning" style="float:left;font-size:50px"></i>--%>
+                                        <div align="left">
+                                        <asp:Label ID="lbl_Msg" runat="server" Visible="true" Font-Bold="true" Text="&quot;Dear Student... If you miss 10% of your lectures in any of your classes, you will receive a yellow warning in the &quot;Status&quot; column. When your absence reaches 20%, you will receive a second &quot;orange color&quot; warning, and when your absence reaches 30%, you will receive your final &quot;red&quot; warning in the &quot;Status&quot; column. If you miss any class beyond the 30% threshold, your class will be withdrawn, and you will receive an EW grade. The table below shows where you stand this semester in all your registered classes.&quot;" Font-Size="16px"></asp:Label>
+                                        <br /><br />
+                                            </div>
+                                        <div align="right">
+                                        <asp:Label ID="Label5" runat="server" Visible="true" Font-Bold="true" Text="%" Font-Size="16px" style="direction:rtl"></asp:Label><asp:Label ID="Label1" runat="server" Visible="true" Font-Bold="true" Text="عزيزي الطالب ... إذا فاتك 10٪ من محاضراتك في أي مساق، سيصلك تحذير أصفر في عمود الحالة . عندما يصل غيابك إلى 20" Font-Size="16px" style="direction:rtl"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="Label2" runat="server" Visible="true" Font-Bold="true" Text="ستتلقى تحذيرًا ثانيًا برتقالي اللون. وعندما يصل غيابك إلى مستوى 30٪  فستتلقى تحذيرا أخيرا باللون الأحمر في عمود الحالة" Font-Size="16px" style="direction:rtl"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="Label3" runat="server" Visible="true" Font-Bold="true" Text="EW أي تجاوز  في غياباتك بعد وصولك حد ال 30% المسموح به سيؤدي الى سحب المساق، وإعطائك درجة" Font-Size="16px" style="direction:rtl"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="Label4" runat="server" Visible="true" Font-Bold="true" Text="يوضح الجدول أدناه مستوى غياباتك في هذا الفصل الدراسي في جميع مساقاتك المسجلة" Font-Size="16px" style="direction:rtl"></asp:Label>
+                                            </div>
                                     </div>
                                 </div>
 
@@ -51,8 +63,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" width="50px">SR No.</th>
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" width="300px">Course</th>                                            
-                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending">Warning</th>   
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" width="300px">Courses</th>                                            
+                                            <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending">Status</th>   
                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending">Message</th>  
                                         </tr>
                                     </thead>
@@ -88,20 +100,20 @@
            for (var i = 1; i < table.rows.length; i++) {              
                var warning = table.rows[i].cells[2].textContent;               
                if (warning == "1") {
-                   table.rows[i].cells[2].innerHTML = 'First Warning';
-                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warning1">Absence reached 10%</span>';
+                   table.rows[i].cells[2].innerHTML = '<span class="badge badge-warning1">First Warning</span>';
+                   table.rows[i].cells[3].innerHTML = 'Your absence has reached 10%';
                }   
                else if (warning == "2") {
-                   table.rows[i].cells[2].innerHTML = 'Second Warning';
-                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warning2">Absence reached 20%</span>';
+                   table.rows[i].cells[2].innerHTML = '<span class="badge badge-warning2">Second Warning</span>';
+                   table.rows[i].cells[3].innerHTML = 'Your absence has reached 20%';
                } 
                else if (warning == "3") {
-                   table.rows[i].cells[2].innerHTML = 'Third Warning';
-                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warning3">Absence reached 30%</span>';
+                   table.rows[i].cells[2].innerHTML = '<span class="badge badge-warning3">Third Warning</span>';
+                   table.rows[i].cells[3].innerHTML = 'Your absence has reached 30%';
                } 
                else if (warning == "4") {
-                   table.rows[i].cells[2].innerHTML = '<span class="badge badge-warningEW">EW-You have been withdrawn from the course</span>';
-                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warningEW">Absence exceeded 30%</span>';
+                   table.rows[i].cells[2].innerHTML = '<span class="badge badge-warningEW">EW</span>';
+                   table.rows[i].cells[3].innerHTML = '<span class="badge badge-warningEW">You have been withdrawn from the course because you have exceeded the 30% threshold</span>';
                } 
                else {
                    table.rows[i].cells[2].innerHTML = '-';

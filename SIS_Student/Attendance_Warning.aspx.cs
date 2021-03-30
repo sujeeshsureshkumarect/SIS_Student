@@ -54,6 +54,7 @@ namespace SIS_Student
                     if (!IsPostBack)
                     {
                         bindmyattendancewrnigns();
+                        //lbl_Msg.Text = "\u0022Dear Student... If you miss 10 % of your lectures in any of your classes, you will receive a yellow warning in the \u0022Status\u0022 column.When your absence reaches 20 %, you will receive a second \u0022orange color\u0022 warning, and when your absence reaches 30 %, you will receive your final \u0022red\u0022 warning in the \u0022Status\u0022 column.If you miss any class beyond the 30% threshold, your class will be withdrawn, and you will receive an EW grade.The table below shows where you stand this semester in all your registered classes.\u0022";
                     }
                 }
             }
