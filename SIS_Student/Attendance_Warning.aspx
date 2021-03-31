@@ -13,6 +13,9 @@
                                         float: left;
                                         display: block;
                                     }
+                                    .alert-dismissible {
+    padding-right: 20px !important;
+}
                                 </style>                              
                             </div>
                             <div class="clearfix"></div>
@@ -37,7 +40,7 @@
                                     <div class="alert alert-danger alert-dismissible " role="alert" runat="server" id="div_Alert">
                                         <%--<i class="fa fa-warning" style="float:left;font-size:50px"></i>--%>
                                         <div align="left">
-                                        <asp:Label ID="lbl_Msg" runat="server" Visible="true" Font-Bold="true" Text="&quot;Dear Student... If you miss 10% of your lectures in any of your classes, you will receive a yellow warning in the &quot;Status&quot; column. When your absence reaches 20%, you will receive a second &quot;orange color&quot; warning, and when your absence reaches 30%, you will receive your final &quot;red&quot; warning in the &quot;Status&quot; column. If you miss any class beyond the 30% threshold, your class will be withdrawn, and you will receive an EW grade. The table below shows where you stand this semester in all your registered classes.&quot;" Font-Size="16px"></asp:Label>
+                                        <asp:Label ID="lbl_Msg" runat="server" Visible="true" Font-Bold="true" Text="Dear Student... If you miss 10% of your lectures in any of your classes, you will receive a yellow warning in the &quot;Status&quot; column. When your absence reaches 20%, you will receive a second &quot;orange color&quot; warning, and when your absence reaches 30%, you will receive your final &quot;red&quot; warning in the &quot;Status&quot; column. If you miss any class beyond the 30% threshold, your class will be withdrawn, and you will receive an EW grade. The table below shows where you stand this semester in all your registered classes." Font-Size="16px"></asp:Label>
                                         <br /><br />
                                             </div>
                                         <div align="right">
