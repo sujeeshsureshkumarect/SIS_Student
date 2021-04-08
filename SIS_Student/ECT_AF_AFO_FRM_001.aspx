@@ -158,6 +158,17 @@
                                             <b>رقم الموبايل</b>
                                         </td>
                                     </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Student Email</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_StudentEmail" runat="server"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>البريد الإلكتروني للطالب</b>
+                                        </td>
+                                    </tr>
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">

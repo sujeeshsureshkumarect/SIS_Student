@@ -114,6 +114,15 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.Label lbl_StudentContact;
 
         /// <summary>
+        /// lbl_StudentEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_StudentEmail;
+
+        /// <summary>
         /// chk_AcademicIssue control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace SIS_Student
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Remarks;
+
+        /// <summary>
+        /// flp_Upload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload flp_Upload;
 
         /// <summary>
         /// hdf_Price control.

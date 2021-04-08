@@ -157,7 +157,18 @@
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>رقم الموبايل</b>
                                         </td>
-                                    </tr>                
+                                    </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Student Email</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_StudentEmail" runat="server"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>البريد الإلكتروني للطالب</b>
+                                        </td>
+                                    </tr>
                                 </table>
                                     <hr />                         
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
@@ -212,9 +223,9 @@
                                             <b><span style="color: red">*</span>ملاحظات</b>
                                         </td>
                                     </tr>
-                                  <%--  <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Proof of Payment</b><br />
+                                            <b>Attachment</b><br />
                                            
                                         </td>
                                         <td align="center">
@@ -222,9 +233,9 @@
                                             <br /> <small style="color:red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>                                                                                      
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>إثبات دفع</b><br />                                            
+                                            <b>مرفق</b><br />                                            
                                         </td>
-                                    </tr>--%>
+                                    </tr>
                                 </table>
                
                                 <asp:HiddenField ID="hdf_Price" runat="server" Visible="false"/>

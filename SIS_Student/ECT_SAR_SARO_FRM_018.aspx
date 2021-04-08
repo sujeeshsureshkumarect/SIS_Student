@@ -159,6 +159,17 @@
                                             <b>رقم الموبايل</b>
                                         </td>
                                     </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Student Email</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_StudentEmail" runat="server"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>البريد الإلكتروني للطالب</b>
+                                        </td>
+                                    </tr>
                                 </table>
                                 <hr />
                                 <table style="width: 100%; border: 1px solid #e5e5e5" align="center" class="details">
@@ -170,7 +181,7 @@
                                             <asp:Label ID="lbl_CurrentMajor" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>الوضع المالي</b>
+                                            <b>التخصص الحالي </b>
                                         </td>
                                     </tr>
                                       <tr>
@@ -272,21 +283,19 @@
                                             <b><span style="color: red">*</span>ملاحظات</b>
                                         </td>
                                     </tr>
-                                <%--    <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Proof of Payment<span style="color: red">*</span></b><br />
+                                            <b>Attachment</b><br />
                                            
                                         </td>
                                         <td align="center">
                                             <asp:FileUpload ID="flp_Upload" runat="server"/>
-                                            <br /> <small style="color:red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>
-                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Document Required (.pdf/.jpg/.png)" ControlToValidate="flp_Upload" ForeColor="Red" ValidationGroup="no">
-                                            </asp:RequiredFieldValidator>                                          
+                                            <br /> <small style="color:red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>                                                                                 
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>إثبات دفع</b><br />                                            
+                                            <b>مرفق</b><br />                                            
                                         </td>
-                                    </tr>--%>
+                                    </tr>
                                 </table>
                                 <asp:HiddenField ID="hdf_Price" runat="server" Visible="false"/>
                                  <asp:HiddenField ID="hdf_StudentEmail" runat="server" Visible="false"/>

@@ -194,6 +194,7 @@ namespace SIS_Student
                 lbl_StudentName.Text = dtStudentServices.Rows[0]["strLastDescEn"].ToString();
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
+                lbl_StudentEmail.Text = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_CurrentMajor.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
             }
@@ -325,6 +326,20 @@ namespace SIS_Student
                 dtSPList.Rows.Add(dr);
 
                 //sentdatatoSPLIst();
+
+                if (flp_Upload.HasFile)
+                {
+                    //var attachment = new AttachmentCreationInformation();
+
+                    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
+                    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                    Session["filePath"] = FileUrl;
+
+                    //string filePath = FileUrl;
+                    //attachment.FileName = Path.GetFileName(filePath);
+                    //attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
+                    //Attachment att = myItem.AttachmentFiles.Add(attachment);
+                }
 
                 Session["CurrentService"] = "Student Services: " + lbl_ServiceID.Text + "";
                 Session["CurrentServiceName"] = lbl_ServiceNameEn.Text;

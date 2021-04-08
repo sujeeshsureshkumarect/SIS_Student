@@ -163,6 +163,17 @@
                                     </tr>
                                       <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Graduate’s Email</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_StudentEmail" runat="server"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>البريد الإلكتروني للطالب</b>
+                                        </td>
+                                    </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
                                             <b>Graduation Semester</b>
                                         </td>
                                         <td align="center">
@@ -260,7 +271,7 @@
                                 <asp:HiddenField ID="hdf_Price" runat="server" Visible="false"/>
                                  <asp:HiddenField ID="hdf_StudentEmail" runat="server" Visible="false"/>
                                 <br />
-                                <asp:LinkButton ID="lnk_Generate" runat="server" CssClass="btn btn-success btn-sm" ValidationGroup="no" OnClick="lnk_Generate_Click"><i class="fa fa-money"> </i> Proceed to Payment</asp:LinkButton>
+                                <asp:LinkButton ID="lnk_Generate" runat="server" CssClass="btn btn-success btn-sm" ValidationGroup="no" OnClick="lnk_Generate_Click"><i class="fa fa-send"> </i> Generate Request</asp:LinkButton>
                             </div>
                         </div>
                     </div>

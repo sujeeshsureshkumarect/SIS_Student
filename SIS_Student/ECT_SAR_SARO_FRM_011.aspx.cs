@@ -113,6 +113,7 @@ namespace SIS_Student
                 lbl_StudentName.Text = dtStudentServices.Rows[0]["strLastDescEn"].ToString();
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
+                lbl_StudentEmail.Text = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_GraduationSemester.Text = dtStudentServices.Rows[0]["byteGraduationSemester"].ToString();
                 lbl_GraduationYear.Text = dtStudentServices.Rows[0]["intGraduationYear"].ToString();

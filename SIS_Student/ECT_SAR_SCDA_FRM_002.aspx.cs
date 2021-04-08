@@ -114,8 +114,42 @@ namespace SIS_Student
                 lbl_StudentName.Text = dtStudentServices.Rows[0]["strLastDescEn"].ToString();
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
+                lbl_StudentEmail.Text = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_CurrentMajor.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
+
+                SqlConnection sc = new SqlConnection(connstr.Conn_string);
+                SqlCommand cmd = new SqlCommand("SELECT  Course_Balance_View_BothSides.iYear, Course_Balance_View_BothSides.Sem, Course_Balance_View_BothSides.Shift, Course_Balance_View_BothSides.Course, Course_Balance_View_BothSides.Class, Course_Balance_View_BothSides.Student, Course_Balance_View_BothSides.FactorBalance, Course_Balance_View_BothSides.IsIncluded_AtRisk, Reg_Courses.IsInternshipCourse FROM Course_Balance_View_BothSides INNER JOIN Reg_Courses ON Course_Balance_View_BothSides.Course = Reg_Courses.strCourse WHERE (Reg_Courses.IsInternshipCourse = 1) AND (Course_Balance_View_BothSides.iYear = "+ iYear + ") AND (Course_Balance_View_BothSides.Sem = "+ iSem + ") AND (Course_Balance_View_BothSides.Student = N'"+ studentid + "')", sc);
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                try
+                {
+                    sc.Open();
+                    da.Fill(dt);
+                    sc.Close();
+
+                    if(dt.Rows.Count>0)
+                    {
+                        //Continue
+                    }
+                    else
+                    {
+                        div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
+                        lbl_Msg.Text = "You are not allowed to generate this request (Only for students registered internship courses).";
+                        lbl_Msg.Visible = true;
+                        div_msg.Visible = true;                        
+                        lnk_Generate.Enabled = false;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    sc.Close();
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    sc.Close();
+                }
             }
 
         }
@@ -174,7 +208,7 @@ namespace SIS_Student
 
         public void sentdatatoSPLIst()
         {
-            string Dates = "<b>From:</b> " + Convert.ToDateTime(txt_From.Text).ToString("dd/MM/yyyy") + "&nbsp;&nbsp;&nbsp;<b>To:</b> " + Convert.ToDateTime(txt_To.Text).ToString("dd/MM/yyyy") + "";
+            //string Dates = "<b>From:</b> " + Convert.ToDateTime(txt_From.Text).ToString("dd/MM/yyyy") + "&nbsp;&nbsp;&nbsp;<b>To:</b> " + Convert.ToDateTime(txt_To.Text).ToString("dd/MM/yyyy") + "";
             int sem = 0;
             int Year = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out sem);
 
@@ -205,7 +239,7 @@ namespace SIS_Student
             //myItem["RequestID"] = refno;
             myItem["Year"] = iYear;
             myItem["Semester"] = iSem;
-            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> " + lbl_CurrentMajor.Text + "<br/><b>Company Information</b><br/><b>Company Name:</b> " + txt_CompanyName.Text.Trim() + "<br/><b>Contact Person:</b> " + txt_ProjectTitle.Text.Trim() + "<br/><b>Company Address:</b> " + txt_Address.Text.Trim() + "<br/><b>Internship Duration:</b> " + Dates + "<br/><b>Remarks/Notes:</b> " + txt_Remarks.Text.Trim() + "<br/>" + languageoption + "<br/>";
+            myItem["Request"] = "<b>Service ID:</b> " + lbl_ServiceID.Text + "<br/> <b>Service Name:</b> " + lbl_ServiceNameEn.Text + " (" + lbl_ServiceNameAr.Text + " )<br/><b>Major:</b> " + lbl_CurrentMajor.Text + "<br/><b>Company Information</b><br/><b>Company Name:</b> " + txt_CompanyName.Text.Trim() + "<br/><b>Supervisor Name:</b> " + txt_ProjectTitle.Text.Trim() + "<br/><b>Supervisor Official Email:</b> " + txt_Address.Text.Trim() + "<br/><b>Supervisor Contact Number :</b> " + txt_SupervisorContactNumber.Text.Trim() + "<br/> <b>Request Details:</b> " + txt_Remarks.Text.Trim() + "<br/>" + languageoption + "<br/>";
             myItem["RequestNote"] = txt_Remarks.Text.Trim();
             myItem["ServiceID"] = lbl_ServiceID.Text;
             myItem["Fees"] = hdf_Price.Value;

@@ -159,6 +159,17 @@
                                             <b>رقم الموبايل</b>
                                         </td>
                                     </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Student Email</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_StudentEmail" runat="server"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>البريد الإلكتروني للطالب</b>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Major</b>
@@ -167,7 +178,7 @@
                                             <asp:Label ID="lbl_CurrentMajor" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>التخصص الحالي</b>
+                                            <b>التخصص الحالي </b>
                                         </td>
                                     </tr>
                                 </table>
@@ -192,18 +203,18 @@
                                                 Operator="LessThan" Type="Date" ErrorMessage="Start date must be less than End date." Display="Dynamic"></asp:CompareValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>اسم الطالب</b>
+                                            <b><span style="color: red">*</span>تاريخ العذر</b>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Request Details</b>
+                                            <b>Request Options</b>
                                         </td>
                                         <td align="center">
                                             <asp:CheckBox runat="server" ID="chk_Request" Text="&nbsp;&nbsp;Re-examination letter requested (طلب إعادة فحص الخطاب)" />
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>الرقم الجامعي</b>
+                                            <b>خيارات الطلب</b>
                                         </td>
                                     </tr>
                                     <tr>
@@ -249,18 +260,18 @@
                                     </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Remarks</b>
+                                            <b>Request Details</b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Remarks / أدخل الملاحظات" Height="100px" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Request Details / أدخل تفاصيل الطلب" Height="100px" CssClass="form-control"></asp:TextBox>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>ملاحظات</b>
+                                            <b>تفاصيل الطلب</b>
                                         </td>
                                     </tr>
-                             <%--       <tr>
+                                    <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Proof of Payment</b><br />
+                                            <b>Attachment</b><br />
 
                                         </td>
                                         <td align="center">
@@ -269,9 +280,9 @@
                                             <small style="color: red;">(Only .pdf, .jpg and .png files are allowed / يُسمح فقط بملفات pdf و jpg و png)</small>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>إثبات دفع</b><br />
+                                            <b>مرفق</b><br />
                                         </td>
-                                    </tr>--%>
+                                    </tr>
                                 </table>
                                 <asp:HiddenField ID="hdf_Price" runat="server" Visible="false" />
                                 <asp:HiddenField ID="hdf_StudentEmail" runat="server" Visible="false" />

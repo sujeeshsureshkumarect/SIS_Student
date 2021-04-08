@@ -116,6 +116,7 @@ namespace SIS_Student
                 lbl_StudentName.Text = dtStudentServices.Rows[0]["strLastDescEn"].ToString();
                 lbl_StudentID.Text = dtStudentServices.Rows[0]["lngStudentNumber"].ToString();
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
+                lbl_StudentEmail.Text = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_CurrentMajor.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
             }
@@ -276,27 +277,27 @@ namespace SIS_Student
             {
                 myItem.Update();
 
-                //if (flp_Upload.HasFile)
-                //{
-                //    var attachment = new AttachmentCreationInformation();
+                if (flp_Upload.HasFile)
+                {
+                    var attachment = new AttachmentCreationInformation();
 
-                //    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
-                //    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
+                    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
 
-                //    string filePath = FileUrl;
-                //    attachment.FileName = Path.GetFileName(filePath);
-                //    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
-                //    Attachment att = myItem.AttachmentFiles.Add(attachment);
-                //}
+                    string filePath = FileUrl;
+                    attachment.FileName = Path.GetFileName(filePath);
+                    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
+                    Attachment att = myItem.AttachmentFiles.Add(attachment);
+                }
 
                 var onlineCredentials = new SharePointOnlineCredentials(login, securePassword);
                 clientContext.Credentials = onlineCredentials;
                 clientContext.ExecuteQuery();
-                //if (flp_Upload.HasFile)
-                //{
-                //    string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
-                //    System.IO.File.Delete(FileUrls);
-                //}
+                if (flp_Upload.HasFile)
+                {
+                    string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                    System.IO.File.Delete(FileUrls);
+                }
                 lbl_Msg.Text = "Request (ID# " + refno + ") Generated Successfully";
                 lbl_Msg.Visible = true;
                 div_msg.Visible = true;

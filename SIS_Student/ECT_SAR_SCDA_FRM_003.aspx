@@ -155,7 +155,7 @@
                                             <asp:Label ID="lbl_Major" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>التخصص الحالي</b>
+                                            <b>التخصص الحالي </b>
                                         </td>
                                     </tr>                                          
                                     <tr>
@@ -167,6 +167,17 @@
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>رقم الموبايل</b>
+                                        </td>
+                                    </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Student Email</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_StudentEmail" runat="server"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>البريد الإلكتروني للطالب</b>
                                         </td>
                                     </tr>
                       

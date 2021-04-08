@@ -114,6 +114,7 @@ namespace SIS_Student
                                 Session["CurrentServiceName"] = null;
                                 Session["CurrentServiceAmount"] = null;
                                 Session["CurrentdtSPList"] = null;
+                                Session["filePath"] = null;
                                 Session["CurrentAccount"] = null;
                                 Session["cancelpage"] = null;
                                 Session["FeesType"] = null;
@@ -295,18 +296,18 @@ namespace SIS_Student
             {
                 myItem.Update();
 
-                //if (flp_Upload.HasFile)
-                //{
-                //    var attachment = new AttachmentCreationInformation();
+                if (Session["filePath"]!=null)
+                {
+                    var attachment = new AttachmentCreationInformation();
 
-                //    flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
-                //    string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
+                    //flp_Upload.SaveAs(Server.MapPath("~/Upload/" + flp_Upload.FileName));
+                    //string FileUrl = Server.MapPath("~/Upload/" + flp_Upload.FileName);
 
-                //    string filePath = FileUrl;
-                //    attachment.FileName = Path.GetFileName(filePath);
-                //    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
-                //    Attachment att = myItem.AttachmentFiles.Add(attachment);
-                //}
+                    string filePath = Session["filePath"].ToString();
+                    attachment.FileName = Path.GetFileName(filePath);
+                    attachment.ContentStream = new MemoryStream(System.IO.File.ReadAllBytes(filePath));
+                    Attachment att = myItem.AttachmentFiles.Add(attachment);
+                }
 
                 var onlineCredentials = new SharePointOnlineCredentials(login, securePassword);
                 clientContext.Credentials = onlineCredentials;
@@ -314,6 +315,11 @@ namespace SIS_Student
 
                 //string FileUrls = Server.MapPath("~/Upload/" + flp_Upload.FileName);
                 //System.IO.File.Delete(FileUrls);
+                if (Session["filePath"] != null)
+                {
+                    string FileUrls = Session["filePath"].ToString();
+                    System.IO.File.Delete(FileUrls);
+                }
 
                 lbl_Msg.Text = "Request (ID# " + CurrentdtSPList.Rows[0]["Title"].ToString() + ") Generated Successfully";
                 lbl_Msg.Visible = true;

@@ -62,10 +62,10 @@
 
                                 <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="false">
 
-                                    <div class="alert alert-success alert-dismissible " role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <div class="alert alert-success alert-dismissible " role="alert" runat="server" id="div_Alert">
+                                       <%-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
-                                        </button>
+                                        </button>--%>
                                         <asp:Label ID="lbl_Msg" runat="server" Text="Request Generated Successfully" Visible="false" Font-Bold="true" Font-Size="16px"></asp:Label>
                                     </div>
                                 </div>
@@ -159,6 +159,17 @@
                                             <b>رقم الموبايل</b>
                                         </td>
                                     </tr>
+                                      <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Student Email</b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lbl_StudentEmail" runat="server"></asp:Label>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>البريد الإلكتروني للطالب</b>
+                                        </td>
+                                    </tr>
                                              <tr>
                                                    <td align="center" style="background-color: #f2f2f2;">
                                                        <b>Major</b>
@@ -167,7 +178,7 @@
                                                        <asp:Label ID="lbl_CurrentMajor" runat="server" Text=""></asp:Label>
                                                    </td>
                                                    <td align="center" style="background-color: #f2f2f2;">
-                                                       <b>الوضع المالي</b>
+                                                       <b>التخصص الحالي </b>
                                                    </td>
                                                </tr>
                                 </table>
@@ -189,7 +200,7 @@
                                     </tr>
                                             <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Contact Person<span style="color: red">*</span></b>
+                                            <b>Supervisor Name<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox ID="txt_ProjectTitle" runat="server" CssClass="form-control"></asp:TextBox>
@@ -197,23 +208,36 @@
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>الشخص الذي يمكن الاتصال به</b>
+                                            <b><span style="color: red">*</span>اسم المشرف على التدريب</b>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Company Address<span style="color: red">*</span></b>
+                                            <b>Supervisor Official Email<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_Address" runat="server" CssClass="form-control" TextMode="MultiLine" Height="100px"></asp:TextBox>
-                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Company Address Required" ControlToValidate="txt_Address" ForeColor="Red" ValidationGroup="no">
+                                            <asp:TextBox ID="txt_Address" runat="server" CssClass="form-control"></asp:TextBox>
+                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Supervisor Official Email Required" ControlToValidate="txt_Address" ForeColor="Red" ValidationGroup="no">
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>عنوان الشركة</b>
+                                            <b><span style="color: red">*</span>البريد الإلكتروني للمشرف</b>
                                         </td>
-                                    </tr>                               
-                                          <tr>
+                                    </tr>  
+                                       <tr>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b>Supervisor Contact Number<span style="color: red">*</span></b>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox ID="txt_SupervisorContactNumber" runat="server" CssClass="form-control"></asp:TextBox>
+                                             <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Supervisor Contact Number Required" ControlToValidate="txt_Address" ForeColor="Red" ValidationGroup="no">
+                                            </asp:RequiredFieldValidator>
+                                        </td>
+                                        <td align="center" style="background-color: #f2f2f2;">
+                                            <b><span style="color: red">*</span>رقم الموبايل للمشرف</b>
+                                        </td>
+                                    </tr>    
+                                          <tr style="display:none;">
                                         <td align="center" style="background-color: #f2f2f2;">
                                             <b>Internship Duration<span style="color: red">*</span></b>
                                         </td>
@@ -265,15 +289,15 @@
                                     </tr>
                                       <tr>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>Remarks<span style="color: red">*</span></b>
+                                            <b>Request Details<span style="color: red">*</span></b>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Remarks / أدخل الملاحظات" Height="100px" CssClass="form-control"></asp:TextBox>
-                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Remarks Required" ControlToValidate="txt_Remarks" ForeColor="Red" ValidationGroup="no">
+                                            <asp:TextBox ID="txt_Remarks" runat="server" TextMode="MultiLine" placeholder="Enter Request Details / أدخل تفاصيل الطلب" Height="100px" CssClass="form-control"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" Display="Dynamic" ErrorMessage="*Request Details Required" ControlToValidate="txt_Remarks" ForeColor="Red" ValidationGroup="no">
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>ملاحظات</b>
+                                            <b><span style="color: red">*</span>تفاصيل الطلب</b>
                                         </td>
                                     </tr>
                                   <%--  <tr>

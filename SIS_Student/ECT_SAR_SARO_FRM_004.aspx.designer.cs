@@ -123,6 +123,15 @@ namespace SIS_Student
         protected global::System.Web.UI.WebControls.Label lbl_StudentContact;
 
         /// <summary>
+        /// lbl_StudentEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_StudentEmail;
+
+        /// <summary>
         /// drp_StatusReuqest control.
         /// </summary>
         /// <remarks>
