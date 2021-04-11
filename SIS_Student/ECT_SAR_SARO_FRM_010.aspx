@@ -195,7 +195,7 @@
                                             <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>عنوان الدورة</b>
+                                            <b><span style="color: red">*</span>اسم المساق</b>
                                         </td>
                                     </tr>
                                     <tr>
@@ -206,7 +206,7 @@
                                             <asp:Label ID="lbl_CourseCode" runat="server" Text=""></asp:Label>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b>رمز المادة </b>
+                                            <b>رمز المساق</b>
                                         </td>
                                     </tr>
                                                <tr>
@@ -217,7 +217,7 @@
                                                        <asp:Label ID="lbl_Instructor" runat="server" Text=""></asp:Label>
                                                    </td>
                                                    <td align="center" style="background-color: #f2f2f2;">
-                                                       <b>اســم مدرس المادة</b>
+                                                       <b>اسم مدرس المساق</b>
                                                    </td>
                                                </tr>
                                                <tr>

@@ -195,7 +195,7 @@
                                             <asp:RequiredFieldValidator  runat="server" ControlToValidate="drp_Course" InitialValue="---Select a Course---" ErrorMessage="*Please select a course to continue" Display="Dynamic" ForeColor="Red" ValidationGroup="no"/>
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>المساق</b>
+                                            <b><span style="color: red">*</span>اسم المساق</b>
                                         </td>
                                     </tr>
                                     <tr>

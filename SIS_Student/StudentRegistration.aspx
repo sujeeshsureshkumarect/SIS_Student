@@ -389,6 +389,38 @@
                                         Width="330px"></asp:Label>
                                 </td>
                             </tr>
+                             <tr>
+                                <td align="left" 
+                                    style="padding: 0px 0px 0px 50px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
+                                    <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="Medium" 
+                                        style="font-size: small" 
+                                        Text="I pledge to provide one of the following English Language certificates (EmSAT, TOEFL, IELTS) if requested by the College at any time even if I have an English certificate other than the ones mentioned above, as required by the Ministry of Education (MOE) for all newly registered students starting September 2020, and I understand that my registration is contingent on fulfilling this requirement." 
+                                        Width="330px"></asp:Label>
+                                </td>
+                                <td align="right" 
+                                    style="padding: 0px 50px 0px 0px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
+                                    <asp:Label ID="Label32" runat="server" Font-Bold="True" Font-Size="Medium" 
+                                        style="font-family: Arial" 
+                                        Text="أتعهد بتقديم إحدى شهادات اللغة الانجليزية التالية (إمسات، توفل، ايلتس) في حال تم طلب ذلك مني في أي وقت من قبل الكلية، حتى وان كان لدي شهادة لغة انجليزية أخرى غير تلك المذكورة أعلاه، وذلك وفقا لمتطلبات وزارة التربية والتعليم الجديدة لكافة الطلبة المسجلين بدأ من سبتمبر 2020، و بناءا عليه فإن تسجيلي مشروط بتحقيق هذا المتطلب. " 
+                                        Width="330px"></asp:Label>
+                                </td>
+                            </tr>
+                               <tr>
+                                <td align="left" 
+                                    style="padding: 0px 0px 0px 50px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
+                                    <asp:Label ID="Label33" runat="server" Font-Bold="True" Font-Size="Medium" 
+                                        style="font-size: small" 
+                                        Text="I pledge to provide proof that I passed the Arabic Language exam (EmSAT) with a minimum score of 1000 to fulfill the registration requirements (applicable for the Faculty of Media only) as required by the Ministry of Education (MOE), and I understand that my registration is contingent on fulfilling this requirement." 
+                                        Width="330px"></asp:Label>
+                                </td>
+                                <td align="right" 
+                                    style="padding: 0px 50px 0px 0px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
+                                    <asp:Label ID="Label34" runat="server" Font-Bold="True" Font-Size="Medium" 
+                                        style="font-family: Arial" 
+                                        Text="أتعهد بتقديم ما يثبت اجتيازي لامتحان الإمسات للغة العربية بعلامة لا تقل عن 1000 درجة للسماح لي بالتسجيل (متطلب قبول في كلية الإعلام فقط)، وذلك وفقا لمتطلبات وزارة التربية والتعليم، و بناءا عليه فإن تسجيلي مشروط بتحقيق هذا المتطلب." 
+                                        Width="330px"></asp:Label>
+                                </td>
+                            </tr>
                             <tr>
                                 <td align="left" style="padding: 0px 0px 0px 50px; font-family: Arial, Helvetica, sans-serif; margin: 0px;">
                                     <span id="MainContent_Wizard1_Label33" style="display:inline-block;color:#0066FF;font-size:Medium;font-weight:bold;width:330px;font-size: small">Note : 300 AED penalty fees for each bounced cheque</span>

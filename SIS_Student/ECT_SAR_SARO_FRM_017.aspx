@@ -227,7 +227,7 @@
                                                 ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" Display="Dynamic" ValidationGroup="no" />
                                         </td>
                                         <td align="center" style="background-color: #f2f2f2;">
-                                            <b><span style="color: red">*</span>رقم الموبايل</b>
+                                            <b><span style="color: red">*</span>الرسائل المطلوبة</b>
                                         </td>
                                     </tr>
                                 </table>
