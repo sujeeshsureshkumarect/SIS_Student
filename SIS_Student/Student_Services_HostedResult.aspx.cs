@@ -252,7 +252,7 @@ namespace SIS_Student
             DataTable CurrentdtSPList = Session["CurrentdtSPList"] as DataTable;
 
             string login = "ets.services.admin@ect.ac.ae"; //give your username here  
-            string password = "Ser71ces@328"; //give your password  
+            string password = "Ser71ces@328"; //give your password
             var securePassword = new SecureString();
             foreach (char c in password)
             {

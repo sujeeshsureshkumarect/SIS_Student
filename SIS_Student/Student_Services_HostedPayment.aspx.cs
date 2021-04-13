@@ -163,19 +163,23 @@ namespace SIS_Student
             double amount = Convert.ToDouble(hdnAmount.Value);
             string description = sDesc.Trim();
 
-            insert_online_payment(orderid, hdnACC.Value, hdnSID.Value, Session["CurrentService"].ToString());
+            insert_online_payment(orderid, hdnACC.Value, hdnSID.Value, Session["CurrentService"].ToString(), hdnAmount.Value);
 
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.DefaultConnectionLimit = 9999;
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             SessionCreate(orderid, amount, description);
         }
-        public void insert_online_payment(string sOrder, string sACC, string sSID, string sService)
+        public void insert_online_payment(string sOrder, string sACC, string sSID, string sService, string amount)
         {
+            double dGrossAmount = Convert.ToDouble(amount);
+            double dPmtAmount = Math.Round((dGrossAmount / 1.05), 2);            
+            double dVAT = Math.Round((dGrossAmount - dPmtAmount), 2);
+
             CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS connstr = new Connection_StringCLS(CurrentCampus);
             SqlConnection sc = new SqlConnection(connstr.Conn_string);
-            SqlCommand cmd = new SqlCommand("INSERT INTO [ECTData].[dbo].[Acc_Payment_Order] values (@sOrder,@sACC,@sSID,@sService,@dDate,@isCaptured,@dCaptured,@sVoucherNo,@isCanceled)", sc);
+            SqlCommand cmd = new SqlCommand("INSERT INTO [ECTData].[dbo].[Acc_Payment_Order] values (@sOrder,@sACC,@sSID,@sService,@dDate,@isCaptured,@dCaptured,@sVoucherNo,@isCanceled,@cAmount,@cVAT)", sc);
             cmd.Parameters.AddWithValue("@sOrder", sOrder);
             cmd.Parameters.AddWithValue("@sACC", sACC);
             cmd.Parameters.AddWithValue("@sSID", sSID);
@@ -185,6 +189,8 @@ namespace SIS_Student
             cmd.Parameters.AddWithValue("@dCaptured", DBNull.Value);
             cmd.Parameters.AddWithValue("@sVoucherNo", DBNull.Value);
             cmd.Parameters.AddWithValue("@isCanceled", false);
+            cmd.Parameters.AddWithValue("@cAmount", dPmtAmount);
+            cmd.Parameters.AddWithValue("@cVAT", dVAT);
             try
             {
                 sc.Open();
