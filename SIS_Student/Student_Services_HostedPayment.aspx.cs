@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace SIS_Student
 {
@@ -176,10 +177,12 @@ namespace SIS_Student
             double dPmtAmount = Math.Round((dGrossAmount / 1.05), 2);            
             double dVAT = Math.Round((dGrossAmount - dPmtAmount), 2);
 
+            DataTable CurrentdtSPList = Session["CurrentdtSPList"] as DataTable;            
+
             CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS connstr = new Connection_StringCLS(CurrentCampus);
             SqlConnection sc = new SqlConnection(connstr.Conn_string);
-            SqlCommand cmd = new SqlCommand("INSERT INTO [ECTData].[dbo].[Acc_Payment_Order] values (@sOrder,@sACC,@sSID,@sService,@dDate,@isCaptured,@dCaptured,@sVoucherNo,@isCanceled,@cAmount,@cVAT)", sc);
+            SqlCommand cmd = new SqlCommand("INSERT INTO [ECTData].[dbo].[Acc_Payment_Order] values (@sOrder,@sACC,@sSID,@sService,@dDate,@isCaptured,@dCaptured,@sVoucherNo,@isCanceled,@cAmount,@cVAT,@tOrder)", sc);
             cmd.Parameters.AddWithValue("@sOrder", sOrder);
             cmd.Parameters.AddWithValue("@sACC", sACC);
             cmd.Parameters.AddWithValue("@sSID", sSID);
@@ -190,7 +193,23 @@ namespace SIS_Student
             cmd.Parameters.AddWithValue("@sVoucherNo", DBNull.Value);
             cmd.Parameters.AddWithValue("@isCanceled", false);
             cmd.Parameters.AddWithValue("@cAmount", dPmtAmount);
-            cmd.Parameters.AddWithValue("@cVAT", dVAT);
+            cmd.Parameters.AddWithValue("@cVAT", dVAT);           
+            if (CurrentdtSPList.Rows.Count > 0)
+            {
+                //Convert Datatable to XML String to DB Save
+                System.IO.StringWriter writer = new System.IO.StringWriter();
+                CurrentdtSPList.TableName = "CurrentdtSPList";
+                CurrentdtSPList.WriteXml(writer, XmlWriteMode.WriteSchema, true);
+                cmd.Parameters.AddWithValue("@tOrder", writer.ToString());
+
+                //StringReader theReader = new StringReader(writer.ToString());
+                //DataSet theDataSet = new DataSet();
+                //theDataSet.ReadXml(theReader);                
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@tOrder", DBNull.Value);
+            }
             try
             {
                 sc.Open();

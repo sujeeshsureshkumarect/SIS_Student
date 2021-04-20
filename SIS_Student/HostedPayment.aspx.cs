@@ -176,7 +176,7 @@ namespace SIS_Student
             CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS connstr = new Connection_StringCLS(CurrentCampus);
             SqlConnection sc = new SqlConnection(connstr.Conn_string);
-            SqlCommand cmd = new SqlCommand("INSERT INTO [ECTData].[dbo].[Acc_Payment_Order] values (@sOrder,@sACC,@sSID,@sService,@dDate,@isCaptured,@dCaptured,@sVoucherNo,@isCanceled,@cAmount,@cVAT)", sc);
+            SqlCommand cmd = new SqlCommand("INSERT INTO [ECTData].[dbo].[Acc_Payment_Order] values (@sOrder,@sACC,@sSID,@sService,@dDate,@isCaptured,@dCaptured,@sVoucherNo,@isCanceled,@cAmount,@cVAT,@tOrder)", sc);
             cmd.Parameters.AddWithValue("@sOrder", sOrder);
             cmd.Parameters.AddWithValue("@sACC", sACC);
             cmd.Parameters.AddWithValue("@sSID", sSID);
@@ -188,6 +188,7 @@ namespace SIS_Student
             cmd.Parameters.AddWithValue("@isCanceled", false);
             cmd.Parameters.AddWithValue("@cAmount", amount);
             cmd.Parameters.AddWithValue("@cVAT", 0);
+            cmd.Parameters.AddWithValue("@tOrder", DBNull.Value);
             try
             {
                 sc.Open();
