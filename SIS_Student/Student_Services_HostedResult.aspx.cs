@@ -169,12 +169,13 @@ namespace SIS_Student
             CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS connstr = new Connection_StringCLS(CurrentCampus);
             SqlConnection sc = new SqlConnection(connstr.Conn_string);
-            SqlCommand cmd = new SqlCommand("update [ECTData].[dbo].[Acc_Payment_Order] set sVoucherNo=@sVoucherNo where sOrder=@sOrder", sc);
+            SqlCommand cmd = new SqlCommand("update [ECTData].[dbo].[Acc_Payment_Order] set sVoucherNo=@sVoucherNo,tOrder=@tOrder where sOrder=@sOrder", sc);
             //cmd.Parameters.AddWithValue("@isCaptured", true);
             //cmd.Parameters.AddWithValue("@dCaptured", DateTime.Now);
             cmd.Parameters.AddWithValue("@sVoucherNo", sVoucherNo);
             //cmd.Parameters.AddWithValue("@isCanceled", false);
             cmd.Parameters.AddWithValue("@sOrder", sOrder);
+            cmd.Parameters.AddWithValue("@tOrder", DBNull.Value);
             try
             {
                 sc.Open();
