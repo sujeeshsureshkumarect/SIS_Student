@@ -1817,7 +1817,11 @@ namespace SIS_Student
                             int iCYear = LibraryMOD.SeperateTerm(LibraryMOD.GetCurrentTerm(), out iCSem);
                             Session["CurrentYear"] = iCYear;
                             Session["CurrentSemester"] = iCSem;
-                            int iRegisteredHours = LibraryMOD.GetCurrentRegisteredCourses(this.Campus, sSID, iCYear, iCSem);
+                            int iRSem = 0;
+                            int iRYear = LibraryMOD.SeperateTerm(LibraryMOD.GetRegTerm(), out iRSem);
+                            Session["RegYear"] = iRYear;
+                            Session["RegSemester"] = iRSem;
+                            int iRegisteredHours = LibraryMOD.GetCurrentRegisteredCourses(this.Campus, sSID, iRYear, iRSem);//iCYear, iCSem
                             if (iRegisteredHours == 0)
                             {
                                 //lbl_Msg.Text = "Student must register courses before creating email.";
@@ -2289,27 +2293,36 @@ namespace SIS_Student
                 //div_msg.Visible = true;
                 return;
             }
-            int iUnifiedID = LibraryMOD.GetMaxUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
+            //int iUnifiedID = LibraryMOD.GetMaxUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
+            ////update Unified ID
+            //if (iUnifiedID > 0)
+            //{
+            //    LibraryMOD.UpdateStudentUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), iUnifiedID);
+            //    //check reference number
+            //    if (LibraryMOD.UpdateStudentUnifiedIDIfHasRefID(Campus, Convert.ToInt32(hdnSerial.Value)) == true)
+            //    {
+            //        //Get updated UnifiedID
+            //        iUnifiedID = LibraryMOD.GetUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value));
+            //    }
+            //}
+            //else
+            //{
+            //    iUnifiedID = LibraryMOD.GetUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
+            //    if (iUnifiedID == 0)
+            //    {
+            //        iUnifiedID = LibraryMOD.GetMaxUnifiedID_withoutCheckRefID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
+            //    }
+            //    LibraryMOD.UpdateStudentUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), iUnifiedID);
+            //}
+
+            //Code Updated by Mr. Ihab on 25-04-2021            
+            int iUnifiedID = LibraryMOD.GetNewUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
             //update Unified ID
             if (iUnifiedID > 0)
             {
-                LibraryMOD.UpdateStudentUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), iUnifiedID);
-                //check reference number
-                if (LibraryMOD.UpdateStudentUnifiedIDIfHasRefID(Campus, Convert.ToInt32(hdnSerial.Value)) == true)
-                {
-                    //Get updated UnifiedID
-                    iUnifiedID = LibraryMOD.GetUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value));
-                }
+                LibraryMOD.UpdateStudentUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), iUnifiedID);               
             }
-            else
-            {
-                iUnifiedID = LibraryMOD.GetUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
-                if (iUnifiedID == 0)
-                {
-                    iUnifiedID = LibraryMOD.GetMaxUnifiedID_withoutCheckRefID(Campus, Convert.ToInt32(hdnSerial.Value), out sFName);
-                }
-                LibraryMOD.UpdateStudentUnifiedID(Campus, Convert.ToInt32(hdnSerial.Value), iUnifiedID);
-            }
+
             //Update student email    
             sECTEmail = sFName.ToString().Trim().Replace(" ", string.Empty) + iUnifiedID.ToString().PadLeft(6, Convert.ToChar("0")) + "@ect.ac.ae";
             if (LibraryMOD.UpdateStudentEmail(Campus, Convert.ToInt32(hdnSerial.Value), sECTEmail) == true)

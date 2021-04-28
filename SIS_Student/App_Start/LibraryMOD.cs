@@ -182,6 +182,73 @@ public class LibraryMOD
         FName = sFName;
         return functionReturnValue;
     }
+    //Updated by Mr. Ihab on 25-04-2021
+    public static int GetNewUnifiedID(InitializeModule.EnumCampus Campus, int iSerialNo, out string FName)
+    {
+        //It will return the UnifiedID if student exists or any referecne or it will return new UnifiedID based on campus (shifts).
+        int functionReturnValue = 0;
+
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        Conn.Open();
+        string sFName = "";
+
+        try
+        {
+            string sSQL = null;
+            int byteShift1 = 1;
+            int byteShift2 = 2;
+            int byteShift3 = 9;
+
+            if (Campus == InitializeModule.EnumCampus.Males)
+            {
+                byteShift1 = 3;
+                byteShift2 = 4;
+                byteShift3 = 8;
+            }
+            else
+            {
+                byteShift1 = 1;
+                byteShift2 = 2;
+                byteShift3 = 9;
+            }
+
+            sSQL = " SELECT        (CASE WHEN ISNULL(SD0.iUnifiedID, 0) = 0 THEN LUnified.MUnifiedID ELSE SD.iUnifiedID END) AS UID, SD.strFirstDescEn ";
+            sSQL += " FROM            Reg_Students_Data AS SD0 RIGHT OUTER JOIN ";
+            sSQL += "                          Reg_Applications AS A0 ON SD0.lngSerial = A0.lngSerial RIGHT OUTER JOIN ";
+            sSQL += "                          Reg_Students_Data AS SD INNER JOIN ";
+            sSQL += "                          Reg_Applications AS A ON SD.lngSerial = A.lngSerial ON A0.lngStudentNumber = A.sReference CROSS JOIN ";
+            sSQL += "                              (SELECT        MAX(iUnifiedID) + 1 AS MUnifiedID ";
+            sSQL += "                                FROM            Reg_Students_Data AS SD ";
+            sSQL += "                                WHERE        (byteShift = " + byteShift1 + ") OR ";
+            sSQL += "                                                          (byteShift = " + byteShift2 + ") OR ";
+            sSQL += "                                                          (byteShift = " + byteShift3 + ")) AS LUnified ";
+            sSQL += " WHERE        (SD.lngSerial = " + iSerialNo + ") ";
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            SqlDataReader rd = Cmd.ExecuteReader();
+            int iMax = 0;
+
+            while (rd.Read())
+            {
+                iMax = int.Parse("0" + rd["UID"].ToString());
+                sFName = rd["strFirstDescEn"].ToString();
+            }
+            rd.Close();
+
+            functionReturnValue = iMax;
+        }
+        catch (Exception ex)
+        {
+            ShowErrorMessage(ex);
+        }
+        finally
+        {
+
+        }
+        FName = sFName;
+        return functionReturnValue;
+    }
     public static bool UpdateStudentUnifiedID(InitializeModule.EnumCampus Campus, int iSerialNo, int iUnifiedID)
     {
         Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
