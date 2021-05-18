@@ -346,21 +346,21 @@ namespace SIS_Student
             //checking that its first payment done by student or not
             Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
             SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
-            SqlCommand cmd = new SqlCommand("SELECT count(strAccountNo) as Count FROM [ECTData].[dbo].[Acc_Voucher_Detail] where strAccountNo=@strAccountNo", sc);
-            cmd.Parameters.AddWithValue("@strAccountNo", sAcc);
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            try
-            {
-                sc.Open();
-                da.Fill(dt);
-                sc.Close();
+            //SqlCommand cmd = new SqlCommand("SELECT count(strAccountNo) as Count FROM [ECTData].[dbo].[Acc_Voucher_Detail] where strAccountNo=@strAccountNo", sc);
+            //cmd.Parameters.AddWithValue("@strAccountNo", sAcc);
+            //DataTable dt = new DataTable();
+            //SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //try
+            //{
+            //    sc.Open();
+            //    da.Fill(dt);
+            //    sc.Close();
 
-                if(dt.Rows.Count>0)
-                {
-                    int count = Convert.ToInt32(dt.Rows[0]["Count"]);
-                    if(count==1)//First Payment
-                    {
+                //if(dt.Rows.Count>0)
+                //{
+                    //int count = Convert.ToInt32(dt.Rows[0]["Count"]);
+                    //if(count==1)//First Payment
+                    //{
                         int opportunityid = 0;
                         string sSID = Session["CurrentStudent"].ToString();
                         int iSerial = GetSerial(sSID);
@@ -422,18 +422,18 @@ namespace SIS_Student
                         {
                             sc.Close();
                         }
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                sc.Close();
-                divMsg.InnerText = ex.Message;
-            }
-            finally
-            {
-                sc.Close();
-            }
+                    //}
+                //}
+            //}
+            //catch(Exception ex)
+            //{
+            //    sc.Close();
+            //    divMsg.InnerText = ex.Message;
+            //}
+            //finally
+            //{
+            //    sc.Close();
+            //}
         }
         public void updateuserole(string sAcc)
         {
