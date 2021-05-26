@@ -28,7 +28,7 @@ namespace SIS_Student.DAL
 
         public DataTable GetStudentDetailsID(string studentid, string connStr)
         {
-            DataTable dt = GetData("SELECT        Reg_Applications.lngStudentNumber, Reg_Students_Data.strLastDescEn, Reg_Specializations.strCaption, dbo.cleanphone(Reg_Students_Data.strPhone1) AS Phone, Reg_Students_Data.sECTemail,Reg_Applications.byteCancelReason,Reg_Students_Data.strNationalID AS EID,Reg_Students_Data.strFirstDescEn, Reg_Students_Data.strSecondDescEn, Reg_Students_Data.strThirdDescEn FROM Reg_Applications INNER JOIN Reg_Students_Data ON Reg_Applications.lngSerial = Reg_Students_Data.lngSerial INNER JOIN Reg_Specializations ON Reg_Applications.strCollege = Reg_Specializations.strCollege AND Reg_Applications.strDegree = Reg_Specializations.strDegree AND Reg_Applications.strSpecialization = Reg_Specializations.strSpecialization where Reg_Applications.lngStudentNumber='" + studentid+"'", connStr);
+            DataTable dt = GetData("SELECT     Reg_Applications.strDegree,Reg_Applications.lngStudentNumber, Reg_Students_Data.strLastDescEn, Reg_Specializations.strCaption, dbo.cleanphone(Reg_Students_Data.strPhone1) AS Phone, Reg_Students_Data.sECTemail,Reg_Applications.byteCancelReason,Reg_Students_Data.strNationalID AS EID,Reg_Students_Data.strFirstDescEn, Reg_Students_Data.strSecondDescEn, Reg_Students_Data.strThirdDescEn FROM Reg_Applications INNER JOIN Reg_Students_Data ON Reg_Applications.lngSerial = Reg_Students_Data.lngSerial INNER JOIN Reg_Specializations ON Reg_Applications.strCollege = Reg_Specializations.strCollege AND Reg_Applications.strDegree = Reg_Specializations.strDegree AND Reg_Applications.strSpecialization = Reg_Specializations.strSpecialization where Reg_Applications.lngStudentNumber='" + studentid+"'", connStr);
             return dt;
         }
 
@@ -54,7 +54,7 @@ namespace SIS_Student.DAL
         public DataTable GetSemestersbyTerm(int year, int sem)
         {
             int term = (year * 10) + sem;
-            DataTable dt = GetData("SELECT  top 4   AcademicYear, Semester, LongDesc, AcademicYear * 10 + Semester AS Term FROM Reg_Semester where term<"+term+" ORDER BY AcademicYear DESC, Semester DESC");
+            DataTable dt = GetData("SELECT  top 4   AcademicYear, Semester, LongDesc, AcademicYear * 10 + Semester AS Term FROM Reg_Semester where term<="+term+" ORDER BY AcademicYear DESC, Semester DESC");
             return dt;
         }
 

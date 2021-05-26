@@ -62,7 +62,7 @@
 
                                 <div class="x_content bs-example-popovers" id="div_msg" runat="server" visible="false">
 
-                                    <div class="alert alert-success alert-dismissible " role="alert">
+                                    <div class="alert alert-success alert-dismissible " role="alert" runat="server" id="div_Alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>

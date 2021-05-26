@@ -166,6 +166,16 @@ namespace SIS_Student
                 lbl_StudentEmail.Text = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_CurrentMajor.Text= dtStudentServices.Rows[0]["strCaption"].ToString(); 
+                if(dtStudentServices.Rows[0]["strDegree"].ToString()=="2")
+                {
+                    //Not allowed for remedial students
+                    div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";
+                    lbl_Msg.Text = "You are not allowed to generate this request at this time (Not allowed for remedial students).";
+                    lbl_Msg.Visible = true;
+                    div_msg.Visible = true;                   
+                    lnk_Generate.Enabled = false;                    
+                    return;
+                }
             }
 
         }
