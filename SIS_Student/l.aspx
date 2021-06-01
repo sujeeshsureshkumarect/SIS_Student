@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Link.aspx.cs" Inherits="SIS_Student.Link" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="l.aspx.cs" Inherits="SIS_Student.Link" %>
 
 <!DOCTYPE html>
 

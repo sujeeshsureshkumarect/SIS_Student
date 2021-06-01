@@ -4774,7 +4774,7 @@
     <Content Include="images\SSL.png" />
     <Content Include="images\Student.jpg" />
     <Content Include="LibBookSearch.aspx" />
-    <Content Include="Link.aspx" />
+    <Content Include="l.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Login_v9\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="Login_v9\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
@@ -6452,12 +6452,12 @@
     <Compile Include="LibBookSearch.aspx.designer.cs">
       <DependentUpon>LibBookSearch.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Link.aspx.cs">
-      <DependentUpon>Link.aspx</DependentUpon>
+    <Compile Include="l.aspx.cs">
+      <DependentUpon>l.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Link.aspx.designer.cs">
-      <DependentUpon>Link.aspx</DependentUpon>
+    <Compile Include="l.aspx.designer.cs">
+      <DependentUpon>l.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
