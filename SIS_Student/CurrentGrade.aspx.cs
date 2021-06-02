@@ -154,21 +154,21 @@ namespace SIS_Student
                 bool flag1 = false, flag2 = false;
 
 
-                //isFinance = LibraryMOD.isFinanceProblems(Campus, sSNo);
+                isFinance = LibraryMOD.isFinanceProblems(Campus, sSNo);
 
-                isActive = LibraryMOD.isActiveStudent(Campus, sSNo);
+                //isActive = LibraryMOD.isActiveStudent(Campus, sSNo);
 
-                isMissing = LibraryMOD.isMissingStudent(Campus, sSNo);
+                //isMissing = LibraryMOD.isMissingStudent(Campus, sSNo);
 
-                iStatus = LibraryMOD.GetStudentStatus(Campus, sSNo);
+                //iStatus = LibraryMOD.GetStudentStatus(Campus, sSNo);
 
-                iIsFileVerified = LibraryMOD.IsFileVerifiedFromRegistrar(sSNo, Campus);
+                //iIsFileVerified = LibraryMOD.IsFileVerifiedFromRegistrar(sSNo, Campus);
 
-                if (iIsFileVerified == 0 || !isActive || !isMissing || (iStatus > 0 && iStatus != 25))
-                {
-                    flag1 = true;
-                    sMSG += sRegMsg;
-                }
+                //if (iIsFileVerified == 0 || !isActive || !isMissing || (iStatus > 0 && iStatus != 25))
+                //{
+                //    flag1 = true;
+                //    sMSG += sRegMsg;
+                //}
 
                 if (isFinance || string.IsNullOrEmpty(sSNo))
                 {
@@ -177,7 +177,7 @@ namespace SIS_Student
                 }
 
 
-                isEnable = !(flag1 || flag2);
+                isEnable = !(flag2);
 
 
             }
