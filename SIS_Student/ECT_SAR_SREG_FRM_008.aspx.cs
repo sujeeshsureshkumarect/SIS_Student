@@ -154,6 +154,8 @@ namespace SIS_Student
 
                 if(lbl_ServiceID.Text=="1004")//Service # 1004 this must be for graduated and expected to Graduate only 
                 {
+                    lbl_En.Text = "Graduation Letter";
+                    lbl_Ar.Text = "طلب افادة تخرج";
                     //Non-Graduated Students Check
                     if (cancelreason != "3" && cancelreason != "25")
                     {
@@ -221,7 +223,12 @@ namespace SIS_Student
                             lnk_Generate.Enabled = false;
                         }
                     //}
-                }              
+                }
+                if (lbl_ServiceID.Text == "1005")
+                {
+                    lbl_En.Text = "Transcript";
+                    lbl_Ar.Text = "طلب كشف علامات";
+                }
             }
         }
         public void getservicedetails()

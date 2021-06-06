@@ -84,9 +84,14 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Graduation Letter and Transcript<br />
-                                               طلب افادة تخرج و كشف علامات
-                                            </p>
+                                           <%-- <p style="text-align: center; font-size: 23px; font-weight: bold;">Graduation Letter and Transcript--%>
+                                            
+                                                <asp:Label ID="lbl_En" runat="server" style="display:block;margin:0 auto;text-align: center !important; font-size: 23px; font-weight: bold;" Text="Graduation Letter and Transcript"></asp:Label>
+                                              
+                                              <%-- 
+                                            </p>--%>
+                                            <asp:Label ID="lbl_Ar" runat="server" style="display:block;margin:0 auto;text-align: center !important; font-size: 23px; font-weight: bold;"></asp:Label>
+                                               
                                         </td>
                                     </tr>
                                 </table>
