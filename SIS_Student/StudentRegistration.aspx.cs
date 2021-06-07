@@ -2222,7 +2222,7 @@ namespace SIS_Student
             myItem["Password"] = SIS_PWD;//SIS Password
             myItem["Phone1"] = dt1.Rows[0]["strPhone1"].ToString();//Phone1
             myItem["Phone2"] = dt1.Rows[0]["strPhone2"].ToString();//Phone2  
-            myItem["Author"] = clientContext.Web.EnsureUser(Addedby);//Added By
+            myItem["Author"] = clientContext.Web.EnsureUser(login);//Added By
             //myItem["Author"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");//Addedby
             myItem["FirstUpdate"] = null;//1st Update
             myItem["SecondUpdate"] = null;//2nd Update
@@ -2232,7 +2232,7 @@ namespace SIS_Student
             myItem["StudentName"] = dt1.Rows[0]["strStudentName"].ToString();//Student Name
             //myItem["Modified"] = null;//Updated
             //myItem["Created"] = DateTime.Now;//Created
-            myItem["Editor"] = clientContext.Web.EnsureUser(Addedby);//Updated By
+            myItem["Editor"] = clientContext.Web.EnsureUser(login);//Updated By
             //myItem["AlertTo"] = clientContext.Web.EnsureUser("ihab.awad@ect.ac.ae");//AlertTo  
             //myItem["AlertTo"] = clientContext.Web.EnsureUser(AlertTo);
             try
