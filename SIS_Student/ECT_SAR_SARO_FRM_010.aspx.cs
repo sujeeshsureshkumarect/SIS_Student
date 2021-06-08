@@ -157,6 +157,9 @@ namespace SIS_Student
                 lbl_ServiceNameAr.Text = dtStudentServices.Rows[0]["ServiceAr"].ToString();
                 lbl_Fess.Text = "AED " + Convert.ToDouble(dtStudentServices.Rows[0]["Sum"]).ToString("N");
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
+                lbl_En.Text = dtStudentServices.Rows[0]["ServiceHeaderEn"].ToString();
+                lbl_Ar.Text = dtStudentServices.Rows[0]["ServiceHeaderAr"].ToString();
+
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
                 Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();
                 Session["LanguageOption"] = dtStudentServices.Rows[0]["LanguageOption"].ToString();

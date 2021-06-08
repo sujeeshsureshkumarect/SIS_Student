@@ -83,9 +83,11 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Last Chance Probation Pledge for CGPA less than 2<br />
+                                           <%-- <p style="text-align: center; font-size: 23px; font-weight: bold;">Last Chance Probation Pledge for CGPA less than 2<br />
                                   تعهد خطي نهائي لرفع المعدل التراكمي اكثر او يساوي 2
-                                            </p>
+                                            </p>--%>
+                                            <asp:Label ID="lbl_En" runat="server" Style="display: block; margin: 0 auto; text-align: center !important; font-size: 23px; font-weight: bold;"></asp:Label>
+                                            <asp:Label ID="lbl_Ar" runat="server" Style="display: block; margin: 0 auto; text-align: center !important; font-size: 23px; font-weight: bold; direction: rtl;"></asp:Label>
                                         </td>
                                     </tr>
                                 </table>

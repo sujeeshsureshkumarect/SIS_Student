@@ -154,8 +154,8 @@ namespace SIS_Student
 
                 if(lbl_ServiceID.Text=="1004")//Service # 1004 this must be for graduated and expected to Graduate only 
                 {
-                    lbl_En.Text = "Graduation Letter";
-                    lbl_Ar.Text = "طلب افادة تخرج";
+                    //lbl_En.Text = "Graduation Letter";
+                    //lbl_Ar.Text = "طلب افادة تخرج";
                     //Non-Graduated Students Check
                     if (cancelreason != "3" && cancelreason != "25")
                     {
@@ -224,11 +224,11 @@ namespace SIS_Student
                         }
                     //}
                 }
-                if (lbl_ServiceID.Text == "1005")
-                {
-                    lbl_En.Text = "Transcript";
-                    lbl_Ar.Text = "طلب كشف علامات";
-                }
+                //if (lbl_ServiceID.Text == "1005")
+                //{
+                //    lbl_En.Text = "Transcript";
+                //    lbl_Ar.Text = "طلب كشف علامات";
+                //}
             }
         }
         public void getservicedetails()
@@ -243,6 +243,9 @@ namespace SIS_Student
                 lbl_ServiceNameAr.Text = dtStudentServices.Rows[0]["ServiceAr"].ToString();
                 lbl_Fess.Text = "AED " + Convert.ToDouble(dtStudentServices.Rows[0]["Sum"]).ToString("N");
                 hdf_Price.Value = dtStudentServices.Rows[0]["Sum"].ToString();
+                lbl_En.Text= dtStudentServices.Rows[0]["ServiceHeaderEn"].ToString();
+                lbl_Ar.Text = dtStudentServices.Rows[0]["ServiceHeaderAr"].ToString();
+
                 Session["FeesType"] = dtStudentServices.Rows[0]["FeesType"].ToString();
                 Session["HostEmail"] = dtStudentServices.Rows[0]["Host"].ToString();
                 Session["FinanceEmail"] = dtStudentServices.Rows[0]["Finance"].ToString();

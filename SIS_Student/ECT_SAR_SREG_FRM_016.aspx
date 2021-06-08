@@ -83,9 +83,11 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p style="text-align: center; font-size: 23px; font-weight: bold;">Withdrawal from a Course Form<br />
+                                           <%-- <p style="text-align: center; font-size: 23px; font-weight: bold;">Withdrawal from a Course Form<br />
                                             نموذج طلب الانسحاب من مساق
-                                            </p>
+                                            </p>--%>
+                                            <asp:Label ID="lbl_En" runat="server" Style="display: block; margin: 0 auto; text-align: center !important; font-size: 23px; font-weight: bold;"></asp:Label>
+                                            <asp:Label ID="lbl_Ar" runat="server" Style="display: block; margin: 0 auto; text-align: center !important; font-size: 23px; font-weight: bold; direction: rtl;"></asp:Label>
                                         </td>
                                     </tr>
                                 </table>
