@@ -5028,6 +5028,7 @@ public class LibraryMOD
             string sBalance = "0";
             if (r != null)
             {
+                sBalance = r.ToString();
                 cBalance = Convert.ToDecimal(sBalance);
             }               
             else
