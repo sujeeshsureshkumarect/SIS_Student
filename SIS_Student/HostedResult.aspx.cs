@@ -221,6 +221,7 @@ namespace SIS_Student
         private int AddPayment(string sVoucher, string sPmtSession, string sPmtOrder, int iPaidFor, double dAmount, double dVat)
         {
             int iEffected = 0;
+            CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
             SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
             Conn.Open();
@@ -261,6 +262,7 @@ namespace SIS_Student
         private string AddVoucher(string sAcc, string sSID, string sPmtSession, string sPmtOrder)
         {
             string sVoucher = "";
+            CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
             SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
             Conn.Open();
@@ -299,6 +301,7 @@ namespace SIS_Student
         private string NewVoucher(int iCYear, int iCSem)
         {
             string sVoucher = "";
+            CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
             SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
             Conn.Open();
@@ -343,6 +346,7 @@ namespace SIS_Student
 
         public void checkfirstpayment(string sAcc)
         {
+            CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             //checking that its first payment done by student or not
             Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
             SqlConnection sc = new SqlConnection(myConnection_String.Conn_string);
@@ -437,6 +441,7 @@ namespace SIS_Student
         }
         public void updateuserole(string sAcc)
         {
+            CurrentCampus = (InitializeModule.EnumCampus)Session["CurrentCampus"];
             Connection_StringCLS myConnection_String = new Connection_StringCLS(CurrentCampus);
             SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
             try

@@ -5024,15 +5024,26 @@ public class LibraryMOD
             sSQL += " WHERE (lngStudentNumber = '" + sSID + "')";
 
             SqlCommand Cmd = new SqlCommand(sSQL, Conn);
-            string sBalance = Cmd.ExecuteScalar().ToString();
-            if (sBalance != "")
+            object r = Cmd.ExecuteScalar();
+            string sBalance = "0";
+            if (r != null)
             {
                 cBalance = Convert.ToDecimal(sBalance);
-            }
+            }               
             else
             {
                 cBalance = 0;
             }
+
+            //string sBalance = Cmd.ExecuteScalar().ToString();
+            //if (sBalance != "")
+            //{
+            //    cBalance = Convert.ToDecimal(sBalance);
+            //}
+            //else
+            //{
+            //    cBalance = 0;
+            //}
 
 
         }

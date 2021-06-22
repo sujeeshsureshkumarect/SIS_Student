@@ -30,7 +30,8 @@ namespace SIS_Student
             }
             else
             {
-                f = "~/images/Student.jpg";
+                //f = "~/images/Student.jpg";
+                f = "//management-m/ETSD/ETS/Images/Students/PIC999999999999999.jpeg";
                 Image image = Image.FromFile(f);
                 context.Response.Clear();
                 context.Response.ClearHeaders();
