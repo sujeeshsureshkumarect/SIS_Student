@@ -34,7 +34,7 @@
                                                <div>
         <h3>Please wait while you are redirected to the gateway you choose to make payment.</h3>
         <br />
-        <script src="https://eu-gateway.mastercard.com/checkout/version/56/checkout.js"
+        <script src="https://eu-gateway.mastercard.com/checkout/version/59/checkout.js"
             data-error="errorCallback"
             data-cancel="cancelCallback"
             data-complete="completeCallback"

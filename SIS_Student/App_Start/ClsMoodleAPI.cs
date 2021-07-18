@@ -40,7 +40,12 @@ public class ClsMoodleAPI
         public int id { get; set; }
         public string username { get; set; }
     }
-
+    public class MoodleManualUnEnrol
+    {
+        public int userid { get; set; }
+        public int courseid { get; set; }
+        public int roleid { get; set; }
+    }
     public class UserInfo
     {
         public int id { get; set; }
@@ -142,7 +147,7 @@ public class ClsMoodleAPI
         public string enrolmentkey { get; set; }
         public string idnumber { get; set; }
     }
-    private static int GetGroupIDFromGroupName(string token, int iCourseID, string sGroupName)
+    public static int GetGroupIDFromGroupName(string token, int iCourseID, string sGroupName)
     {
         int iGroupID = 0;
 
@@ -313,6 +318,104 @@ public class ClsMoodleAPI
         string contents = reader.ReadToEnd();
         return contents;
     }
+    public static Boolean IsCourseLeaderExist(int iYear, int iSem, string UnifiedCode)
+    {
+        String sSQL;
+        Boolean isExist = false;
+        Connection_StringCLS MyConnection_string = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+        SqlConnection Conn = new SqlConnection(MyConnection_string.Conn_string.ToString());
+        try
+        {
+            sSQL = "SELECT CourseID";
+            sSQL += " FROM Reg_CourseLeader";
+            sSQL += " WHERE AcademicYear =" + iYear;
+            sSQL += " AND SemesterID = " + iSem;
+            sSQL += " AND CourseID = '" + UnifiedCode + "'";
+
+            Conn.Open();
+
+            System.Data.SqlClient.SqlCommand CommandSQL = new System.Data.SqlClient.SqlCommand(sSQL, Conn);
+            System.Data.SqlClient.SqlDataReader datReader;
+            datReader = CommandSQL.ExecuteReader(CommandBehavior.CloseConnection);
+
+
+            if (datReader.Read())
+            {
+                isExist = true;
+            }
+            datReader.Close();
+
+        }
+        catch (Exception ex)
+        {
+            LibraryMOD.ShowErrorMessage(ex);
+        }
+        finally
+        {
+            Conn.Close();
+            Conn.Dispose();
+        }
+
+        return isExist;
+    }
+    public static int UpdateMoodleCourseNo(int iYear, int iSem, string UnifiedCode, int iMoodleCourseNo)
+    {
+        int iUpdated = 0;
+
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+        SqlConnection conn = new SqlConnection(myConnection_String.Conn_string);
+        conn.Open();
+        try
+        {
+            string sSQL = "";
+            if (iMoodleCourseNo == -1) iMoodleCourseNo = 0;
+
+            if (IsCourseLeaderExist(iYear, iSem, UnifiedCode) == true)
+            {
+                // update course number
+                sSQL = "UPDATE Reg_CourseLeader";
+                sSQL += " SET MoodleCourseNo =" + iMoodleCourseNo;
+                sSQL += " WHERE AcademicYear =" + iYear;
+                sSQL += " AND SemesterID =" + iSem;
+                sSQL += " AND CourseID ='" + UnifiedCode + "'";
+
+                SqlCommand cmd = new SqlCommand(sSQL, conn);
+
+                iUpdated = cmd.ExecuteNonQuery();
+            }
+            //if course not exist  then insert it 
+            else
+            {
+                int result = 0;
+                string sNetUserName = "";
+                string sPCName = "";
+                string sUserName = string.Empty;
+
+                //  sUserName = Session["CurrentUserName"].ToString();
+                // sNetUserName = Session["CurrentNetUserName"].ToString();
+                // sPCName = Session["CurrentPCName"].ToString(); 
+
+                CourseLeaderCls MyCourseLeader = new CourseLeaderCls();
+                result = MyCourseLeader.UpdateCourseLeader(InitializeModule.EnumCampus.ECTNew, 2, iYear, iSem, UnifiedCode, 0, 1, DateTime.Now, 1, DateTime.Now, sPCName, sNetUserName, "", iMoodleCourseNo);
+
+                if (result > 0)
+                {
+                    iUpdated = result;
+                    // divMsg.InnerText = "Data Inserted Successfully.";
+                }
+            }
+            return iUpdated;
+        }
+        catch (Exception ex)
+        {
+            return iUpdated;
+        }
+        finally
+        {
+            conn.Close();
+            conn.Dispose();
+        }
+    }
     public static int EnrollStudentinMoodleCourses(string sEmail,string sStudentID)
     {
         int iResult = InitializeModule.FAIL_RET;
@@ -440,7 +543,94 @@ public class ClsMoodleAPI
             }
         } //for
         return iResult;
-    }
+    }   
+    public static int EnrollStudentinMoodleCourses_CourseCode(string sEmail, string sStudentID,string cousreshortcode,int Moodle_CourseNo,int roleid,string groupname)
+    {
+        int iResult = InitializeModule.FAIL_RET;        
+        ClsMoodleAPI.MoodleManualEnrol enroluser = new ClsMoodleAPI.MoodleManualEnrol();
+
+        int iSuspend = 0;
+        int iUserID = 0;
+        string sUsername = "";
+        string sCourse = "";
+        int iCourseID = 0;
+        string sGroupName = "";
+        int iGroupID = 0;
+        iSuspend = 0;
+
+        DataSet dsGroups = new DataSet();
+
+        string Token = "1b4cb9114197a84985695b19b1164d0a";
+        
+            enroluser.roleid = roleid;
+            //get userid from username
+
+            sUsername = sEmail;
+            iUserID = 0;
+            if (iUserID == 0)
+            {
+                iUserID = LibraryMOD.GetStudentMoodleUserNo(sStudentID);
+            }
+
+            iCourseID = Moodle_CourseNo;
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            enroluser.userid = iUserID;
+            sCourse = cousreshortcode;
+            enroluser.courseid = iCourseID;
+            enroluser.suspend = iSuspend;
+            if (iCourseID == 2455) //ESL_Gen_20201
+            {
+                //enroll student in course 2541
+                iCourseID = 2541; // ESL_Gen_155_20201
+                enroluser.courseid = iCourseID;
+            }
+            iGroupID = 0;
+            string contents = enrol_manual_enrol_users(enroluser);
+            // Deserialize
+            serializer = new JavaScriptSerializer();
+            if (contents.Contains("exception"))
+            {
+                // Error
+                ClsMoodleAPI.MoodleException moodleError = serializer.Deserialize<ClsMoodleAPI.MoodleException>(contents);
+                //lbl_results.Text += "Error in enrolling user in course: " + enroluser.courseid + " / " + contents;
+            }
+            else
+            {
+                // Good
+                List<string> newGroups = serializer.Deserialize<List<string>>(contents);
+                // lbl_results.Text += "User Enrolled Successfuly - ";
+                sGroupName = groupname;
+
+                if (iGroupID == 0)
+                {
+                    //get group no from moodle
+                    iGroupID = GetGroupIDFromGroupName(Token, iCourseID, sGroupName);
+                }
+                //add to group
+
+                contents = core_group_add_group_members(iGroupID, iUserID);
+
+                //Deserialize
+                serializer = new JavaScriptSerializer();
+                if (contents.Contains("exception"))
+                {
+                    // Error
+                    ClsMoodleAPI.MoodleException moodleError = serializer.Deserialize<ClsMoodleAPI.MoodleException>(contents);
+                    // lbl_results.Text += "Error in adding member to group:" + sGroupName + "in course:" + sCourse + " / " + contents;
+                }
+                else
+                {
+                    // Good
+                    //List<string> newGroups = serializer.Deserialize<List<string>>(contents);
+                    // lbl_results.Text += "Member Added Successfuly";
+                    iResult = InitializeModule.SUCCESS_RET;
+                }
+            }
+        //for
+        return iResult;
+    }  
     public static int CreateUpdateMoodleAccount(string sEmail,string sStudentID)
     {
         int iReturnValue = 0;

@@ -95,6 +95,84 @@ public class LibraryMOD
             conn.Dispose();
         }
     }
+    public static bool isCourseRegistered(int iYear, int iSem, string sStudent, string sCourse, InitializeModule.EnumCampus Campus)
+    {
+
+        Connection_StringCLS myConnection_String = new Connection_StringCLS(Campus);
+        SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+        bool isReg = false;
+        try
+        {
+            string sSQL = "SELECT C.sUnified";
+            sSQL += " FROM Course_Balance_View AS CBV ";
+            sSQL += " INNER JOIN dbo.Reg_Courses AS C ON CBV.Course = C.strCourse";
+            sSQL += " WHERE CBV.iYear=" + iYear;
+            sSQL += " AND CBV.Sem=" + iSem;
+            sSQL += " AND CBV.Student='" + sStudent + "'";
+            sSQL += " AND C.sUnified ='" + sCourse + "'";
+
+            Conn.Open();
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            SqlDataReader dr = Cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            isReg = dr.HasRows;
+
+            dr.Close();
+
+        }
+        catch (Exception exp)
+        {
+            Console.WriteLine("{0} Exception caught.", exp);
+
+        }
+        finally
+        {
+
+
+            Conn.Close();
+            Conn.Dispose();
+
+        }
+        return isReg;
+
+    }
+    public static int GetMoodleCourseNo(string sCourse, int iAcademicYear, int iSemesterID)
+    {
+
+        int iMoodleCourseNo = 0;
+        try
+        {
+            Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);
+            SqlConnection Conn = new SqlConnection(myConnection_String.Conn_string);
+            Conn.Open();
+
+            string sSQL = "SELECT MoodleCourseNo";
+            sSQL += " FROM Reg_CourseLeader";
+            sSQL += " WHERE CourseID = '" + sCourse + "'";
+            sSQL += " AND AcademicYear = " + iAcademicYear;
+            sSQL += " AND SemesterID = " + iSemesterID;
+
+            SqlCommand Cmd = new SqlCommand(sSQL, Conn);
+            SqlDataReader dr = Cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                iMoodleCourseNo = int.Parse(dr["MoodleCourseNo"].ToString());
+            }
+            dr.Close();
+        }
+        catch (Exception exp)
+        {
+            Console.WriteLine("{0} Exception caught.", exp);
+
+        }
+        finally
+        {
+
+        }
+        return iMoodleCourseNo;
+    }
     public static int GetStudentUserNo(string sUserName)
     {
         Connection_StringCLS myConnection_String = new Connection_StringCLS(InitializeModule.EnumCampus.ECTNew);

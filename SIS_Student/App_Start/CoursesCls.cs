@@ -837,6 +837,43 @@ public class CoursesDAL : Courses
         }
         return results;
     }
+    public string GetUnifiedCourseCode(string sCourse)
+    {
+        String sSQL;
+        String sUnified = "";
+        Connection_StringCLS MyConnection_string = new Connection_StringCLS(InitializeModule.EnumCampus.Males);
+        SqlConnection Conn = new SqlConnection(MyConnection_string.Conn_string.ToString());
+        try
+        {
+            sSQL = "SELECT ";
+            sSQL += sUnifiedFN;
+            sSQL += "  FROM " + m_TableName;
+            sSQL += "  WHERE " + strCourseFN + "='" + sCourse + "'";
+
+            Conn.Open();
+
+            System.Data.SqlClient.SqlCommand CommandSQL = new System.Data.SqlClient.SqlCommand(sSQL, Conn);
+            System.Data.SqlClient.SqlDataReader datReader;
+            datReader = CommandSQL.ExecuteReader(CommandBehavior.CloseConnection);
+
+            if (datReader.Read())
+            {
+                sUnified = datReader.GetString(0);
+            }
+            datReader.Close();
+
+        }
+        catch (Exception ex)
+        {
+            LibraryMOD.ShowErrorMessage(ex);
+        }
+        finally
+        {
+            Conn.Close();
+            Conn.Dispose();
+        }
+        return sUnified;
+    }
     public int UpdateCourses(InitializeModule.EnumCampus Campus, int iMode, string strCourse, string strEquivalent, string strCourseDescEn, string strCourseDescAr, int byteCreditHours, string bEffectGPA, string bChargeFree, int byteParticularHours, int byteTheoreticalHours, string strCollege, string strParallel, string bLab, string bExtraLab, int byteGradeSystem, string IsActive, string strUserCreate, DateTime dateCreate, string strUserSave, DateTime dateLastSave, string strMachine, string strNUser)
     {
         int iEffected = 0;

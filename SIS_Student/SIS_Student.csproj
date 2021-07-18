@@ -66,6 +66,10 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="ECTGlobalDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ECTGlobalDll.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Client.Policy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20324.12000\lib\net45\Microsoft.Office.Client.Policy.dll</HintPath>
@@ -6126,6 +6130,7 @@
     <Compile Include="App_Start\ClsMoodleAPI.cs" />
     <Compile Include="App_Start\Connection.cs" />
     <Compile Include="App_Start\Connection_StringsCLS.cs" />
+    <Compile Include="App_Start\CourseLeaderCls.cs" />
     <Compile Include="App_Start\CoursesCls.cs" />
     <Compile Include="App_Start\Course_DetailCls.cs" />
     <Compile Include="App_Start\Course_HeaderCls.cs" />
