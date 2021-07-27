@@ -6092,6 +6092,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="SServices.aspx" />
+    <Content Include="Question.aspx" />
     <Content Include="StudentAdvising.aspx" />
     <Content Include="StudentProfile.aspx" />
     <Content Include="StudentRegistration.aspx" />
@@ -6563,6 +6564,13 @@
     </Compile>
     <Compile Include="SServices.aspx.designer.cs">
       <DependentUpon>SServices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Question.aspx.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Question.aspx.designer.cs">
+      <DependentUpon>Question.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student.Master.cs">
       <DependentUpon>Student.Master</DependentUpon>
