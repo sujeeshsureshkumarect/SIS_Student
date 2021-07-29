@@ -59,8 +59,42 @@ namespace SIS_Student
                             }
                             else
                             {
-                                Response.Redirect("Dashboard", false);
-                                Context.ApplicationInstance.CompleteRequest(); // end response
+                                //Response.Redirect("Dashboard", false);
+                                //Context.ApplicationInstance.CompleteRequest(); // end response
+
+                                //Covid
+                                SqlConnection sc1 = new SqlConnection(ConfigurationManager.ConnectionStrings["ECTDataNew"].ConnectionString);
+                                SqlCommand cmd = new SqlCommand("select * from ECT_Question_STD_Response where sSID=@sSID and iQuestion=@iQuestion and iResponse=0", sc1);
+                                cmd.Parameters.AddWithValue("@sSID", Session["CurrentStudent"].ToString());
+                                cmd.Parameters.AddWithValue("@iQuestion", "1");
+                                DataTable dt = new DataTable();
+                                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                                try
+                                {
+                                    sc.Open();
+                                    da.Fill(dt);
+                                    sc.Close();
+
+                                    if(dt.Rows.Count>0)
+                                    {
+                                        Response.Redirect("Question?i="+ Session["CurrentStudent"].ToString() + "&q=1&f=s", false);
+                                        Context.ApplicationInstance.CompleteRequest(); // end response
+                                    }
+                                    else
+                                    {
+                                        Response.Redirect("Dashboard", false);
+                                        Context.ApplicationInstance.CompleteRequest(); // end response
+                                    }
+                                }
+                                catch(Exception ex)
+                                {
+                                    sc.Close();
+                                    Console.WriteLine(ex.Message);
+                                }
+                                finally
+                                {
+                                    sc.Close();
+                                }
                             }                            
                         }
                     }

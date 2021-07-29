@@ -81,6 +81,11 @@ namespace SIS_Student
                         lblMsg.Text = "Submitted Successfully";
                         lblMsg.ForeColor = System.Drawing.Color.Green;
                         form1.Visible = false;
+
+                        if(Request.QueryString["f"]=="s")
+                        {
+                            Response.Redirect("Dashboard");
+                        }
                     }
                     catch(Exception ex)
                     {
