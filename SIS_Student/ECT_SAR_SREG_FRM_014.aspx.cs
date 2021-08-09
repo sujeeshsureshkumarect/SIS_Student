@@ -117,6 +117,11 @@ namespace SIS_Student
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
                 lbl_StudentEmail.Text = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
+
+                if (string.IsNullOrEmpty(lbl_StudentEmail.Text) || string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
             }
 
             DataTable dtAcademicAdvisor = services.GetStudentAcademicAdvisor(studentid, connstr.Conn_string);

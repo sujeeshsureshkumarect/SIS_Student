@@ -117,6 +117,11 @@ namespace SIS_Student
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_CurrentMajor.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
                 lbl_Nationality.Text = dtStudentServices.Rows[0]["strNationalityDescEn"].ToString();
+
+                if (string.IsNullOrEmpty(lbl_StudentEmail.Text) || string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
             }
 
         }

@@ -118,6 +118,11 @@ namespace SIS_Student
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_CurrentMajor.Text = dtStudentServices.Rows[0]["strCaption"].ToString();
 
+                if (string.IsNullOrEmpty(lbl_StudentEmail.Text) || string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
+
                 SqlConnection sc = new SqlConnection(connstr.Conn_string);
                 SqlCommand cmd = new SqlCommand("SELECT  Course_Balance_View_BothSides.iYear, Course_Balance_View_BothSides.Sem, Course_Balance_View_BothSides.Shift, Course_Balance_View_BothSides.Course, Course_Balance_View_BothSides.Class, Course_Balance_View_BothSides.Student, Course_Balance_View_BothSides.FactorBalance, Course_Balance_View_BothSides.IsIncluded_AtRisk, Reg_Courses.IsInternshipCourse FROM Course_Balance_View_BothSides INNER JOIN Reg_Courses ON Course_Balance_View_BothSides.Course = Reg_Courses.strCourse WHERE (Reg_Courses.IsInternshipCourse = 1) AND (Course_Balance_View_BothSides.iYear = "+ iYear + ") AND (Course_Balance_View_BothSides.Sem = "+ iSem + ") AND (Course_Balance_View_BothSides.Student = N'"+ studentid + "')", sc);
                 DataTable dt = new DataTable();

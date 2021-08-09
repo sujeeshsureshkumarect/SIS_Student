@@ -165,8 +165,12 @@ namespace SIS_Student
                 lbl_StudentContact.Text = dtStudentServices.Rows[0]["Phone"].ToString();
                 lbl_StudentEmail.Text = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
-                lbl_CurrentMajor.Text= dtStudentServices.Rows[0]["strCaption"].ToString(); 
-                if(dtStudentServices.Rows[0]["strDegree"].ToString()=="2")
+                lbl_CurrentMajor.Text= dtStudentServices.Rows[0]["strCaption"].ToString();
+                if (string.IsNullOrEmpty(lbl_StudentEmail.Text) || string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
+                if (dtStudentServices.Rows[0]["strDegree"].ToString()=="2")
                 {
                     //Not allowed for remedial students
                     div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";

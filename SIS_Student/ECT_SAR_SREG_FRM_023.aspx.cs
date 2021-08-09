@@ -148,6 +148,10 @@ namespace SIS_Student
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
 
                 string cancelreason= dtStudentServices.Rows[0]["byteCancelReason"].ToString();
+                if (string.IsNullOrEmpty(lbl_StudentEmail.Text) || string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
                 //Non-Graduated Students Check
                 if (cancelreason != "3")
                 {

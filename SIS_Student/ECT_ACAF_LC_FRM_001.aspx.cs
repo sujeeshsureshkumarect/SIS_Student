@@ -119,6 +119,11 @@ namespace SIS_Student
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
                 lbl_EmiratesID.Text= dtStudentServices.Rows[0]["EID"].ToString();
                 lbl_ExamDate.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+
+                if(string.IsNullOrEmpty(lbl_StudentEmail.Text)||string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
             }
 
         }

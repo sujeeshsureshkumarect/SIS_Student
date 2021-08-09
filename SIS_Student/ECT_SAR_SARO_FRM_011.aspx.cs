@@ -118,6 +118,10 @@ namespace SIS_Student
                 lbl_GraduationSemester.Text = dtStudentServices.Rows[0]["byteGraduationSemester"].ToString();
                 lbl_GraduationYear.Text = dtStudentServices.Rows[0]["intGraduationYear"].ToString();
                 string cancelreason = dtStudentServices.Rows[0]["byteCancelReason"].ToString();
+                if (string.IsNullOrEmpty(lbl_StudentEmail.Text) || string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
                 if (cancelreason != "3")
                 {
                     div_Alert.Attributes["class"] = "alert alert-danger alert-dismissible ";

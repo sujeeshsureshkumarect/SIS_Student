@@ -151,8 +151,11 @@ namespace SIS_Student
                 hdf_StudentEmail.Value = dtStudentServices.Rows[0]["sECTemail"].ToString();
 
                 string cancelreason = dtStudentServices.Rows[0]["byteCancelReason"].ToString();
-
-                if(lbl_ServiceID.Text=="1004")//Service # 1004 this must be for graduated and expected to Graduate only 
+                if (string.IsNullOrEmpty(lbl_StudentEmail.Text) || string.IsNullOrWhiteSpace(lbl_StudentEmail.Text))
+                {
+                    lnk_Generate.Enabled = false;
+                }
+                if (lbl_ServiceID.Text=="1004")//Service # 1004 this must be for graduated and expected to Graduate only 
                 {
                     //lbl_En.Text = "Graduation Letter";
                     //lbl_Ar.Text = "طلب افادة تخرج";
